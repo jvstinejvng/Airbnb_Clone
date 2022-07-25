@@ -8,14 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      startDate: {
-        type: Sequelize.DATEONLY,
-        allowNull: false,
-      },
-      endDate: {
-        type: Sequelize.DATEONLY,
-        allowNull: false,
-      },
       spotId: {
         type: Sequelize.INTEGER,
         references: { model: 'Spots'},
@@ -23,6 +15,14 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         references: { model: 'Users'},
+      },
+      startDate: {
+        type: Sequelize.DATEONLY,
+        allowNull: false,
+      },
+      endDate: {
+        type: Sequelize.DATEONLY,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
