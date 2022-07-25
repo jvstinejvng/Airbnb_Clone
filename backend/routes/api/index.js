@@ -1,22 +1,22 @@
 const router = require('express').Router();
 
+const bookingsRouter = require('./bookings.js');
+const imageRouter = require('./image.js');
+const reviewsRouter = require('./reviews.js');
 const sessionRouter = require('./session.js');
+const spotsRouter = require('./spots.js');
 const usersRouter = require('./users.js');
 
-const { restoreUser } = require('../../utils/auth.js');
-const { setTokenCookie } = require('../../utils/auth.js');
-const { requireAuth } = require('../../utils/auth.js');
-const { User } = require('../../db/models');
+const { restoreUser } = require("../../utils/auth.js");
 
-// Connect restoreUser middleware to the API router
-  // If current user session is valid, set req.user to the user in the database
-  // If current user session is not valid, set req.user to null
 router.use(restoreUser);
 
+router.use('/bookings', bookingsRouter);
+router.use('/image', imageRouter);
+router.use('/reviews', reviewsRouter);
 router.use('/session', sessionRouter);
-
+router.use('/spots', spotsRouter);
 router.use('/users', usersRouter);
-
 
 // GET /api/set-token-cookie
 router.get('/set-token-cookie', async (_req, res) => {
@@ -36,7 +36,6 @@ router.get(
     return res.json(req.user);
   }
 );
-
 
 // GET /api/require-auth
 router.get(

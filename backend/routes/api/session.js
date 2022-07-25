@@ -1,9 +1,10 @@
 const express = require('express');
 
-const { setTokenCookie, restoreUser } = require('../../utils/auth');
-const { User } = require('../../db/models');
-const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
+const { Booking, Image, Review, Spot, User } = require('../../db/models');
+
+const { check } = require("express-validator");
+const { handleValidationErrors } = require("../../utils/validation");
+const { setTokenCookie, requireAuth, restoreUser } = require("../../utils/auth");
 
 const router = express.Router();
 
@@ -18,7 +19,7 @@ const validateLogin = [
     handleValidationErrors
   ];
 
-// Log in
+// Log In a User
 router.post(
     '/',
     async (req, res, next) => {
