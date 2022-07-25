@@ -70,32 +70,42 @@ router.get('/current', requireAuth, async (req, res) => {
   return res.json(req.user);
 });
 
-
 // Get all Reviews of the Current User
 router.get('/current/reviews', requireAuth, async ( req, res ) => {
   const { id } = req.user;
 
   const reviews = await Review.findAll({
-    include: [
-      { model: User, attributes: ["id", "firstName", "lastName"] },
-      {
-        model: Property,
-        attributes: {
-          exclude: ["description", "previewImage", "createdAt", "updatedAt"],
-        },
-      },
-      { model: Image, attributes: ["url"] },
-    ],
     where: { userId: id },
+    include: [{ 
+      model: User, 
+      attributes: [
+        "id", 
+        "firstName", 
+        "lastName"
+      ]
+    },{
+    model: Property,
+    attributes: {
+      exclude: [
+        "description", 
+        "previewImage",
+        "createdAt", 
+        "updatedAt"],
+      },
+    },{ 
+      model: Image, 
+      attributes: ["url"] 
+    },],
   });
 
   if (!reviews) {
-    res.json({ message: "The user has no reviews." });
+    res.json({ 
+      message: "The user has no reviews." 
+    });
   }
 
   res.json(reviews);
-})
 
-
+});
 
 module.exports = router;
