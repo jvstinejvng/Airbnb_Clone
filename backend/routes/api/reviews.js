@@ -1,4 +1,5 @@
 const express = require('express');
+const {Op} = require('sequelize')
 
 const { Booking, Image, Review, Spot, User } = require('../../db/models');
 
@@ -17,6 +18,124 @@ const validateReview = [
       .withMessage('Stars must be an integer from 1 to 5'),
     handleValidationErrors
   ];
+
+// Get all reviews of the current user
+router.get("/current-user-review", requireAuth, async (req, res) => {
+  const {id} = req.user;
+
+  const reviews = await Review.findAll({
+    include: [
+      {
+        model: Spot,
+        attributes: {
+          exclude: ['createdAt', 'updatedAt', 'previewImage']
+        }
+      },
+      {
+        model: Image,
+        attributes: ['url']
+      }
+    ],
+    where: {
+      userId: id
+    }
+  })
+  res.json(reviews)
+});
+
+//Get all reviews by a Spot's id
+router.get('/:spotId', async (req, res) => {
+  const spotId = req.params.spotId;
+
+  let spot  = await Spot.findByPk(spotId);
+  if (!spot) {
+    return res.status(404).json({
+      "message": "Spot does not exist!"
+    });
+  }
+
+  let reviews = await Review.findAll({
+    where: {
+      spotId: spotId,
+    }
+  });
+
+  let user = await User.findByPk(spot.ownerId);
+  let images = await Image.findByPk(spot.id)
+
+
+  return res.json({
+    reviews,
+    user,
+    images
+  });
+});
+
+//Create a Review for a Spot based on the Spot's id
+router.post('/:spotId', requireAuth, validateReview, async (req, res) => {
+  let { review, stars } = req.body
+  const spotId = req.params.spotId
+  const id = req.user.id
+
+  const spot = await Spot.findOne({
+      where: { id: spotId}
+  })
+
+  if (!spot) {
+    return res.status(404).json({
+          "message": "Spot couldn't be found",
+          "statusCode": 404
+      })
+  }
+
+  // const user = await Review.findOne({
+  //     where:{ userId: req.user.id, spotId: req.params.spotId}
+  // })
+
+  const reviewExistence = await Review.findAll({
+    where: {
+      [Op.and]: [
+        { spotId: req.params.spotId },
+        { userId: req.user.id },
+      ],
+    },
+  })
+
+  if (reviewExistence.length >= 1) {
+    return res.status(403).json({
+      message: "User review for this current spot already exists",
+      statusCode: 403
+    })
+  }
+
+  // if (user) {
+  //   return res.status(403).json({
+  //         "message": "User already has a review for this spot",
+  //         "statusCode": 403
+  //     })
+  // }
+
+  if (stars > 5 || stars < 0) {
+      return res.status(400).json({
+          "message": "Validation error",
+          "statusCode": 400,
+          "errors": {
+              "stars": "Stars must be an integer from 1 to 5"
+          }
+      })
+  }
+
+  const newReview = await Review.create({
+    userId: req.user.id,
+    spotId: spotId,
+    review,
+    stars,
+  })
+
+
+  res.json({ message: 'Successfully created spot', newReview})
+})
+
 
 // Edit a Review
 router.put("/:reviewId", requireAuth, async (req, res) => {
@@ -47,6 +166,7 @@ router.put("/:reviewId", requireAuth, async (req, res) => {
   await updatedReview.save();
   res.json(updatedReview);
 });
+
 
 // Add an Image to a Review based on the Review's id
 router.post("/:reviewId/image", requireAuth, async (req, res) => {

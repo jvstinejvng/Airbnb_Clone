@@ -77,8 +77,8 @@ information.
 
 * Require Authentication: false
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: POST
+  * URL: api/session/login
   * Headers:
     * Content-Type: application/json
   * Body:

@@ -8,6 +8,123 @@ const { setTokenCookie, requireAuth, restoreUser } = require("../../utils/auth")
 
 const router = express.Router();
 
+//add query filters to get all spots
+router.get("/", async (req, res) => {
+  const pagination = {
+    filter: []
+  }
+  let { page, size, maxLat, minLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+  const error = {
+    "message": "Validation Error",
+    "statusCode": 400,
+    "errors": {}
+  }
+
+  page = Number(page);
+  size = Number(size);
+
+
+  if (Number.isNaN(page)) page = 0;
+  if (Number.isNaN(size)) size = 20;
+
+  if (page > 10) page = 10
+  if (size > 20) size = 20
+
+  if (page < 0) error.errors.page = "Page must be greater than or equal to 0"
+  if (size < 0) error.errors.size = "Size must be greater than or equal to 0"
+  if (Number(maxLat) > 90) {
+    error.errors.maxLat = "Maximum latitude is invalid"
+    maxLat = false
+  }
+  if (Number(minLat) < -90) {
+    error.errors.maxLat = "Minimum latitude is invalid"
+    minLng = false
+  }
+  if (Number(maxLng) > 180) {
+    error.errors.maxLng = "Maximum longitude is invalid"
+    maxLng = false
+  }
+  if (Number(minLng) < -180) {
+    error.errors.minLng = "Minimum longitude is invalid"
+    minLng = false
+  }
+  if (Number(minPrice) < 0) {
+    error.errors.minPrice = "Maximum price must be greater than 0"
+    minPrice = false
+  }
+  if (Number(maxPrice) < 0) {
+    error.errors.maxPrice = "Minimum price must be greater than 0"
+    maxPrice = false
+  }
+
+  if (page < 0 || size < 0 || (!maxLat && maxLat !== undefined) || (!minLat && minLat !== undefined) || (!maxLng && maxLng !== undefined) || (!minLng && minLng !== undefined) || (!minPrice && minPrice !== undefined) || (!maxPrice && maxPrice !== undefined)) {
+    res.status(400);
+    res.json(error)
+  }
+
+  if (maxLat) {
+    pagination.filter.push(
+      {
+        lat: { [Op.lte]: Number(maxLat) }
+      }
+    )
+  }
+  if (minLat) {
+    pagination.filter.push(
+      {
+        lat: { [Op.gte]: Number(minLat) }
+      }
+    )
+  }
+  if (minLng) {
+    pagination.filter.push(
+      {
+        lng: { [Op.gte]: Number(minLng) }
+      }
+    )
+  }
+  if (maxLng) {
+    pagination.filter.push(
+      {
+        lng: { [Op.lte]: Number(maxLng) }
+      }
+    )
+  }
+  if (minPrice) {
+    pagination.filter.push(
+      {
+        price: { [Op.gte]: Number(minPrice) }
+      }
+    )
+  }
+  if (maxPrice) {
+    pagination.filter.push(
+      {
+        price: { [Op.lte]: Number(maxPrice) }
+      }
+    )
+  }
+
+  pagination.size = size
+  pagination.page = page
+
+  const spots = await Spot.findAll({
+    where: {
+      [Op.and]: pagination.filter
+    },
+    limit: pagination.size,
+    offset: pagination.size * pagination.page
+  })
+  res.json({
+    spots,
+    page: pagination.page,
+    size: pagination.size,
+  }
+  )
+
+})
+
+
 // Get all Spots
 router.get("/your-spots", requireAuth, async (req, res) => {
     const allSpots = await Spot.findAll({
@@ -56,37 +173,6 @@ spotData.avgStarRating = reviewsAggData.avgStarRating
 
   res.json(spotData)
 })
-
-// Get all Reviews by a Spot's id
-router.get('/:spotId/reviews',
-  requireAuth,
-  async (req, res, next) => {
-    const spotId = req.params.spotId
-
-    const spotReview = await Spot.findByPk(spotId);
-
-    if(!spotReview) {
-      res.status(404).json({message: "Spot couldn't be found",
-  statusCode: 404})}
-      else{
-    const reviews = await Review.findAll({
-      where: { spotId: spotId},
-      include: [
-        {
-          model: User,
-          // as: 'users',
-          attributes:['id', 'firstName', 'lastName']
-        },
-             {
-          model: Image,
-          // as: 'images'
-          attributes: ['url']
-        }
-      ]
-    })
-    res.json({reviews})
-  }}
-  )
 
 // GET all spots owned by the current user
 router.get('/userSpots', requireAuth, async (req, res) => {
@@ -137,8 +223,6 @@ router.post('/:id/reviews', requireAuth, validateReview, async (req, res, next) 
   res.json(newReview)
 
 })
-
-// Create a Booking from a Spot based on the Spot's id
 
 
 //Create a new Spot

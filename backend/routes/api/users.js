@@ -40,11 +40,11 @@ router.post("/signup", validateSignup, async (req, res) => {
   }
 
   const newUser = await User.signup({
-    email,
-    username,
-    password,
     firstName,
     lastName,
+    username,
+    email,
+    password,
   });
 
   if (!firstName) {
@@ -73,70 +73,7 @@ router.get("/current", requireAuth, async (req, res) => {
   return res.json(req.user);
 });
 
-// Get all of the Current User's Bookings
-router.get('/currentUser/bookings', requireAuth, async (req, res) => {
-  const userId = req.user.id;
 
-  let userBookings = await Booking.findAll({
-    include: [{
-        model: Spot,
-        attributes: [
-          "id",
-          "ownerId",
-          "address",
-          "city",
-          "state",
-          "country",
-          "lat",
-          "lng",
-          "name",
-          "price",
-          "previewImage",
-        ],},],
-    where: { userId: userId },
-  });
-
-  return res.json(userBookings);
-
-});
-
-// Get all Spots owned by the Current User
-router.get('/current-user/spots', requireAuth, async (req, res) => {
-  const currentUserId = req.user.id;
-
-  let spots  = await Spot.findAll({
-    where: {
-      ownerId: currentUserId
-    }
-  });
-
-  return res.json(spots);
-});
-
-// Get all Reviews of the Current User
-router.get("/currentUser/reviews", requireAuth, async (req, res) => {
-  const { id } = req.user;
-
-  const reviews = await Review.findAll({
-    include: [
-      { model: User, attributes: ["id", "firstName", "lastName"] },
-      {
-        model: Property,
-        attributes: {
-          exclude: ["description", "previewImage", "createdAt", "updatedAt"],
-        },
-      },
-      { model: Image, attributes: ["url"] },
-    ],
-    where: { userId: id },
-  });
-
-  if (!reviews) {
-    res.json({ message: "The user has no reviews." });
-  }
-
-  res.json(reviews);
-});
 
 
 module.exports = router;

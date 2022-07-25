@@ -1,4 +1,5 @@
 const express = require('express');
+const {Op} = require('sequelize')
 
 const { Booking, Image, Review, Spot, User } = require('../../db/models');
 
