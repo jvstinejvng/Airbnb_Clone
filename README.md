@@ -1,4 +1,4 @@
-# `<name of application here>`
+# PetBnb  
 
 ## Database Schema Design
 
