@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Booking extends Model {
 
@@ -22,12 +23,10 @@ module.exports = (sequelize, DataTypes) => {
     spotId:{
       type: DataTypes.INTEGER,
       allowNull: false,
-     
     },
     userId:{
       type: DataTypes.INTEGER,
       allowNull: false,
-      
     },
   }, {
     sequelize,
