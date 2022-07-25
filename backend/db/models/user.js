@@ -1,13 +1,15 @@
 'use strict';
-const { Model, Validator } = require('sequelize');
-const bcrypt = require('bcryptjs');
+const {
+  Model, Validator
+} = require('sequelize');
 
+const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     toSafeObject() {
       const { id, username, email } = this; // context will be the User instance
-      return { id, username, email };
+      return { id, username, email }
     }
 
     validatePassword(password) {
@@ -33,38 +35,61 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
 
-    static async signup({ username, email, password }) {
+    static async signup({ firstName, lastName, username, email, password }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
+        firstName,
+        lastName,
         username,
         email,
         hashedPassword
       });
       return await User.scope('currentUser').findByPk(user.id);
     }
-    
+
     static associate(models) {
       // define association here
+      User.hasMany(
+        models.Spot,
+        {foreignKey: 'ownerId', onDelete: 'CASCADE'}
+      );
+      User.hasMany(
+        models.Review, 
+        {foreignKey: 'userId', onDelete: 'CASCADE'}
+      );
+      User.hasMany(
+        models.Booking,  
+        {foreignKey: 'userId', onDelete: 'CASCADE'}
+      )
     }
-  };
-  
+  }
   User.init(
     {
       username: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: {
+          msg: "User already exists"
+        },
         validate: {
           len: [4, 30],
-          isNotEmail(value) {
-            if (Validator.isEmail(value)) {
-              throw new Error("Cannot be an email.");
-            }
-          }
         }
+      },
+      firstName: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: false
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        isEmail: true,
+        unique: {
+          msg: "User with that email already exists"
+        },
         validate: {
           len: [3, 256]
         }
@@ -76,10 +101,9 @@ module.exports = (sequelize, DataTypes) => {
           len: [60, 60]
         }
       }
-    },
-    {
+    }, {
       sequelize,
-      modelName: "User",
+      modelName: 'User',
       defaultScope: {
         attributes: {
           exclude: ["hashedPassword", "email", "createdAt", "updatedAt"]
@@ -93,7 +117,6 @@ module.exports = (sequelize, DataTypes) => {
           attributes: {}
         }
       }
-    }
-  );
+  });
   return User;
 };

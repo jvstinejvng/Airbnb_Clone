@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 module.exports = {
-  async up(queryInterface, Sequelize){
-    return queryInterface.createTable("Users", {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('Users', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,16 +11,24 @@ module.exports = {
       username: {
         type: Sequelize.STRING(30),
         allowNull: false,
-        unique: true
+        unique: true,
+      },
+      firstName: {
+        type: Sequelize.STRING(30),
+        allowNull: false,
+      },
+      lastName: {
+        type: Sequelize.STRING(30),
+        allowNull: false,
       },
       email: {
         type: Sequelize.STRING(256),
         allowNull: false,
-        unique: true
+        unique: true,
       },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,
-        allowNull: false
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
@@ -31,10 +39,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        
       }
     });
   },
-  async down(queryInterface, Sequelize){
-    return queryInterface.dropTable("Users");
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('Users');
   }
 };

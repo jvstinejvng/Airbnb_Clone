@@ -15,13 +15,12 @@ module.exports = {
       endDate: {
         type: Sequelize.DATEONLY,
         allowNull: false,
-      
       },
       spotId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Spots',
-          key: 'id'
+          key: 'id',
         },
         onDelete: 'CASCADE'
       },
@@ -29,7 +28,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: 'Users',
-          key: 'id'
+          key: 'id',
         },
         onDelete: 'CASCADE'
       },
