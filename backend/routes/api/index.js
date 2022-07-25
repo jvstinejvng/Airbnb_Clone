@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { User } = require('../../db/models');
 
 const bookingsRouter = require('./bookings.js');
 const imageRouter = require('./image.js');
@@ -7,46 +8,41 @@ const sessionRouter = require('./session.js');
 const spotsRouter = require('./spots.js');
 const usersRouter = require('./users.js');
 
-const { restoreUser } = require("../../utils/auth.js");
+const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
 
-router.use(restoreUser);
-
-router.use('/bookings', bookingsRouter);
-router.use('/image', imageRouter);
-router.use('/reviews', reviewsRouter);
-router.use('/session', sessionRouter);
-router.use('/spots', spotsRouter);
-router.use('/users', usersRouter);
+router.use( restoreUser );
+router.use( '/bookings', bookingsRouter) ;
+router.use( '/image', imageRouter );
+router.use('/reviews', reviewsRouter );
+router.use( '/session', sessionRouter );
+router.use( '/spots', spotsRouter );
+router.use( '/users', usersRouter );
 
 // GET /api/set-token-cookie
-router.get('/set-token-cookie', async (_req, res) => {
+router.get('/set-token-cookie', async ( _req, res ) => {
   const user = await User.findOne({
-      where: {
-        username: 'Demo-lition'
-      }
+      where: { username: 'Demo-lition' }
     });
-  setTokenCookie(res, user);
+
+  setTokenCookie( res, user );
+
   return res.json({ user });
+
 });
 
 // GET /api/restore-user
-router.get(
-  '/restore-user',
-  (req, res) => {
+router.get('/restore-user', ( req, res ) => {
     return res.json(req.user);
   }
 );
 
 // GET /api/require-auth
-router.get(
-  '/require-auth',
-  requireAuth,
-  (req, res) => {
+router.get('/require-auth', requireAuth, ( req, res ) => {
     return res.json(req.user);
   }
 );
 
-// router.post('/test', function(req, res) {
+// router.post('/test', function( req, res ) {
 //   res.json({ requestBody: req.body });
 // });
 
