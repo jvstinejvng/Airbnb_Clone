@@ -1,11 +1,9 @@
 const express = require('express');
-
+const { Op, Sequelize } = require('sequelize');
 const { Booking, Image, Review, Spot, User } = require('../../db/models');
-
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
-
 const router = express.Router();
 
 const validateSignup = [
@@ -33,8 +31,7 @@ router.post('/signup', validateSignup, async (req, res) => {
   });
 
   if (validEmail) {
-    res.status(403);
-    res.json({
+    return res.status(403).json({
       message: "User with that email already exists",
     });
   }
@@ -48,13 +45,13 @@ router.post('/signup', validateSignup, async (req, res) => {
   });
 
   if (!firstName) {
-    res.status(400).json({
+    return res.status(400).json({
       message: "First Name is required",
     });
   }
 
   if (!lastName) {
-    res.status(400).json({
+    return res.status(400).json({
       message: "Last Name is required",
     });
   }
