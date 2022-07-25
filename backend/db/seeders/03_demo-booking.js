@@ -44,7 +44,7 @@ module.exports = {
         new Date('2022-11-14'), 
         new Date('2022-11-19'),
         new Date('2022-11-21'),
-        new Date('2022-11-26')] }
+        new Date('2022-11-26')]}
     }, {});
   }
 };
