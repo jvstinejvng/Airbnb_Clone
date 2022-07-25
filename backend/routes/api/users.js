@@ -2,9 +2,9 @@ const express = require('express');
 
 const { Booking, Image, Review, Spot, User } = require('../../db/models');
 
-const { check } = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
-const { setTokenCookie, requireAuth, restoreUser } = require("../../utils/auth");
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
+const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
 
 const router = express.Router();
 
@@ -69,7 +69,7 @@ router.post("/signup", validateSignup, async (req, res) => {
 });
 
 // Get the Current User
-router.get("/currentUser", requireAuth, async (req, res) => {
+router.get("/current", requireAuth, async (req, res) => {
   return res.json(req.user);
 });
 
@@ -101,11 +101,42 @@ router.get('/currentUser/bookings', requireAuth, async (req, res) => {
 });
 
 // Get all Spots owned by the Current User
+router.get('/current-user/spots', requireAuth, async (req, res) => {
+  const currentUserId = req.user.id;
 
+  let spots  = await Spot.findAll({
+    where: {
+      ownerId: currentUserId
+    }
+  });
+
+  return res.json(spots);
+});
 
 // Get all Reviews of the Current User
+router.get("/currentUser/reviews", requireAuth, async (req, res) => {
+  const { id } = req.user;
 
+  const reviews = await Review.findAll({
+    include: [
+      { model: User, attributes: ["id", "firstName", "lastName"] },
+      {
+        model: Property,
+        attributes: {
+          exclude: ["description", "previewImage", "createdAt", "updatedAt"],
+        },
+      },
+      { model: Image, attributes: ["url"] },
+    ],
+    where: { userId: id },
+  });
 
+  if (!reviews) {
+    res.json({ message: "The user has no reviews." });
+  }
+
+  res.json(reviews);
+});
 
 
 module.exports = router;
