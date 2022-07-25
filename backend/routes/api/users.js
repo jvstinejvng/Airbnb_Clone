@@ -26,7 +26,7 @@ const validateSignup = [
 ];
 
 // Sign Up a User
-router.post("/signup", validateSignup, async (req, res) => {
+router.post('/signup', validateSignup, async (req, res) => {
   const {  firstName, lastName, username, email, password } = req.body;
   const validEmail = await User.findOne({
     where: { email }
@@ -69,10 +69,35 @@ router.post("/signup", validateSignup, async (req, res) => {
 });
 
 // Get the Current User
-router.get("/current", requireAuth, async (req, res) => {
+router.get('/current', requireAuth, async (req, res) => {
   return res.json(req.user);
 });
 
+
+// Get all Reviews of the Current User
+router.get('/current/reviews', requireAuth, async ( req, res ) => {
+  const { id } = req.user;
+
+  const reviews = await Review.findAll({
+    include: [
+      { model: User, attributes: ["id", "firstName", "lastName"] },
+      {
+        model: Property,
+        attributes: {
+          exclude: ["description", "previewImage", "createdAt", "updatedAt"],
+        },
+      },
+      { model: Image, attributes: ["url"] },
+    ],
+    where: { userId: id },
+  });
+
+  if (!reviews) {
+    res.json({ message: "The user has no reviews." });
+  }
+
+  res.json(reviews);
+})
 
 
 
