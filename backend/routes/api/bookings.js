@@ -1,9 +1,7 @@
 const express = require('express');
 const {Op} = require('sequelize');
-
 const { Booking, Spot, User } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
-
 const router = express.Router();
 
 // Get all of the Current User's Bookings

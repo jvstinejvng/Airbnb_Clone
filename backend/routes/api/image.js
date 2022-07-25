@@ -1,41 +1,34 @@
 const express = require('express');
-const {Op} = require('sequelize')
-
-const { Booking, Image, Review, Spot, User } = require('../../db/models');
-
-const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
-const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
-
+const { Image } = require('../../db/models');
+const { requireAuth } = require('../../utils/auth');
 const router = express.Router();
 
 // Delete an Image
-router.delete('/:imageId', requireAuth, async (req, res) => {
-  const deleteImg = await Image.findByPk(req.params.id);
+router.delete('/:imageId', requireAuth, async ( req, res ) => {
+  const image = await Image.findByPk( req.params.imageId );
 
-  if (!deleteImg ) {
-    res.status(404);
-    res.json({
+  if ( !image ) {
+    return res.status(404).json({
       message: "Image couldn't be found",
       statusCode: 404,
     });
   }
-  if ( deleteImg.userId !== req.user.id ) {
-    res.status(403);
-    res.json({
-      message: "Image must belong to the current user",
+
+  if ( image.imageableId !== req.user.id ) {
+    return res.status(403).json({
+      message: 'Image must belong to current user in order to delete',
       statusCode: 403,
     });
   }
 
-  deleteImg.destroy();
-  deleteImg.save();
+  image.destroy();
+  image.save();
 
-  res.json({
-    message: "Successfully deleted",
+  return res.status(200).json({
+    message: 'Successfully deleted',
     statusCode: 200,
   });
 
-})
+});
 
 module.exports = router;
