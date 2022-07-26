@@ -16,13 +16,40 @@ const removeUser = () => {
   };
 };
 
-//Log in
+//login
 export const login = (user) => async (dispatch) => {
-  const { email, password } = user;
-  const response = await csrfFetch("/api/session/login", {
+  const { credential, password } = user;
+  const response = await csrfFetch("/api/sessions/login", {
     method: "POST",
     body: JSON.stringify({
+      credential,
+      password,
+    }),
+  });
+  const data = await response.json();
+
+  dispatch(setUser(data));
+  return response;
+};
+
+//restore user
+export const restoreUser = () => async (dispatch) => {
+  const response = await csrfFetch("/api/sessions");
+  const data = await response.json();
+  dispatch(setUser(data));
+  return response;
+};
+
+//signup
+export const signup = (user) => async (dispatch) => {
+  const { username, email, password, firstName, lastName } = user;
+  const response = await csrfFetch("/api/users/sign-up", {
+    method: "POST",
+    body: JSON.stringify({
+      username,
       email,
+      firstName,
+      lastName,
       password,
     }),
   });
@@ -31,35 +58,9 @@ export const login = (user) => async (dispatch) => {
   return response;
 };
 
-//Restore User
-export const restoreUser = () => async (dispatch) => {
-  const response = await csrfFetch("/api/session");
-  const data = await response.json();
-  dispatch(setUser(data.user));
-  return response;
-};
-
-//Sign Up
-export const signup = (user) => async (dispatch) => {
-  const { firstName, lastName, username, email, password } = user;
-  const response = await csrfFetch("/api/users", {
-    method: "POST",
-    body: JSON.stringify({
-      firstName,
-      lastName,
-      username,
-      email,
-      password,
-    }),
-  });
-  const data = await response.json();
-  dispatch(setUser(data.user));
-  return response;
-};
-
-// Log out
+//logout
 export const logout = () => async (dispatch) => {
-  const response = await csrfFetch("/api/session", {
+  const response = await csrfFetch("/api/sessions", {
     method: "DELETE",
   });
   dispatch(removeUser());
@@ -70,7 +71,6 @@ const initialState = { user: null };
 
 const sessionReducer = (state = initialState, action) => {
   let newState;
-
   switch (action.type) {
     case SET_USER:
       newState = Object.assign({}, state);
@@ -79,7 +79,7 @@ const sessionReducer = (state = initialState, action) => {
     case REMOVE_USER:
       newState = Object.assign({}, state);
       newState.user = null;
-      return newState;
+      return newState; 
     default:
       return state;
   }
