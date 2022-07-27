@@ -1,19 +1,24 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { getSpotById } from "../../store/spots";
 import "./SpotDetail.css"
 
-const SpotsDetail = () => {
-  let { spotId } = useParams();
-  spotId = Number(spotId);
+
+const SpotsDetailPage = () => {
+
+  const { id } = useParams();
+   id = Number(id);
 
   const dispatch = useDispatch();
-  const spot = useSelector((state) => state.spots[spotId]);
+
+  const [isLoaded, setIsLoaded] = useState(false);
+  const spot = useSelector((state) => state.spots[id]);
   
   useEffect(() => {
-    dispatch(getSpotById(spotId));
-  }, [dispatch, spotId]);
+    dispatch(getSpotById(id));
+  }, [dispatch, id]);
 
   return (
     <div key={spot.id}>
@@ -28,4 +33,4 @@ const SpotsDetail = () => {
   );
 };
 
-export default SpotsDetail;
+export default SpotsDetailPage;

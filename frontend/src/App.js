@@ -6,7 +6,7 @@ import LoginFormModal from "./components/LoginFormModal";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotDetails from "./components/SpotDetailPage";
-import AllSpots from "./components/AllSpots";
+import AllSpots from "./components/SpotsPage";
 import CreateSpot from "./components/CreateSpotPage";
 
 
