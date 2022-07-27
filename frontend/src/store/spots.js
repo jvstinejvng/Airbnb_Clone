@@ -1,15 +1,15 @@
 import { csrfFetch } from './csrf';
 
-const ALL_SPOTS = 'spots/allSpots';
-const SPOT_DETAILS = 'spots/SpotDetail';
-const CREATE_SPOT = 'spots/createSpot';
-const EDIT_SPOT = 'spots/editSpot';
-const DELETE_SPOT = 'spots/deleteSpot';
+const ALL_SPOTS = 'spots/all_Spots';
+const SPOT_DETAILS = 'spots/Spot_Detail';
+const CREATE_SPOT = 'spots/create_Spot';
+const EDIT_SPOT = 'spots/edit_Spot';
+const DELETE_SPOT = 'spots/delete_Spot';
 
-const allSpots = spot => {
+const allSpots = spots => {
   return {
     type: ALL_SPOTS,
-    spot
+    spots
   };
 };
 
@@ -43,11 +43,11 @@ const deleteSpot = id => {
 
 //get all spots
 export const getAllSpots = () => async dispatch => {
-  const response = await csrfFetch('/api/spots/all');
+  const response = await csrfFetch("/api/spots");
   if (response.ok) {
     const spots = await response.json();
-    dispatch(allSpots(spots.Spots));
-    return response
+    dispatch(allSpots(spots));
+    return spots
   }
   return response;
 };
@@ -134,22 +134,16 @@ export const removeSpot = id => async dispatch => {
 };
 
 const initialState = {}
+
 const spotsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ALL_SPOTS: {
-      const allSpots = {};
-        action.spots.forEach(spot => { allSpots[spot.id] = spot});
-      return { ...allSpots, ...state };
+      const newState = {};
+      action.spots.forEach((spot) => (newState[spot.id] = spot));
+      return { ...newState, ...state };
     }
-    case SPOT_DETAILS: {
-      const spot = action.spot;
-      return { ...spot, ...state };
-    }
-    case CREATE_SPOT: {
-      let newSpot = {...state};
-      newSpot[action.spot.id] = action.spot;
-      return newSpot;
-    }
+
+
     case DELETE_SPOT: {
       const deleteSpot = {...state};
       delete deleteSpot[action.id];
@@ -160,4 +154,4 @@ const spotsReducer = (state = initialState, action) => {
   }
 }
 
-export default spotsReducer
+export default spotsReducer;

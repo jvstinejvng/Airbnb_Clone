@@ -23,7 +23,7 @@ function LoginForm() {
     return (
         <div>
             <div>
-                <h2> Welcome to PetBnb </h2>
+                <h2 > Petbnb </h2>
             </div>
             <form
                 onSubmit={handleSubmit} >
@@ -33,7 +33,6 @@ function LoginForm() {
                     ))}
                 </div>
                 <label>
-                    {/* Email */}
                     <input
                         type="text"
                         value={credential}
@@ -43,7 +42,6 @@ function LoginForm() {
                     />
                 </label>
                 <label>
-                    {/* Password */}
                     <input
                         type="password"
                         value={password}

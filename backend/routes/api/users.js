@@ -11,9 +11,9 @@ const validateSignup = [
     .isEmail()   
     .withMessage("Please provide a valid email."),
   check("username")
-    .exists({ checkFalsy: true })
-    .isLength({ min: 4 })
-    .withMessage("Please provide a username with at least 4 characters."),
+  .exists({ checkFalsy: true })
+  .isLength({ min: 4 })
+  .withMessage("Please provide a username with at least 4 characters."),
   check("username").not().isEmail().withMessage("Username cannot be an email."),
   check("password")
     .exists({ checkFalsy: true })
@@ -23,8 +23,8 @@ const validateSignup = [
 ];
 
 // Sign Up a User
-router.post('/signup', validateSignup, async (req, res) => {
-  const {  firstName, lastName, username, email, password } = req.body;
+router.post('/', validateSignup, async (req, res) => {
+  const {  username, firstName, lastName, email, password } = req.body;
   const validEmail = await User.findOne({
     where: { email }
   });
@@ -104,6 +104,16 @@ router.get('/current/reviews', requireAuth, async ( req, res ) => {
   }
 
   res.json(reviews);
+
+});
+
+// Get all Spots owned by the current user
+router.get('/current', requireAuth, async ( req, res ) => {
+  const spots = await Spot.findAll({
+      where: { ownerId: req.user.id },
+  });
+  
+  res.json( spots );
 
 });
 
