@@ -5,6 +5,7 @@ import './Modal.css';
 export const ModalContext = createContext();
 
 export const ModalProvider = ({ children }) => {
+
     const modalRef = useRef();
     const [value, setValue] = useState();
 
@@ -25,10 +26,12 @@ export function Modal({ onClose, children }) {
     if (!modalNode) return null;
 
     return (ReactDOM.createPortal(
+
         <div id="modal">
             <div id="modal-background" onClick={onClose} />
             <div id="modal-content"> {children} </div>
         </div>,
+        
         modalNode
     ))
 

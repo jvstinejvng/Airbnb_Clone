@@ -4,7 +4,7 @@ import LoginForm from './LoginForm';
 import './LoginForm.css'
 import '../Navigation/Navigation.css'
 
-function LoginFormModal() {
+function LoginFormPage() {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -19,4 +19,4 @@ function LoginFormModal() {
     );
 }
 
-export default LoginFormModal;
+export default LoginFormPage;

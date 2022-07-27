@@ -16,10 +16,18 @@ const removeUser = () => {
   };
 };
 
-// login
+// Restore session user
+export const restoreUser = () => async (dispatch) => {
+  const response = await csrfFetch("/api/session");
+  const data = await response.json();
+  dispatch(setUser(data));
+  return response;
+};
+
+// Log In a User
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
-  const response = await csrfFetch("/api/session/login", {
+  const response = await csrfFetch("/api/session", {
     method: "POST",
     body: JSON.stringify({
       credential,
@@ -32,35 +40,9 @@ export const login = (user) => async (dispatch) => {
   return response;
 };
 
-//restore user
-export const restoreUser = () => async (dispatch) => {
-  const response = await csrfFetch("/api/session/");
-  const data = await response.json();
-  dispatch(setUser(data));
-  return response;
-};
-
-//signup
-export const signup = (user) => async (dispatch) => {
-  const { username, email, password, firstName, lastName } = user;
-  const response = await csrfFetch("/api/users/signup", {
-    method: "POST",
-    body: JSON.stringify({
-      username,
-      email,
-      firstName,
-      lastName,
-      password,
-    }),
-  });
-  const data = await response.json();
-  dispatch(setUser(data));
-  return response;
-};
-
-//logout
+// Log out
 export const logout = () => async (dispatch) => {
-  const response = await csrfFetch("/api/session/logout", {
+  const response = await csrfFetch("/api/session", {
     method: "DELETE",
   });
   dispatch(removeUser());
@@ -84,5 +66,25 @@ const sessionReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+
+// Sign Up a User
+export const signup = (user) => async (dispatch) => {
+  const { username, email, password, firstName, lastName } = user;
+  const response = await csrfFetch("/api/users", {
+    method: "POST",
+    body: JSON.stringify({
+      username,
+      email,
+      firstName,
+      lastName,
+      password,
+    }),
+  });
+  const data = await response.json();
+  dispatch(setUser(data));
+  return response;
+};
+
 
 export default sessionReducer;

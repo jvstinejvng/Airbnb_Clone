@@ -6,8 +6,10 @@ import LoginFormPage from "./components/LoginFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotDetails from "./components/SpotDetails";
-import SpotsPage from "./components/Spots";
-import NewSpotForm from "./components/SpotCreator";
+import AllSpots from "./components/Spots";
+import EditSpot from "./components/EditSpot";
+import CreateSpot from "./components/CreateSpot";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -29,13 +31,16 @@ function App() {
             <LoginFormPage />
           </Route>
           <Route exact path="/">
-            <SpotsPage />
+            <AllSpots />
           </Route>
-          <Route>
-            <SpotDetails exact path="/spots/detail"/>
+          <Route exact path="/spots/:spotId">
+            <SpotDetails />
           </Route>
-          <Route>
-            <NewSpotForm exact path="/spots/create"/>
+          <Route exact path="/spots/:spotId/edit">
+            <EditSpot />
+          </Route>
+          <Route exact path="/spots/create">
+            <CreateSpot />
           </Route>
         </Switch>
       )}
