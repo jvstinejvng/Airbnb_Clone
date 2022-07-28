@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import * as spotActions from "../../store/spots";
 
 const EditSpotPage = () => {
-
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
+
 
   let { spotId } = useParams();
   spotId = Number(spotId);
@@ -25,7 +26,6 @@ const EditSpotPage = () => {
   
   const [errors, setErrors] = useState([]);
   const [validateSpot, setvalidateSpot] = useState(false);
-
 
   const updateName = (e) => setName(e.target.value)
   const updateAddress = (e) => setAddress(e.target.value)
@@ -59,12 +59,11 @@ const EditSpotPage = () => {
         }
         return dispatch(spotActions.updateSpot(data))
         .then(() => {
-          setHasSubmit(true);
+          setvalidateSpot(true);
         })
         .then(() => {
           history.push(`/spots/${spot.id}`)
         })
-      
       
     }
     

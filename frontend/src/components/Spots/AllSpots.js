@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
 import { Link } from "react-router-dom";
+
 import { getAllSpots } from "../../store/spots";
-import "./SpotsPage.css";
+import "./AllSpots.css";
 
 const AllSpots = () => {
-
   const dispatch = useDispatch();
   const allSpots = useSelector(state => Object.values(state.spots));
   
