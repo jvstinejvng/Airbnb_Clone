@@ -31,8 +31,7 @@ const SpotsDetailPage = () => {
       <p className="spotDescription">{spot.description}</p>
       <p className="spotPrice">${spot.price} night</p>
 
-  
-    
+
       <Reviews/>
       
     </div>

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { allSpotReviews  } from '../../store/reviews';
 
-function AllSpotReviews({ id }) {
+const AllSpotReviews = () => {
 
     const dispatch = useDispatch();
 
