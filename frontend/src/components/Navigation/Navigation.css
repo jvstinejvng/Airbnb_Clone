@@ -68,7 +68,7 @@ img {
     max-width: 70px;
 }
 
-#menu{
+.dropDownMenu {
     cursor: pointer;
     position: absolute;
     top: 60px;
@@ -81,7 +81,7 @@ img {
     box-shadow: 0 2px 7px  #767676;
 }
 
-#menu > * {
+.dropDownMenu > * {
     display: flex;
     padding: 15px;
     width: 100%;
@@ -91,8 +91,7 @@ img {
     letter-spacing: .5px;
 }
 
-#dropdown1, 
-#dropdown2 {
+#signupDropDown {
     font-size: 15px;
     color: black;
     font-weight: 500;

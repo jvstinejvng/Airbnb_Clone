@@ -22,10 +22,12 @@ function ProfileButton({ user }) {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
-  const logout = (e) => {
+  const signup = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
   };
+
+ 
 
   return (
     <>
@@ -35,12 +37,9 @@ function ProfileButton({ user }) {
         <i className="fas fa-user-circle user_icon"></i>
       </button>
       {showMenu && (
-        <div id="menu">
-          <Link to="/spots/create" id="dropdown1">
-            Create a Spot
-          </Link>
-          <div onClick={logout} id="dropdown2">
-            Log out
+        <div className="dropDownMenu">
+          <div onClick={signup} className="signupDropDown">
+            sign up
           </div>
         </div>
       )}

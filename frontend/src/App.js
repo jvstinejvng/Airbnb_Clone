@@ -8,7 +8,8 @@ import LoginFormModal from "./components/LoginFormModal";
 import Navigation from "./components/Navigation";
 import SignupFormModal from "./components/SignupFormModal";
 
-import AllSpots from "./components/Spots/AllSpots";
+
+import AllSpots from "./components/Spots/allSpotsHomepage";
 import CreateSpot from "./components/Spots/CreateSpot";
 import EditSpot from "./components/Spots/EditSpot";
 import SpotDetails from "./components/Spots/SpotDetail";
@@ -32,7 +33,7 @@ function App() {
           <Route exact path="/signup">
             <SignupFormModal />
           </Route>
-          <Route exact path="/spots">
+          <Route exact path="/">
             <AllSpots />
           </Route>
           <Route exact path="/spots/createspot">

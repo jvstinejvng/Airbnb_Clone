@@ -100,11 +100,11 @@ const initialState = {};
 export default function reviewsReducer(state = initialState, action) {
     let newState;
     switch(action.type) {
-        case USER_REVIEW:
+        case USER_REVIEWS:
             newState = Object.assign({}, state);
             action.reviews.map(review => newState[review.id] = review);
             return newState;
-        case SPOT_REVIEW:
+        case SPOT_REVIEWS:
             newState = Object.assign({}, state);
             action.reviews.map(review => newState[review.id] = review);
             return newState;
