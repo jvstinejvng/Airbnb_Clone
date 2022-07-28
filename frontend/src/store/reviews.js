@@ -41,8 +41,8 @@ export const allUserReviews = () => async (dispatch) => {
 }
 
 // Get all Reviews by a Spot's id
-export const allSpotReviews = (spotId) => async (dispatch) => {
-    const response = await fetch(`/api/spots/${spotId}/reviews`);
+export const allSpotReviews = () => async (dispatch) => {
+    const response = await fetch(`/api/reviews/:spotId`);
     if (response.ok) {
       const reviews = await response.json();
       dispatch(spotReviews(reviews));
@@ -106,7 +106,7 @@ export default function reviewsReducer(state = initialState, action) {
             return newState;
         case SPOT_REVIEWS:
             newState = Object.assign({}, state);
-            action.reviews.map(review => newState[review.id] = review);
+            action.reviews.forEach(review => newState[review.id] = review);
             return newState;
         case CREATE_REVIEW:
             newState = Object.assign({}, state);

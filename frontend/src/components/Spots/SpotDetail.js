@@ -1,15 +1,13 @@
 import React, { useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getSpotById } from "../../store/spots";
 import Reviews from '../Reviews/CreateReview';
-import SpotReviews from '../Reviews/SpotReviews';
 
 import "./SpotDetail.css";
 
 const SpotsDetailPage = () => {
 
-  const history = useHistory();
   const dispatch = useDispatch();
   const { spotId: id } = useParams();
 
@@ -18,7 +16,6 @@ const SpotsDetailPage = () => {
   useEffect(() => {
     dispatch(getSpotById(id));
   }, [dispatch, id]);
-
 
 
   return (
@@ -30,7 +27,6 @@ const SpotsDetailPage = () => {
       </h3>
       <p className="spotDescription">{spot.description}</p>
       <p className="spotPrice">${spot.price} night</p>
-
 
       <Reviews/>
       

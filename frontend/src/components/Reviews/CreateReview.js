@@ -127,7 +127,7 @@ const CreateReviewPage = () => {
             ))}
           </ul>
           <form className="create-review" onSubmit={handleSubmit}>
-            <label className="rate-label">How Many Paws</label>
+            <label className="rate-label">Rate the Place</label>
             <select
               className="rating-select"
               name="paws"
@@ -157,6 +157,8 @@ const CreateReviewPage = () => {
           </form>
         </>
       );
+
+
 
 }
   
