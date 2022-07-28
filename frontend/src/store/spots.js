@@ -4,7 +4,7 @@ const ALL_SPOTS = 'spots/allSpots';
 const SPOT_DETAILS = 'spots/spotDetails';
 const CREATE_SPOT = 'spots/createSpot';
 const EDIT_SPOT = 'spots/editSpot';
-const DELETE_SPOT = 'spots/delete_Spot';
+const DELETE_SPOT = 'spots/deleteSpot';
 
 const allSpots = spots => {
   return {
@@ -105,9 +105,9 @@ export const updateSpot = (spotId, spotData) => async dispatch => {
     }),
   })
   if (response.ok) {
-    const spotData = await response.json()
-    dispatch(editSpot(spotData))
-    return spotData;
+    const updatedSpot = await response.json()
+    dispatch(editSpot(updatedSpot))
+    return updatedSpot;
   }
   return response
 };
@@ -130,31 +130,26 @@ const initialState = {}
 const spotsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case ALL_SPOTS: {
+    case ALL_SPOTS: 
       newState = Object.assign({}, state);
       action.spots.forEach(spot => newState[spot.id] = spot);
       return newState;
-    }
-    case SPOT_DETAILS: {
+    case SPOT_DETAILS: 
       newState = Object.assign({}, state);
       newState[action.spot.id] = action.spot;
       return newState;
-    }
-    case CREATE_SPOT: {
+    case CREATE_SPOT: 
       newState = Object.assign({}, state);
       newState[action.spot.id] = action.spot;
       return newState;    
-    }
-    case EDIT_SPOT: {
+    case EDIT_SPOT: 
       newState = Object.assign({}, state);
       newState[action.spot.id] = action.spot;
       return newState;    
-    }
-    case DELETE_SPOT: {
+    case DELETE_SPOT:
       newState = Object.assign({}, state);
       delete newState[action.id];
       return newState;
-    }
     default:
       return state;
   }
