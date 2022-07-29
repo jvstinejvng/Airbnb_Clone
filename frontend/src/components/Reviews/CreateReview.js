@@ -9,17 +9,18 @@ const CreateReviewPage = () => {
     const history = useHistory();
 
     const { id } = useParams();
-    const sessionUser = useSelector(state => state.session.user);
+
+    const user = useSelector((state) => state.session.user);
 
     const [star, setStar] = useState(1);
     const [review, setReview ] = useState('');
-    const [errors, setErrors] = useState([]);
+    const [validationErrors, setValidationErrors] = useState([]);
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+      e.preventDefault();
         
         const loadReview = {
-            userId: sessionUser.id,
+            userId: user.id,
             spotId: id,
             star,
             review,
@@ -33,96 +34,26 @@ const CreateReviewPage = () => {
             setReview("");
             history.push(`/spots/${id}`);
           }
-        };
+      };
 
         useEffect(() => {
-            let validateReview = [];
+            let error = [];
         
-            if (star < 1 || star > 5 ) validateReview.push('Paws must be between 1 and 5')
-            if (review.length < 5) validateReview.push('Description must be at least 5 characters')
+            if (star < 1 || star > 5 ) error.push('Paws must be between 1 and 5')
+            if (review.length < 5) error.push('Description must be at least 5 characters')
             
-            setErrors(errors);
+            setValidationErrors(error);
 
           }, [review]);
         
-          useEffect(() => {
-            dispatch(allSpotReviews(id));
-          }, [dispatch, id, review]);
+      useEffect(() => {
+        dispatch(allSpotReviews(id));
+      }, [dispatch, id, review]);
         
-    
-
-    // const resetReview = () => {
-    // setStar('')
-    // setReview('')
-    // setErrors([])
-    // }
-
-    // const reviewSubmit = async (e) => {
-    //     e.preventDefault()
-    //     setErrors([])
-    
-    //     const validateReview = []
-    //     if (star < 1 || star > 5 ) validateReview.push('Paws must be between 1 and 5')
-    //     if (review.length < 5) validateReview.push('Description must be at least 5 characters')
-    
-    //     setErrors(validateReview)
-    
-    //     if (validateReview.length === 0) {
-    //         const userReview = {
-    //             userId: sessionUser.id,
-    //             spotId: id,
-    //             star,
-    //             review
-    //         }
-    
-    //         const createdReview = await dispatch(spotActions.addReview(userReview, id))
-    //         dispatch(allSpotReviews(id));
-
-    //         resetReview()
-    //         history.push(`/spots/${id}`)
-    
-    //     }
-    //   }
-    
-    //   const newStar = (e) => setStar(e.target.value)
-    //   const newReview = (e) => setReview(e.target.value)
-
-    //   return (
-    //     <>
-    //     <form id='new-review-form' onSubmit={handleSubmit}>
-    //         {errors.length > 0 ?
-    //             <ul>
-    //                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-    //             </ul> : null}
-    //             <div className="form-element">
-    //                 <label className="stars">
-    //                     Paws
-    //                     <input
-    //                         type="number"
-    //                         min='1'
-    //                         max='5'
-    //                         value={star}
-    //                         onChange={(e) => setStar(e.target.value)}
-    //                         required
-    //                     />
-    //                 </label>
-    //             </div>
-    //             <textarea
-    //                 value={review}
-    //                 onChange={(e) => setReview(e.target.value)}
-    //                 placeholder="Description"
-    //                 rows='10'
-    //             />
-
-    //             <button className='edit-post-button' id='new-review-submit-button' type='submit'>Submit Review</button>
-    //         </form>
-    //     </>
-    // );
-    
     return (
         <>
           <ul className="form-error">
-            {errors.map((error) => (
+            {validationErrors.map((error) => (
               <li key={error}>{error}</li>
             ))}
           </ul>

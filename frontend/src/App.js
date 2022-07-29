@@ -8,7 +8,6 @@ import LoginFormModal from "./components/LoginFormModal";
 import Navigation from "./components/Navigation";
 import SignupFormModal from "./components/SignupFormModal";
 
-import AllSpotReviews from "./components/Reviews/SpotReviews";
 
 import AllSpots from "./components/Spots/allSpotsHomepage";
 import CreateSpot from "./components/Spots/CreateSpot";
@@ -45,9 +44,6 @@ function App() {
           </Route>
           <Route exact path="/spots/:spotId">
             <SpotDetails />
-          </Route>
-          <Route exact path="/reviews/:spotId">
-          <AllSpotReviews />
           </Route>
         </Switch>
       )}

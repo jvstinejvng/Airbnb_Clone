@@ -33,7 +33,7 @@ const deleteReview = (id) => ({
 
 // Get all Reviews of the Current User
 export const allUserReviews = () => async (dispatch) => {
-    const response = await fetch('/api/your-reviews');
+    const response = await csrfFetch('/api/your-reviews');
     if (response.ok) {
         const data = await response.json();
         dispatch(userReviews(data));
@@ -41,8 +41,8 @@ export const allUserReviews = () => async (dispatch) => {
 }
 
 // Get all Reviews by a Spot's id
-export const allSpotReviews = () => async (dispatch) => {
-    const response = await fetch(`/api/reviews/:spotId`);
+export const allSpotReviews = (spotId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/reviews/${spotId}`);
     if (response.ok) {
       const reviews = await response.json();
       dispatch(spotReviews(reviews));
@@ -51,9 +51,9 @@ export const allSpotReviews = () => async (dispatch) => {
   };
 
 // Create a Review for a Spot based on the Spot's id
-export const addReview = (spotId, reviewData) => async (dispatch) => {
+export const addReview = ( spotId, reviewData) => async (dispatch) => {
     const { review, stars } = reviewData;
-    const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+    const response = await csrfFetch(`/api/reviews/${spotId}`, {
         method: "POST",
         body: JSON.stringify({
             review,
@@ -68,7 +68,7 @@ export const addReview = (spotId, reviewData) => async (dispatch) => {
 // Edit a Review
 export const updateSpot = (spotId, reviewData) => async dispatch => {
     const { review, stars } = reviewData;
-    const response = await csrfFetch(`/api/`, {
+    const response = await csrfFetch(`/api/review/${spotId}`, {
       method: 'PUT',
       body: JSON.stringify({
         review,
@@ -110,7 +110,7 @@ export default function reviewsReducer(state = initialState, action) {
             return newState;
         case CREATE_REVIEW:
             newState = Object.assign({}, state);
-            newState[action.review.id] = action.payload;
+            newState[action.review.id] = action.reviews;
             return newState;
         case EDIT_REVIEW:
             newState = Object.assign({}, state);
