@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, Redirect, Route, useLocation } from "react-router-dom";
 import * as sessionActions from '../../store/session';
 import LoginFormModal from "../LoginForm";
 import SignupFormModal from "../SignupForm";
-import { login } from "../../store/session";
 
 function ProfileButton({ user }) {
 
   const history = useHistory();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+
   const [LoginModal, setLoginModal] = useState(false)
   const [ModalSignup, setModalSignup] = useState(false)
 
+  const sessionUser = useSelector(state => state.session.user);
 
-// Menu Open -------------------------
 const openMenu = () => {
   if (showMenu) return;
   setShowMenu(true);
@@ -32,34 +32,14 @@ useEffect(() => {
 
   return () => document.removeEventListener("click", closeMenu);
 }, [showMenu]);
-// ------------------------------------
 
 
-  const handleDemoUser = () => {
-      dispatch(login({
-        email: 'DemoUser',
-        password: 'password'
-      }))
-      .then(() => setShowMenu(false))
-      .then(() => {
-        if ('/') {
-          history.push('/')
-        }
-      })  }
-     
-    const logout = (e) => {
-      e.preventDefault();
-      dispatch(sessionActions.logout())
-      .then(() => {
-        if ('/spots/create') {
-          history.push('/')
-        }
-        if ('/') {
-          history.push('/')
-        }
-      })
-      .then(()=>setShowMenu(false));
-    };
+
+  const logout = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.logout())
+      .then(() => history.push('/'));
+};
 
   return (
     <>
@@ -70,34 +50,21 @@ useEffect(() => {
       </>
     )}
     <div className="navRight">
-    {!user && (
-      <>
-      <button className="demoUser" onClick={handleDemoUser}>Demo User</button>
-      </>
-    )}
-    {user && (<NavLink className='hostButton' to='/spots/create'>Become a Host</NavLink>)}
-      <button className="navButtonRight" onClick={openMenu}>
-      <i className="fas fa-bars"/> <i className="fas fa-user-circle"/>
-      </button>
+      { sessionUser && <NavLink className='hostButton' to='/spots/create'>Become a Pet Host</NavLink> }
+        <button className="navButtonRight" onClick={openMenu}>
+          <i className="fas fa-bars"/> <i className="fas fa-user-circle"/>
+          </button>
+      
       {showMenu && (
         <div className="DropDownMenu">
         <div className="navMenuRight">
-          {!user && (
-            <>
-            <div className="menuLink-background"><NavLink className="menuLink" onClick={()=> setLoginModal(true)} to=''>Log In</NavLink><p/></div>
-            <div className="menuLink-background"><NavLink className="menuLink" onClick={()=> setModalSignup(true)} to=''>Sign Up</NavLink></div>
-          </>
-          )}
-          {user && (
-          <>
-          <div className="userRightMenu">
-          <div className="menutext">{user.email}</div>
-          </div>
-          <p/>
-          <div>
-          <NavLink className="menuLink" to='/' onClick={logout}>Log out</NavLink><br/>
-          </div>
-          </>
+            <div><NavLink className="menuLink" onClick={()=> setLoginModal(true)} to=''>Log In</NavLink><p/></div>
+            <div><NavLink className="menuLink" onClick={()=> setModalSignup(true)} to=''>Sign Up</NavLink></div>
+    
+          { sessionUser && (
+            <div className="logoutbutton" >
+            <NavLink  className="menuLink" to='/' onClick={logout}>Log Out</NavLink>
+            </div>
           )}
         </div>
         </div>

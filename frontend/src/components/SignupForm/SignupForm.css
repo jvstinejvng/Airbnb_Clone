@@ -18,11 +18,9 @@ form {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    width: 528px;
-    height: 48px;
-    margin: 4px;
+    margin: 5px;
     padding: 6px 8px;
-    width: 528px;
+    width: 510px;
     height: 48px;
     border-radius: 12px;
     border: 1px solid rgb(145, 144, 144);
@@ -45,12 +43,11 @@ form {
   }
   
   .signupButton {
-    padding: 0 16px;
     width: 528px;
     height: 48px;
+    margin: 5px;
     border-radius: 12px;
     border: 0;
-    margin: 5px;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     font-weight: lighter;

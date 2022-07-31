@@ -70,6 +70,7 @@ img {
     color: #525659ec;
 }
 
+
 .PetbnbText {
     display: flex;
     align-items: center;
@@ -79,20 +80,7 @@ img {
     font-size: 25px;
 }
 
-.demoUser {
-    display: flex;
-    align-items: center;
-    margin-right: 28px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
-    text-align: center;
-    font-weight: 550;
-    color: #3e4346;
-    border: 0px solid white;
-    background-color: white;
-    border-radius: 30px;
-    padding: 10px;
-}
+
 
 .hostButton {
     display: flex;
@@ -130,10 +118,13 @@ img {
     padding: 10px;
 }
 
-.menutext {
+.logoutbutton{
     font-family: Arial, Helvetica, sans-serif;
+    font-weight: 525;
+    font-size: 15px;
     color: #3e4346;
-    text-align: right;
+    padding: 15px 0px;
+
 }
 
 

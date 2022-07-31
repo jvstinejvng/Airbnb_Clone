@@ -28,12 +28,6 @@ function App() {
           <Route exact path="/spots">
             <SpotsPage />
           </Route>
-          <Route exact path="/signup">
-            <SignupForm />
-          </Route>
-          <Route exact path="/login">
-            <LoginForm />
-          </Route>
           <Route exact path="/spots/create">
             <CreateSpot />
           </Route>

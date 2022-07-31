@@ -8,7 +8,7 @@ const sequelize = require("sequelize");
 const router = express.Router();
 
 const validateLogin = [
-  check("credential")
+  check("email")
     .exists({ checkFalsy: true })
     .notEmpty()
     .withMessage("Please provide a valid email."),
@@ -30,14 +30,14 @@ router.get("/", restoreUser, (req, res) => {
 
 // Log in
 router.post('/login', validateLogin, async (req, res, next) => {
-    const { credential, password } = req.body;
-    const user = await User.login({ credential, password });
+    const { email, password } = req.body;
+    const user = await User.login({ email, password });
 
     if (!user) {
       const err = new Error('Login failed');
       err.status = 401;
       err.title = 'Login failed';
-      err.errors = ['The provided credentials were invalid.'];
+      err.errors = ['The provided emails were invalid.'];
       return next(err);
     }
 

@@ -5,49 +5,57 @@ import { Redirect } from 'react-router-dom';
 
 import './LoginForm.css'
 
-function LoginForm({ LoginModal, setLoginModal }) {
+function LoginForm({ onClose }) {
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user);
-  const [credential, setCredential] = useState('');
+  const [email, setCredential] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return (
-    <Redirect to="/" />
-  );
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors([]);
-    return dispatch(sessionActions.login({ credential, password }))
-      .then(()=>setLoginModal(false))
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      });
+    setErrors({});
+    return dispatch(sessionActions.login({ email, password })).catch(
+        async (res) => {
+            const data = await res.json();
+            if (data) setErrors(data);
+        }
+    );
+    };
+
+
+  const DemoUserLogin = (e) => {
+    e.preventDefault();
+    setErrors({});
+    return dispatch(sessionActions.login({
+        email: 'demo@demo.io',
+        password: 'password',
+    }))
+        .catch(
+            async (res) => {
+                const data = await res.json();
+                if (data) setErrors(data);
+            }
+    );
   }
+
+
 
   return (
     <div className='formPage'>
-      <button type="button" className="closeModalButton"
-      onClick={()=>{setLoginModal(!LoginModal)}}>
-      <i className="fas fa-xmark" />
-      </button>
     <form onSubmit={handleSubmit} className='loginFormBox'>
       <div>
         <h2>Petbnb Log in</h2>
       </div>
       <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        {errors.message}
       </ul>
-
       <div className='userInputField'>
       <label>
         Email
         <input
           id='input'
           type="text"
-          value={credential}
+          value={email}
           onChange={(e) => setCredential(e.target.value)}
           required
           />
@@ -66,9 +74,12 @@ function LoginForm({ LoginModal, setLoginModal }) {
         />
       </label>
       </div>
-      <p>
-      <button id='loginButton' type="submit">Continue</button>
-      </p>
+      <div>
+      <button className='loginFormButton' type="submit">Continue</button>
+      </div>
+      <div>
+      <button className="DemoButton" onClick={DemoUserLogin}>Demo User</button>
+      </div>
     </form>
     </div>
   );

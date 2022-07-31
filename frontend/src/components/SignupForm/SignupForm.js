@@ -1,41 +1,34 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css'
 
 function SignupFormPage({  ModalSignup, setModalSignup }) {
   const dispatch = useDispatch();
 
-  const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
-  const [validatePassword, setvalidatePassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
-
-  if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password === validatePassword) {
-      setErrors([]);
-      return dispatch(sessionActions.signup({ email, password, firstName, lastName }))
-        .then(()=>setModalSignup(false))
-        .catch(async (res) => {
-          const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
-        });
-      }
-      return setErrors(['Confirm Password field must be the same as the Password field']);
-    };
+    if (password === confirmPassword) {
+        setErrors([]);
+        return dispatch(sessionActions.signup({ email, firstName, lastName, password }))
+        
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(Object.values(data.errors));
+            });
+    }
+    return setErrors(['Confirm Password field must be the same as the Password field']);
+};
 
     return (
-      <>
-      <button type="button" className="closeModalButton" onClick={()=>{setModalSignup(!ModalSignup)}}>
-        <i className="fas fa-xmark" />
-      </button>
+      <div className='formPage'>
       <form onSubmit={handleSubmit} className='signupForm'>
         <div>
           <h2>Welcome to Petbnb</h2>
@@ -94,14 +87,14 @@ function SignupFormPage({  ModalSignup, setModalSignup }) {
               className="CPInput focus-visible"
               placeholder="Confirm Password"
               type="password"
-              value={validatePassword}
-              onChange={(e) => setvalidatePassword(e.target.value)}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
               required />
           </label>
         </div>
         <button type="submit" className="signupButton">Continue</button>
       </form>
-    </>
+      </div>
   );
 }
 

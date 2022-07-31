@@ -72,7 +72,7 @@ Returns the information about the current user that is logged in.
 
 ### Log In a User
 
-Logs in a current user with valid credentials and returns the current user's
+Logs in a current user with valid emails and returns the current user's
 information.
 
 * Require Authentication: false
@@ -106,7 +106,7 @@ information.
     }
     ```
 
-* Error Response: Invalid credentials
+* Error Response: Invalid emails
   * Status Code: 401
   * Headers:
     * Content-Type: application/json
@@ -114,7 +114,7 @@ information.
 
     ```json
     {
-      "message": "Invalid credentials",
+      "message": "Invalid emails",
       "statusCode": 401
     }
     ```

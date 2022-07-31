@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import SignupForm from './SignupForm'
 
-function formsSignupModal({ModalSignup, setModalSignUp}) {
+function SignupModal ({ModalSignup, setModalSignup, onClose}) {
 
   return (
     <>
       {ModalSignup && (
-        <Modal onClose={() => setModalSignUp(false)}>
-          <SignupForm ModalSignup={ModalSignup} setModalSignUp={setModalSignUp} />
-        </Modal>
+          <Modal onClose={() => setModalSignup(false)}>
+            <SignupForm ModalSignup={ModalSignup} setModalSignup={setModalSignup} /> 
+            <button onClick={onClose}> </button>
+          </Modal>
+
       )}
     </>
   );
 }
 
-export default formsSignupModal;
+export default SignupModal;
