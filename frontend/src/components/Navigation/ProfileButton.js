@@ -14,8 +14,6 @@ function ProfileButton({ user }) {
   const [LoginModal, setLoginModal] = useState(false)
   const [ModalSignup, setModalSignup] = useState(false)
 
-  const sessionUser = useSelector(state => state.session.user);
-
 const openMenu = () => {
   if (showMenu) return;
   setShowMenu(true);
@@ -33,13 +31,12 @@ useEffect(() => {
   return () => document.removeEventListener("click", closeMenu);
 }, [showMenu]);
 
-
-
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout())
       .then(() => history.push('/'));
 };
+
 
   return (
     <>
@@ -50,7 +47,7 @@ useEffect(() => {
       </>
     )}
     <div className="navRight">
-      { sessionUser && <NavLink className='hostButton' to='/spots/create'>Become a Pet Host</NavLink> }
+      { user && <NavLink className='hostButton' to='/spots/create'>Become a Pet Host</NavLink> }
         <button className="navButtonRight" onClick={openMenu}>
           <i className="fas fa-bars"/> <i className="fas fa-user-circle"/>
           </button>
@@ -58,10 +55,15 @@ useEffect(() => {
       {showMenu && (
         <div className="DropDownMenu">
         <div className="navMenuRight">
-            <div><NavLink className="menuLink" onClick={()=> setLoginModal(true)} to=''>Log In</NavLink><p/></div>
-            <div><NavLink className="menuLink" onClick={()=> setModalSignup(true)} to=''>Sign Up</NavLink></div>
-    
-          { sessionUser && (
+          { !user && (
+            <div className="navMenuRight">
+            <NavLink className="menuLink" 
+              onClick={()=> setModalSignup(true)} to='/'>Sign Up</NavLink><p/>
+            <NavLink className="menuLink" 
+                onClick={()=> setLoginModal(true)} to='/'>Log In</NavLink>
+            </div>
+            )}     
+          { user && (
             <div className="logoutbutton" >
             <NavLink  className="menuLink" to='/' onClick={logout}>Log Out</NavLink>
             </div>

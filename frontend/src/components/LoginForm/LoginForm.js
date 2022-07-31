@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 
 import './LoginForm.css'
 
-function LoginForm({ onClose }) {
+function LoginForm({setLoginModal, LoginModal}) {
   const dispatch = useDispatch();
   const [email, setCredential] = useState('');
   const [password, setPassword] = useState('');
@@ -14,14 +14,15 @@ function LoginForm({ onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors({});
-    return dispatch(sessionActions.login({ email, password })).catch(
+    return dispatch(sessionActions.login({ email, password }))
+    .then(()=>setLoginModal(false))
+    .catch(
         async (res) => {
             const data = await res.json();
             if (data) setErrors(data);
         }
     );
     };
-
 
   const DemoUserLogin = (e) => {
     e.preventDefault();
@@ -30,7 +31,8 @@ function LoginForm({ onClose }) {
         email: 'demo@demo.io',
         password: 'password',
     }))
-        .catch(
+    .then(()=>setLoginModal(false))
+    .catch(
             async (res) => {
                 const data = await res.json();
                 if (data) setErrors(data);
@@ -38,10 +40,15 @@ function LoginForm({ onClose }) {
     );
   }
 
-
-
   return (
     <div className='formPage'>
+      <button
+      type="button"
+      className="modalClose"
+      onClick={()=>{setLoginModal(!LoginModal)}}>
+      <i className="fas fa-xmark" />
+      </button>
+  
     <form onSubmit={handleSubmit} className='loginFormBox'>
       <div>
         <h2>Petbnb Log in</h2>

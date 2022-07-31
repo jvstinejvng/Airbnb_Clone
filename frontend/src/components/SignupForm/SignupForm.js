@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css'
 
-function SignupFormPage({  ModalSignup, setModalSignup }) {
+function SignupFormPage({ModalSignup, setModalSignup}) {
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
@@ -18,7 +18,7 @@ function SignupFormPage({  ModalSignup, setModalSignup }) {
     if (password === confirmPassword) {
         setErrors([]);
         return dispatch(sessionActions.signup({ email, firstName, lastName, password }))
-        
+            .then(()=>setModalSignup(false))
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(Object.values(data.errors));
@@ -29,6 +29,10 @@ function SignupFormPage({  ModalSignup, setModalSignup }) {
 
     return (
       <div className='formPage'>
+        <button type="button" className="modalClose" onClick={()=>{setModalSignup(!ModalSignup)}}>
+        <i className="fas fa-xmark" />
+      </button>
+  
       <form onSubmit={handleSubmit} className='signupForm'>
         <div>
           <h2>Welcome to Petbnb</h2>
