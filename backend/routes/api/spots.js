@@ -253,7 +253,7 @@ router.post("/", requireAuth, async (req, res) => {
 
 
 router.get('/:spotId/reviews', async (req, res) => {
-  let currentSpotReviews = await Spots.findByPk(req.params.spotId);
+  let currentSpotReviews = await Spot.findByPk(req.params.spotId);
 
   const spotId = req.params.spotId
 
@@ -265,7 +265,7 @@ if (!currentSpotReviews) {
 }
 
 let currentReviews = await Review.findAll({
-  where: {spotId: spotdD,},
+  where: {spotId: spotId,},
     include: [
         { model: User, attributes: ["id", "firstName", "lastName"] },
         { model: Image, attributes: ['url'] }

@@ -8,8 +8,9 @@ const CreateReview = () => {
   let { spotId} = useParams();
   spotId = Number(spotId);
 
-  const [reviewMessage, setReviewMessage] = useState("");
+  const [reviewText, setReviewMessage] = useState("");
   const [stars, setStars] = useState("");
+
   const [errors, setErrors] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
@@ -21,7 +22,7 @@ const CreateReview = () => {
     e.preventDefault();
     setErrors([]);
     let review = {
-      review: reviewMessage,
+      review: reviewText,
       stars: stars,
     };
     return dispatch(reviewActions.createReviews(spotId, review))
@@ -35,6 +36,7 @@ const CreateReview = () => {
   };
 
   return (
+
     <form className="spotsReview" onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => (
@@ -46,7 +48,7 @@ const CreateReview = () => {
         <input
           type="text"
           placeholder="Review Message"
-          value={reviewMessage}
+          value={reviewText}
           onChange={(e) => setReviewMessage(e.target.value)}
           required
         />
@@ -62,6 +64,7 @@ const CreateReview = () => {
         />
       </label>
       <button type="submit">Create Review</button>
+      
     </form>
   );
 };

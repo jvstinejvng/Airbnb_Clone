@@ -11,14 +11,9 @@ const SpotsDetail = () => {
   const dispatch = useDispatch();
   let { spotId } = useParams();
   spotId = Number(spotId);
-  // let { reviewId } = useParams();
-  // reviewId = Number(reviewId);
+
   const spot = useSelector((state) => state.spots[spotId]);
   const sessionUser = useSelector((state) => state.session.user);
-  // const review = useSelector((state) => Object.values(state.reviews));
-  // const spotReview = review.filter(
-  //   (review) => review.reviews === parseInt(sessionUser.id)
-  // );
 
   useEffect(() => {
     if (!spot) {
@@ -41,12 +36,6 @@ const SpotsDetail = () => {
     e.preventDefault();
     history.push(`/spots/${spotId}/createReview`);
   };
-
-  // const handleDeleteReview = (e) => {
-  //   e.preventDefault();
-  //   dispatch(deleteReview(reviewId));
-  //   history.push(`/spots/${spotId}`);
-  // };
 
   return (
     spot && (
