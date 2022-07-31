@@ -13,11 +13,6 @@ const validateSignup = [
     .exists({ checkFalsy: true })
     .isEmail()
     .withMessage("Please provide a valid email."),
-  check("username")
-    .exists({ checkFalsy: true })
-    .isLength({ min: 4 })
-    .withMessage("Please provide a username with at least 4 characters."),
-  check("username").not().isEmail().withMessage("Username cannot be an email."),
   check("password")
     .exists({ checkFalsy: true })
     .isLength({ min: 6 })
@@ -27,7 +22,7 @@ const validateSignup = [
 
 // Sign up
 router.post("/sign-up", validateSignup, async (req, res) => {
-  const { firstName, lastName, email, password, username } = req.body;
+  const { firstName, lastName, email, password } = req.body;
 
   const trackEmail = await User.findOne({
     where: { email }

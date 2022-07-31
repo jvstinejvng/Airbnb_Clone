@@ -11,7 +11,7 @@ const validateLogin = [
   check("credential")
     .exists({ checkFalsy: true })
     .notEmpty()
-    .withMessage("Please provide a valid email or username."),
+    .withMessage("Please provide a valid email."),
   check("password")
     .exists({ checkFalsy: true })
     .withMessage("Please provide a password."),
@@ -46,7 +46,6 @@ router.post('/login', validateLogin, async (req, res, next) => {
 
     const newUser = {
       "id": user.id,
-      "username": user.username,
       "firstName": user.firstName,
       "lastName": user.lastName,
       "email": user.email,
@@ -55,14 +54,7 @@ router.post('/login', validateLogin, async (req, res, next) => {
 
     return res.json({user:newUser})
     
-    // return res.json({
-    //   "id": user.id,
-    //   "username": user.username,
-    //   "firstName": user.firstName,
-    //   "lastName": user.lastName,
-    //   "email": user.email,
-    //   "token": token
-    // });
+
   }
 );
 
