@@ -251,6 +251,32 @@ router.post("/", requireAuth, async (req, res) => {
   res.json(spot);
 });
 
+
+router.get('/:spotId/reviews', async (req, res) => {
+  let currentSpotReviews = await Spots.findByPk(req.params.spotId);
+
+  const spotId = req.params.spotId
+
+if (!currentSpotReviews) {
+  return res.status(404).json({
+    "message": "Spot could not be found",
+    "statusCode": 404
+  });
+}
+
+let currentReviews = await Review.findAll({
+  where: {spotId: spotdD,},
+    include: [
+        { model: User, attributes: ["id", "firstName", "lastName"] },
+        { model: Image, attributes: ['url'] }
+      ],
+  },
+);
+
+return res.json(currentReviews);
+});
+
+
 //edit a spot
 router.put("/:spotId", requireAuth, async (req, res) => {
   const { spotId } = req.params;
@@ -305,16 +331,6 @@ router.put("/:spotId", requireAuth, async (req, res) => {
     res.statusCode = 400;
     return res.json(error);
   }
-
-  // spot.address = address
-  // spot.city = city
-  // spot.state = state
-  // spot.lat = lat
-  // spot.lng = lng
-  // spot.name = name
-  // spot.description = description
-  // spot.price = price
-  // spot.previewImage = previewImage
 
   await spot.update({
     address,

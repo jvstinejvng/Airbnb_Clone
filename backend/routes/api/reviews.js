@@ -41,34 +41,32 @@ router.get("/current-user-review", requireAuth, async (req, res) => {
 });
 
 //Get all reviews by a Spot's id
-router.get('/:spotId', async (req, res) => {
-  const spotId = req.params.spotId;
+// router.get('/:spotId', async (req, res) => {
+//   const spotId = req.params.spotId;
 
-  let spot  = await Spot.findByPk(spotId);
-  if (!spot) {
-    return res.status(404).json({
-      "message": "Spot does not exist!"
-    });
-  }
+//   let spot  = await Spot.findByPk(spotId);
+//   if (!spot) {
+//     return res.status(404).json({
+//       "message": "Spot does not exist!"
+//     });
+//   }
 
-  let reviews = await Review.findAll({
-    where: {
-      spotId: spotId,
-    }
-  });
+//   let reviews = await Review.findAll({
+//     where: {
+//       spotId: spotId,
+//     }
+//   });
 
-  let user = await User.findByPk(spot.ownerId);
-  let images = await Image.findByPk(spot.id)
-
-
-  return res.json({
-    reviews,
-    user,
-    images
-  });
-});
+//   let user = await User.findByPk(spot.ownerId);
+//   let images = await Image.findByPk(spot.id)
 
 
+//   return res.json({
+//     reviews,
+//     user,
+//     images
+//   });
+// });
 
 
 //Create a Review for a Spot based on the Spot's id
