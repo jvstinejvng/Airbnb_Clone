@@ -1,5 +1,4 @@
 'use strict';
-
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Images', {
@@ -9,30 +8,31 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      url: {
-        type: Sequelize.STRING
+      spotId: {
+        type: Sequelize.INTEGER,
+        defaultValue: null,
+        references: {
+          model: 'Spots',
+          key: 'id'
+        },
+        onDelete: 'CASCADE'
       },
       reviewId: {
         type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
+        defaultValue: null,
         references: {
           model: 'Reviews',
-          key: 'id',
-        }
-      },
-      spotId: {
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'Spots',
-          key: 'id',
-        }
-      },
-      imageableId: {
-        type: Sequelize.INTEGER
+          key: 'id'
+        },
+        onDelete: 'CASCADE'
       },
       imageableType: {
         type: Sequelize.STRING,
+        allowNull: false
+      },
+      url: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,

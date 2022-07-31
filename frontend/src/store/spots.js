@@ -1,160 +1,150 @@
-import { csrfFetch } from './csrf';
+import { csrfFetch } from "./csrf";
 
-const ALL_SPOTS = 'spots/allSpots';
-const SPOT_DETAILS = 'spots/spotDetails';
+
+const GET_SPOTS = 'spots/getAllSpots';
 const CREATE_SPOT = 'spots/createSpot';
-const EDIT_SPOT = 'spots/editSpot';
-const DELETE_SPOT = 'spots/deleteSpot';
+const DELETE_SPOT = 'spots/deleteSpot'
+// const EDIT_SPOT = "spots/edit";
+const GET_ONE_SPOT = 'spots/getOneSpot';
 
-const allSpots = spots => {
+const getAllSpots = (payload) => {
   return {
-    type: ALL_SPOTS,
-    spots
+      type: GET_SPOTS,
+      payload,
   };
 };
 
-const spotDetails = spot => {
+const getOneSpot = (payload) => {
   return {
-    type: SPOT_DETAILS,
-    spot
+      type: GET_ONE_SPOT,
+      payload,
   };
 };
 
-const createNewSpot = spot => {
+const createSpot = (payload) => {
   return {
-    type: CREATE_SPOT,
-    spot
+      type: CREATE_SPOT,
+      payload,
   };
 };
 
-const editSpot = spot => {
+const deleteSpot = (id) => {
   return {
-    type: EDIT_SPOT,
-    spot
+      type: DELETE_SPOT,
+      id,
   };
 };
 
-const deleteSpot = id => {
-  return {
-    type: DELETE_SPOT,
-    id
-  }
+
+
+
+//Get all spots
+export const loadSpots = () => async (dispatch) => {
+  const response = await csrfFetch("/api/spots");
+  const data = await response.json();
+    dispatch(getAllSpots(data.Spots));
+    return response;
 };
 
-//get all spots - works 
-export const getAllSpots = () => async dispatch => {
-  const response = await csrfFetch(`/api/spots`);
-  if (response.ok) {
-    const spots = await response.json();
-    dispatch(allSpots(spots));
-    return spots
-  }
+//Get a spot detail
+
+export const loadOneSpot = (id) => async dispatch => {
+  const response = await csrfFetch("/api/spots/your-spots");
+  const data = await response.json();
+  dispatch(getOneSpot(data));
   return response;
 };
 
-// Get details of a Spot from an id - works
-export const getSpotById = id => async dispatch => {
+//Get the current user's spots
+
+export const loadUserSpots = (id) => async dispatch => {
   const response = await csrfFetch(`/api/spots/${id}`);
-  if (response.ok) {
-    const spot = await response.json();
-    dispatch(spotDetails(spot));
-    return spot
-  }
+  const data = await response.json();
+  dispatch(getAllSpots(data.Spots));
   return response;
 };
 
-// Create a new Spot 
-export const createSpot = newSpot => async dispatch => {
+//Create a spot
+export const addSpot = (newSpot) => async (dispatch) => {
   const { address, city, state, country, lat, lng, name, description, price, previewImage } = newSpot;
-  const response = await csrfFetch(`/api/spots`, {
-      method: "POST",
-      body: JSON.stringify({ 
-        address, 
-        city, 
-        state, 
-        country, 
-        lat, 
-        lng, 
-        name, 
-        description, 
-        price, 
-        previewImage,  
-      }),
-  });
-  const spotData = await response.json();
-  dispatch(createNewSpot(spotData));
-  return response;
-};
-
-// Edit a spot 
-export const updateSpot = (spotId, spotData) => async dispatch => {
-  const { address, city, state, country, lat, lng, name, description, price, previewImage } = spotData
-  const response = await csrfFetch(`/api/spots/${spotId}`, {
-    method: 'PUT',
-    body: JSON.stringify({  
-      address, 
-      city, 
-      state, 
-      country, 
-      lat, 
-      lng, 
-      name, 
-      description, 
-      price, 
-      previewImage, 
+  const response = await csrfFetch("/api/spots/create", {
+    method: "POST",
+    body: JSON.stringify({
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price,
+        previewImage,
     }),
-  })
-  if (response.ok) {
-    const updatedSpot = await response.json()
-    dispatch(editSpot(updatedSpot))
-    return updatedSpot;
-  }
-  return response
+});
+const data = await response.json();
+dispatch(createSpot(data));
+return response;
 };
 
-// Delete a spot
-export const removeSpot = id => async dispatch => {
+
+// //edit a spot
+// export const spotEdit = (spot) => async (dispatch) => {
+//   const response = await csrfFetch(`/api/spots/${spot.spotId}`, {
+//     method: "PUT",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify(spot),
+//   });
+//   if (response.ok) {
+//     const editedSpot = await response.json();
+//     dispatch(editSpot(editedSpot));
+//     return editedSpot;
+//   }
+//   return response;
+// };
+
+//delete a spot
+export const removeSpot = (id) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${id}`, {
     method: 'DELETE',
-  })
-  if (response.ok) {
-    const spotData = await response.json()
-    dispatch(deleteSpot(id))
-    return spotData
-  }
+  });
+  dispatch(deleteSpot(id));
   return response;
 };
 
-const initialState = {}
 
+const initialState = {};
 const spotsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case ALL_SPOTS: 
+    case GET_SPOTS: {
       newState = Object.assign({}, state);
-      action.spots.forEach(spot => newState[spot.id] = spot);
+      action.payload.map(spot => newState[spot.id] = spot);
       return newState;
-    case SPOT_DETAILS: 
+    }
+    case CREATE_SPOT: {
       newState = Object.assign({}, state);
-      newState[action.spot.id] = action.spot;
+      newState[action.payload.id] = action.payload;
       return newState;
-    case CREATE_SPOT: 
-      newState = Object.assign({}, state);
-      newState[action.spot.id] = action.spot;
-      return newState;    
-    case EDIT_SPOT: 
-      newState = Object.assign({}, state);
-      newState[action.spot.id] = action.spot;
-      return newState;    
-    case DELETE_SPOT:
+    }
+    case DELETE_SPOT: {
       newState = Object.assign({}, state);
       delete newState[action.id];
       return newState;
+    }
+    // case EDIT_SPOT: {
+    //   const newState = { ...state };
+    //   newState[action.editedSpot.id] = action.editedSpot;
+    //   return newState;
+    // }
+    case GET_ONE_SPOT: {
+      newState = Object.assign({}, state);
+      newState[action.payload.id] = action.payload;
+      return newState;
+    }
     default:
       return state;
   }
-}
-
-
+};
 
 export default spotsReducer;

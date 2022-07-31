@@ -1,51 +1,27 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
 import ProfileButton from './ProfileButton';
-import LoginFormModal from '../LoginFormModal';
-import DemoUser from '../DemoUser';
-
-
 import './Navigation.css';
 
-function Navigation({ isLoaded }) {
+
+function NavigationBar({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
-  let sessionLinks;
-  if (sessionUser) {
-    sessionLinks = (
-      <>
-      <div>
-        <ProfileButton user={sessionUser} />
-      </div>
-      </>
-    );
-  } else {
-    sessionLinks = (
-      <>
-      <div id='NavMenuRight'>
-        <div id='loginButton'> <LoginFormModal /></div>
-        <div id='signUp'><NavLink to="/signup">Sign Up</NavLink> </div>
-        <DemoUser />
-      </div>
-      </>
-    );
-  }
-
   return (
-    <nav>
-        <div className='NavigationBarLeft'>
-        <div class='siteLogo'>
-            <NavLink exact to='/' className='logoSite'>
-              <img src={require('../../assets/Petbnb.png')} alt='Petbnb Logo' />
-              <div className='PetbnbText'>petbnb</div>
-            </NavLink>
+      <div className='NavBar'>
+
+        <div className='logoLeft'>
+          <NavLink className='logoSite' exact to="/">
+          <img src={require('../../assets/Petbnb.png')} alt='Petbnb Logo' />
+          <div className='PetbnbText'>Petbnb</div>
+          </NavLink>
         </div>
-            {isLoaded && sessionLinks}
-      </div >
-    </nav >
+
+        {isLoaded && (<ProfileButton user={sessionUser} />)}
+
+      </div>
   );
 }
 
-export default Navigation;
+export default NavigationBar;

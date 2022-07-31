@@ -1,47 +1,74 @@
 'use strict';
-const bcrypt = require("bcryptjs");
+
+const bcrypt = require('bcryptjs');
 
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
+  
     return queryInterface.bulkInsert('Users', [
       {
-        email: 'demo@user.io',
-        firstName: 'Justine',
-        lastName: 'Jang',
+        firstName: 'Demo',
+        lastName: 'Demo',
+        username: 'DemoUser',
+        email: 'demo@demo.io',
         hashedPassword: bcrypt.hashSync('password')
       },
       {
-        email: 'user1@user.io',
-        firstName: 'Jean',
-        lastName: 'Pong',
+        firstName: 'Charlie',
+        lastName: 'Brown',
+        username: 'snoopy',
+        email: 'charliebrown@peanuts.com',
         hashedPassword: bcrypt.hashSync('password2')
       },
       {
-        email: 'user2@user.io',
-        firstName: 'Jessica',
-        lastName: 'Hannha',
+        firstName: 'Tom',
+        lastName: 'Jerry',
+        username: 'tomandjerry',
+        email: 'tomcat@warnerbrothers.com',
         hashedPassword: bcrypt.hashSync('password3')
       },
       {
-        email: 'winnie@gmail.com',
-        firstName: 'Marisa',
-        lastName: 'Miche',
+        firstName: 'Shaggy',
+        lastName: 'Rogers',
+        username: 'scoobydoo',
+        email: 'shaggyandscoob@scoobydoo.com',
         hashedPassword: bcrypt.hashSync('password4')
       },
       {
-        email: 'lemons@gmail.com',
-        firstName: 'Yadi',
-        lastName: 'glad',
+        firstName: 'Cat',
+        lastName: 'Hat',
+        username: 'drseusscat',
+        email: 'catinthehat@seuss.com',
         hashedPassword: bcrypt.hashSync('password5')
       },
-     ], {});
+      {
+        firstName: 'Stuart',
+        lastName: 'Little',
+        username: 'littlemouse',
+        email: 'littlefamily@columbia.com',
+        hashedPassword: bcrypt.hashSync('password6')
+      },
+      {
+        firstName: 'Peter',
+        lastName: 'Rabbit',
+        username: 'peterrabbit',
+        email: 'petterrabbit@sony.com',
+        hashedPassword: bcrypt.hashSync('password7')
+      },
+      {
+        firstName: 'Jonathan',
+        lastName: 'Arbuckle',
+        username: 'garfield',
+        email: 'garfieldworl@paramount.com',
+        hashedPassword: bcrypt.hashSync('password8')
+      },
+    ], {});
   },
 
-  async down (queryInterface, Sequelize) {
-  
+  async down(queryInterface, Sequelize) {
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('Users', {
-      firstName: { [Op.in]: ['Justine', 'Jean', 'Jessica', 'Marisa','Yadi'] }
+      username: { [Op.in]: ['DemoUser', 'snoopy', 'tomandjerry', 'scoobydoo', 'drseusscat', 'littlemouse', 'peterrabbit', 'garfield' ] }
     }, {});
   }
 };

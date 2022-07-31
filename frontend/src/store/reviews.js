@@ -1,126 +1,122 @@
 import { csrfFetch } from "./csrf";
 
-const USER_REVIEWS = 'reviews/reviewsUser';
-const SPOT_REVIEWS = 'reviews/allReviews';
-const CREATE_REVIEW  = 'reviews/createReview';
-const EDIT_REVIEW = 'reviews/editReview';
-const DELETE_REVIEW = 'review/deleteReview';
+const LOAD_SPOT_REVIEWS = "/reviews/load";
+const POST_REVIEWS = "/reviews/post";
+const DELETE_REVIEW = "/review/delete";
+const LOAD_USER_REVIEWS = "/reviews/user"
 
-const userReviews = reviews => ({
-    type: USER_REVIEWS,
-    reviews,
-});
-
-const spotReviews = reviews => ({
-    type: SPOT_REVIEWS,
-    reviews,
-});
-
-const createReview = reviews => ({
-    type: CREATE_REVIEW,
-    reviews,
-});
-
-const editReview = reviews => ({
-    type: EDIT_REVIEW,
-    reviews,
-});
-
-const deleteReview = (id) => ({
+const deleteReviewAction = (id) => {
+  return {
     type: DELETE_REVIEW,
     id,
-});
+  };
+};
 
-// Get all Reviews of the Current User
-export const allUserReviews = () => async (dispatch) => {
-    const response = await csrfFetch('/api/your-reviews');
-    if (response.ok) {
-        const data = await response.json();
-        dispatch(userReviews(data));
-    }
+const createReviewAction = (review) => {
+  return {
+    type: POST_REVIEWS,
+    review,
+  };
+};
+
+const loadUserReviews = (reviews) => {
+  return {
+    type: LOAD_USER_REVIEWS,
+    reviews
+  }
 }
 
-// Get all Reviews by a Spot's id
-export const allSpotReviews = (spotId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/reviews/${spotId}`);
-    if (response.ok) {
-      const reviews = await response.json();
-      dispatch(spotReviews(reviews));
-      return reviews;
-    }
-  };
 
-// Create a Review for a Spot based on the Spot's id
-export const addReview = ( spotId, reviewData) => async (dispatch) => {
-    const { review, stars } = reviewData;
-    const response = await csrfFetch(`/api/reviews/${spotId}`, {
-        method: "POST",
-        body: JSON.stringify({
-            review,
-            stars
-        }),
-    });
-    const data = await response.json();
-    dispatch(createReview(data));
-    return response;
+const loadSpotReviews = (reviews) => {
+  return {
+    type: LOAD_SPOT_REVIEWS,
+    reviews,
+  };
 };
 
-// Edit a Review
-export const updateSpot = (spotId, reviewData) => async dispatch => {
-    const { review, stars } = reviewData;
-    const response = await csrfFetch(`/api/review/${spotId}`, {
-      method: 'PUT',
-      body: JSON.stringify({
-        review,
-        stars
-    }),
-    })
-    if (response.ok) {
-      const updatedReview = await response.json()
-      dispatch(editReview(updatedReview))
-      return updatedReview;
-    }
-    return response
-  };
+//create review
+export const createReviews = (spotId, review) => async (dispatch) => {
+  const response = await csrfFetch(`/api/reviews/${spotId}/create`, {
+    method: "POST",
+    body: JSON.stringify(review),
+  });
 
+  if (response.ok) {
+    const newReview = await response.json();
+    dispatch(createReviewAction(newReview));
+    return newReview;
+  }
 
-// Delete a Review
-export const removeReview = (id) => async (dispatch) => {
-    const response = await csrfFetch(`/api/reviews/${id}`, {
-        method: 'DELETE',
-    });
-    dispatch(deleteReview(id));
-    return response;
+  return response;
 };
 
+//get all reviews of a spot
+export const loadReviews = (spotId) => async (dispatch) => {
+  
+  const response = await csrfFetch(`/api/reviews/${spotId}`);
 
+  if (response.ok) {
+    const allReviews = await response.json();
+    dispatch(loadSpotReviews(allReviews));
+    // return allReviews;
+  }
+
+  return response;
+};
+
+//get the current user's reviews
+export const getUserReviews = () => async (dispatch) => {
+  const response = await csrfFetch(`/api/reviews/current-user-review`);
+  if (response.ok) {
+    const userReviews = await response.json();
+    dispatch(loadUserReviews(userReviews));
+  }
+  return response;
+};
+
+//delete review
+export const deleteReview = (id) => async (dispatch) => {
+  const response = await csrfFetch(`/api/reviews/${id}`, {
+    method: "DELETE",
+  });
+  
+
+
+  const review = await response.json();
+  
+  dispatch(deleteReviewAction(id));
+  return review;
+};
 
 const initialState = {};
+const reviewsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case DELETE_REVIEW: {
+    
+      const newState = { ...state };
+      delete newState[action.id];
+      return newState;
+    };
+    case POST_REVIEWS: {
+      const newState = { ...state };
+      newState[action.review.id] = action.review;
+      return newState;
+    };
+    case LOAD_SPOT_REVIEWS: {
+      const allReviews = {};
+      action.reviews.reviews.forEach((review) => (allReviews[review.id] = review));
+      let reviews = {...allReviews};
+      return reviews;
+    };
+    case LOAD_USER_REVIEWS: {
+      const newState = {};
+      action.reviews.forEach(reviews => newState[reviews.id] = reviews);
 
-export default function reviewsReducer(state = initialState, action) {
-    let newState;
-    switch(action.type) {
-        case USER_REVIEWS:
-            newState = Object.assign({}, state);
-            action.reviews.map(review => newState[review.id] = review);
-            return newState;
-        case SPOT_REVIEWS:
-            newState = Object.assign({}, state);
-            action.reviews.forEach(review => newState[review.id] = review);
-            return newState;
-        case CREATE_REVIEW:
-            newState = Object.assign({}, state);
-            newState[action.review.id] = action.reviews;
-            return newState;
-        case EDIT_REVIEW:
-            newState = Object.assign({}, state);
-            delete newState[action.id];
-            return newState;
-        case DELETE_REVIEW:
-            newState = Object.assign({}, state);
-            delete newState[action.id];
-            return newState;
-        default:
-            return state;
+      return newState;
     }
-}
+    default:
+      return state;
+  }
+};
+
+export default reviewsReducer;

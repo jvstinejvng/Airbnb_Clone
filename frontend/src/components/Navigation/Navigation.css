@@ -1,103 +1,139 @@
-.navBar {
+.NavBar {
+    position: sticky;
     display: flex;
-    background-color: white;
-    margin-bottom: 15px;
-    border-radius: 30px;
-    border: 1px solid lightgrey;
-    height: 50px;
-    width: 90px;
-    padding: 7px;
-    font-size: 15px;
-    text-align: left;
+    margin: 10px 15px;
     justify-content: space-between;
+    background-color: white;
+    border-bottom: 1px solid #717171;
+
+}
+
+.navButtonRight {
+    display: flex;
     align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    height: 45px;
+    width: 85px;
+    border-radius: 30px;
+    border: 1px solid #717171ba;
 }
 
-.nav_bars_icon {
-    color: #7b7b7b;
-    padding-left: 8px;
-    font-size: 20px;
-}
-
-.user_icon{
+.fa-user-circle {
     color: #7b7b7b;
     padding: 1px;
     font-size: 30px;
 }
 
-.NavigationBarLeft {
+.fa-bars {
+    color: #7b7b7b;
+    padding-left: 6px;
+    font-size: 20px;
+}
+
+.menuLink:hover {
+    background-color: rgba(219, 219, 219, 0.337);
+    border-radius: 30px;
+}
+
+.userRightMenu {
+    border-bottom: 1px solid #717171;
+}
+
+.logoSite {
     display: flex;
-    background-color: white;
-    border-bottom: .75px solid #d3d3d3b3;
-    justify-content: space-between;
-}
-
-.PetbnbText {
-    display: block;
-    color: #FF5A5F;
     align-items: center;
-    margin-left: 5px;
-    font-family: sans-serif;
-    font-weight: bold;
-    font-size: 25px;
-
-}
-
-.siteLogo a {
-    display: flex;
-    background-color: white;
-    margin-bottom: 15px;
-    height: 50px;
-    width: 90px;
-    padding: 7px;
-    font-size: 15px;
-    text-align: left;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.siteLogo a:link,
-.siteLogo a:visited,
-.siteLogo a:active {
-    text-decoration: none;
+    padding: 5px;
+    margin-left: 20px;
+    width: fit-content;
 }
 
 img {
     object-fit: cover;
-    max-height: 70px;
-    max-width: 70px;
+    max-height: 65px;
+    max-width: 65px;
 }
 
-.dropDownMenu {
-    cursor: pointer;
-    position: absolute;
-    top: 60px;
-    right: 95px;
-    width: 200px;
+.logoLeft > a, a:hover, a:visited, a:active {
+    text-decoration: none;
+}
+
+.navRight {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+.menuLink,
+.menuLink:active,
+.menuLink:visited {
+    text-decoration: none;
+    color: #525659ec;
+}
+
+.PetbnbText {
+    display: flex;
+    align-items: center;
+    color: #FF5A5F;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+.demoUser {
+    display: flex;
+    align-items: center;
+    margin-right: 28px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 550;
+    color: #3e4346;
+    border: 0px solid white;
     background-color: white;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.hostButton {
     display: flex;
+    align-items: center;
+    margin-right: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 550;
+    color: #3e4346;
+    padding: 10px;
+}
+
+.DropDownMenu {
+    display: flex;
+    position: absolute;
     flex-direction: column;
-    border-radius: 10px;
-    box-shadow: 0 2px 7px  #767676;
+    margin-top: 180px;
+    border-radius: 12px;
+    right: 0;
+    top: -108px;
+    padding: 28px;
+    box-shadow: 2px 2px 13px rgba(163, 163, 163, 0.298);
+    border: 0;
+    width: 210px;
+    background-color: white;
 }
 
-.dropDownMenu > * {
-    display: flex;
-    padding: 15px;
+.navMenuRight {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 525;
+    font-size: 15px;
+    color: #3e4346;
     width: 100%;
-    font-family: sans-serif ;
-    font-size: 15px;
-    justify-content: flex-start;
-    letter-spacing: .5px;
+    padding: 10px;
 }
 
-#signupDropDown {
-    font-size: 15px;
-    color: black;
-    font-weight: 500;
+.menutext {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #3e4346;
+    text-align: right;
 }
-
-
-
 
 
