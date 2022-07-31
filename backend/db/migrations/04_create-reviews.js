@@ -10,29 +10,25 @@ module.exports = {
       },
       userId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
           model: 'Users',
           key: 'id',
         },
-        onDelete: 'CASCADE',
+        onDelete: 'cascade'
       },
       spotId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
           model: 'Spots',
-          key: 'id'
+          key: 'id',
         },
-        onDelete: 'CASCADE',
+        onDelete: 'cascade'
       },
       review: {
-        type: Sequelize.STRING,
-        allowNull: false,
+        type: Sequelize.TEXT
       },
       stars: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
