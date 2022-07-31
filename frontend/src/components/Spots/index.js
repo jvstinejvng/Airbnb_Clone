@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getAllSpots } from "../../store/spots";
-import { loadAllReviewsThunk } from "../../store/reviews";
+import { loadReviews } from "../../store/reviews";
 import "./spots.css";
 
 const SpotsPage = () => {
@@ -19,7 +19,7 @@ const SpotsPage = () => {
   }, [dispatch, spotsString]);
 
   useEffect(() => {
-    dispatch(loadAllReviewsThunk());
+    dispatch(loadReviews());
   }, [dispatch, reviewsString]);
 
 

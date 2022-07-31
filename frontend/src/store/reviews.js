@@ -26,7 +26,6 @@ const loadUserReviews = (reviews) => {
   }
 }
 
-
 const loadAllReviews = (reviews) => {
   return {
     type: LOAD_ALL_REVIEWS,
@@ -35,7 +34,6 @@ const loadAllReviews = (reviews) => {
 };
 
 
-//create review
 export const createReviews = (spotId, review) => async (dispatch) => {
   const response = await csrfFetch(`/api/reviews/${spotId}/create`, {
     method: "POST",
@@ -43,36 +41,26 @@ export const createReviews = (spotId, review) => async (dispatch) => {
   });
 
   if (response.ok) {
-    const newReview = await response.json();
-    dispatch(createReviewAction(newReview));
-    return newReview;
+    const spotReview = await response.json();
+    dispatch(createReviewAction(spotReview));
+    return spotReview;
   }
 
   return response;
 };
 
 // get all reviews of a spot
-// export const loadReviews = (spotId) => async (dispatch) => {
-//   const response = await csrfFetch(`/api/reviews/${spotId}`);
-  
-//   if (response.ok) {
-//     const allReviews = await response.json();
-    
-//     dispatch(loadAllReviews(allReviews));
-//     return allReviews;
-//   }
+export const loadReviews = (spotId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
 
-//   return response;
-// };
-
-export const loadAllReviewsThunk = () => async (dispatch) => {
-  const response = await csrfFetch(`/api/reviews`);
   if (response.ok) {
     const allReviews = await response.json();
     dispatch(loadAllReviews(allReviews));
     return allReviews;
   }
-}
+
+  return response;
+};
 
 //get the current user's reviews
 export const getUserReviews = () => async (dispatch) => {
@@ -89,8 +77,6 @@ export const deleteReview = (id) => async (dispatch) => {
   const response = await csrfFetch(`/api/reviews/${id}`, {
     method: "DELETE",
   });
-  
-
 
   const review = await response.json();
   
@@ -102,7 +88,6 @@ const initialState = {};
 const reviewsReducer = (state = initialState, action) => {
   switch (action.type) {
     case DELETE_REVIEW: {
-    
       const newState = { ...state };
       delete newState[action.id];
       return newState;
@@ -117,6 +102,7 @@ const reviewsReducer = (state = initialState, action) => {
       action.reviews.forEach((review) => (allReviews[review.id] = review));
       let reviews = {...allReviews};
       return reviews;
+ 
     };
     case LOAD_USER_REVIEWS: {
       const newState = {};
