@@ -93,7 +93,7 @@ module.exports = {
         name: "Pets 'N Pals Bed and Breakfast",
         description: "A home-style place for your furry friend to play while you're away.",
         price: 199.99,
-        previewImage: 'https://static.wikia.nocookie.net/alvin/images/a/a8/The_Seville_House_in_The_Road_Chip.jpg/revision/latest/scale-to-width-down/1920?cb=20170114200452',
+        previewImage: 'https://i0.wp.com/www.iamnotastalker.com/wp-content/uploads/2020/08/IMG_2141.jpg',
       },
       {
         ownerId: 5,
