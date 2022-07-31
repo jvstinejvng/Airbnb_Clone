@@ -1,12 +1,61 @@
 .spotImg {
-    height: 250px;
-    flex-wrap: wrap;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.eachSpot{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 300px;
+    height: auto;
+    padding: 5px;
+    margin: 10px 5px 5px 5px;
+
+}
+
+.eachSpot img {
+    max-width: 300px;
+    max-height: 300px;
+    padding: 5px;
+    border-radius: 20px;
 }
 
 .spotsPage {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    margin: 1rem;
+    justify-content: center;
+    width: 70%;
+    position: absolute;
+    top: 7%;
+    left: 14%;
+    padding: 10px 5px;
+    margin: 30px 5px;
+    z-index: -1;
+    font-family: 'Poppins', sans-serif;
+}
+
+@media screen and (max-width: 2300px) and (min-width: 1900px) {
+    .all-spots {
+        width: 80%;
+        left: 10%;
+    }
+}
+
+@media screen and (max-width: 1900px) and (min-width: 1800px) {
+    .all-spots {
+        width: 90%;
+        left: 5%;
+    }
+}
+
+@media screen and (max-width: 1800px) {
+    .all-spots {
+        width: 100%;
+        left: 0%;
+    }
 }
 
 .spotImg {
@@ -18,8 +67,12 @@
     margin: 1rem;
 }
 
+
 .spotPrice {
+    margin-right: 5px;
     font-weight: bold;
+    color: rgb(88, 88, 88)
+
 }
 
 a:link {

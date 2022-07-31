@@ -30,11 +30,10 @@ function NavigationBar(){
           </NavLink>
 
         </div>
-        <ul className='nav-menu'>
-                    <li className='nav-link'>
+ 
+                   
                         {sessionLinks}
-                    </li>
-                </ul>
+
     
       </div>
     </>
