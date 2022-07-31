@@ -2,22 +2,46 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getAllSpots } from "../../store/spots";
+import { loadAllReviewsThunk } from "../../store/reviews";
 import "./spots.css";
 
 const SpotsPage = () => {
   const dispatch = useDispatch();
-  const spotsList = useSelector((state) => Object.values(state?.spots));
+  const spots = useSelector((state) => Object.values(state?.spots));
+  const reviews = useSelector((state) => Object.values(state.reviews))
+  // let {spotId} = useParams();
+  // spotId = Number(spotId)
+
+  const spotsString = JSON.stringify(spots);
+  const reviewsString = JSON.stringify(reviews);
 
   useEffect(() => {
     getAllSpots(dispatch);
-  }, [dispatch]);
+  }, [dispatch, spotsString]);
+
+  useEffect(() => {
+    dispatch(loadAllReviewsThunk());
+  }, [dispatch, reviewsString]);
+
+
 
   
-
+  const starSpot = (spotId) => {
+    const allReviewsForThisSpot = reviews.filter((review) => {
+      return review.spotId === spotId;
+    });
+    let allStars = 0
+    allReviewsForThisSpot.forEach((review) => {
+      allStars += review.stars;
+    })
+    const avgStarRating = allStars / allReviewsForThisSpot.length;
+    return avgStarRating;
+  }
+  
   return (
     <div className="spotsPage">
-      {spotsList &&
-        spotsList.map((spot) => (
+      {spots &&
+        spots.map((spot) => (
           <div key={spot.id}>
             <NavLink to={`/spots/${spot.id}`}>
               <div className="eachSpot">
@@ -33,7 +57,7 @@ const SpotsPage = () => {
                 <p className="spotAddress">{spot.address}</p>
                 <p className="spotDetails">{spot.description}</p>
                 <p className="spotPrice"> ${spot.price} night</p>
-                <p className="spotStars">Star Rating{spot.avgStarRating}</p>
+                <p className="spotStars">Star Rating: {starSpot(spot.id)}</p>
 
               </div>
             </NavLink>

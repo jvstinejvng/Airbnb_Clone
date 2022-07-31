@@ -35,9 +35,9 @@ useEffect(() => {
 // ------------------------------------
 
 
-  const handleDemoClick = () => {
+  const handleDemoUser = () => {
       dispatch(login({
-        credential: 'DemoUser',
+        email: 'DemoUser',
         password: 'password'
       }))
       .then(() => setShowMenu(false))
@@ -51,10 +51,10 @@ useEffect(() => {
       e.preventDefault();
       dispatch(sessionActions.logout())
       .then(() => {
-        if ('/spots/current') {
+        if ('/spots/create') {
           history.push('/')
         }
-        if ('/spots/host') {
+        if ('/') {
           history.push('/')
         }
       })
@@ -72,10 +72,10 @@ useEffect(() => {
     <div className="navRight">
     {!user && (
       <>
-      <button className="demoUser" onClick={handleDemoClick}>Demo User</button>
+      <button className="demoUser" onClick={handleDemoUser}>Demo User</button>
       </>
     )}
-    {user && (<NavLink className='hostButton' to='/spots/host'>Become a Host</NavLink>)}
+    {user && (<NavLink className='hostButton' to='/spots/create'>Become a Host</NavLink>)}
       <button className="navButtonRight" onClick={openMenu}>
       <i className="fas fa-bars"/> <i className="fas fa-user-circle"/>
       </button>

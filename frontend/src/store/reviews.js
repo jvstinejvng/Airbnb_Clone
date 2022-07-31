@@ -1,6 +1,6 @@
 import { csrfFetch } from "./csrf";
 
-const LOAD_SPOT_REVIEWS = "/reviews/load";
+const LOAD_ALL_REVIEWS = "/reviews/load";
 const POST_REVIEWS = "/reviews/post";
 const DELETE_REVIEW = "/review/delete";
 const LOAD_USER_REVIEWS = "/reviews/user"
@@ -27,12 +27,13 @@ const loadUserReviews = (reviews) => {
 }
 
 
-const loadSpotReviews = (reviews) => {
+const loadAllReviews = (reviews) => {
   return {
-    type: LOAD_SPOT_REVIEWS,
+    type: LOAD_ALL_REVIEWS,
     reviews,
   };
 };
+
 
 //create review
 export const createReviews = (spotId, review) => async (dispatch) => {
@@ -50,19 +51,28 @@ export const createReviews = (spotId, review) => async (dispatch) => {
   return response;
 };
 
-//get all reviews of a spot
-export const loadReviews = (spotId) => async (dispatch) => {
+// get all reviews of a spot
+// export const loadReviews = (spotId) => async (dispatch) => {
+//   const response = await csrfFetch(`/api/reviews/${spotId}`);
   
-  const response = await csrfFetch(`/api/reviews/${spotId}`);
+//   if (response.ok) {
+//     const allReviews = await response.json();
+    
+//     dispatch(loadAllReviews(allReviews));
+//     return allReviews;
+//   }
 
+//   return response;
+// };
+
+export const loadAllReviewsThunk = () => async (dispatch) => {
+  const response = await csrfFetch(`/api/reviews`);
   if (response.ok) {
     const allReviews = await response.json();
-    dispatch(loadSpotReviews(allReviews));
-    // return allReviews;
+    dispatch(loadAllReviews(allReviews));
+    return allReviews;
   }
-
-  return response;
-};
+}
 
 //get the current user's reviews
 export const getUserReviews = () => async (dispatch) => {
@@ -102,9 +112,9 @@ const reviewsReducer = (state = initialState, action) => {
       newState[action.review.id] = action.review;
       return newState;
     };
-    case LOAD_SPOT_REVIEWS: {
+    case LOAD_ALL_REVIEWS: {
       const allReviews = {};
-      action.reviews.reviews.forEach((review) => (allReviews[review.id] = review));
+      action.reviews.forEach((review) => (allReviews[review.id] = review));
       let reviews = {...allReviews};
       return reviews;
     };
