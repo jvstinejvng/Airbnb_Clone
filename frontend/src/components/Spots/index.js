@@ -9,8 +9,7 @@ const SpotsPage = () => {
   const dispatch = useDispatch();
   const spots = useSelector((state) => Object.values(state?.spots));
   const reviews = useSelector((state) => Object.values(state.reviews))
-  // let {spotId} = useParams();
-  // spotId = Number(spotId)
+
 
   const spotsString = JSON.stringify(spots);
   const reviewsString = JSON.stringify(reviews);

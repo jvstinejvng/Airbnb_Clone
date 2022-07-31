@@ -18,6 +18,7 @@ const SpotForm = () => {
   const [price, setPrice] = useState(0);
   const [errors, setErrors] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const sessionUser = useSelector(state => state.session.user)
 
 
   if (submitSuccess) {
@@ -50,6 +51,8 @@ const SpotForm = () => {
   };
 
   return (
+    <>
+    { sessionUser && (
     <form className='spotForm' onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => (
@@ -157,6 +160,8 @@ const SpotForm = () => {
       </label>
       <button type="submit">Create Spot</button>
     </form>
+    )}
+  </>
   );
 };
 
