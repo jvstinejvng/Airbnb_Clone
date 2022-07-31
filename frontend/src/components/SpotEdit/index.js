@@ -52,12 +52,7 @@ const EditSpot = () => {
     return dispatch(spotActions.spotEdit(data,spot.id))
     .then(() => {
       history.push(`/spots/${spot.id}`)
-      // <Redirect to={`/spots/${}`} />
     })
-    // .catch(async (res) => {
-    //   const data = await res.json();
-    //   if (data && data.errors) setErrors(data.errors);
-    // });
 
   };
 

@@ -17,9 +17,9 @@ const SpotReviews = ({spotId}) => {
 
           return (
             <div>
-            {/* <p className='name'>{`${reviewState.User.firstName} ${reviewState.User.lastName}`}</p> */}
-            <p className='stars'>{`${reviewState.stars} stars`}</p>
             <p className='review'>{`${reviewState.review}`}</p>
+            <p className='stars'>{`${reviewState.stars} stars`}</p>
+
             </div>
           )
         })

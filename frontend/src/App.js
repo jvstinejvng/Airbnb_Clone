@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 
@@ -33,8 +33,7 @@ function App() {
           <Route exact path="/spots/create">
             <CreateSpot />
           </Route>
-        </Switch>
-        <Route exact path="/spots/:spotId/edit">
+          <Route exact path="/spots/:spotId/edit">
             <EditSpot />
           </Route>
           <Route exact path="/spots/:spotId">
@@ -49,6 +48,7 @@ function App() {
           <Route exact path="/user/reviews">
             <Reviews />
           </Route>
+        </Switch>
     </>
 )}
 

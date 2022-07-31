@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useHistory, Redirect, Route, useLocation } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { NavLink, useHistory } from "react-router-dom";
 import * as sessionActions from '../../store/session';
 import LoginFormModal from "../LoginForm";
 import SignupFormModal from "../SignupForm";
