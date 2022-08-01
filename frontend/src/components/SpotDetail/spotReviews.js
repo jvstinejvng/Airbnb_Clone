@@ -11,8 +11,9 @@ const SpotReviews = ({spotId}) => {
   }, [dispatch, spotId])
 
     return (
+     
       <div className='all-reviews-div'>
-        <h1>Reviews</h1>
+        <h2>Reviews</h2>
         {reviews.map((reviewState, i) => {
 
           return (
@@ -26,6 +27,7 @@ const SpotReviews = ({spotId}) => {
         }
 
       </div>
+    
     )
 
 

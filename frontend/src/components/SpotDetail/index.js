@@ -41,18 +41,25 @@ const SpotsDetail = () => {
     spot && (
       <>
         <div className="SpotsDetail">
-          <div className="SpotHeader">{spot.name} </div>
-          <img
+            <div className="SpotHeader">{spot.name} </div>
+              <img
             className="SpotDetailImg"
             src={spot.previewImage}
             alt={spot.name}
-          ></img>
-          <h3 className="detailLocation">
+           ></img>
+
+          <p className="detailLocation">
             {spot.city}, {spot.state}
-          </h3>
-          <p className="detailDescription">Description: {spot.description}</p>
-          <p className="detailPrice">Price: ${spot.price} night</p>
-          <div>
+          </p>
+          </div>
+
+          <div className="SpotInformation" >
+          <div className="detailDescription">Description: {spot.description}</div>
+          <div className="detailPrice">Price: ${spot.price} night</div>
+          </div>
+
+          <div className="PawRating">
+
           <p>
                   {" "}
                   Average rating:
@@ -63,17 +70,17 @@ const SpotsDetail = () => {
                   )}
           </p>
           </div>
-          
+            <div className="line"></div>
+  
           {sessionUser &&
             sessionUser.user &&
             sessionUser.user.id === spot.ownerId && (
-              <div>
+              <div className="spotEdits">
                 <button onClick={handleEditClick}>Edit Spot</button>
                 <button onClick={handleDelete}>Delete Spot</button>
               </div>
             )}
-        </div>
-        <div>
+        <div className = "reviewButton">
           <button onClick={handleCreateReview}>Create Review</button>
 
         </div>

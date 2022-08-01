@@ -1,110 +1,149 @@
-
-.SpotHeader {
+.SpotsDetail {
+    z-index: -1;
     display: flex;
-    justify-content: flex-start;
-    padding-bottom: 20px;
-    color: #484848;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
-    font-weight: bold;
+    margin-left: 70px;
+    flex-direction: row;
+    padding-top: 130px;
+    position: sticky;
 }
 
 .SpotDetailImg {
     display: flex;
-    justify-content: flex-start;
-    position:static;
-    align-items: center;
-    width: 400px;
-    height: 384px;
-    border-radius: 20px;
-    object-fit: cover;
+    flex-direction: row;
+    position: sticky;
+    width: 500px;
+    height: 486px;
+    border-radius: 20px ;
+    border: #e0e0e0;
+    padding-left: 50px;
 }
 
-.detailLocation {
+.SpotHeader {
+    background-color: transparent;
     display: flex;
-    justify-content: flex-start;
-    padding-bottom: 10px;
-    color: #484848;
+    flex-direction: row;
+    position: absolute;
+    writing-mode: vertical-lr;
+    text-orientation: sideways-lr;
+    transform: rotate(-180deg);
+    font-weight: bolder;
+    font-size: 40px;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
-    font-weight: bold;
+    padding: 5px;
+}
+
+.detailLocation  {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 495px;
+    padding-left: 50px;
+
+}
+
+.SpotInformation {
+    display: flex;
+    flex-direction: row;
+    width: 590px;
+    height: 100px;
+    justify-content: space-between;
+    position: static;
+    padding-top: 90px;
+    padding-left: 40px;
+
+
 }
 
 .detailDescription {
     display: flex;
-    justify-content: flex-start;
-    padding-bottom: 10px;
+    flex-direction: row;
+    position: sticky;
+    width: 270px;
     color: #484848;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-}
+    padding-left: 80px;
+    font-size: 16px;
 
-.detailPrice {
+}
+.detailPrice{
     display: flex;
-    justify-content: flex-start;
-    padding-bottom: 10px;
-    color: #484848;
+    flex-direction: row;
+    position: sticky;
+    color: rgb(72, 72, 72);
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-
+    padding-left: 60px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
-.SpotsReview {
-    z-index: -1;
+.PawRating {
     display: flex;
-    flex-direction: column;
-    padding-bottom: 60px;
-    padding-top: 20px;
-    margin: 100px 80px 10px 80px;
-
-}
-
-.review {
-    display: flex;
-    justify-content: flex-start;
-    padding-bottom: 10px;
-    color: #484848;
+    flex-direction: row;
+    position: sticky;
+    padding-left: 115px;
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(72, 72, 72);
+    width: 600px;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
+
 }
 
-  
-  form {
+.line {
+    border-bottom: 2px solid #e0e0e0;
     display: flex;
-    flex-direction: column;
-    align-items: center; 
-    padding: 0px 16px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: lighter;
-    font-size: 13px;
-    color: rgba(17, 17, 17, 0.955);
+    flex-direction: row;
+    position: sticky;
+    margin-left: 115px;
+    width: 550px;
+    height: 0.3px;
+
 }
 
-.userInputField {
+
+.reviewButton button {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    margin: 5px;
-    padding: 6px 8px;
-    width: 510px;
-    height: 48px;
+    flex-direction: row;
+    position: static;
+    margin-left: 115px;
+    margin-top: 20px;
+    width: 130px;
+    height: 55px;
     border-radius: 12px;
-    border: 1px solid rgb(145, 144, 144);
-    font-size: 13px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: lighter;
-    color: rgb(145, 144, 144);
-   
-  }
-  
-  .userInputField input {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     border: 0;
-    width: 485px;
-    height: 25px;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif !important;
-  }
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-weight: lighter;
+    font-size: 18px;
+    background: #ff5a60; 
+    align-items: center;
+}
+
+.all-reviews-div {
+    padding-top: 30px;
+    margin-left: 115px;
+    width: 550px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    width: 500px;
+    border-radius: 20px ;
+    border: #e0e0e0;
+}
+
+
+.all-reviews-div h2{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: rgb(72, 72, 72);
+    width: 600px;
+
+}
+
+
+
+
+
