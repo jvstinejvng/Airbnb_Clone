@@ -73,18 +73,12 @@
     font-weight: 550;
 }
 
-.SpotPaws {
-    color: #484848;
+.PawRating{
+    font-size: 15 px;
+    font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    margin: 0px;
     padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 2px;
-    font-size: 15px;
-    font-weight: lighter;
-    letter-spacing: normal;
 }
-
 
 
 
