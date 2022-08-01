@@ -15,6 +15,8 @@ const SpotsDetail = () => {
   const spot = useSelector((state) => state.spots[spotId]);
   const sessionUser = useSelector((state) => state.session.user);
 
+
+
   useEffect(() => {
     if (!spot) {
       dispatch(findASpot(spotId));
@@ -37,10 +39,12 @@ const SpotsDetail = () => {
     history.push(`/spots/${spotId}/createReview`);
   };
 
+  
+
   return (
     spot && (
       <>
-       
+      
         <div className="SpotsDetail">
           <div class="SpotBox">
             <div className="SpotHeader">{spot.name} </div>
@@ -54,10 +58,9 @@ const SpotsDetail = () => {
            </div>
 
           <p className="detailLocation">
-            {spot.city}, {spot.state}
+            {spot.city}, {spot.state},  {spot.country}
           </p>
           </div>
-
           <div className="SpotInformation" >
           <div className="detailDescription">Description: {spot.description}</div>
           <div className="detailPrice">Price: ${spot.price} night</div>
@@ -77,14 +80,12 @@ const SpotsDetail = () => {
           </div>
             <div className="line"></div>
   
-          {sessionUser &&
-            sessionUser.user &&
-            sessionUser.user.id === spot.ownerId && (
-              <div className="spotEdits">
-                <button onClick={handleEditClick}>Edit Spot</button>
-                <button onClick={handleDelete}>Delete Spot</button>
-              </div>
-            )}
+            {sessionUser && sessionUser.id === spot.ownerId && (
+                  <div className="reviewButton">
+                    <button className="editButton" onClick={handleEditClick}> Edit </button>
+                    <button className="deleteButton" onClick={handleDelete}> Delete </button>
+                  </div>
+                )}
         <div className = "reviewButton">
           <button onClick={handleCreateReview}>Create Review</button>
         </div>
