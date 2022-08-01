@@ -135,15 +135,13 @@
 }
 
 
-.all-reviews-div h2{
+.Reviews{
+    display: flex;
+    justify-content: center;
+    z-index: -1;
+    padding-top: 100px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     color: rgb(72, 72, 72);
-    width: 600px;
 
 }
-
-
-
-
-
