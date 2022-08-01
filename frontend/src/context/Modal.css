@@ -22,3 +22,11 @@
   position: absolute;
   background-color:white;
 }
+
+.modalClose {
+  margin-top: 5px;
+  margin:-left 5px;
+  border: 0px white;
+  background: 0px white;
+
+}

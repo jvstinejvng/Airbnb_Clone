@@ -1,14 +1,15 @@
 .SpotListPage {
     z-index: -1;
+    position: static;
     display: flex;
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
-    position: absolute;
     top: 7%;
     padding-bottom: 70px;
-    padding-top: 10px;
+    padding-top: 120px;
     margin: 5px;
+    background-color: white;
 }
 
 /* individual spot */
@@ -80,16 +81,18 @@
     font-weight: 550;
 }
 
-.SpotStars {
+.SpotPaws {
     color: #484848;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0px;
     padding-left: 10px;
-    padding-bottom: 1px;
-    font-size: 11px;
+    padding-right: 10px;
+    padding-bottom: 2px;
+    font-size: 15px;
     font-weight: lighter;
     letter-spacing: normal;
 }
+
 
 
 

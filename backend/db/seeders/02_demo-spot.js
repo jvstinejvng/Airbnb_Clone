@@ -53,7 +53,7 @@ module.exports = {
         lng: - -118.35330453927918,
         name: "Garfield and Friends ",
         description: 'Where nap-taking is priority, lasagne-lovers live and furry friendships are made.',
-        price: 200.00,
+        price: 200.55,
         previewImage: 'https://photos.wikimapia.org/p/00/03/01/71/25_big.jpg',
       },
       {
@@ -66,7 +66,7 @@ module.exports = {
         lng: -70.8998585220895,
         name: "Cat's Cradle",
         description: 'Exquisit personalized boutique cat boarding. Luxury home environment exclusively for cats!',
-        price: 100.50,
+        price: 100.55,
         previewImage: 'https://cdn.shopify.com/s/files/1/0464/9357/files/Screen_Shot_2019-09-17_at_11.16.45_AM_grande.png?v=1568745610',
       },
       {
@@ -105,7 +105,7 @@ module.exports = {
         lng: -118.14375680543434,
         name: "Wags and Walks Dog Family Home",
         description: "Large dog boarding care specializing in long and short-term stay. Your dog's home-away-from-home. No kennels! no cages!",
-        price: 150.00,
+        price: 150.55,
         previewImage: 'https://filmoblivion.files.wordpress.com/2018/11/beethoven1.jpg?w=676',
       },
     ], {});

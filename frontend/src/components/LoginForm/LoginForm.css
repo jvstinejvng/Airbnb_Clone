@@ -9,7 +9,6 @@ form {
     color: rgba(17, 17, 17, 0.955);
 }
 
-  
 .userInputField {
     display: flex;
     flex-direction: column;
@@ -38,7 +37,8 @@ form {
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif !important;
   }
-  
+
+
 
 
 .FormButton {
@@ -67,8 +67,5 @@ form {
     font-size: 18px;
     background: linear-gradient(0.40turn, #ff5a60, #ffbec0); 
 }
-
-
-
 
 

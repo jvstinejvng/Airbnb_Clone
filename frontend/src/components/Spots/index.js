@@ -21,7 +21,7 @@ const SpotsPage = () => {
     dispatch(loadReviews());
   }, [dispatch, reviewsString]);
 
-  
+
   const starSpot = (spotId) => {
     const allReviewsForThisSpot = reviews.filter((review) => {
       return review.spotId === spotId;
@@ -46,12 +46,15 @@ const SpotsPage = () => {
                   src={spot.previewImage}
                   alt={spot.name}
                 ></img>
+                <div className="SpotPaws">
+               <i className="fas fa-paw" />
+               {starSpot(spot.id)}
+              </div>
                 <h4 className="SpotLocation">
                   {spot.city}, {spot.state}
                 </h4>
                 <p className="SpotDescription">{spot.description}</p>
                 <p className="SpotPrice"> ${spot.price} night</p>
-                <p className="SpotStars">Star Rating: {starSpot(spot.id)}</p>
 
               </div>
             </NavLink>

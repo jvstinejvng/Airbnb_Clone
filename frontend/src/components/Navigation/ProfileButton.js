@@ -5,6 +5,7 @@ import * as sessionActions from '../../store/session';
 import LoginFormModal from "../LoginForm";
 import SignupFormModal from "../SignupForm";
 
+
 function ProfileButton({ user }) {
 
   const history = useHistory();
@@ -38,6 +39,8 @@ useEffect(() => {
 };
 
 
+
+
   return (
     <>
     {(
@@ -58,14 +61,16 @@ useEffect(() => {
           { !user && (
             <div className="NavBarShowMenu">
             <NavLink className="MenuOptionNavLinks" 
-              onClick={()=> setModalSignup(true)} to='/'>Sign Up</NavLink><p/>
+              onClick={()=> setModalSignup(true)} to='/'>Sign up</NavLink><p/>
             <NavLink className="MenuOptionNavLinks" 
-                onClick={()=> setLoginModal(true)} to='/'>Log In</NavLink>
+                onClick={()=> setLoginModal(true)} to='/'>Log in</NavLink>
             </div>
             )}     
           { user && (
             <div className="UserMenuNavBar" >
-            <NavLink  className="MenuOptionNavLinks" to='/' onClick={logout}>Log Out</NavLink>
+            <NavLink  className="MenuOptionNavLinks" to='/user/reviews' >My reviews</NavLink><p/>
+            <NavLink  className="MenuOptionNavLinks" to='/users/current/spots'>My listings</NavLink><p/>
+            <NavLink  className="MenuOptionNavLinks" to='/' onClick={logout}>Log out</NavLink>
             </div>
           )}
         </div>

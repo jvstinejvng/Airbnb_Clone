@@ -58,7 +58,7 @@ const CreateReview = () => {
           required
         />
       </label>
-      <label>
+      <label className="userInputField" >
         Stars:
         <input
           type="text"

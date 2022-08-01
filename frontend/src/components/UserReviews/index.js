@@ -14,8 +14,6 @@ const Reviews = () => {
     }, [dispatch])
 
 
-
-
     const deleteReviews = (reviewID) => async (e) => {
       e.preventDefault()
       await dispatch(deleteReview(reviewID))

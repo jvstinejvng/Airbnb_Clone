@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 const EditSpot = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  let { spotId }= useParams();
+  let { spotId } = useParams();
   spotId = Number(spotId);
   const spot = useSelector((state) => state.spots[spotId]);
   const [name, setName] = useState(spot?.name);
@@ -15,8 +15,8 @@ const EditSpot = () => {
   const [city, setCity] = useState(spot?.city);
   const [state, setState] = useState(spot?.state);
   const [country, setCountry] = useState(spot?.country);
-  const [latitude, setLatitude] = useState(spot?.latitude);
-  const [longitude, setLongitude] = useState(spot?.longitude);
+  const [lat, setLat] = useState(spot?.lat);
+  const [lng, setLng] = useState(spot?.lng);
   const [description, setDescription] = useState(spot?.description);
   const [price, setPrice] = useState(spot?.price);
   const [previewImage, setPreviewImage] = useState(spot?.previewImage);
@@ -26,8 +26,8 @@ const EditSpot = () => {
   const updateCity = (e) => setCity(e.target.value);
   const updateState = (e) => setState(e.target.value);
   const updateCountry = (e) => setCountry(e.target.value);
-  const updateLatitude = (e) => setLatitude(e.target.value);
-  const updateLongitude = (e) => setLongitude(e.target.value);
+  const updateLat = (e) => setLat(e.target.value);
+  const updateLng = (e) => setLng(e.target.value);
   const updateName = (e) => setName(e.target.value);
   const updateDescription = (e) => setDescription(e.target.value);
   const updatePrice = (e) => setPrice(e.target.value);
@@ -42,18 +42,24 @@ const EditSpot = () => {
       state,
       country,
       previewImage,
-      latitude,
-      longitude,
+      lat,
+      lng,
       name,
       description,
       price,
-      spotId    };
-
-    return dispatch(spotActions.spotEdit(data,spot.id))
+      spotId
+    };
+    
+    return dispatch(spotActions.spotEdit(data))
     .then(() => {
       history.push(`/spots/${spot.id}`)
+    
     })
-
+    .catch(async (res) => {
+      const data = await res.json();
+      if (data && data.errors) setErrors(data.errors);
+    });
+    
   };
 
   return (
@@ -109,21 +115,21 @@ const EditSpot = () => {
         />
       </label>
       <label>
-        Latitude
+        Lat
         <input
           type="text"
           placeholder="Latitude"
-          value={latitude}
-          onChange={updateLatitude}
+          value={lat}
+          onChange={updateLat}
         />
       </label>
       <label>
-        Longitude
+        Lng
         <input
           type="text"
           placeholder="Longitude"
-          value={longitude}
-          onChange={updateLongitude}
+          value={lng}
+          onChange={updateLng}
         />
       </label>
       <label>
