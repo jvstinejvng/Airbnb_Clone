@@ -38,8 +38,7 @@ Petbnb is m very first solo designed and inspired
 | VSCode | Git | Heroku |
 |:-----:|:-----:|:-------:
 
-
-<a href='https://code.visualstudio.com/'><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" width="65"  height="65" /></a>|<a href='https://git-scm.com/'><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="65"  height="65"  /></a>|<a href='https://www.heroku.com/'><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-original.svg" width="65"  height="65"  /></a>
+|<a href='https://code.visualstudio.com/'><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" width="65"  height="65" /></a>|<a href='https://git-scm.com/'><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="65"  height="65"  /></a>|<a href='https://www.heroku.com/'><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-original.svg" width="65"  height="65"/></a>|
 
 * * * * * *
 </div>
