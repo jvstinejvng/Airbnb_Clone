@@ -6,7 +6,7 @@ nav {
     height: 80px;
     width: 100%;
     top: 0px;
-    border-bottom: 0.5px solid #e1e1e1;
+    border-bottom: 0.5px solid #e0e0e0;
     background-color: white;
 }
 
@@ -14,14 +14,14 @@ nav {
 .NavigationBar {
     position: sticky;
     display: flex;
-    margin: 80px;
+    margin: 100px;
     width: 100%;
     justify-content: space-between;
 }
 
 .NavBarRight-MenuHost {
     display: flex;
-    align-items: center;
+    align-items: center ;
 }
 
 /* dropdown menu */
@@ -30,10 +30,10 @@ nav {
     align-items: center;
     justify-content: space-between;
     background-color: white;
-    height: 42px;
-    width: 80px;
+    height: 44px;
+    width: 82px;
     border-radius: 35px;
-    border: 0.5px solid #e1e1e1;
+    border: 0.5px solid #e0e0e0;
 }
 
 .fa-user-circle {
@@ -52,12 +52,11 @@ nav {
 }
 
 .MenuOptionNavLinks:hover {
-    font-weight: bolder;
+    font-weight: bold;
 }
 .MenuOptionNavLinks,
 .MenuOptionNavLinks:active,
 .MenuOptionNavLinks:visited {
-    text-decoration: none;
     color: #494949;
 }
 
@@ -66,10 +65,9 @@ nav {
     align-items: center;
     margin-right: 25px;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
+    font-size: 15px;
     text-align: center;
-    font-weight: 530;
-    letter-spacing: 0.5px;
+    font-weight: 549;
     color: #494949;
     margin-right: 55px;
 }
@@ -102,10 +100,9 @@ nav {
     font-family: Arial, Helvetica, sans-serif;
     letter-spacing: 1px;
     font-weight: lighter;
-    font-size: 15px;
+    font-size: 14px;
     color: #484848;
 }
-
 
 /* main site logo  */
 .SiteLogo-NavLeft {
@@ -127,10 +124,12 @@ img {
 .PetbnbText {
     display: flex;
     align-items: center;
+    margin-left: 2px;
     color: #FF5A5F;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bolder;
-    font-size: 20px;
+    letter-spacing: 0.5px;
+    font-size: 25px;
 }
 
 
