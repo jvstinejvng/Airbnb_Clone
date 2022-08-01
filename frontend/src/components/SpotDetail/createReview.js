@@ -10,9 +10,8 @@ const CreateReview = () => {
   let { spotId} = useParams();
   spotId = Number(spotId);
 
-  const [reviewText, setReviewMessage] = useState("");
+  const [reviewText, setreviewText] = useState("");
   const [stars, setStars] = useState("");
-
   const [errors, setErrors] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
@@ -20,21 +19,32 @@ const CreateReview = () => {
     return <Redirect to={`/spots/${spotId}`} />;
   }
 
+  const validations = () => {
+    const errors = [];
+    if (reviewText.length < 5)
+      errors.push("Review character count must be 5 or greater");
+    if (stars > 5 || stars < 1)
+      errors.push("Please enter a number from 1 to 5 stars");
+    return errors;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors([]);
-    let review = {
+    let data = {
       review: reviewText,
       stars: stars,
     };
-    return dispatch(reviewActions.createReviews(spotId, review))
-      .then(async (res) => {
+
+    const errors = validations();
+    if (errors.length) {
+      setErrors(errors);
+      return;
+    }
+    return dispatch(reviewActions.createReviews(spotId, data)).then(
+      async (res) => {
         setSubmitSuccess(true);
-      })
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      });
+      }
+    );
   };
 
   return (
@@ -43,21 +53,23 @@ const CreateReview = () => {
     <form className="SpotsReview" onSubmit={handleSubmit}>
     <div>
           <h2>Tell Us About Your experience
-</h2>
+          </h2>
         </div>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
-      <div class="">
+        {errors ?? (
+        <ul>
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
+      )}
+      <div class="text">
       <label className="userInputField">
         Message:
         <input 
           type="text"
           placeholder="Review Message"
           value={reviewText}
-          onChange={(e) => setReviewMessage(e.target.value)}
+          onChange={(e) => setreviewText(e.target.value)}
           required
         />
       </label>

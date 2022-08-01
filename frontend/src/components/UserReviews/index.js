@@ -1,58 +1,63 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUserReviews, deleteReview} from '../../store/reviews';
-import { useHistory } from 'react-router-dom';
-import "./userReviews.css"
-
-const Reviews = () => {
-    const dispatch = useDispatch();
-    const reviews = useSelector((state) => Object.values(state.reviews));
-    const history = useHistory()
- 
-
-    useEffect(() => {
-        dispatch(getUserReviews());
-    }, [dispatch])
 
 
-    const deleteReviews = (reviewID) => async (e) => {
-      e.preventDefault()
-      await dispatch(deleteReview(reviewID))
-      await (dispatch(getUserReviews(reviewID)))
-      history.push('/user/reviews')
+
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
+import { getUserReviews, loadReviews } from "../../store/reviews";
+import { deleteReview } from "../../store/reviews";
+import "./userReviews.css";
+
+function UserReviews() {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { spotId } = useParams();
+  const [isLoaded, setIsloaded] = useState(false);
+  const [reviewId, setReviewId] = useState();
+  const reviews = useSelector((state) => {
+    return Object.values(state.reviews);
+  });
+  useEffect(() => {
+    dispatch(getUserReviews()).then(() => setIsloaded(true));
+  }, [dispatch]);
+
+  const handleDeleteClick = (reviewId) => async (e) => {
+    e.preventDefault();
+    const response = await dispatch(deleteReview(reviewId));
+    if (response) {
+      //   dispatch(getUserReviews());
+      history.push(`/spots/currentUser/reviews`);
     }
 
 
+  };
 
-    return (
-  
-
-    <div className='all-reviews-div'>
-      <div className='header'>
+  return (
+    isLoaded && (
+      <div className="'userPage'">
+          <div className='header'>
         <h1>Reviews</h1>
-      </div>
-      <div className='userPage'>
-    
-      {reviews.map((reviewState) => {
-        return (
-          <div key={reviewState.id}>
-          <div className='review-div'>
-          <p className='user'>{`${reviewState.stars} stars`}</p>
-          <p className='actual-review'>{`${reviewState.review}`}</p>
+     </div>
+          <div className="reviewTitle">{reviews?.length > 0 ? "My Reviews" : "No Reviews"}</div>
+          <div className="eachContainer">
+          {reviews?.map((review) => (
+            <div key={review.id} className="eachReview">
+              <div>My Comment: {review.review}</div>
+              <div>Stars: {review.stars}</div>
+              <div className="deleteButton">
+                <button  onClick={handleDeleteClick(review.id)}>
+                  Delete this Review
+                </button>
+              </div>
+            </div>
+          ))}
           </div>
-          <div className="deleteButton">
-            <button onClick={deleteReviews(reviewState.id)}>Delete Review</button>
-          </div>
-          </div>
-        )
-      })
-      }
-      </div>
-    </div>
+        </div>
+    )
+  );
+}
 
-  )
+export default UserReviews;
 
 
-};
 
-export default Reviews;
