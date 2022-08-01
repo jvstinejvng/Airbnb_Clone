@@ -2,21 +2,20 @@
 
 <div align="center">
 
-## **My Airbnb Clone**
+## **My [Airbnb] Clone**
 ### [Visit Petbnb!]
-### [Petbnb wiki]
-### [Petbnb's Features]
-### [Petbnb Schema]
+### [Petbnb Wiki](https://github.com/jvstinejvng/Airbnb_Clone/wiki)
+### [Current Features](https://github.com/jvstinejvng/Airbnb_Clone/wiki/Current-Features)
+### [Database Schema](https://github.com/jvstinejvng/Airbnb_Clone/wiki/Database-Schema)
 
 </div>
 <div align="center">
 * * *
 </div>
-<div align="center">
+<div align="left">
 
 ```
-Petbnb is m very first solo designed and inspired 
-
+Petbnb is my very first solo fullstack web application project! Yes, Petbnb, is exactly it is exactly what you think it is: Airbnb for our pets! Petbnb offers a variety of home environment pet boarding services for all pets!
 ```
 
 </div>
@@ -77,12 +76,12 @@ Petbnb is m very first solo designed and inspired
 </div>
 
 ## **Future Features:**
-- Reservation Features
-- Google Maps
 - Search Bar
-- 
-
+- Filter Content List
+- Reservation (booking) Options
+- Location Mapping 
+- Favorite Listings 
 
 ---------------------------------------------------------------------------
-> ### _Built By_ [_Justine Jang_](https://github.com/jvstinejvng)
+> ### _Built by_ [_Justine Jang_](https://github.com/jvstinejvng)
 
