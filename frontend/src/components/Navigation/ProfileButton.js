@@ -46,26 +46,26 @@ useEffect(() => {
       <SignupFormModal ModalSignup={ModalSignup} setModalSignup={setModalSignup} />
       </>
     )}
-    <div className="navRight">
-      { user && <NavLink className='hostButton' to='/spots/create'>Become a Pet Host</NavLink> }
-        <button className="navButtonRight" onClick={openMenu}>
+    <div className="NavBarRight-MenuHost">
+      { user && <NavLink className='HostButton' to='/spots/create'>Become a Pet Host</NavLink> }
+        <button className="DropDownMenuIcon" onClick={openMenu}>
           <i className="fas fa-bars"/> <i className="fas fa-user-circle"/>
           </button>
       
       {showMenu && (
         <div className="DropDownMenu">
-        <div className="navMenuRight">
+        <div className="NavBarShowMenu">
           { !user && (
-            <div className="navMenuRight">
-            <NavLink className="menuLink" 
+            <div className="NavBarShowMenu">
+            <NavLink className="MenuOptionNavLinks" 
               onClick={()=> setModalSignup(true)} to='/'>Sign Up</NavLink><p/>
-            <NavLink className="menuLink" 
+            <NavLink className="MenuOptionNavLinks" 
                 onClick={()=> setLoginModal(true)} to='/'>Log In</NavLink>
             </div>
             )}     
           { user && (
-            <div className="logoutbutton" >
-            <NavLink  className="menuLink" to='/' onClick={logout}>Log Out</NavLink>
+            <div className="UserMenuNavBar" >
+            <NavLink  className="MenuOptionNavLinks" to='/' onClick={logout}>Log Out</NavLink>
             </div>
           )}
         </div>

@@ -1,97 +1,77 @@
-.NavBar {
-    position: sticky;
+nav {
     display: flex;
-    margin: 10px 15px;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    height: 80px;
+    width: 100%;
+    top: 0px;
+    border-bottom: 0.5px solid #e1e1e1;
     background-color: white;
-    border-bottom: 1px solid #717171;
-
 }
 
-.navButtonRight {
+/* navation bar  */
+.NavigationBar {
+    position: sticky;
+    display: flex;
+    margin: 80px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.NavBarRight-MenuHost {
+    display: flex;
+    align-items: center;
+}
+
+/* dropdown menu */
+.DropDownMenuIcon {
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: white;
-    height: 45px;
-    width: 85px;
-    border-radius: 30px;
-    border: 1px solid #717171ba;
+    height: 42px;
+    width: 80px;
+    border-radius: 35px;
+    border: 0.5px solid #e1e1e1;
 }
 
 .fa-user-circle {
-    color: #7b7b7b;
-    padding: 1px;
+    display: flex;
+    color: #777777;
     font-size: 30px;
+    align-items: center;
 }
 
 .fa-bars {
-    color: #7b7b7b;
-    padding-left: 6px;
-    font-size: 20px;
-}
-
-.menuLink:hover {
-    background-color: rgba(219, 219, 219, 0.337);
-    border-radius: 30px;
-}
-
-.userRightMenu {
-    border-bottom: 1px solid #717171;
-}
-
-.logoSite {
     display: flex;
     align-items: center;
-    padding: 5px;
-    margin-left: 20px;
-    width: fit-content;
+    color: #777777;
+    margin-left: 8px;
+    font-size: 15px;
 }
 
-img {
-    object-fit: cover;
-    max-height: 65px;
-    max-width: 65px;
-}
-
-.logoLeft > a, a:hover, a:visited, a:active {
-    text-decoration: none;
-}
-
-.navRight {
-    display: flex;
-    align-items: center;
-    margin-right: 20px;
-}
-.menuLink,
-.menuLink:active,
-.menuLink:visited {
-    text-decoration: none;
-    color: #525659ec;
-}
-
-
-.PetbnbText {
-    display: flex;
-    align-items: center;
-    color: #FF5A5F;
-    font-family: Arial, Helvetica, sans-serif;
+.MenuOptionNavLinks:hover {
     font-weight: bolder;
-    font-size: 25px;
+}
+.MenuOptionNavLinks,
+.MenuOptionNavLinks:active,
+.MenuOptionNavLinks:visited {
+    text-decoration: none;
+    color: #494949;
 }
 
-
-
-.hostButton {
+.HostButton {
     display: flex;
     align-items: center;
     margin-right: 25px;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
+    font-size: 14px;
     text-align: center;
-    font-weight: 550;
-    color: #3e4346;
-    padding: 10px;
+    font-weight: 530;
+    letter-spacing: 0.5px;
+    color: #494949;
+    margin-right: 55px;
 }
 
 .DropDownMenu {
@@ -103,28 +83,56 @@ img {
     right: 0;
     top: -108px;
     padding: 28px;
-    box-shadow: 2px 2px 13px rgba(163, 163, 163, 0.298);
+    box-shadow: 2px 5px 15px rgba(93, 93, 93, 0.298);
     border: 0;
     width: 210px;
     background-color: white;
 }
 
-.navMenuRight {
+.NavBarShowMenu {
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: 525;
+    letter-spacing: 1px;
+    font-weight: lighter;
     font-size: 15px;
-    color: #3e4346;
-    width: 100%;
-    padding: 10px;
+    color: #484848;
+    width: 200px;
 }
 
-.logoutbutton{
+.UserMenuNavBar {
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: 525;
+    letter-spacing: 1px;
+    font-weight: lighter;
     font-size: 15px;
-    color: #3e4346;
-    padding: 15px 0px;
-
+    color: #484848;
 }
+
+
+/* main site logo  */
+.SiteLogo-NavLeft {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+}
+
+img {
+    object-fit: cover;
+    max-height: 60px;
+    max-width: 60px;
+}
+
+.NavBarLeft-Logo > a, a:hover, a:visited, a:active {
+    text-decoration: none;
+}
+
+.PetbnbText {
+    display: flex;
+    align-items: center;
+    color: #FF5A5F;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+
 
 

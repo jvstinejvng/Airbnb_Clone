@@ -21,10 +21,11 @@ function NavigationBar(){
     
   return (
     <>
-      <div className='NavBar'>
+    <nav>
+      <div className='NavigationBar'>
         
-        <div className='logoLeft'>
-          <NavLink className='logoSite' exact to="/">
+        <div className='NavBarLeft-Logo'>
+          <NavLink className='SiteLogo-NavLeft' exact to="/">
           <img src={require('../../assets/Petbnb.png')} alt='Petbnb Logo' />
           <div className='PetbnbText'>Petbnb</div>
           </NavLink>
@@ -36,6 +37,7 @@ function NavigationBar(){
 
     
       </div>
+      </nav>
     </>
   );
 }
