@@ -1,170 +1,109 @@
+form {
+    padding: 0px 16px;
+    margin: 18px 8px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    font-size: 13px;
+    color: rgba(17, 17, 17, 0.955);
+  }
+
 .SpotsDetail {
     z-index: -1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding-bottom: 70px;
+    padding-bottom: 60px;
     padding-top: 20px;
     margin: 100px 80px 10px 80px;
 }
 
-
-.SpotHeader h2 {
+.SpotHeader {
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 20px;
     color: #484848;
     font-family: Arial, Helvetica, sans-serif;
-    padding-left: 10px;
-    padding-bottom: 5px;
     font-size: 30px;
     font-weight: bold;
- 
 }
 
-.sub-info {
+
+.SpotDetailImg {
     display: flex;
-    flex-direction: row;
     justify-content: flex-start;
-    margin-bottom: 10px;
-    font-size: 15px;
-}
-
-.star-rating-display {
-    display: flex;
-    flex-direction: row;
-}
-
-.sub-info p {
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
-.sub-info .spot-details-city {
-    margin-left: 30px;
-}
-
-.image-layout {
-    display: flex;
-    flex-direction: row;
-    height: 755px;
-    width: 100%;
-}
-
-.image-layout img {
-    display: flex;
-    max-height: 750px;
-    max-width: 50%;
-    padding: 10px 10px 10px 0;
-    border-radius: 25px;
-}
-
-.spot-detail-main-img {
-    width: 750px;
-    height: 750px;
+    position:static;
+    align-items: center;
+    width: 400px;
+    height: 384px;
+    border-radius: 20px;
     object-fit: cover;
 }
 
-.image-layout .side-images {
+.detailLocation {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
+    justify-content: flex-start;
+    padding-bottom: 10px;
+    color: #484848;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    font-weight: bold;
 }
 
-.image-layout .side-images img {
-    max-height: 50%;
-    max-width: 50%;
-    object-fit: cover;
-    box-sizing: border-box;
-}
-
-.spot-detail-side-img {
-    width: 100%;
-    height: 370px;
-    object-fit: cover;
-}
-
-.spot-infomation {
-    margin-top: 30px;
-    width: 80%;
-}
-
-.spot-infomation p {
-    font-family: 'Poppins', sans-serif;
+.detailDescription {
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 10px;
+    color: #484848;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
-    margin-bottom: 30px;
 }
 
-.spot-infomation .spot-description {
-    border-top: 1px solid rgb(216, 216, 216);
-    padding: 30px 10px 30px 0px;
+.detailPrice {
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 10px;
+    color: #484848;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+
 }
 
-.reviews {
+
+.SpotsReview {
+    z-index: -1;
     display: flex;
     flex-direction: column;
-    border-top: 1px solid rgb(216, 216, 216);
-    padding: 30px 10px 30px 0px;
+    padding-bottom: 60px;
+    padding-top: 20px;
+    margin: 100px 80px 10px 80px;
+
+}
+
+
+
+.review {
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 10px;
+    color: #484848;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
-    width: 80%;
 }
 
-.reviews .review-section-top-part {
+.userInputField {
     display: flex;
-    flex-direction: row;
-}
-
-.reviews .star-rating-display .fa-star {
-    font-size: 15px;
-    margin: 7px 5px 0 0;
-}
-
-.reviews p {
-    margin: 0 10px 0 5px;
-}
-
-.review-list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: 20px 10px 20px 0px;
-    width: 100%;
-}
-
-.add-review-btn {
-    display: flex;
-    justify-content: flex-end;
-    width: 70%
-}
-
-.add-review-btn button {
-    border: 1px solid rgb(0, 0, 0);
-    background: transparent;
-    height: 50px;
-    width: 40%;
-    border-radius: 10px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-.add-review-btn button:hover {
-    background-color: rgb(247, 247, 247);
-}
-
-.bottom-half {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: auto;
-}
-
-.left-panel {
-    max-width: 100%;
-}
-
-.right-panel {
-    display: flex;
-    width: 40%;
-    height: auto;
-    padding: 5px;
-    margin: 80px 5px 20px 10px
-}
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 5px;
+    padding: 6px 8px;
+    width: 510px;
+    height: 48px;
+    border-radius: 12px;
+    border: 1px solid rgb(145, 144, 144);
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    color: rgb(145, 144, 144);
+   
+  }
+  

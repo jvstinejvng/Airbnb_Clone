@@ -26,7 +26,7 @@ function NavigationBar(){
         
         <div className='NavBarLeft-Logo'>
           <NavLink className='SiteLogo-NavLeft' exact to="/">
-          <img src={require('../../assets/Petbnb.png')} alt='Petbnb Logo' />
+          <img className="Logo" src={require('../../assets/Petbnb.png')} alt='Petbnb Logo' />
           <div className='PetbnbText'>petbnb</div>
           </NavLink>
 

@@ -111,7 +111,7 @@ nav {
     width: fit-content;
 }
 
-img {
+.Logo {
     object-fit: cover;
     max-height: 60px;
     max-width: 60px;

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 import * as reviewActions from "../../store/reviews";
+import "./spotDetail.css";
+
 
 const CreateReview = () => {
   const dispatch = useDispatch();
@@ -37,15 +39,18 @@ const CreateReview = () => {
 
   return (
 
-    <form className="spotsReview" onSubmit={handleSubmit}>
+    <div class="Reviews">
+
+    <form className="SpotsReview" onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <label>
+      <div class="">
+      <label className="userInputField">
         Message:
-        <input
+        <input 
           type="text"
           placeholder="Review Message"
           value={reviewText}
@@ -63,9 +68,11 @@ const CreateReview = () => {
           required
         />
       </label>
-      <button type="submit">Create Review</button>
+      </div>
+      <button className="FormButton" type="submit">Create Review</button>
       
     </form>
+    </div>
   );
 };
 

@@ -43,7 +43,7 @@ const SpotsDetail = () => {
         <div className="SpotsDetail">
           <div className="SpotHeader">{spot.name} </div>
           <img
-            className="detailImg"
+            className="SpotDetailImg"
             src={spot.previewImage}
             alt={spot.name}
           ></img>
@@ -52,7 +52,18 @@ const SpotsDetail = () => {
           </h3>
           <p className="detailDescription">Description: {spot.description}</p>
           <p className="detailPrice">Price: ${spot.price} night</p>
-
+          <div>
+          <p>
+                  {" "}
+                  Average rating:
+                  {Number(spot.avgStarRating) > 0 ? (
+                    <span> {Number(spot.avgStarRating).toFixed(1)} / 5</span>
+                  ) : (
+                    <span> No reviews</span>
+                  )}
+          </p>
+          </div>
+          
           {sessionUser &&
             sessionUser.user &&
             sessionUser.user.id === spot.ownerId && (

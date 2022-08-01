@@ -96,7 +96,7 @@ function SignupFormPage({ModalSignup, setModalSignup}) {
               required />
           </label>
         </div>
-        <button type="submit" className="signupButton">Continue</button>
+        <button type="submit" className="FormButton">Continue</button>
       </form>
       </div>
   );

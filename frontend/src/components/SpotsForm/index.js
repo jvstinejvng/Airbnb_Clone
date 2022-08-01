@@ -53,23 +53,23 @@ const SpotForm = () => {
   return (
     <>
     { sessionUser && (
-    <form className='spotForm' onSubmit={handleSubmit}>
+    <form className='SpotForm' onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <label>
+      <label className="userInputField">
         Name
-        <input
+        <input 
           type="text"
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
-      </label>
-      <label>
+      </label >
+      <label className="userInputField">
         Address
         <input
           type="text"
@@ -79,7 +79,7 @@ const SpotForm = () => {
           required
         />
       </label>
-      <label>
+      <label className="userInputField">
         City
         <input
           type="text"
@@ -89,7 +89,7 @@ const SpotForm = () => {
           required
         />
       </label>
-      <label>
+      <label className="userInputField">
         State
         <input
           type="text"
@@ -99,7 +99,7 @@ const SpotForm = () => {
           required
         />
       </label>
-      <label>
+      <label className="userInputField">
         Country
         <input
           type="text"
@@ -109,7 +109,7 @@ const SpotForm = () => {
           required
         />
       </label>
-      <label>
+      <label className="userInputField">
         Latitude
         <input
           type="text"
@@ -119,7 +119,7 @@ const SpotForm = () => {
           required
         />
       </label>
-      <label>
+      <label className="userInputField">
         Longitude
         <input
           type="text"
@@ -129,7 +129,7 @@ const SpotForm = () => {
           required
         />
       </label>
-      <label>
+      <label className="userInputField">
         Description
         <input
           type="text"
@@ -139,7 +139,7 @@ const SpotForm = () => {
           required
         />
       </label>
-      <label>
+      <label className="userInputField">
         Price
         <input
           type="text"
@@ -148,7 +148,7 @@ const SpotForm = () => {
           required
         />
         </label>
-      <label >
+      <label className="userInputField">
         Image
         <input
           type="text"
@@ -158,7 +158,8 @@ const SpotForm = () => {
           required
         />
       </label>
-      <button type="submit">Create Spot</button>
+      <div></div>
+      <button className="FormButton" type="submit">Create Spot</button>
     </form>
     )}
   </>

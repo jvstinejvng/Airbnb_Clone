@@ -42,7 +42,7 @@ form {
     font-family: Arial, Helvetica, sans-serif !important;
   }
   
-  .signupButton {
+  .FormButton {
     width: 528px;
     height: 48px;
     margin: 5px;
@@ -54,4 +54,3 @@ form {
     font-size: 18px;
     background: linear-gradient(0.40turn, #ff5a60, #ffbec0); 
   }
-  
