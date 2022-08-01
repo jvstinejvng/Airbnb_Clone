@@ -48,6 +48,9 @@ function App() {
           <Route exact path="/user/reviews">
             <Reviews />
           </Route>
+          <Route path="*">
+            <div className="NotFound">404 Page Not Found</div>
+          </Route>
         </Switch>
     </>
 )}
