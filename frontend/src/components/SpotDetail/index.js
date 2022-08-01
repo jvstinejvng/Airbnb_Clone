@@ -16,7 +16,6 @@ const SpotsDetail = () => {
   const sessionUser = useSelector((state) => state.session.user);
 
 
-
   useEffect(() => {
     if (!spot) {
       dispatch(findASpot(spotId));
@@ -86,9 +85,10 @@ const SpotsDetail = () => {
                     <button className="deleteButton" onClick={handleDelete}> Delete </button>
                   </div>
                 )}
-        <div className = "reviewButton">
+        
+        {sessionUser && (<div className = "reviewButton">
           <button onClick={handleCreateReview}>Create Review</button>
-        </div>
+        </div>)}
     
   
         <div>
