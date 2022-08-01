@@ -40,13 +40,18 @@ const SpotsDetail = () => {
   return (
     spot && (
       <>
+       
         <div className="SpotsDetail">
+          <div class="SpotBox">
             <div className="SpotHeader">{spot.name} </div>
+            </div>
+            <div className="SpotDetailImg">
               <img
-            className="SpotDetailImg"
             src={spot.previewImage}
             alt={spot.name}
+            className="SpotDetailImg"
            ></img>
+           </div>
 
           <p className="detailLocation">
             {spot.city}, {spot.state}
@@ -82,8 +87,9 @@ const SpotsDetail = () => {
             )}
         <div className = "reviewButton">
           <button onClick={handleCreateReview}>Create Review</button>
-
         </div>
+    
+  
         <div>
           <SpotReviews spotId={spotId}/>
         </div>

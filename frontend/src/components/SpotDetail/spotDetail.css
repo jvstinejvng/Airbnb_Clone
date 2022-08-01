@@ -5,31 +5,36 @@
     flex-direction: row;
     padding-top: 130px;
     position: sticky;
+
 }
 
 .SpotDetailImg {
     display: flex;
     flex-direction: row;
-    position: sticky;
+    position: static;
     width: 500px;
     height: 486px;
     border-radius: 20px ;
     border: #e0e0e0;
-    padding-left: 50px;
+    padding-left: 5px;
+
+}
+
+.SpotBox {
+    padding-top: 20px;
 }
 
 .SpotHeader {
     background-color: transparent;
     display: flex;
     flex-direction: row;
-    position: absolute;
+    position: static;
     writing-mode: vertical-lr;
-    text-orientation: sideways-lr;
     transform: rotate(-180deg);
     font-weight: bolder;
-    font-size: 40px;
+    font-size: 25px;
     font-family: Arial, Helvetica, sans-serif;
-    padding: 5px;
+ 
 }
 
 .detailLocation  {
@@ -60,7 +65,7 @@
     display: flex;
     flex-direction: row;
     position: sticky;
-    width: 270px;
+    width: 290px;
     color: #484848;
     font-family: Arial, Helvetica, sans-serif;
     padding-left: 80px;
@@ -132,7 +137,7 @@
     width: 500px;
     border-radius: 20px ;
     border: #e0e0e0;
-    padding-bottom: 15px;
+    padding-bottom: 1;
 }
 
 
@@ -155,3 +160,4 @@
     color: rgb(72, 72, 72);
 
 }
+

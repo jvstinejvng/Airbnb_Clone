@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserReviews, deleteReview} from '../../store/reviews';
 import { useHistory } from 'react-router-dom';
+import "./userReviews.css"
 
 const Reviews = () => {
     const dispatch = useDispatch();
@@ -27,12 +28,15 @@ const Reviews = () => {
   
 
     <div className='all-reviews-div'>
-      <h1>Reviews</h1>
+      <div className='header'>
+        <h1>Reviews</h1>
+      </div>
+      <div className='userPage'>
+    
       {reviews.map((reviewState) => {
         return (
           <div key={reviewState.id}>
           <div className='review-div'>
-          {/* <p className='stars'>{`${reviewState.User.firstName} ${reviewState.User.lastName}`}</p> */}
           <p className='user'>{`${reviewState.stars} stars`}</p>
           <p className='actual-review'>{`${reviewState.review}`}</p>
           </div>
@@ -43,7 +47,9 @@ const Reviews = () => {
         )
       })
       }
+      </div>
     </div>
+
   )
 
 
