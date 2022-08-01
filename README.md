@@ -18,9 +18,9 @@
 
 ## **Technologies Used**
 
-| React | Redux | Express.js | Node.js | PostgreSQL | Sequelize |
+| React | Express.js | Node.js | PostgreSQL | Sequelize |
 |:-----:|:-----:|:-------:|------------|:----------:|:---------:|
-|<a href="https://reactjs.org/"><img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' width="65" height="65" /></a>|<a href='https://redux.js.org/'><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" width="65" height="65" /></a>|<a href='https://expressjs.com/'><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" width="65" height="65"/></a>|<a href='https://nodejs.org/en/'><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="65" height="65" /></a>|<a href='https://www.postgresql.org/'><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="65" height="65" /></a>|<a href='https://sequelize.org/'><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sequelize/sequelize-original.svg"  width="65" height="65"/></a>|
+|<a href="https://reactjs.org/"><img src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' width="65" height="65" /></a>|<a href='https://expressjs.com/'><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" width="65" height="65"/></a>|<a href='https://nodejs.org/en/'><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="65" height="65" /></a>|<a href='https://www.postgresql.org/'><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="65" height="65" /></a>|<a href='https://sequelize.org/'><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sequelize/sequelize-original.svg"  width="65" height="65"/></a>|
 
 </div>
 
