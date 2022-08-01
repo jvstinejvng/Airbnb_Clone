@@ -1,82 +1,101 @@
-.spotImg {
-    width: 300px;
-    height: 300px;
+.SpotListPage {
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 7%;
+    padding-bottom: 70px;
+    margin: 5px;
+}
+
+/* individual spot */
+.OneSpotContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: fit-content;
+    height: fit-content;
+    padding-bottom: 40px;
+}
+
+.OneSpotContainer img {
+    max-width: 300px;
+    max-height: 284px;
+    border-radius: 20px;
+    padding: 10px;
     object-fit: cover;
 }
 
-.eachSpot{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.SpotImage {
     width: 300px;
-    height: auto;
-    padding: 5px;
-    margin: 10px 5px 5px 5px;
-
-}
-
-.eachSpot img {
-    max-width: 300px;
-    max-height: 300px;
-    padding: 5px;
+    height: 284px;
     border-radius: 20px;
+    padding: 10px;
+    object-fit: cover;
 }
 
-.spotsPage {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 70%;
-    position: absolute;
-    top: 7%;
-    left: 14%;
-    padding: 10px 5px;
-    margin: 30px 5px;
-    z-index: -1;
-    font-family: 'Poppins', sans-serif;
+@media screen and (max-width: 390px){
+    img.responsive {width: 200px;}
 }
 
-@media screen and (max-width: 2300px) and (min-width: 1900px) {
-    .all-spots {
-        width: 80%;
-        left: 10%;
-    }
-}
-
-@media screen and (max-width: 1900px) and (min-width: 1800px) {
-    .all-spots {
-        width: 90%;
-        left: 5%;
-    }
-}
-
-@media screen and (max-width: 1800px) {
-    .all-spots {
-        width: 100%;
-        left: 0%;
-    }
-}
-
-.spotImg {
-    float: left;
-    width: 300px;
-    height: 300px;
-    background-size: cover;
-    border-radius: 33px;
-    margin: 1rem;
-}
-
-
-.spotPrice {
-    margin-right: 5px;
-    font-weight: bold;
-    color: rgb(88, 88, 88)
+@media screen and (max-width: 1280px) {
+    img.responsive {width: max-content;}
 
 }
 
-a:link {
+.SpotLocation {
+    color: #484848;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    font-size: 17px;
+    font-weight: 550;
+}
+.SpotDescription {
+    color: rgb(127, 127, 127);
+    font-family: Arial, Helvetica, sans-serif;
+    width: 210px;
+    margin: 0px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    font-size: 14px;
+    font-weight: lighter;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.SpotPrice {
+    color: #484848;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    font-size: 17px;
+    font-weight: 550;
+}
+
+.SpotStars {
+    color: #484848;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+    padding-left: 10px;
+    padding-bottom: 1px;
+    font-size: 11px;
+    font-weight: lighter;
+    letter-spacing: normal;
+}
+
+
+
+.SpotListPage a:link,
+.SpotListPage a:visited,
+.SpotListPage a:hover,
+.SpotListPage a:active {
     text-decoration: none;
+    color: black;
 }
-
-

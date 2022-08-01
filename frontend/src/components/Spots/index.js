@@ -35,25 +35,23 @@ const SpotsPage = () => {
   }
   
   return (
-    <div className="spotsPage">
+    <div className="SpotListPage">
       {spots &&
         spots.map((spot) => (
           <div key={spot.id}>
             <NavLink to={`/spots/${spot.id}`}>
-              <div className="eachSpot">
+              <div className="OneSpotContainer">
                 <img
-                  className="spotImg"
+                  className="SpotImage"
                   src={spot.previewImage}
                   alt={spot.name}
                 ></img>
-                <h3 className="spotName">{spot.name}</h3>
-                <h4 className="spotLocation">
+                <h4 className="SpotLocation">
                   {spot.city}, {spot.state}
                 </h4>
-                <p className="spotAddress">{spot.address}</p>
-                <p className="spotDetails">{spot.description}</p>
-                <p className="spotPrice"> ${spot.price} night</p>
-                <p className="spotStars">Star Rating: {starSpot(spot.id)}</p>
+                <p className="SpotDescription">{spot.description}</p>
+                <p className="SpotPrice"> ${spot.price} night</p>
+                <p className="SpotStars">Star Rating: {starSpot(spot.id)}</p>
 
               </div>
             </NavLink>

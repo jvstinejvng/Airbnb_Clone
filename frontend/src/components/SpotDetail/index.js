@@ -40,8 +40,8 @@ const SpotsDetail = () => {
   return (
     spot && (
       <>
-        <div>
-          <div className="detailName">{spot.name} </div>
+        <div className="SpotsDetail">
+          <div className="SpotHeader">{spot.name} </div>
           <img
             className="detailImg"
             src={spot.previewImage}
