@@ -5,11 +5,11 @@ Petbnb is my very first solo fullstack web application project. Yes, Petbnb, is 
 
 <div align="center">
 
-## **My [Airbnb](https://www.airbnb.com/) Clone**
-## [Visit Petbnb!]
-## [Petbnb Wiki](https://github.com/jvstinejvng/Airbnb_Clone/wiki)
-## [Current Features](https://github.com/jvstinejvng/Airbnb_Clone/wiki/Current-Features)
-## [Database Schema](https://github.com/jvstinejvng/Airbnb_Clone/wiki/Database-Schema)
+### **My [Airbnb](https://www.airbnb.com/) Clone**
+### [Visit Petbnb!]
+### [Petbnb Wiki](https://github.com/jvstinejvng/Airbnb_Clone/wiki)
+### [Current Features](https://github.com/jvstinejvng/Airbnb_Clone/wiki/Current-Features)
+### [Database Schema](https://github.com/jvstinejvng/Airbnb_Clone/wiki/Database-Schema)
 
 </div>
 
