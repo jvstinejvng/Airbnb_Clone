@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import {  useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCurrentUserSpots } from "../../store/spots";
-import "./currentUser.css"
+import "./currentUser.css";
 
 const UserSpots = () => {
   const history = useHistory();
@@ -19,28 +19,32 @@ const UserSpots = () => {
   }, [dispatch]);
 
   return (
-    <div className="userSpotPage">
-        <h2>My Listings</h2>
-    <div className="detailSpot">
-      {loaded &&
-        spotsList.map((spot) => (
-          <div  key={spot.id} onClick={() =>handleClick(spot)}>
-            <div>
-              <h4 className="detailUserName">{spot.name}</h4>
-              <img
-                className="detailUserImg"
-                src={spot.previewImage}
-                alt={spot.name}
-              ></img>
-              <h3 className="detailLocation">
-                {spot.city}, {spot.state}
-              </h3>
-              <p className="detailUserDescription">{spot.description}</p>
-              <p className="detailUserPrice">${spot.price} night</p>
+    <div className="spotsContainer">
+      <h2>My Spots</h2>
+      <div className="detailSpot">
+        {loaded &&
+          spotsList.map((spot) => (
+            <div
+              className="mySpots"
+              key={spot.id}
+              onClick={() => handleClick(spot)}
+            >
+              <div className="spotDetails">
+                <div >{spot.name}</div>
+                <img
+                  className="detaiUserlImg"
+                  src={spot.previewImage}
+                  alt={spot.name}
+                ></img>
+                <div>
+                  {spot.city}, {spot.state}
+                </div>
+                {/* <p className="detailDescription">{spot.description}</p> */}
+                {/* <p className="detailPrice">${spot.price} night</p> */}
+              </div>
             </div>
-          </div>
-        ))}
-    </div>
+          ))}
+      </div>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as spotActions from "../../store/spots";
 import { useHistory } from "react-router-dom";
+import "./spotEdit.css";
 
 const EditSpot = () => {
   const history = useHistory();
@@ -33,6 +34,26 @@ const EditSpot = () => {
   const updatePrice = (e) => setPrice(e.target.value);
   const updatePreviewImage = (e) => setPreviewImage(e.target.value);
 
+  const validations = () => {
+    const errors = [];
+    if (!address) errors.push("Please enter an address");
+    if (!city) errors.push("Please enter a city");
+    if (!state) errors.push("Please enter a state");
+    if (!country) errors.push("Please enter a country");
+    if (!previewImage) errors.push("Please include a preview image");
+    if (name.length < 2)
+      errors.push("Please enter a name with a length greater than 2");
+    if (!description) errors.push("Please include a description");
+    if (!previewImage) errors.push("Please include a preview image!");
+    if (name.length > 25)
+      errors.push("Please include a name with a length that is less than 25");
+    if (previewImage.length > 255)
+      errors.push(
+        "Please include a different image URL that is less than 255 characters"
+      );
+    return errors;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
@@ -47,120 +68,133 @@ const EditSpot = () => {
       name,
       description,
       price,
-      spotId
+      spotId,
     };
-    
+
+    const validationErrors = validations();
+    if (validationErrors.length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     return dispatch(spotActions.spotEdit(data))
-    .then(() => {
-      history.push(`/spots/${spot.id}`)
-    
-    })
-    .catch(async (res) => {
-      const data = await res.json();
-      if (data && data.errors) setErrors(data.errors);
-    });
-    
+      .then(() => {
+        history.push(`/spots/${spot.id}`);
+      })
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      });
   };
 
   return (
-    <form className="editSpot" onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
-      <label>
-        Name
-        <input
-          type="text"
-          placeholder="Spot name"
-          value={name}
-          onChange={updateName}
-        />
-      </label>
-      <label>
-        Address
-        <input
-          type="text"
-          placeholder="Address"
-          value={address}
-          onChange={updateAddress}
-        />
-      </label>
-      <label>
-        City
-        <input
-          type="text"
-          placeholder="City"
-          value={city}
-          onChange={updateCity}
-        />
-      </label>
-      <label>
-        State
-        <input
-          type="text"
-          placeholder="State"
-          value={state}
-          onChange={updateState}
-        />
-      </label>
-      <label>
-        Country
-        <input
-          type="text"
-          placeholder="Country"
-          value={country}
-          onChange={updateCountry}
-        />
-      </label>
-      <label>
-        Lat
-        <input
-          type="text"
-          placeholder="Latitude"
-          value={lat}
-          onChange={updateLat}
-        />
-      </label>
-      <label>
-        Lng
-        <input
-          type="text"
-          placeholder="Longitude"
-          value={lng}
-          onChange={updateLng}
-        />
-      </label>
-      <label>
-        Description
-        <input
-          type="text"
-          placeholder="Description"
-          value={description}
-          onChange={updateDescription}
-        />
-      </label>
-      <label>
-        Price
-        <input
-          type="text"
-          value={price}
-          placeholder="Price"
-          onChange={updatePrice}
-        />
-        <label>
-          Image
+    <div className="editFormDiv">
+      <form className="editSpotForm" onSubmit={handleSubmit}>
+        <h2 className="editSpot"> Edit Your Spot! </h2>
+        {errors ?? (
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+        )}
+        <div>
+          <label>Name:</label>
+          <input
+            type="text"
+            placeholder="Spot name"
+            value={name}
+            onChange={updateName}
+          />
+        </div>
+        <div>
+          <label>Address:</label>
+          <input
+            type="text"
+            placeholder="Address"
+            value={address}
+            onChange={updateAddress}
+          />
+        </div>
+        <div>
+          <label>City:</label>
+          <input
+            type="text"
+            placeholder="City"
+            value={city}
+            onChange={updateCity}
+          />
+        </div>
+        <div>
+          <label>State:</label>
+          <input
+            type="text"
+            placeholder="State"
+            value={state}
+            onChange={updateState}
+          />
+        </div>
+        <div>
+          <label>Country:</label>
+          <input
+            type="text"
+            placeholder="Country"
+            value={country}
+            onChange={updateCountry}
+          />
+        </div>
+        <div>
+          <label>Latitude</label>
+          <input
+            type="text"
+            placeholder="Latitude"
+            value={lat}
+            onChange={updateLat}
+          />
+        </div>
+        <div>
+          <label>Longitude</label>
+          <input
+            type="text"
+            placeholder="Longitude"
+            value={lng}
+            onChange={updateLng}
+          />
+        </div>
+        <div>
+          <label>Description:</label>
+          <input
+            type="text"
+            placeholder="Description"
+            value={description}
+            onChange={updateDescription}
+          />
+        </div>
+        <div>
+          <label>Price:</label>
+          <input
+            type="text"
+            value={price}
+            placeholder="Price"
+            onChange={updatePrice}
+          />
+        </div>
+        <div>
+          <label>Image:</label>
           <input
             type="text"
             placeholder="img-url"
             value={previewImage}
             onChange={updatePreviewImage}
           />
-        </label>
-      </label>
-      <button type="submit">Confirm Edit</button>
-    </form>
+        </div>
+        <div className="buttonContainer">
+          <button className="confirmEditButton" type="submit">
+            Confirm Edit
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

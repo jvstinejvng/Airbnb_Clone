@@ -1,5 +1,58 @@
-.editSpot label {
+.editSpotForm label {
+    width: 100%;
+    margin: 8px 0;
     display: flex;
-    padding: 5px;
+    float: left;
+    padding: 0px;
+  }
+  
+  .editFormDiv {
+    height: 50vh;
+    margin: 50px auto 0 auto;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .editSpotForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-}
+    border: 1px solid black;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 25px;
+  }
+  
+  .editSpotForm input {
+    height: 30px;
+    border: #d3d3d3 1.5px solid;
+    width: 100%;
+    border-radius: 5px;
+    color: gray;
+  }
+  
+  .confirmEditButton {
+  
+    background-color: #ff385c;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    font-size: 16px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .buttonContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  
