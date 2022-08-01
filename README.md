@@ -1,6 +1,6 @@
 # Welcome to Petbnb 
 
-Petbnb is my very first solo fullstack web application project. Yes, Petbnb, is exactly it is exactly what you think it is: Airbnb for our pets! Petbnb offers a variety of home environment pet boarding services for all pets!
+ > Petbnb is my very first solo fullstack web application project. Yes, Petbnb, is exactly it is exactly what you think it is: Airbnb for our pets! Petbnb offers a variety of home environment pet boarding services for all pets!
 
 
 <div align="center">
