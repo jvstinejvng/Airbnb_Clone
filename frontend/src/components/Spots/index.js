@@ -4,6 +4,8 @@ import { NavLink } from "react-router-dom";
 import { getAllSpots } from "../../store/spots";
 import { loadReviews } from "../../store/reviews";
 import "./spots.css";
+import StarReviews from "../SpotDetail/PawReviews";
+
 
 const SpotsPage = () => {
   const dispatch = useDispatch();
@@ -22,17 +24,7 @@ const SpotsPage = () => {
   }, [dispatch, reviewsString]);
 
 
-  const starSpot = (spotId) => {
-    const allReviewsForThisSpot = reviews.filter((review) => {
-      return review.spotId === spotId;
-    });
-    let allStars = 0
-    allReviewsForThisSpot.forEach((review) => {
-      allStars += review.stars;
-    })
-    const avgStarRating = allStars / allReviewsForThisSpot.length;
-    return avgStarRating;
-  }
+
   
   return (
     <div className="SpotListPage">
@@ -46,9 +38,8 @@ const SpotsPage = () => {
                   src={spot.previewImage}
                   alt={spot.name}
                 ></img>
-                <div className="SpotPaws">
-               <i className="fas fa-paw" />
-               {starSpot(spot.id)}
+                 <div className="PawRating">
+                <StarReviews spot={spot} />
               </div>
                 <h4 className="SpotLocation">
                   {spot.city}, {spot.state}

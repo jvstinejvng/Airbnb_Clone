@@ -5,6 +5,8 @@ import { findASpot } from "../../store/spots";
 import { spotDelete } from "../../store/spots";
 import "./spotDetail.css";
 import SpotReviews from "./spotReviews";
+import StarReviews from "./PawReviews";
+
 
 const SpotsDetail = () => {
   const history = useHistory();
@@ -43,7 +45,9 @@ const SpotsDetail = () => {
   return (
     spot && (
       <>
-      
+         <div className="rating">
+        
+
         <div className="SpotsDetail">
           <div class="SpotBox">
             <div className="SpotHeader">{spot.name} </div>
@@ -64,18 +68,10 @@ const SpotsDetail = () => {
           <div className="detailDescription">Description: {spot.description}</div>
           <div className="detailPrice">Price: ${spot.price} night</div>
           </div>
+          <div className="Paw">
+          <StarReviews spot={spot} />
+        </div>
 
-          <div className="PawRating">
-
-          <p>
-                  {" "}
-                  Average rating:
-                  {Number(spot.avgStarRating) > 0 ? (
-                    <span> {Number(spot.avgStarRating).toFixed(1)} / 5</span>
-                  ) : (
-                    <span> No reviews</span>
-                  )}
-          </p>
           </div>
             <div className="line"></div>
   
@@ -94,6 +90,8 @@ const SpotsDetail = () => {
         <div>
           <SpotReviews spotId={spotId}/>
         </div>
+
+
       </>
     )
   );
