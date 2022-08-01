@@ -12,7 +12,7 @@
 <div align="center">
 * * *
 </div>
-<div align="left">
+<div>
 
 ```
 Petbnb is my very first solo fullstack web application project! Yes, Petbnb, is exactly it is exactly what you think it is: Airbnb for our pets! Petbnb offers a variety of home environment pet boarding services for all pets!
