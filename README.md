@@ -3,7 +3,7 @@
 <div align="center">
 
 ## **My Airbnb Clone**
-### [Chckout Petbnb!]
+### [Visit Petbnb!]
 ### [Petbnb wiki]
 ### [Petbnb's Features]
 ### [Petbnb Schema]
@@ -38,7 +38,7 @@ Petbnb is m very first solo designed and inspired
 | VSCode | Git | Heroku |
 |:-----:|:-----:|:-------:|
 
-|<a href='https://code.visualstudio.com/'><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" width="65"  height="65" /></a>|<a href='https://git-scm.com/'><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="65"  height="65" /></a>|<a href='https://www.heroku.com/'><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-original.svg" width="65"  height="65"/></a>|
+<a href='https://code.visualstudio.com/'><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" width="65"  height="65" /></a><a href='https://git-scm.com/'><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="65"  height="65" /></a><a href='https://www.heroku.com/'><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-original.svg" width="65"  height="65"/></a>
 
 * * * * * *
 </div>
@@ -53,16 +53,36 @@ Petbnb is m very first solo designed and inspired
 #### Create Listing
 #### Reviews
 
+---------------------------------------------------------------------------
 </div>
+<div>
+
+## **Installation Instructions:**
+- [ ] Clone the resposity
+    ```
+    git clone git@github.com:jvstinejvng/Airbnb_Clone.git
+    ```
+ - [ ] Install dependencies in frontend and backend directories
+    ```
+    npm install
+    ```
+- [ ] Run the server: 
+    1. Backend directory
+    2. Frontend directory
+    ```
+    npm start
+    ```
 
 -------------------------------------------------------------------------
+</div>
 
 ## **Future Features:**
 - Reservation Features
 - Google Maps
+- Search Bar
 - 
 
----------------------------------------------------------------------------
 
+---------------------------------------------------------------------------
 > ### _Built By_ [_Justine Jang_](https://github.com/jvstinejvng)
 
