@@ -24,7 +24,6 @@ const SpotsPage = () => {
   }, [dispatch, reviewsString]);
 
 
-
   
   return (
     <div className="SpotListPage">
