@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
+
 function NavigationBar(){
   const sessionUser = useSelector(state => state.session.user);
 

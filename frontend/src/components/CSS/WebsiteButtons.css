@@ -1,0 +1,14 @@
+
+.FormButton {
+    padding: 0 16px;
+    width: 528px;
+    height: 48px;
+    border-radius: 12px;
+    border: 0;
+    margin: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-weight: lighter;
+    font-size: 18px;
+    background: linear-gradient(0.40turn, #ff5a60, #ffbec0); 
+}
