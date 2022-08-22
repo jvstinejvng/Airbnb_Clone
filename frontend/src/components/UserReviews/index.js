@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
@@ -23,11 +22,8 @@ function UserReviews() {
     e.preventDefault();
     const response = await dispatch(deleteReview(reviewId));
     if (response) {
-      //   dispatch(getUserReviews());
       history.push(`/spots/currentUser/reviews`);
     }
-
-
   };
 
   return (

@@ -3,16 +3,14 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 
-import Navigation from "./components/Navigation";
-
-import SpotsPage from "./components/Spots";
-import CreateSpot from "./components/SpotsForm";
-import SpotDetail from "./components/SpotDetail";
-import EditSpot from "./components/SpotEdit"
-import UserSpots from "./components/UserSpots";
-import CreateReview from "./components/SpotDetail/createReview";
-import Reviews from "./components/UserReviews";
-
+import BecomeAHost from "./components/BecomeAHost";
+import CreateReview from "./components/CreateReview";
+import EditListing from "./components/EditListing"
+import HomePage from "./components/HomePage";
+import ListingDetail from "./components/ListingDetail";
+import NavigationBar from "./components/NavigationBar";
+import UserListing from "./components/UserListings";
+import UserReviews from "./components/UserReviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,28 +23,28 @@ function App() {
   
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+      <NavigationBar isLoaded={isLoaded} />
         <Switch>
           <Route exact path="/">
-            <SpotsPage />
+            <HomePage />
           </Route>
           <Route exact path="/spots/create">
-            <CreateSpot />
+            <BecomeAHost />
           </Route>
           <Route exact path="/spots/:spotId/edit">
-            <EditSpot />
+            <EditListing />
           </Route>
           <Route exact path="/spots/:spotId">
-            <SpotDetail />
+            <ListingDetail />
           </Route>
           <Route exact path="/users/current/spots">
-            <UserSpots />
+            <UserListing />
           </Route>
           <Route exact path="/spots/:spotId/createReview">
             <CreateReview />
           </Route>
           <Route exact path="/user/reviews">
-            <Reviews />
+            <UserReviews />
           </Route>
           <Route path="*">
             <div className="NotFound">404 Page Not Found</div>
