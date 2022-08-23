@@ -12,19 +12,22 @@ const SpotReviews = ({spotId}) => {
 
     return (
      
-      <div className='all-reviews-div'>
-        <h2>Reviews</h2>
+      <div >
+        <h3>Reviews</h3>
+        <div className="UserReview">
         {reviews.map((reviewState, i) => {
 
           return (
-            <div>
-            <p className='review'>{`${reviewState.review}`}</p>
-            <p className='stars'>{`${reviewState.stars} stars`}</p>
-
+            <div className="ListingReviews">
+              <span className="ReviewUser" >{`${reviewState.userId}`}</span>
+              <span className="ReviewPaws">{`${reviewState.stars} paws`}</span>
+              <span className="ReviewText">{`${reviewState.review}`}</span>
             </div>
+
           )
         })
         }
+        </div>
 
       </div>
     

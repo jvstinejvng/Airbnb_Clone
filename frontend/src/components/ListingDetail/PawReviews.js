@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { loadReviews } from "../../store/reviews";
+import "../CSS/ListingDetail.css";
 
 
 function StarReviews({ spot }) {
@@ -24,14 +25,15 @@ function StarReviews({ spot }) {
   }, [dispatch, spot?.id]);
 
   return (
-    <>
-      <>
-        <i className="fa-solid fa-paw"></i>
-        <span className="avg-rating">
+  
+    <div className="Rating">
+      <i className="fa-solid fa-paw"></i>
+      <span className="avg-rating">
           {avgRating}
-        </span>
-      </>
-    </>
+      </span>
+    </div>
+      
+
   );
 }
 
