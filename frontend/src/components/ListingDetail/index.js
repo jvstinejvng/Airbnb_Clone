@@ -3,6 +3,7 @@ import { NavLink, useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { findASpot } from "../../store/spots";
 import { spotDelete } from "../../store/spots";
+
 import SpotReviews from "./spotReviews";
 import PawReviews from "./PawReviews";
 import  ReviewFormModal  from "../CreateReview";
@@ -65,7 +66,6 @@ const ListingDetails = () => {
             <h3>Full service pet care by {listing.ownerId}</h3>
             <div className="ListingPrice">${listing.price} 
               <span className="Text-Night">night</span>
-              <span className="PawRating2"><PawReviews spot={listing}/></span>
             </div>
           </div>
 
@@ -73,7 +73,7 @@ const ListingDetails = () => {
 
           <div className="DetailDescription">{listing.description}</div>
 
-          <div className="Line"></div>
+          {/* <div className="Line"></div> */}
 
         </div>
 
@@ -88,18 +88,23 @@ const ListingDetails = () => {
 
         
         <div className="ReviewContainer">
-    
-        <div>
-            <SpotReviews spotId={spotId}/>
-        </div>
 
-        {sessionUser && (
+
+          <div>
+            <SpotReviews spotId={spotId}/>
+          </div>
+
+          {/* {sessionUser && (
             <div className = "CreateReviewButton">
-              <NavLink className = "CreateReviewText" onClick={()=> setModalReview(true)} to={`/spots/${spotId}`} >CreateReview</NavLink>
+              <NavLink className = "CreateReviewText" onClick={()=> setModalReview(true)} to={`/spots/${spotId}`}>CreateReview</NavLink>
             </div>
-        )}
+        )} */}
+
   
         </div>
+
+        <div className="Line2"></div>
+
 
 
       </div>

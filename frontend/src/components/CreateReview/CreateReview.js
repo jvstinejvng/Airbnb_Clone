@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
-import reviewActions from "../../store/reviews";
+import * as reviewActions from "../../store/reviews";
 
 import "../CSS/UserReviews.css";
 
 
-const CreateReview = () => {
+const CreateReview = ({ModalReview,setModalReview}) => {
   const dispatch = useDispatch();
-  let { spotId } = useParams();
+  let { spotId} = useParams();
   spotId = Number(spotId);
-  const [reviewText, setReviewText] = useState("");
+
+  const [reviewText, setreviewText] = useState("");
   const [stars, setStars] = useState("");
   const [errors, setErrors] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -43,6 +44,7 @@ const CreateReview = () => {
     return dispatch(reviewActions.createReviews(spotId, data)).then(
       async (res) => {
         setSubmitSuccess(true);
+        setModalReview(false);
       }
     );
   };
@@ -67,7 +69,7 @@ const CreateReview = () => {
           type="text"
           placeholder="Review Message"
           value={reviewText}
-          onChange={(e) => setReviewText(e.target.value)}
+          onChange={(e) => setreviewText(e.target.value)}
           required
         />
       </label>
@@ -82,9 +84,11 @@ const CreateReview = () => {
         />
       </label>
       </div>
-      <button className="FormButton" type="submit">Create Review</button>
-      
+      <div>
+      <button className="FormButton" type="submit" >Create Review</button>
+      </div>
     </form>
+
     </div>
   );
 };
