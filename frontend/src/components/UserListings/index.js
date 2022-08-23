@@ -39,8 +39,8 @@ const UserSpots = () => {
                 <div>
                   {spot.city}, {spot.state}
                 </div>
-                {/* <p className="detailDescription">{spot.description}</p> */}
-                {/* <p className="detailPrice">${spot.price} night</p> */}
+                {/* <p className="DetailDescription">{spot.description}</p> */}
+                {/* <p className="ListingPrice">${spot.price} night</p> */}
               </div>
             </div>
           ))}

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { getUserReviews, loadReviews } from "../../store/reviews";
 import { deleteReview } from "../../store/reviews";
+
 import "../CSS/UserReviews.css";
 
 function UserReviews() {
@@ -22,7 +23,7 @@ function UserReviews() {
     e.preventDefault();
     const response = await dispatch(deleteReview(reviewId));
     if (response) {
-      history.push(`/spots/currentUser/reviews`);
+      history.push(`/user/reviews`);
     }
   };
 
@@ -37,6 +38,7 @@ function UserReviews() {
               <div className="AllReviews" >
                   {reviews?.map((review) => (
                     <div key={review.id} className="EachReview">
+                      <h4>Review for {review.Spot.name}</h4>
                       <div>{review.stars} out of 5 Paws</div>
                       <div>{review.review}</div>
                         <div className="DeleteButton">

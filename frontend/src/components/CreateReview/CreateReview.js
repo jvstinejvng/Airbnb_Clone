@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
-import * as reviewActions from "../../store/reviews";
-import "./spotDetail.css";
+import reviewActions from "../../store/reviews";
+
+import "../CSS/UserReviews.css";
 
 
 const CreateReview = () => {
   const dispatch = useDispatch();
-  let { spotId} = useParams();
+  let { spotId } = useParams();
   spotId = Number(spotId);
-
-  const [reviewText, setreviewText] = useState("");
+  const [reviewText, setReviewText] = useState("");
   const [stars, setStars] = useState("");
   const [errors, setErrors] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -48,12 +48,10 @@ const CreateReview = () => {
   };
 
   return (
-
     <div class="Reviews">
     <form className="SpotsReview" onSubmit={handleSubmit}>
     <div>
-          <h2>Tell Us About Your experience
-          </h2>
+          <h2>Tell Us About Your experience</h2>
         </div>
         {errors ?? (
         <ul>
@@ -69,7 +67,7 @@ const CreateReview = () => {
           type="text"
           placeholder="Review Message"
           value={reviewText}
-          onChange={(e) => setreviewText(e.target.value)}
+          onChange={(e) => setReviewText(e.target.value)}
           required
         />
       </label>

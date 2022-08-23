@@ -34,7 +34,7 @@ function NavigationBar(){
         </div>
  
                    
-                        {sessionLinks}
+       {sessionLinks}
 
     
       </div>

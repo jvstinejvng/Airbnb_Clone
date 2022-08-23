@@ -1,28 +1,31 @@
-import React, { useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import React, { useState,useEffect } from "react";
+import { NavLink, useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { findASpot } from "../../store/spots";
 import { spotDelete } from "../../store/spots";
-import "./spotDetail.css";
 import SpotReviews from "./spotReviews";
 import StarReviews from "./PawReviews";
+import  ReviewFormModal  from "../CreateReview";
 
+import "../CSS/ListingDetail.css";
 
-const SpotsDetail = () => {
+const ListingDetails = () => {
+
+  const [ModalReview, setModalReview] = useState(false)
   const history = useHistory();
   const dispatch = useDispatch();
   let { spotId } = useParams();
   spotId = Number(spotId);
 
-  const spot = useSelector((state) => state.spots[spotId]);
+  const listing = useSelector((state) => state.spots[spotId]);
   const sessionUser = useSelector((state) => state.session.user);
 
 
   useEffect(() => {
-    if (!spot) {
+    if (!listing) {
       dispatch(findASpot(spotId));
     }
-  }, [dispatch, spotId, spot]);
+  }, [dispatch, spotId, listing]);
 
   const handleDelete = (e) => {
     e.preventDefault();
@@ -35,66 +38,62 @@ const SpotsDetail = () => {
     history.push(`/spots/${spotId}/edit`);
   };
 
-  const handleCreateReview = (e) => {
-    e.preventDefault();
-    history.push(`/spots/${spotId}/createReview`);
-  };
-
-  
 
   return (
-    spot && (
-      <>
-         <div className="rating">
-        
-
-        <div className="SpotsDetail">
-          <div class="SpotBox">
-            <div className="SpotHeader">{spot.name} </div>
-            </div>
-            <div className="SpotDetailImg">
-              <img
-            src={spot.previewImage}
-            alt={spot.name}
-            className="SpotDetailImg"
-           ></img>
-           </div>
-
-          <p className="detailLocation">
-            {spot.city}, {spot.state},  {spot.country}
-          </p>
-          </div>
-          <div className="SpotInformation" >
-          <div className="detailDescription">Description: {spot.description}</div>
-          <div className="detailPrice">Price: ${spot.price} night</div>
-          </div>
-          <div className="Paw">
-          <StarReviews spot={spot} />
-        </div>
-
-          </div>
-            <div className="line"></div>
-  
-            {sessionUser && sessionUser.id === spot.ownerId && (
-                  <div className="reviewButton">
-                    <button className="editButton" onClick={handleEditClick}> Edit </button>
-                    <button className="deleteButton" onClick={handleDelete}> Delete </button>
-                  </div>
-                )}
-        
-        {sessionUser && (<div className = "reviewButton">
-          <button onClick={handleCreateReview}>Create Review</button>
-        </div>)}
-    
-  
+    listing && (
+    <>
+      <div className="ListingPage">
         <div>
-          <SpotReviews spotId={spotId}/>
+          {(<ReviewFormModal ModalReview={ModalReview} setModalReview={setModalReview}/>)}
         </div>
 
+        <div className="ListingDetails">
+          
+          <div class="ListingTitle">
+            <h2>{listing.name}</h2>
+            <div className="PawRating"><StarReviews spot={listing} /></div>
+            <div className="ListingLocation"> {listing.city}, {listing.state}, {listing.country} </div>
+          </div>
 
-      </>
+          <div className="ListingPhotos">
+            <img src={listing.previewImage} alt={listing.name}></img>
+          </div>
+
+          <div className="ListHost">
+            <h2>Pet Care by {listing.ownerId}</h2>
+          </div>
+
+          <div className="Line"></div>
+
+          <div className="ListingPrice">${listing.price} <span className="Text-Night">night</span></div>
+          <div className="DetailDescription">{listing.description}</div>
+
+          <div className="Line"></div>
+
+        </div>
+
+          {sessionUser && sessionUser.id === listing.ownerId && (
+              <div>
+                  <button className="ListingButton" onClick={handleEditClick}> Edit </button>
+                  <button className="ListingButton" onClick={handleDelete}> Delete </button>
+              </div>
+          )}
+        
+          {sessionUser && (
+              <div className = "ReviewButton">
+                <NavLink onClick={()=> setModalReview(true)} to={`/spots/${spotId}`} >CreateReview</NavLink>
+              </div>
+          )}
+  
+          <div className="ListingReviews">
+            <SpotReviews spotId={spotId}/>
+          </div>
+
+
+      </div>
+    </>
     )
   );
 };
 
-export default SpotsDetail;
+export default ListingDetails;

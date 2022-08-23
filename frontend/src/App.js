@@ -4,7 +4,6 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 
 import BecomeAHost from "./components/BecomeAHost";
-import CreateReview from "./components/CreateReview";
 import EditListing from "./components/EditListing"
 import HomePage from "./components/HomePage";
 import ListingDetail from "./components/ListingDetail";
@@ -39,9 +38,6 @@ function App() {
           </Route>
           <Route exact path="/users/current/spots">
             <UserListing />
-          </Route>
-          <Route exact path="/spots/:spotId/createReview">
-            <CreateReview />
           </Route>
           <Route exact path="/user/reviews">
             <UserReviews />

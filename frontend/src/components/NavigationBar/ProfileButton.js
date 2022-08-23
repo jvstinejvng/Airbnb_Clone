@@ -48,7 +48,7 @@ useEffect(() => {
       </>
     )}
     <div className="NavBarRight-MenuHost">
-      { user && <NavLink className='HostButton' to='/spots/create'>Become a Pet Host</NavLink> }
+      { user && <NavLink className='HostButton' to='/spots/create'>Become a Pet Sitter</NavLink> }
         <button className="DropDownMenuIcon" onClick={openMenu}>
           <i className="fas fa-bars"/> <i className="fas fa-user-circle"/>
           </button>
