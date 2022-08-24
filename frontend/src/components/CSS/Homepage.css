@@ -1,14 +1,19 @@
+
+
 .SpotListPage {
     z-index: -1;
     position: absolute;
     top: 10%;
-    display: inline-flex;
-    justify-content: center;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: flex;
+    flex-flow: row wrap;
     padding-bottom: 100px;
-    margin: 5px;
-    background-color: white;
+    margin: 5px 110px 0px 110px;
+    background-color: blue;
+}
+
+.AllListings {
+    background-color: aqua;
+    display: flex;
 }
 
 /* individual spot */
@@ -16,7 +21,6 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: space-between;
     padding-bottom: 40px;
 }
 
