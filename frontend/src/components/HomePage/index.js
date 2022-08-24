@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getAllSpots } from "../../store/spots";
 import { loadReviews } from "../../store/reviews";
-import "./spots.css";
 import StarReviews from "../ListingDetail/PawReviews";
 
+import "../CSS/HomePage.css";
 
 const SpotsPage = () => {
   const dispatch = useDispatch();
@@ -37,12 +37,16 @@ const SpotsPage = () => {
                   src={spot.previewImage}
                   alt={spot.name}
                 ></img>
-                 <div className="PawRating">
-                <StarReviews spot={spot} />
-              </div>
+                <span>
                 <h4 className="SpotLocation">
                   {spot.city}, {spot.state}
                 </h4>
+                </span>
+                <span className="PawRating">
+                <StarReviews spot={spot} />
+                </span>
+
+
                 <p className="SpotDescription">{spot.description}</p>
                 <p className="SpotPrice"> ${spot.price} night</p>
 

@@ -13,45 +13,57 @@ module.exports = {
         hashedPassword: bcrypt.hashSync('password')
       },
       {
-        firstName: 'Charlie',
-        lastName: 'Brown',
-        email: 'charliebrown@peanuts.com',
+        firstName: 'Mia',
+        lastName: 'Thermopolis',
+        email: 'MiaThermopolis@Genovia.com',
         hashedPassword: bcrypt.hashSync('password2')
       },
       {
-        firstName: 'Tom',
-        lastName: 'Jerry',
-        email: 'tomcat@warnerbrothers.com',
+        firstName: 'Robert',
+        lastName: 'Neville',
+        email: 'RobertNeville@Iamlegend.com',
         hashedPassword: bcrypt.hashSync('password3')
       },
       {
-        firstName: 'Shaggy',
-        lastName: 'Rogers',
-        email: 'shaggyandscoob@scoobydoo.com',
+        firstName: 'Elle,',
+        lastName: 'Woods,',
+        email: 'ElleWoods,@Legallyblonde.com',
         hashedPassword: bcrypt.hashSync('password4')
       },
       {
-        firstName: 'Cat',
-        lastName: 'Hat',
-        email: 'catinthehat@seuss.com',
+        firstName: 'Ron',
+        lastName: 'Burgundy',
+        email: 'RonBurgundy@Anchorman.com',
         hashedPassword: bcrypt.hashSync('password5')
       },
       {
-        firstName: 'Stuart',
-        lastName: 'Little',
-        email: 'littlefamily@columbia.com',
+        firstName: 'Scott',
+        lastName: 'Turner',
+        email: 'ScottTurner@Turnerandhooch.com',
         hashedPassword: bcrypt.hashSync('password6')
       },
       {
         firstName: 'Peter',
         lastName: 'Rabbit',
-        email: 'petterrabbit@sony.com',
+        email: 'petterrabbit@RabbitHole.com',
         hashedPassword: bcrypt.hashSync('password7')
       },
       {
         firstName: 'Jonathan',
         lastName: 'Arbuckle',
-        email: 'garfieldworl@paramount.com',
+        email: 'JonArbuckle@Garfield.com',
+        hashedPassword: bcrypt.hashSync('password8')
+      },
+      {
+        firstName:'Charlie',
+        lastName: 'Brown',
+        email: 'CharlieBrown@Snoopy.com',
+        hashedPassword: bcrypt.hashSync('password8')
+      },
+      {
+        firstName:'Dorothy',
+        lastName: 'Gale',
+        email: 'DorothyGale@Toto.com',
         hashedPassword: bcrypt.hashSync('password8')
       },
     ], {});
@@ -60,7 +72,7 @@ module.exports = {
   async down(queryInterface, Sequelize) {
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('Users', {
-      firstName: { [Op.in]: ['Demo', 'Charle', 'Tom', 'Shaggu', 'Cat', 'Stuart', 'Peter', 'Jonathan' ] }
+      firstName: { [Op.in]: ['Demo', 'Mia', 'Robert', 'Elle', 'Ron', 'Scott', 'Peter', 'Jonathan', 'Charlie', 'Dorothy'] }
     }, {});
   }
 };
