@@ -58,17 +58,27 @@ useEffect(() => {
         <div className="NavBarShowMenu">
           { !user && (
             <div className="NavBarShowMenu">
-            <NavLink className="MenuOptionNavLinks" 
-              onClick={()=> setModalSignup(true)} to='/'>Sign up</NavLink><p/>
-            <NavLink className="MenuOptionNavLinks" 
+               <div className="MenuHighlight">
+               <NavLink className="MenuOptionNavLinks" 
+                onClick={()=> setModalSignup(true)} to='/'>Sign up</NavLink><p/>
+                </div>
+                <div className="MenuHighlight">
+                <NavLink className="MenuOptionNavLinks" 
                 onClick={()=> setLoginModal(true)} to='/'>Log in</NavLink>
+                </div>
             </div>
             )}     
           { user && (
             <div className="UserMenuNavBar" >
-            <NavLink  className="MenuOptionNavLinks" to='/user/reviews' >My reviews</NavLink><p/>
-            <NavLink  className="MenuOptionNavLinks" to='/users/current/spots'>My listings</NavLink><p/>
-            <NavLink  className="MenuOptionNavLinks" to='/' onClick={logout}>Log out</NavLink>
+              <div className="MenuHighlight">
+                <NavLink  className="MenuOptionNavLinks" to='/user/reviews' >Manage reviews</NavLink><p/>
+              </div>
+              <div className="MenuHighlight">
+                <NavLink  className="MenuOptionNavLinks" to='/users/current/spots'>Manage listings</NavLink><p/>
+              </div>
+              <div className="MenuHighlight">
+                <NavLink  className="MenuOptionNavLinks" to='/' onClick={logout}>Log out</NavLink>
+              </div>
             </div>
           )}
         </div>
