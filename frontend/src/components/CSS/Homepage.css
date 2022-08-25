@@ -1,27 +1,24 @@
-
-
+/* listing contrainter */
 .SpotListPage {
     z-index: -1;
     position: absolute;
     top: 10%;
     display: flex;
     flex-flow: row wrap;
+    flex-basis: auto;
+    justify-content: flex-start;
     padding-bottom: 100px;
     margin: 5px 110px 0px 110px;
-    background-color: blue;
-}
-
-.AllListings {
-    background-color: aqua;
-    display: flex;
+    background-color: white;
 }
 
 /* individual spot */
 .OneSpotContainer {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    padding-bottom: 40px;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+    margin: 5px;
+    padding: 0px 0px 40px 0px;
 }
 
 .OneSpotContainer img {

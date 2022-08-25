@@ -96,5 +96,78 @@
         background: linear-gradient(0.40turn, #ff5a60, #ffbec0); 
     }
     
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        border: 0px;
+        border-radius: 20px;
+        padding: 0px 16px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: lighter;
+        font-size: 13px;
+        color: rgba(17, 17, 17, 0.955);
+    }
+    
+    .userInputField {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        margin: 5px;
+        padding: 6px 8px;
+        width: 510px;
+        height: 48px;
+        border-radius: 12px;
+        border: 1px solid rgb(145, 144, 144);
+        font-size: 13px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: lighter;
+        color: rgb(145, 144, 144);
+       
+      }
+      
+      .userInputField input {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        border: 0;
+        width: 485px;
+        height: 25px;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif !important;
+      }
+    
+    
+    .FormButton {
+        padding: 0 16px;
+        width: 528px;
+        height: 48px;
+        border-radius: 12px;
+        border: 0;
+        margin: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
+        font-weight: lighter;
+        font-size: 18px;
+        background: linear-gradient(0.40turn, #ff5a60, #ffbec0); 
+    }
+    
+    .DemoButton {
+        width: 528px;
+        height: 48px;
+        margin: 5px;
+        border-radius: 12px;
+        border: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
+        font-weight: lighter;
+        font-size: 18px;
+        background: linear-gradient(0.40turn, #ff5a60, #ffbec0); 
+    }
+    
+    
+    
     
     

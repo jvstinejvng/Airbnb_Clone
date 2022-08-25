@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as spotActions from "../../store/spots";
 import { useHistory } from "react-router-dom";
-import "./spotEdit.css";
+
+import "../CSS/EditListing.css"
 
 const EditSpot = () => {
   const history = useHistory();
