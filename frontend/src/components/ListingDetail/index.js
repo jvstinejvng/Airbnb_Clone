@@ -56,7 +56,7 @@ const ListingDetails = () => {
               <div className="ListSubTitle">
               <span className="PawRating"><PawReviews spot={listing}/> • </span>
               <span className="NumberOfReviews"></span> 
-              <span className="ListingLocation"> {listing.city}, {listing.state}, {listing.country} </span>
+              <span className="PerListingLocation"> {listing.city}, {listing.state}, {listing.country} </span>
               </div>
           </div>
 

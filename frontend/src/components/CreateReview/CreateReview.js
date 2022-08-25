@@ -49,6 +49,7 @@ const CreateReview = ({ModalReview,setModalReview}) => {
     );
   };
 
+
   return (
     <div class="Reviews">
     <form className="SpotsReview" onSubmit={handleSubmit}>
@@ -85,7 +86,7 @@ const CreateReview = ({ModalReview,setModalReview}) => {
       </label>
       </div>
       <div>
-      <button className="FormButton" type="submit" >Create Review</button>
+      <button className="ReviewFormButton" type="submit" >Create Review</button>
       </div>
     </form>
 

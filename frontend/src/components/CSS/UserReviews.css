@@ -47,3 +47,25 @@ h1 {
 
 
 
+.ReviewFormButton {
+    padding: 0 16px;
+    width: 528px;
+    height: 48px;
+    border-radius: 12px;
+    border: 0;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    box-shadow: 0 0 20px #eee;
+    background-image: linear-gradient(to right,rgb(215, 4, 102) 0%, rgb(227, 28, 95) 51%, rgb(230, 30, 77) 100%);
+}
+
+
+
+.ReviewFormButton:hover {
+  background-position: right center;  
+}
+
+

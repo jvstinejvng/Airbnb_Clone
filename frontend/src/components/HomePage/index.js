@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { getAllSpots } from "../../store/spots";
 import { loadReviews } from "../../store/reviews";
 import PawReviews from "../ListingDetail/PawReviews";
+
 import "../CSS/HomePage.css";
 
 const SpotsPage = () => {

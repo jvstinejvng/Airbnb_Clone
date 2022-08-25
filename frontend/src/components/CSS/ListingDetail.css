@@ -1,4 +1,4 @@
-
+/* listing page container */
 .ListingPage {
     z-index: -1;
     position: absolute;
@@ -12,7 +12,7 @@
     width: 60%;
 }
 
-.ListingTitle {
+.ListingHeader {
     z-index: -1;
     display: inline-block;
     width: fit-content;
@@ -21,51 +21,52 @@
 
 }
 
-.ListingTitle h2 {
+/* listing name */
+.ListingHeader h2 {
     font-family: system-ui, Arial, Helvetica, sans-serif;
     font-weight: 500;
-    letter-spacing: 0.8px;
     font-size: 28px;
-    font-stretch: expanded;
     height: 20px;
     color: #222222;
 
 }
 
-.fa-paw {
+/* paw icon */
+.PawRating .fa-paw {
     display: inline-flex;
-    padding-right: 15px;
-    margin: -10px;
-    font-size: 16px;
+    padding-right: 10px;
+    font-size: 15px;
     color: #222222;
 }
 
+/* listing's average rating */
 .avg-rating {
-    font-family: system-ui, Arial, Helvetica, sans-serif;
-    font-weight: 600;
-    font-size: 13px;
-    font-stretch: expanded;
+    font-family:'Nunito Sans', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
     padding-right: 8px;
     color: #222222;
 }
 
+/* paw rating container */
 .PawRating {
     display: inline-flex;
     align-items: center;
-    padding-right: 5px;
-    font-size: 12px;
-    font-weight: 400;
+    padding-right: 2px;
+    font-weight: 700;
+    font-size: 15px;
     color: #222222;
 }
 
-.ListingLocation {
-    font-family: system-ui, Arial, Helvetica, sans-serif;
-    font-weight: 500;
-    letter-spacing: 0.8px;
-    font-size: 13px;
+/* paw rating container */
+.PerListingLocation {
+    font-family:'Nunito Sans', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
     color: #222222;
 }
 
+/* largest preview image */
 .MainImage {
     object-fit: cover;
     width: 560px;
@@ -73,76 +74,87 @@
     border-radius: 20px 0px 00px 20px;
 }
 
+/* full service pet care by sitter container */
 .ListHost {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
+    padding-top: 20px;
 }
 
+/* full service pet care by sitter header */
 .ListHost h3 {
-    font-family: system-ui, Arial, Helvetica, sans-serif;
-    font-weight: 500;
-    font-size: 25px;
-    letter-spacing: 0.8px;
-    color: #222222;
-}
-
-.ListingPrice {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgb(221, 221, 221);
-    border-radius: 20px;
-    padding: 25px;
-    width: 15%;
-    height: 20px;
-    font-family: system-ui, Arial, Helvetica, sans-serif;
-    font-weight: 800;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
     font-size: 20px;
     color: #222222;
-
 }
 
+/* listing price */
+.ListingPrice {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(221, 221, 221);
+    box-shadow: rgb(0 0 0 / 16%) 0px 6px 16px;
+    border-radius: 20px;
+    padding: 25px;
+    width: 20%;
+    height: 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #222222;
+}
+
+/* listing price night text */
 .Text-Night {
-    font-family: system-ui, Arial, Helvetica, sans-serif;
-    font-weight: 300;
+    font-family:'Nunito Sans', sans-serif;
+    font-weight: 400;
     font-size: 16px;
     color: #222222;
     padding-left: 5px;
 }
 
+/* first line */
 .Line {
     border-bottom: 1px solid rgb(221, 221, 221);;
     display: flex;
     flex-direction: row;
-    width: 60%;
-    height: 30px;
+    width: 70%;
+    height: 25px;
 }
 
+/* listing details */
 .DetailDescription {
-    padding-top: 30px;
+    width: 70%;
     margin: 30px 0px 30px 0px;
-    font-family: system-ui, Arial, Helvetica, sans-serif;
+    font-family:'Nunito Sans', sans-serif;
     font-weight: 400;
     font-size: 16px;
     color: #222222;
 }
 
+/* second line */
 .Line2 {
     border-bottom: 1px solid rgb(221, 221, 221);;
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 30px;
+    height: 25px;
 }
 
+/* review container */
 .ReviewContainer {
+    font-family: 'Montserrat', sans-serif;
     display: flex;
     flex-direction: column;
 }
 
+/* listed review container */
 .ListingReviews {
     display: inline-flex;
     flex-direction: column;
@@ -153,48 +165,61 @@
     padding: 20px 100px 20px 10px;
 }
 
+/* each user review */
 .ReviewUser {
-    font-family: system-ui, Arial, Helvetica, sans-serif;
+    font-family:'Nunito Sans', sans-serif;
     font-weight: 500;
     letter-spacing: 0.8px;
-    font-size: 15px;
+    font-size: 20px;
     color: #222222;
 
 }
 
+/* user paw ratings */
 .ReviewPaws {
-    font-family: system-ui, Arial, Helvetica, sans-serif;
+    font-family:'Nunito Sans', sans-serif;
     font-weight: 500;
     letter-spacing: 0.8px;
-    font-size: 15px;
+    font-size: 18px;
     color: #222222;
 
 }
 
+/* user review message */
 .ReviewText{
-    font-family: system-ui, Arial, Helvetica, sans-serif;
-    font-weight: 500;
-    letter-spacing: 0.8px;
-    font-size: 15px;
+    font-family:'Nunito Sans', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
     color: #222222;
     
 }
 
+/* create reivew button */
 .CreateReviewButton {
     display: flex;   
     flex-direction: column;
     justify-content: center; 
-    border: 1px solid #222222;
-    border-radius: 10px;
-    width: 200px;
-    height: 45px;
-    background-color: aqua;
-    
+    border-radius: 12px;
+    background-size: 200% auto;
+    width: 20%;
+    height: 50px;
+    padding: 0 16px;
+    border: 0;
+    transition: 0.5s;
+    margin: 5px;
+    box-shadow: 0 0 20px #eee;
+    background-image: linear-gradient(to right,rgb(215, 4, 102) 0%, rgb(227, 28, 95) 51%, rgb(230, 30, 77) 100%);
 }
 
+.CreateReviewButton:hover {
+    background-position: right center;  
+} 
+
+/* create reivew button */
 .CreateReviewText {
-  font-family: 'Montserrat', sans-serif;
-    font-weight: lighter;
+    font-family: 'Montserrat', sans-serif;
     font-size: 16px;
+    color: white;
     text-align: center;
+    text-decoration: none;
 }

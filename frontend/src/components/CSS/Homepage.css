@@ -23,6 +23,7 @@
     padding-bottom: 20px;
 }
 
+/* individual listing image */
 .PerListing img {
     max-width: 305px;
     max-height: 284px;
@@ -32,6 +33,7 @@
 
 }
 
+/* listing  image */
 .ListingImage {
     width: 305px;
     height: 284px;
@@ -40,6 +42,7 @@
     object-fit: cover;
 }
 
+/* individual listing location title */
 .ListingTitle {
     display: inline-flex;
     width: 100%;
@@ -51,7 +54,7 @@
 
 .ListingLocation {
     color: #484848;
-  font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 0px;
     padding-left: 10px;
     font-size: 17px;
@@ -65,7 +68,7 @@
 .HomepagePawRating{
     font-size: 15 px;
     font-weight: bold;
-  font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .ListingDescription {
@@ -94,7 +97,7 @@
 
 .HomepageNightText {
     color: #484848;
-  font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 0px;
     padding-bottom: 5px;
     font-size: 17px;

@@ -5,6 +5,8 @@ import * as sessionActions from '../../store/session';
 import LoginFormModal from "../LoginForm";
 import SignupFormModal from "../SignupForm";
 
+import "../CSS/WebsiteButtons.css"
+
 
 function ProfileButton({ user }) {
 

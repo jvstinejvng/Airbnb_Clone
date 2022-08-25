@@ -42,7 +42,7 @@ const SpotReviews = ({spotId}) => {
 
         {sessionUser && (
             <div className = "CreateReviewButton">
-              <NavLink className = "CreateReviewText" onClick={()=> setModalReview(true)} to={`/spots/${spotId}`}>CreateReview</NavLink>
+              <NavLink className = "CreateReviewText" onClick={()=> setModalReview(true)} to={`/spots/${spotId}`}>Create Review</NavLink>
             </div>
         )}
 
