@@ -60,7 +60,7 @@ useEffect(() => {
             <div className="NavBarShowMenu">
                <div className="MenuHighlight">
                <NavLink className="MenuOptionNavLinks" 
-                onClick={()=> setModalSignup(true)} to='/'>Sign up</NavLink><p/>
+                onClick={()=> setModalSignup(true)} to='/'>Sign up</NavLink>
                 </div>
                 <div className="MenuHighlight">
                 <NavLink className="MenuOptionNavLinks" 
@@ -76,16 +76,17 @@ useEffect(() => {
               <div className="MenuHighlight">
                 <NavLink  className="MenuOptionNavLinks" to='/users/current/spots'>Manage listings</NavLink><p/>
               </div>
+              <div className="MenuBarLine"></div>
               <div className="MenuHighlight">
                 <NavLink  className="MenuOptionNavLinks" to='/' onClick={logout}>Log out</NavLink>
               </div>
             </div>
           )}
         </div>
-        </div>
+      </div>
       )}
     </div>
-    </>
+  </>
   );
 }
 
