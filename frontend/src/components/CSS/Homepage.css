@@ -3,8 +3,8 @@
     z-index: -1;
     position: absolute;
     top: 12%;
-    left: 4%;
-    right: 4%;
+    left: 10%;
+    right: 2%;
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;

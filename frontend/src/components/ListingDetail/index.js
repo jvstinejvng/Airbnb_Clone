@@ -12,7 +12,7 @@ import "../CSS/ListingDetail.css";
 
 const ListingDetails = () => {
 
-  const [ModalReview, setModalReview] = useState(false)
+  const [ModalReview, setModalReview] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
   let { spotId } = useParams();
@@ -51,11 +51,13 @@ const ListingDetails = () => {
 
         <div className="ListingDetails">
           
-          <div class="ListingTitle">
-            <h2>{listing.name}</h2>
-            <span className="PawRating"><PawReviews spot={listing}/> • </span>
-            <span className="NumberOfReviews"></span> 
-            <span className="ListingLocation"> {listing.city}, {listing.state}, {listing.country} </span>
+          <div class="ListingHeader">
+            <h2>{listing.name}</h2>   
+              <div className="ListSubTitle">
+              <span className="PawRating"><PawReviews spot={listing}/> • </span>
+              <span className="NumberOfReviews"></span> 
+              <span className="ListingLocation"> {listing.city}, {listing.state}, {listing.country} </span>
+              </div>
           </div>
 
           <div className="ListingPhotoGrid">
