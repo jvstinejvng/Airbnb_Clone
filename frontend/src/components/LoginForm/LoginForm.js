@@ -84,7 +84,7 @@ function LoginForm({setLoginModal, LoginModal}) {
       <button className='FormButton' type="submit">Continue</button>
       </div>
       <div>
-      <button className="DemoButton" onClick={DemoUserLogin}>Demo User</button>
+      <button className="FormButton" onClick={DemoUserLogin}>Demo User</button>
       </div>
     </form>
     </div>

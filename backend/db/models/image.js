@@ -6,38 +6,25 @@ module.exports = (sequelize, DataTypes) => {
   class Image extends Model {
 
     static associate(models) {
-      Image.belongsTo(models.Review, {
-        foreignKey: 'reviewId'
-      });
-      Image.belongsTo(models.Spot, {
-        foreignKey: 'spotId'
-      });
+      Image.belongsTo(
+        models.Review,
+          { foreignKey: 'reviewId' }
+      );
+
+      Image.belongsTo(
+        models.Spot,
+          { foreignKey: 'spotId' }
+      );
     }
   }
   Image.init({
-    spotId: {
-      type: DataTypes.INTEGER,
-    },
+    url: DataTypes.STRING,
     reviewId: DataTypes.INTEGER,
-    imageableType: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isIn: [['Review', 'Spot']]
-      },
-    },
-    url: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    }
+    spotId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Image',
-    defaultScope: {
-      attributes: {
-        exclude: ['createdAt', 'updatedAt']
-      }
-    }
   });
   return Image;
+  
 };

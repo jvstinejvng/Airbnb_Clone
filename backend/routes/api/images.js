@@ -12,7 +12,6 @@ const { Op, Sequelize } = require("sequelize");
 const image = require("../../db/models/image");
 
 //add an image to a spot based on the Spot's id
-
 router.post("/spots/:spotId", requireAuth, async (req, res) => {
   const spot = await Spot.findByPk(req.params.spotId, {
     where: {
