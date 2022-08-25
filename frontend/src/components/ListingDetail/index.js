@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { findASpot } from "../../store/spots";
 import { spotDelete } from "../../store/spots";
 
-import SpotReviews from "./spotReviews";
+import SpotReviews from "./ListingReviews";
 import PawReviews from "./PawReviews";
 import  ReviewFormModal  from "../CreateReview";
 
