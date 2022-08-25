@@ -129,25 +129,30 @@ nav {
 
 }
 
+/* drop down menu line */
 .MenuBarLine{
     display: flex;
     justify-content: center;
     border-bottom: 1px solid rgb(221, 221, 221);
 }
 
+/* drop down menu hover highlight affect */
 .MenuHighlight:hover {
     width: 205px;
     background-color: rgba(236, 232, 232, 0.723);
 }
+
 .MenuOptionNavLinks:active,
 .MenuOptionNavLinks:visited {
     color: #494949;
 }
+
+/* remove menu option underline */
 .MenuOptionNavLinks {
     text-decoration: none;
 }
 
-/* main site logo  */
+/* site logo container  */
 .SiteLogo-NavLeft {
     padding-top: 20px;
     display: flex;
@@ -159,6 +164,7 @@ nav {
     left: 50%;
 }
 
+/* site logo */
 .Logo {
     object-fit: fit;
     max-height: 40px;
@@ -166,6 +172,7 @@ nav {
     padding-right: 5px;
 }
 
+/* site logo text */
 .PetbnbText {
     display: flex;
     color: #FF385C ;
@@ -174,6 +181,7 @@ nav {
     font-size: 23px;
 }
 
+/* site logo active links */
 .NavBarLeft-Logo > a, a:hover, a:visited, a:active {
     text-decoration: none;
 }
