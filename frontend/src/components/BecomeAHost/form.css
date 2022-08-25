@@ -3,7 +3,7 @@ form {
   flex-direction: column;
   align-items: center; 
   padding: 0px 16px;
-  font-family: Arial, Helvetica, sans-serif;
+font-family: 'Montserrat', sans-serif;
   font-weight: lighter;
   font-size: 13px;
   color: rgba(17, 17, 17, 0.955);
@@ -21,7 +21,7 @@ form {
   border-radius: 12px;
   border: 1px solid rgb(145, 144, 144);
   font-size: 13px;
-  font-family: Arial, Helvetica, sans-serif;
+font-family: 'Montserrat', sans-serif;
   font-weight: lighter;
   color: rgb(145, 144, 144);
  
@@ -43,7 +43,7 @@ form {
       margin: 5px;
       border-radius: 12px;
       border: 0;
-      font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Montserrat', sans-serif;
       color: white;
       font-weight: lighter;
       font-size: 18px;

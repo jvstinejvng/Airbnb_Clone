@@ -5,7 +5,7 @@ h1 {
     width: 50%;
     left: 50%;
     transform: translateX(-50%);
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat', sans-serif;
     text-align: left;
 }
 
@@ -22,7 +22,7 @@ h1 {
 }
 
 .MyReviews {
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat', sans-serif;
     text-align: left;
     margin-top: 5px;
     padding: 10px;

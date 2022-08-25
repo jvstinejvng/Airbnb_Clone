@@ -1,54 +1,75 @@
-/* listing contrainter */
-.SpotListPage {
+/* listing container */
+.AllListings {
     z-index: -1;
     position: absolute;
-    top: 10%;
+    top: 12%;
+    left: 4%;
     display: flex;
     flex-flow: row wrap;
-    flex-basis: auto;
     justify-content: flex-start;
     padding-bottom: 100px;
-    margin: 5px 110px 0px 110px;
     background-color: white;
 }
 
-/* individual spot */
-.OneSpotContainer {
+/* individual listing */
+.PerListing {
     display: flex;
-    flex-flow: column wrap;
-    justify-content: space-evenly;
-    margin: 5px;
-    padding: 0px 0px 40px 0px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: fit-content;
+    height: fit-content;
+    padding-bottom: 20px;
 }
 
-.OneSpotContainer img {
-    max-width: 300px;
+.PerListing img {
+    max-width: 305px;
     max-height: 284px;
     border-radius: 20px;
     padding: 10px;
     object-fit: cover;
+
 }
 
-.SpotImage {
-    width: 300px;
+.ListingImage {
+    width: 305px;
     height: 284px;
     border-radius: 20px;
     padding: 10px;
     object-fit: cover;
 }
 
-.SpotLocation {
+.ListingTitle {
+    display: inline-flex;
+    width: 100%;
+    padding-bottom: 3px;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+.ListingLocation {
     color: #484848;
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat', sans-serif;
     margin: 0px;
     padding-left: 10px;
-    padding-bottom: 5px;
     font-size: 17px;
     font-weight: 550;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
 }
-.SpotDescription {
+
+.HomepagePawRating{
+    font-size: 15 px;
+    font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.ListingDescription {
     color: rgb(127, 127, 127);
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat', sans-serif;
     width: 210px;
     margin: 0px;
     padding-left: 10px;
@@ -60,27 +81,30 @@
     white-space: nowrap;
 }
 
-.SpotPrice {
+.HomepageListingPrice {
     color: #484848;
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat', sans-serif;
     margin: 0px;
     padding-left: 10px;
     padding-bottom: 5px;
     font-size: 17px;
-    font-weight: 550;
+    font-weight: 600;
 }
 
-.PawRating{
-    font-size: 15 px;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    padding-left: 10px;
+.HomepageNightText {
+    color: #484848;
+  font-family: 'Montserrat', sans-serif;
+    margin: 0px;
+    padding-bottom: 5px;
+    font-size: 17px;
+    font-weight: 300;
+
 }
 
-.SpotListPage a:link,
-.SpotListPage a:visited,
-.SpotListPage a:hover,
-.SpotListPage a:active {
+.AllListings a:link,
+.AllListings a:visited,
+.AllListings a:hover,
+.AllListings a:active {
     text-decoration: none;
     color: black;
 }

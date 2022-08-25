@@ -1,3 +1,4 @@
+/* navigation bar container*/
 nav {
     display: flex;
     position: fixed;
@@ -5,11 +6,12 @@ nav {
     width: 100%;
     top: 0px;
     left: 0px;
-    border-bottom: 0.5px solid #e0e0e0;
+    border-bottom: 0.5px solid #dce0e0;
+    box-shadow: rgb(0 0 0 / 10%) 0 0 5px;
     background-color: white;
 }
 
-/* navation bar  */
+/* navigation bar  */
 .NavigationBar {
     position: fixed;
     margin: 10px 100px 10px 100px;
@@ -74,7 +76,7 @@ nav {
     align-items: center;
     position: absolute;
     right: 20%;
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat', sans-serif;
     font-size: 15px;
     text-align: center;
     font-weight: 549;
@@ -97,7 +99,7 @@ nav {
 }
 
 .NavBarShowMenu {
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat', sans-serif;
     letter-spacing: 1px;
     font-weight: lighter;
     font-size: 15px;
@@ -106,7 +108,7 @@ nav {
 }
 
 .UserMenuNavBar {
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat', sans-serif;
     letter-spacing: 1px;
     font-weight: lighter;
     font-size: 14px;
@@ -138,7 +140,7 @@ nav {
     align-items: center;
     margin-left: 2px;
     color: #FF5A5F;
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat', sans-serif;
     font-weight: bolder;
     letter-spacing: 0.5px;
     font-size: 25px;

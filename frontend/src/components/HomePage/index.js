@@ -3,15 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getAllSpots } from "../../store/spots";
 import { loadReviews } from "../../store/reviews";
-import StarReviews from "../ListingDetail/PawReviews";
-
+import PawReviews from "../ListingDetail/PawReviews";
 import "../CSS/HomePage.css";
 
 const SpotsPage = () => {
+
   const dispatch = useDispatch();
   const spots = useSelector((state) => Object.values(state?.spots));
   const reviews = useSelector((state) => Object.values(state.reviews))
-
   const spotsString = JSON.stringify(spots);
   const reviewsString = JSON.stringify(reviews);
 
@@ -26,33 +25,35 @@ const SpotsPage = () => {
 
   
   return (
-    <div className="SpotListPage">
+    <div className="AllListings">
       {spots &&
         spots.map((spot) => (
-          <div className="AllListings" key={spot.id}>
+          <div className="PerListing" key={spot.id}>
             <NavLink to={`/spots/${spot.id}`}>
-              <div className="OneSpotContainer">
+              <div className="PerListing">
 
                 <img
-                  className="SpotImage"
+                  className="ListingImage"
                   src={spot.previewImage}
                   alt={spot.name}
                 >
 
                 </img>
 
-                <span>
-                <h4 className="SpotLocation">
+              <div className="ListingTitle">
+
+                <span className="ListingLocation">
                   {spot.city}, {spot.state}
-                </h4>
                 </span>
 
-                <span className="PawRating">
-                <StarReviews spot={spot} />
+                <span className="HomepagePawRating">
+                <PawReviews spot={spot} />
                 </span>
 
-                <p className="SpotDescription">{spot.description}</p>
-                <p className="SpotPrice"> ${spot.price} night</p>
+                </div>
+
+                <p className="ListingDescription">{spot.description}</p>
+                <p className="HomepageListingPrice"> ${spot.price} <span class="HomepageNightText">night</span></p>
 
               </div>
             </NavLink>
