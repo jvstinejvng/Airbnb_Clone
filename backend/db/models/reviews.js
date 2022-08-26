@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER,
     spotId: DataTypes.INTEGER,
     review: {
-      type: Sequelize.STRING(1000),
+      type: DataTypes.STRING(1000),
       allowNull: false,
       defaultValue: '',
       
