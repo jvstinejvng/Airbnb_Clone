@@ -1,21 +1,9 @@
 const express = require("express");
 const { Op } = require("sequelize");
-const {
-  setTokenCookie,
-  restoreUser,
-  requireAuth,
-} = require("../../utils/auth");
-const {
-  Booking,
-  Review,
-  Image,
-  Spot,
-  User,
-  sequelize,
-} = require("../../db/models");
+const { setTokenCookie, restoreUser, requireAuth } = require("../../utils/auth");
+const { Booking,Review, Image, Spot, User, sequelize } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
-const user = require("../../db/models/user");
 
 const router = express.Router();
 
@@ -28,8 +16,7 @@ router.get("/", async (req, res) => {
   return res.json(spots);
 });
 
-//add query filters to get all spots
-
+// add query filters to get all spots
 router.get("/", async (req, res) => {
   const pagination = {
     filter: [],
