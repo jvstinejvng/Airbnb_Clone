@@ -125,4 +125,10 @@ router.delete("/:imageId", requireAuth, async (req, res) => {
   });
 });
 
+router.get('/', async (req, res) => {
+  const images = await Image.findAll();
+  return res.json(images)
+})
+
+
 module.exports = router;

@@ -1,9 +1,8 @@
 import React, { useState,useEffect } from "react";
 import { NavLink, useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { findASpot } from "../../store/spots";
-import { spotDelete } from "../../store/spots";
 
+import { findASpot,spotDelete } from "../../store/spots";
 import SpotReviews from "./ListingReviews";
 import PawReviews from "./PawReviews";
 import  ReviewFormModal  from "../CreateReview";
@@ -15,19 +14,20 @@ const ListingDetails = () => {
   const [ModalReview, setModalReview] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
+
   let { spotId } = useParams();
   spotId = Number(spotId);
 
 
-  const listing = useSelector((state) => state.spots[spotId]);
+  const spot = useSelector((state) => state.spots[+spotId]);
   const sessionUser = useSelector((state) => state.session.user);
 
 
   useEffect(() => {
-    if (!listing) {
+    if (!spot) {
       dispatch(findASpot(spotId));
     }
-  }, [dispatch, spotId, listing]);
+  }, [dispatch, spotId, spot]);
 
   const handleDelete = (e) => {
     e.preventDefault();
@@ -42,7 +42,7 @@ const ListingDetails = () => {
 
 
   return (
-    listing && (
+    spot && (
     <>
       <div className="ListingPage">
         <div>
@@ -52,34 +52,43 @@ const ListingDetails = () => {
         <div className="ListingDetails">
           
           <div class="ListingHeader">
-            <h2>{listing.name}</h2>   
+            <h2>{spot.name}</h2>   
               <div className="ListSubTitle">
-              <span className="PawRating"><PawReviews spot={listing}/> • </span>
+              <span className="PawRating"><PawReviews spot={spot}/> • </span>
               <span className="NumberOfReviews"></span> 
-              <span className="PerListingLocation"> {listing.city}, {listing.state}, {listing.country} </span>
+              <span className="PerListingLocation"> {spot.city}, {spot.state}, {spot.country} </span>
               </div>
           </div>
 
-          <div className="ListingPhotoGrid">
-            <img  className="MainImage" src={listing.previewImage} alt={listing.name}></img>
-          </div>
-
+          <div className='ImageGrid'>
+                        <img className='ListingPreviewLargeImg' src={spot.previewImage} alt={spot.id} />
+                        <div className='ListingSideImg'>
+                            {spot.images && (spot.images.map((url, index) => index === 0 && 
+                            ( <img key={index} className='MiddleImgs' src={url.url} alt={spot.id} /> )))}
+                            {spot.images && (spot.images.map((url, index) => index === 1 && 
+                            ( <img key={index} className='RightSideImg' src={url.url} alt={spot.id} /> )))}
+                            {spot.images && (spot.images.map((url, index) => index === 2 && 
+                            ( <img key={index} className='MiddleImgs' src={url.url} alt={spot.id} /> )))}
+                            {spot.images && (spot.images.map((url, index) => index === 3 && 
+                            ( <img key={index} className= 'RightSideImg' src={url.url} alt={spot.id} /> )))}
+                        </div>
+                    </div>
           <div className="ListHost">
-            <h3>Full service pet care by {listing.ownerId}</h3>
-            <div className="ListingPrice">${listing.price} 
+            <h3>Full service pet care by {spot.ownerId}</h3>
+            <div className="ListingPrice">${spot.price} 
               <span className="Text-Night">night</span>
             </div>
           </div>
 
           <div className="Line"></div>
 
-          <div className="DetailDescription">{listing.description}</div>
+          <div className="DetailDescription">{spot.description}</div>
 
           {/* <div className="Line"></div> */}
 
         </div>
 
-        {sessionUser && sessionUser.id === listing.ownerId && (
+        {sessionUser && sessionUser.id === spot.ownerId && (
             <div>
                 <button className="ListingButton" onClick={handleEditClick}> Edit </button>
                 <button className="ListingButton" onClick={handleDelete}> Delete </button>

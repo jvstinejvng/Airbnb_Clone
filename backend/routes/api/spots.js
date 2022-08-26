@@ -7,6 +7,7 @@ const { handleValidationErrors } = require("../../utils/validation");
 
 const router = express.Router();
 
+
 //get all spots
 router.get("/", async (req, res) => {
   let spots = await Spot.findAll({
@@ -138,41 +139,43 @@ router.get("/your-spots", requireAuth, async (req, res) => {
 
 //get details of a Spot from an id
 router.get("/:id", async (req, res) => {
-  const spots = await Spot.findByPk(req.params.id, {
-    include: [
-      // {
-      //   model: Image,
-      //   as: "images",
-      //   attributes: ["url"],
-      // },
-      {
-        model: User,
-        as: "Owner",
-        attributes: ["id", "firstName", "lastName"],
-      },
-    ],
+  const spot = await Spot.findByPk(req.params.id);
+  const numReviews = await Review.count({
+      where: { spotId: req.params.id }
+  });
+  const ratings = await Review.findAll({
+      where: { spotId: req.params.id },
+      attributes: [[sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating']]
+  });
+  const images = await Image.findAll({
+      where: { spotId: req.params.id },
+      attributes: ['id', 'url']
+  });
+  const owners = await User.findByPk(spot.ownerId, {
+      attributes: ['id', 'firstName', 'lastName']
   });
 
-  // const reviewData = await Spot.findByPk(req.params.id, {
-  //   attributes: [
-  //     [sequelize.fn("COUNT", sequelize.col("*")), "numReviews"],
-  //     [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"],
-  //   ],
-  //   raw: true,
-  // });
-
-  if (!spots) {
-    res.status(404);
-    res.json({
-      message: "Spot couldn't be found",
-      statusCode: 404,
-    });
+  const data = {
+      id: spot.id,
+      ownerId: spot.ownerId,
+      address: spot.address,
+      city: spot.city,
+      state: spot.state,
+      country: spot.country,
+      lat: spot.lat,
+      lng: spot.lng,
+      name: spot.name,
+      description: spot.description,
+      price: spot.price,
+      createdAt: spot.createdAt,
+      updatedAt: spot.updatedAt,
+      previewImage: spot.previewImage,
+      numReviews,
+      avgStarRating: parseFloat(ratings[0].dataValues.avgStarRating),
+      images,
+      Owners: owners
   }
-  const spotData = spots.toJSON();
-  // spotData.numReviews = reviewData.numReviews;
-  // spotData.avgStarRating = reviewData.avgStarRating;
-
-  res.json(spotData);
+  return res.json(data);
 });
 
 //create a spot

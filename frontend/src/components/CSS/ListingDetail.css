@@ -67,12 +67,53 @@
 }
 
 /* largest preview image */
-.MainImage {
-    object-fit: cover;
-    width: 560px;
-    height: 517px;
-    border-radius: 20px 0px 00px 20px;
+.ImageGrid {
+    display: flex;
+    flex-direction: row;
+    height: 755px;
+    width: 100%;
 }
+
+.ImageGrid img {
+    display: flex;
+    max-height: 750px;
+    max-width: 50%;
+    padding: 10px 10px 10px 0;
+
+}
+
+.ListingPreviewLargeImg {
+    width: 750px;
+    height: 750px;
+    object-fit: cover;
+    border-radius: 20px 0px 00px 20px;
+
+}
+
+.ImageGrid .ListingSideImg {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    border-radius: 20px 0px 0px 20px;
+
+}
+
+.ImageGrid .ListingSideImg img {
+    max-height: 50%;
+    max-width: 50%;
+    object-fit: cover;
+    box-sizing: border-box;
+}
+
+.MiddleImgs {
+    border-radius: 0px 0px 0px 0px;
+}
+
+.RightSideImg {
+    border-radius: 0px 20px 20px 0px;
+}
+
 
 /* full service pet care by sitter container */
 .ListHost {
