@@ -11,10 +11,10 @@ const SpotReviews = ({spotId}) => {
   const reviews = useSelector((state) => Object.values(state.reviews));
   const sessionUser = useSelector((state) => state.session.user);
   const [ModalReview, setModalReview] = useState(false)
-
+ 
 
   useEffect(() => {
-      dispatch(loadReviews(spotId));
+      dispatch(loadReviews(spotId ));
   }, [dispatch, spotId])
 
     return (
@@ -27,11 +27,11 @@ const SpotReviews = ({spotId}) => {
 
         <h3>Reviews</h3>
         <div className="UserReview">
-        {reviews.map((reviewState, i) => {
-
+        {reviews.map((reviewState) => {
           return (
             <div className="ListingReviews">
-              <span className="ReviewUser" >{`${reviewState.User.firstName}`}</span>
+              <span className="ReviewUser" >{`${reviewState.userId}`}</span>
+              <span className="ReviewPaws">{`${reviewState.stars} paws`}</span>
               <span className="ReviewText">{`${reviewState.review}`}</span>
             </div>
           )

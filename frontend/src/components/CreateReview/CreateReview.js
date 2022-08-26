@@ -10,6 +10,8 @@ const CreateReview = ({ModalReview,setModalReview}) => {
   let { spotId} = useParams();
   spotId = Number(spotId);
 
+  
+
   const [reviewText, setreviewText] = useState("");
   const [stars, setStars] = useState("");
   const [errors, setErrors] = useState([]);

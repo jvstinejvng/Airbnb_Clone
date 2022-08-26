@@ -247,6 +247,7 @@ router.get('/:spotId/reviews', async (req, res) => {
 
   const spotId = req.params.spotId
 
+
 if (!currentSpotReviews) {
   return res.status(404).json({
     "message": "Spot could not be found",
@@ -257,7 +258,7 @@ if (!currentSpotReviews) {
 let currentReviews = await Review.findAll({
   where: {spotId: spotId,},
     include: [
-        { model: User, attributes: ["id", "firstName", "lastName"] },
+        { model: User, attributes: ["id", "firstName"] },
         { model: Image, attributes: ['url'] }
       ],
   },
