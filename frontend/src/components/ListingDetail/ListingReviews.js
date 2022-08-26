@@ -27,9 +27,9 @@ const SpotReviews = ({spotId}) => {
 
         <h3>Reviews</h3>
         <div className="UserReview">
-        {reviews.map((reviewState) => {
+        {reviews.map((reviewState, index) => {
           return (
-            <div className="ListingReviews">
+            <div className="ListingReviews" key={index}>
               <span className="ReviewUser" >{`${reviewState.userId}`}</span>
               <span className="ReviewPaws">{`${reviewState.stars} paws`}</span>
               <span className="ReviewText">{`${reviewState.review}`}</span>

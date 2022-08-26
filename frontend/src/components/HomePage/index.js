@@ -5,7 +5,7 @@ import { getAllSpots } from "../../store/spots";
 import { loadReviews } from "../../store/reviews";
 import PawReviews from "../ListingDetail/PawReviews";
 
-import "../CSS/HomePage.css";
+import "../CSS/HomePage1.css";
 
 const SpotsPage = () => {
 
