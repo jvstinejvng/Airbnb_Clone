@@ -10,14 +10,12 @@ import "../CSS/HomePage1.css";
 const SpotsPage = () => {
 
   const dispatch = useDispatch();
-  const spots = useSelector((state) => Object.values(state?.spots));
-  // const reviews = useSelector((state) => Object.values(state.reviews))
-  const spotsString = JSON.stringify(spots);
-  // const reviewsString = JSON.stringify(reviews);
+  const spots = useSelector((state) => Object.values(state.spots));
+
 
   useEffect(() => {
     getAllSpots(dispatch);
-  }, [dispatch, spotsString]);
+  }, [dispatch]);
 
   
   return (
