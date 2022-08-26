@@ -19,9 +19,9 @@ const SpotsPage = () => {
     getAllSpots(dispatch);
   }, [dispatch, spotsString]);
 
-  useEffect(() => {
-    dispatch(loadReviews());
-  }, [dispatch, reviewsString]);
+  // useEffect(() => {
+  //   dispatch(loadReviews());
+  // }, [dispatch, reviewsString]);
 
 
   

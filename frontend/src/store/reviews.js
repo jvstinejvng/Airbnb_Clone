@@ -51,15 +51,14 @@ export const createReviews = (spotId, review) => async (dispatch) => {
 
 // get all reviews of a spot
 export const loadReviews = (spotId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
+  const response = await fetch(`/api/spots/${spotId}/reviews`);
 
   if (response.ok) {
-    const allReviews = await response.json();
-    dispatch(loadAllReviews(allReviews));
-    return allReviews;
+    const reviews = await response.json();
+    dispatch(loadAllReviews(reviews));
+    return reviews;
   }
 
-  return response;
 };
 
 //get the current user's reviews
@@ -87,6 +86,10 @@ export const deleteReview = (id) => async (dispatch) => {
 const initialState = {};
 const reviewsReducer = (state = initialState, action) => {
   switch (action.type) {
+    case LOAD_ALL_REVIEWS: {
+      const allReviews = action.reviews;
+      return { ...allReviews };
+    };
     case DELETE_REVIEW: {
       const newState = { ...state };
       delete newState[action.id];
@@ -96,13 +99,6 @@ const reviewsReducer = (state = initialState, action) => {
       const newState = { ...state };
       newState[action.review.id] = action.review;
       return newState;
-    };
-    case LOAD_ALL_REVIEWS: {
-      const allReviews = {};
-      action.reviews.forEach((review) => (allReviews[review.id] = review));
-      let reviews = {...allReviews};
-      return reviews;
- 
     };
     case LOAD_USER_REVIEWS: {
       const newState = {};

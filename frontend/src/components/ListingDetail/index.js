@@ -51,7 +51,7 @@ const ListingDetails = () => {
 
         <div className="ListingDetails">
           
-          <div class="ListingHeader">
+          <div className="ListingHeader">
             <h2>{spot.name}</h2>   
               <div className="ListSubTitle">
               <span className="PawRating"><PawReviews spot={spot}/> • </span>

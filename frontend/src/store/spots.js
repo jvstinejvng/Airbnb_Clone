@@ -62,11 +62,7 @@ export const getAllSpots = async (dispatch) => {
   return {};
 };
 
-
-
-
 //Get the current user's spots
-
 export const getCurrentUserSpots = () => async (dispatch) => {
   const response = await csrfFetch("/api/spots/your-spots");
   if (response.ok) {
