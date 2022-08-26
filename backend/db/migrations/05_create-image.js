@@ -8,34 +8,41 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      url: {
-        type: Sequelize.STRING
+      spotId: {
+        type: Sequelize.INTEGER,
+        defaultValue: null,
+        references: {
+          model: 'Spots',
+          key: 'id'
+        },
+        onDelete: 'CASCADE'
       },
       reviewId: {
         type: Sequelize.INTEGER,
+        defaultValue: null,
         references: {
           model: 'Reviews',
-          key: 'id',
+          key: 'id'
         },
-        onDelete: 'cascade'
+        onDelete: 'CASCADE'
       },
-      spotId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Spots',
-          key: 'id',
-        },
-        onDelete: 'cascade'
+      imageableType: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      url: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP")
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP")
       }
     });
   },
