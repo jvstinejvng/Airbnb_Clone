@@ -7,6 +7,12 @@ const { handleValidationErrors } = require("../../utils/validation");
 
 const router = express.Router();
 
+// get all spots
+router.get("/", async (req, res) => {
+  const spots = await Spot.findAll();
+   res.json({ spots });
+});
+
 
 
 // get all spots owned by the current user
@@ -237,11 +243,6 @@ router.delete("/:spotId", requireAuth, async (req, res) => {
   });
 });
 
-// get all spots
-router.get("/", async (req, res) => {
-  const spots = await Spot.findAll();
-   res.json({ spots });
-});
 
 
 

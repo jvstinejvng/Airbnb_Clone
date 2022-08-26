@@ -12,7 +12,6 @@ const SpotsPage = () => {
   const dispatch = useDispatch();
   const spots = useSelector((state) => Object.values(state.spots));
 
-
   useEffect(() => {
     getAllSpots(dispatch);
   }, [dispatch]);
