@@ -1,22 +1,17 @@
 const express = require("express");
-const {
-  setTokenCookie,
-  requireAuth,
-  restoreUser,
-} = require("../../utils/auth");
+const { setTokenCookie, requireAuth, restoreUser } = require("../../utils/auth");
 const { Image, Review, Spot, User } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const router = express.Router();
 
-//get all reviews
+// get all reviews
 router.get("/", async (req, res) => {
   let reviews = await Review.findAll();
   return res.json(reviews);
 });
 
-//Get all reviews of the current user
-
+// get all reviews of the current user
 router.get("/current-user-review", requireAuth, async (req, res) => {
   const {id} = req.user;
 
@@ -40,37 +35,8 @@ router.get("/current-user-review", requireAuth, async (req, res) => {
   res.json(reviews)
 });
 
-//Get all reviews by a Spot's id
-// router.get('/:spotId', async (req, res) => {
-//   const spotId = req.params.spotId;
 
-//   let spot  = await Spot.findByPk(spotId);
-//   if (!spot) {
-//     return res.status(404).json({
-//       "message": "Spot does not exist!"
-//     });
-//   }
-
-//   let reviews = await Review.findAll({
-//     where: {
-//       spotId: spotId,
-//     }
-//   });
-
-//   let user = await User.findByPk(spot.ownerId);
-//   let images = await Image.findByPk(spot.id)
-
-
-//   return res.json({
-//     reviews,
-//     user,
-//     images
-//   });
-// });
-
-
-//Create a Review for a Spot based on the Spot's id
-
+// create a Review for a Spot based on the Spot's id
 router.post('/:spotId/create', requireAuth, async (req, res) => {
   const spotId = req.params.spotId;
   const id = req.user.id;
@@ -132,7 +98,7 @@ router.post('/:spotId/create', requireAuth, async (req, res) => {
   res.json(newReview)
 })
 
-//edit a review
+// edit a review
 router.put('/:reviewId', requireAuth, async(req, res) => {
   let { stars } = req.body;
   let reviewId = req.params.reviewId;
@@ -174,8 +140,7 @@ router.put('/:reviewId', requireAuth, async(req, res) => {
 
 });
 
-//delete a review
-
+// delete a review
 router.delete('/:reviewId', requireAuth, async (req, res) => {
   const reviewId = req.params.reviewId;
   const id = req.user.id
@@ -183,13 +148,6 @@ router.delete('/:reviewId', requireAuth, async (req, res) => {
   const review = await Review.findOne({
     where: {id : reviewId}
   })
-
-  // if (review.userId !== id ) {
-  //   res.status(403);
-  //   res.json({
-  //     "message": "Authorization Error"
-  //   })
-  // }
 
   if (!review) {
     res.status(404);

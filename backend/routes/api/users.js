@@ -20,7 +20,7 @@ const validateSignup = [
   handleValidationErrors,
 ];
 
-// Sign up
+// sign up
 router.post("/sign-up", validateSignup, async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
 
@@ -60,7 +60,7 @@ router.post("/sign-up", validateSignup, async (req, res) => {
 
 });
 
-//Get the Current User
+// get the Current User
 router.get("/currentUser", requireAuth, async (req, res) => {
   const user = {
     id: req.user.id,

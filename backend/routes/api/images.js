@@ -1,9 +1,5 @@
 const express = require("express");
-const {
-  setTokenCookie,
-  requireAuth,
-  restoreUser,
-} = require("../../utils/auth");
+const { setTokenCookie, requireAuth, restoreUser} = require("../../utils/auth");
 const { handleValidationErrors } = require("../../utils/validation");
 const { Image, Review, Spot, User, Booking } = require("../../db/models");
 const { check, Result } = require("express-validator");
@@ -11,7 +7,7 @@ const router = express.Router();
 const { Op, Sequelize } = require("sequelize");
 const image = require("../../db/models/image");
 
-//add an image to a spot based on the Spot's id
+// add an image to a spot based on the Spot's id
 router.post("/spots/:spotId", requireAuth, async (req, res) => {
   const spot = await Spot.findByPk(req.params.spotId, {
     where: {
@@ -43,7 +39,7 @@ router.post("/spots/:spotId", requireAuth, async (req, res) => {
   res.json(image);
 });
 
-//Add an Image to a Review based on the Review's id
+// add an Image to a Review based on the Review's id
 router.post("/reviews/:reviewId", requireAuth, async (req, res) => {
   const currentUserId = req.user.id;
   const reviewId = req.params.reviewId;
@@ -91,7 +87,7 @@ router.post("/reviews/:reviewId", requireAuth, async (req, res) => {
   res.json(image);
 });
 
-//delete an image
+// delete an image
 router.delete("/:imageId", requireAuth, async (req, res) => {
   const currentUserId = req.user.id;
   const imageId = req.params.imageId;
@@ -105,13 +101,6 @@ router.delete("/:imageId", requireAuth, async (req, res) => {
       statusCode: 404,
     });
   }
-  // if (images.imageableId !== currentUserId) {
-  //   res.status(403);
-  //   res.json({
-  //     message: "Forbidden",
-  //     statusCode: 403,
-  //   });
-  // }
 
   await images.destroy({
     where: {

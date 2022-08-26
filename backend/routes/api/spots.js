@@ -8,7 +8,7 @@ const { handleValidationErrors } = require("../../utils/validation");
 const router = express.Router();
 
 
-//get all spots
+// get all spots
 router.get("/", async (req, res) => {
   let spots = await Spot.findAll({
     include: [Review],
@@ -128,7 +128,7 @@ router.get("/", async (req, res) => {
   });
 });
 
-//get all spots owned by the current user
+// get all spots owned by the current user
 router.get("/your-spots", requireAuth, async (req, res) => {
   const allSpots = await Spot.findAll({
     where: { ownerId: req.user.id },
@@ -178,7 +178,7 @@ router.get("/:id", async (req, res) => {
   return res.json(data);
 });
 
-//create a spot
+// create a spot
 router.post("/", requireAuth, async (req, res) => {
   const {
     address,
@@ -267,7 +267,7 @@ return res.json(currentReviews);
 });
 
 
-//edit a spot
+// edit a spot
 router.put("/:spotId", requireAuth, async (req, res) => {
   const { spotId } = req.params;
   const {
@@ -337,7 +337,7 @@ router.put("/:spotId", requireAuth, async (req, res) => {
   res.json(spot);
 });
 
-//delete a spot
+// delete a spot
 router.delete("/:spotId", requireAuth, async (req, res) => {
   const { spotId } = req.params;
   const currentSpot = await Spot.findByPk(spotId);

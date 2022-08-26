@@ -1,16 +1,12 @@
 const express = require("express");
-const {
-  setTokenCookie,
-  requireAuth,
-  restoreUser,
-} = require("../../utils/auth");
+const { setTokenCookie, requireAuth, restoreUser } = require("../../utils/auth");
 const { Image, Review, Spot, User, Booking } = require("../../db/models");
 const { check, Result } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const router = express.Router();
 const { Op, Sequelize } = require("sequelize");
 
-//get all of the current user's bookings
+// get all of the current user's bookings
 router.get("/", requireAuth, async (req, res) => {
   const { id } = req.user;
   const bookings = await Booking.findAll({
@@ -37,8 +33,7 @@ router.get("/", requireAuth, async (req, res) => {
   res.json(bookings);
 });
 
-//get all bookings for a spot based on the spot's id
-
+// get all bookings for a spot based on the spot's id
 router.get("/:spotId", requireAuth, async (req, res) => {
   const { id } = req.user;
   const spotId = req.params.spotId;
@@ -68,8 +63,7 @@ router.get("/:spotId", requireAuth, async (req, res) => {
   res.json(currentBooking);
 });
 
-//create a booking from a spot based on the spot's id
-
+// create a booking from a spot based on the spot's id
 router.post("/:spotId", requireAuth, async (req, res) => {
   const spotId = req.params.spotId;
   bookingParams = req.body;
@@ -136,7 +130,6 @@ router.post("/:spotId", requireAuth, async (req, res) => {
 });
 
 // delete a booking
-
 router.delete("/:bookingId", requireAuth, async (req, res) => {
   let bookingId = req.params.bookingId;
   let currentUserId = req.user.id;
@@ -181,7 +174,7 @@ router.delete("/:bookingId", requireAuth, async (req, res) => {
   });
 });
 
-//Edit a Booking
+// edit a Booking
 router.put("/:bookingId", requireAuth, async (req, res) => {
   let bookingId = req.params.bookingId;
   let bookingParams = req.body;

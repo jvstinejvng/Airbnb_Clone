@@ -23,7 +23,7 @@ router.use('/images', imagesRouter);
 router.post('/test', function(req, res) {
   res.json({ requestBody: req.body });
 });
-// GET /api/restore-user (must be connected before any other middleware or route handlers)
+
 router.get('/restore-user', (req, res) => {
     return res.json(req.user);
   });
