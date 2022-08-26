@@ -22,7 +22,7 @@ const SpotForm = () => {
 
 
   if (submitSuccess) {
-    return <Redirect to="/" />;
+    return <Redirect to="/"/>;
   }
 
   const handleSubmit = (e) => {
