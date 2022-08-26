@@ -40,6 +40,7 @@ const SpotForm = () => {
       description: description,
       price: price,
     };
+    
     return dispatch(spotActions.createSpot(data))
       .then(async (res) => {
         setSubmitSuccess(true);
