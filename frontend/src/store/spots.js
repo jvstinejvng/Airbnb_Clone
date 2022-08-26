@@ -77,6 +77,7 @@ export const getCurrentUserSpots = () => async (dispatch) => {
   return response;
 };
 
+//Get a spot detail
 export const findASpot = (id) => async dispatch => {
   const response = await csrfFetch(`/api/spots/${id}`);
   const data = await response.json();
@@ -147,17 +148,17 @@ const spotsReducer = (state = initialState, action) => {
       action.spots.forEach((spot) => (allSpots[spot.id] = spot));
       return allSpots;
     }
+    case GET_SPOT:{
+      let newState = { state };
+      newState[action.spot.id] = action.spot;
+      return newState;
+    }
     case ADD_SPOT: {
       let newState = { ...state };
       newState[action.spot.id] = action.spot;
       return newState;
     }
-    case GET_SPOT:{
-      let newState = { ...state };
-      newState[action.spot.id] = action.spot;
-      return newState;
-    }
-      
+  
     case DELETE_SPOT: {
       const newState = { ...state };
       delete newState[action.spotId];

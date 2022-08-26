@@ -31,8 +31,7 @@ const SpotReviews = ({spotId}) => {
 
           return (
             <div className="ListingReviews">
-              <span className="ReviewUser" >{`${reviewState.userId}`}</span>
-              <span className="ReviewPaws">{`${reviewState.stars} paws`}</span>
+              <span className="ReviewUser" >{`${reviewState.User.firstName}`}</span>
               <span className="ReviewText">{`${reviewState.review}`}</span>
             </div>
           )

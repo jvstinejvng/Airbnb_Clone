@@ -5,7 +5,6 @@ import * as reviewActions from "../../store/reviews";
 
 import "../CSS/UserReviews.css";
 
-
 const CreateReview = ({ModalReview,setModalReview}) => {
   const dispatch = useDispatch();
   let { spotId} = useParams();

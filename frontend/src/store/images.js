@@ -6,7 +6,7 @@ const DELETE_IMAGE = 'images/deleteImages';
 const createImages = (img) => {
     return {
         type: ADD_IMAGES,
-        payload: img,
+        img,
     };
 };
 
@@ -20,19 +20,6 @@ const deleteImage = (id) => {
 export const addSpotImage = (spotId, newImage) => async (dispatch) => {
     const { url } = newImage;
     const response = await csrfFetch(`/api/image/spots//${spotId}`, {
-        method: "POST",
-        body: JSON.stringify({
-            url
-        }),
-    });
-    const data = await response.json();
-    dispatch(createImages(data));
-    return response;
-};
-
-export const addReviewImage = (reviewId, newImage) => async (dispatch) => {
-    const { url } = newImage;
-    const response = await csrfFetch(`/api/reviews/${reviewId}/images`, {
         method: "POST",
         body: JSON.stringify({
             url

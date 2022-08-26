@@ -3,7 +3,7 @@ import { NavLink, useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { findASpot,spotDelete } from "../../store/spots";
-import SpotReviews from "./ListingReviews";
+import SpotReview from "./ListingReviews";
 import PawReviews from "./PawReviews";
 import  ReviewFormModal  from "../CreateReview";
 
@@ -84,8 +84,6 @@ const ListingDetails = () => {
 
           <div className="DetailDescription">{spot.description}</div>
 
-          {/* <div className="Line"></div> */}
-
         </div>
 
         {sessionUser && sessionUser.id === spot.ownerId && (
@@ -102,20 +100,13 @@ const ListingDetails = () => {
 
 
           <div>
-            <SpotReviews spotId={spotId}/>
+            <SpotReview spotId={spotId}/>
           </div>
-
-          {/* {sessionUser && (
-            <div className = "CreateReviewButton">
-              <NavLink className = "CreateReviewText" onClick={()=> setModalReview(true)} to={`/spots/${spotId}`}>CreateReview</NavLink>
-            </div>
-        )} */}
 
   
         </div>
 
         <div className="Line2"></div>
-
 
 
       </div>
