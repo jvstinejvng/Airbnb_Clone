@@ -240,7 +240,7 @@ router.delete("/:spotId", requireAuth, async (req, res) => {
 // get all spots
 router.get("/", async (req, res) => {
   const spots = await Spot.findAll();
-  return res.json({ Spots: spots });
+  return res.json({ spots: spots });
 });
 
 
