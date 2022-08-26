@@ -9,7 +9,6 @@ const router = express.Router();
 
 
 
-
 // get all spots owned by the current user
 router.get("/your-spots", requireAuth, async (req, res) => {
   const allSpots = await Spot.findAll({
@@ -240,12 +239,11 @@ router.delete("/:spotId", requireAuth, async (req, res) => {
 
 // get all spots
 router.get("/", async (req, res) => {
-  let spots = await Spot.findAll({
-    include: [Review],
-  });
-
-  return res.json(spots);
+  const spots = await Spot.findAll();
+  return res.json({ Spots: spots });
 });
+
+
 
 // add query filters to get all spots
 router.get("/", async (req, res) => {
