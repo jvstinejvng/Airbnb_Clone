@@ -52,7 +52,7 @@ const CreateReview = ({ModalReview,setModalReview}) => {
 
 
   return (
-    <div class="Reviews">
+    <div clasNames="Reviews">
     <form className="SpotsReview" onSubmit={handleSubmit}>
     <div>
           <h2>Tell Us About Your experience</h2>
@@ -64,7 +64,7 @@ const CreateReview = ({ModalReview,setModalReview}) => {
           ))}
         </ul>
       )}
-      <div class="text">
+      <div className="text">
       <label className="userInputField">
         Message:
         <input 

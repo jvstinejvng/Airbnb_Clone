@@ -23,7 +23,7 @@ const SpotsPage = () => {
         spots.map((spot) => (
           <div className="PerListing" key={spot.id}>
             <NavLink to={`/spots/${spot.id}`}>
-              <div className="PerListing">
+              <div className="PerListing" >
 
                 <img
                   className="ListingImage"

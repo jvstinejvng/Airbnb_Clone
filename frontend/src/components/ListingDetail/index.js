@@ -72,7 +72,8 @@ const ListingDetails = () => {
                             {spot.images && (spot.images.map((url, index) => index === 3 && 
                             ( <img key={index} className= 'RightSideImg' src={url.url} alt={spot.id} /> )))}
                         </div>
-                    </div>
+              </div>
+              
           <div className="ListHost">
             <h3>Full service pet care by {spot.ownerId}</h3>
             <div className="ListingPrice">${spot.price} 
