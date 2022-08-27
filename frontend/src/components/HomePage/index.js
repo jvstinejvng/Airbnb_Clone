@@ -10,21 +10,24 @@ import "../CSS/HomePage1.css";
 const SpotsPage = () => {
 
   const dispatch = useDispatch();
-  const spots = useSelector((state) => Object.values(state.spots));
+  const spots = useSelector((state) => Object.values(state?.spots));
+  const spotsString = JSON.stringify(spots);
+
+
 
   useEffect(() => {
     getAllSpots(dispatch);
-  }, [dispatch]);
+  }, [dispatch, spotsString]);
 
   
+
   return (
     <div className="AllListings">
       {spots &&
         spots.map((spot) => (
-          <div className="PerListing" key={spot.id}>
+          <div key={spot.id}>
             <NavLink to={`/spots/${spot.id}`}>
               <div className="PerListing" >
-
                 <img
                   className="ListingImage"
                   src={spot.previewImage}

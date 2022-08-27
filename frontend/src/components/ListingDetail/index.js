@@ -11,15 +11,15 @@ import "../CSS/ListingDetail.css";
 
 const ListingDetails = () => {
 
-  const [ModalReview, setModalReview] = useState(false);
   const history = useHistory();
+
+  const [ModalReview, setModalReview] = useState(false);
   const dispatch = useDispatch();
 
   let { spotId } = useParams();
   spotId = Number(spotId);
 
-
-  const spot = useSelector((state) => state.spots[+spotId]);
+  const spot = useSelector((state) => state.spots[spotId]);
   const sessionUser = useSelector((state) => state.session.user);
 
 

@@ -1,7 +1,6 @@
 import { csrfFetch } from "./csrf";
 
-const GET_ALL_SPOTS = "spots/getAll";
-const GET_SPOT = 'spots/getSpot';
+const GET_ALL_SPOTS = "spots/get-all-spots";
 const ADD_SPOT = "spots/add";
 const DELETE_SPOT = "spots/delete";
 const EDIT_SPOT = "spots/edit";
@@ -14,12 +13,6 @@ const getAll = (spots) => {
   };
 };
 
-const getSpot = (spot) => {
-  return {
-      type: GET_SPOT,
-      spot,
-  };
-};
 
 const addSpot = (spot) => {
   return {
@@ -72,23 +65,23 @@ export const getCurrentUserSpots = () => async (dispatch) => {
 };
 
 //Get a spot detail
-export const findASpot = (id) => async dispatch => {
-  const response = await csrfFetch(`/api/spots/${id}`);
-  const data = await response.json();
-  dispatch(getSpot(data));
-  return response;
-};
-
-//Get a spot detail
-// export const findASpot = (id) => async (dispatch) => {
+// export const findASpot = (id) => async dispatch => {
 //   const response = await csrfFetch(`/api/spots/${id}`);
-//   if (response.ok) {
-//     const spot = await response.json();
-//     dispatch(addSpot(spot));
-//     return spot;
-//   }
+//   const data = await response.json();
+//   dispatch(getSpot(data));
 //   return response;
 // };
+
+//Get a spot detail
+export const findASpot = (id) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${id}`);
+  if (response.ok) {
+    const spot = await response.json();
+    dispatch(addSpot(spot));
+    return spot;
+  }
+  return response;
+};
 
 //Create a spot
 export const createSpot = (spot) => async (dispatch) => {
@@ -139,13 +132,9 @@ const initialState = {};
 const spotsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_SPOTS: {
-      const allSpots = action.spots;
-      return { ...allSpots };
-    }
-    case GET_SPOT:{
-      let newState = {};
-      newState[action.spot.id] = action.spot
-      return newState;
+      const allSpots = {};
+      action.spots.forEach((spot) => (allSpots[spot.id] = spot));
+      return allSpots;
     }
     case ADD_SPOT: {
       let newState = { ...state };

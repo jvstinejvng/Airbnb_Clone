@@ -54,7 +54,7 @@ module.exports = {
         name: "The Metropawlitan Pets have Voted Us as their Favorite Pet Hotel",
         description: "Here is where furry friendships are made, and unforgettable memories are created. My free-roaming home-environment pet-boarding is safe, secure, and far less stressful and frightening than traditional pet-boarding places. Hi! I am a professional dancer and a huge animal person. Growing up and to this day, my family frequently fostered and adopted cats and dogs. Since moving to Arlington, I have missed caring for fur buddies. I currently work part-time, so I have plenty of time to play with your kitty or pup! I also live with my brother and his girlfriend, so someone is always at home with your fur baby. We are all animal lovers and can't wait to meet your fur baby. I am very observant and attentive and will take great care of your fur baby. Whatever rules you have at your house, I will keep in mine!",
         price: 150,
-        previewImage: 'https://nextluxury.com/wp-content/uploads/large-dog-room-ideas.jpg',
+        previewImage:'https://nextluxury.com/wp-content/uploads/large-dog-room-ideas.jpg',
       },
       {
         ownerId: 1,

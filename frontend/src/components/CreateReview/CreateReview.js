@@ -7,11 +7,10 @@ import "../CSS/UserReviews.css";
 
 const CreateReview = ({ModalReview,setModalReview}) => {
   const dispatch = useDispatch();
-  let { spotId} = useParams();
+  let {spotId} = useParams();
   spotId = Number(spotId);
 
   
-
   const [reviewText, setreviewText] = useState("");
   const [stars, setStars] = useState("");
   const [errors, setErrors] = useState([]);
