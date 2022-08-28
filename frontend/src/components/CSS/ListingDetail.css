@@ -266,12 +266,13 @@
 }
 
 .ListingButton {
+    cursor: pointer;
     display: inline-flex;   
     flex-direction: column;
     justify-content: center; 
     align-items: center;
     border-radius: 12px;
-    width: 10%;
+    width: 16%;
     height: auto;
     border: 1px solid rgb(221, 221, 221);
     margin: 5px;
@@ -279,4 +280,8 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-size: 15px;
+}
+
+.ListingButton:hover {
+    background-color: #e0e0e0;
 }

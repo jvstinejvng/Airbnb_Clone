@@ -1,58 +1,83 @@
-.editSpotForm label {
-    width: 100%;
-    margin: 8px 0;
-    display: flex;
-    float: left;
-    padding: 0px;
+.EditFormContainer {
+  height: 50vh;
+  margin: 100px auto 0 auto;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+  
+.EditSpotForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 0.5px solid #e0e0e0;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 25px;
+  align-items: center; 
+  padding: 8%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #222222;
+}
+
+
+.EditInputField {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 5px;
+  padding: 6px 8px;
+  width: 500px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid rgb(145, 144, 144);
+  font-size: 13px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: lighter;
+  color: rgb(145, 144, 144);
+  cursor:pointer;
+}
+
+
+.EditInputField input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 0;
+  width: 500px;
+  height: 40px;
+  box-sizing: border-box;
+  margin: 5px 0 px 0;
+  color: rgb(23, 23, 23);
+  font-size: 15px;
+  font-family: 'Montserrat', sans-serif; 
+}
+
+
+.EditPageButton {
+  cursor: pointer;
+  position: relative;
+  padding: 10px;
+  width: 500px;
+  height: 39px;
+  border-radius: 10px;
+  border: 0;
+  transition: 0.6s;
+  background-size: 200% auto;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  margin: 3px 0 3px 0;
+  background-image: linear-gradient(to right,rgb(255, 56, 92) 0%, rgb(215, 4, 102) 51%, rgb(230, 30, 77) 100%);
   }
   
-  .editFormDiv {
-    height: 50vh;
-    margin: 50px auto 0 auto;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .editSpotForm {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding-left: 10px;
-    padding-right: 25px;
-  }
-  
-  .editSpotForm input {
-    height: 30px;
-    border: #d3d3d3 1.5px solid;
-    width: 100%;
-    border-radius: 5px;
-    color: gray;
-  }
-  
-  .confirmEditButton {
-  
-    background-color: #ff385c;
-    border: none;
-    color: white;
-    padding: 10px 10px;
-    border-radius: 1rem;
-    text-align: center;
-    text-decoration: none;
-    display: flex;
-    font-size: 16px;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .buttonContainer {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-  }
-  
+.EditPageButton:hover {
+  background-position: right center;  
+}
+ 

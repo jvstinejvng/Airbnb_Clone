@@ -89,8 +89,8 @@ const EditSpot = () => {
   };
 
   return (
-    <div className="editFormDiv">
-      <form className="editSpotForm" onSubmit={handleSubmit}>
+    <div className="EditFormContainer">
+      <form className="EditSpotForm" onSubmit={handleSubmit}>
         <h2 className="editSpot"> Edit Your Spot! </h2>
         {errors ?? (
           <ul>
@@ -99,7 +99,7 @@ const EditSpot = () => {
             ))}
           </ul>
         )}
-        <div>
+        <div className="EditInputField">
           <label>Name:</label>
           <input
             type="text"
@@ -108,7 +108,7 @@ const EditSpot = () => {
             onChange={updateName}
           />
         </div>
-        <div>
+        <div className="EditInputField">
           <label>Address:</label>
           <input
             type="text"
@@ -117,7 +117,7 @@ const EditSpot = () => {
             onChange={updateAddress}
           />
         </div>
-        <div>
+        <div className="EditInputField">
           <label>City:</label>
           <input
             type="text"
@@ -126,7 +126,7 @@ const EditSpot = () => {
             onChange={updateCity}
           />
         </div>
-        <div>
+        <div className="EditInputField">
           <label>State:</label>
           <input
             type="text"
@@ -135,7 +135,7 @@ const EditSpot = () => {
             onChange={updateState}
           />
         </div>
-        <div>
+        <div className="EditInputField">
           <label>Country:</label>
           <input
             type="text"
@@ -144,7 +144,7 @@ const EditSpot = () => {
             onChange={updateCountry}
           />
         </div>
-        <div>
+        <div className="EditInputField">
           <label>Latitude</label>
           <input
             type="text"
@@ -153,7 +153,7 @@ const EditSpot = () => {
             onChange={updateLat}
           />
         </div>
-        <div>
+        <div className="EditInputField">
           <label>Longitude</label>
           <input
             type="text"
@@ -162,7 +162,7 @@ const EditSpot = () => {
             onChange={updateLng}
           />
         </div>
-        <div>
+        <div className="EditInputField">
           <label>Description:</label>
           <input
             type="text"
@@ -171,7 +171,7 @@ const EditSpot = () => {
             onChange={updateDescription}
           />
         </div>
-        <div>
+        <div className="EditInputField">
           <label>Price:</label>
           <input
             type="text"
@@ -180,7 +180,7 @@ const EditSpot = () => {
             onChange={updatePrice}
           />
         </div>
-        <div>
+        <div className="EditInputField">
           <label>Image:</label>
           <input
             type="text"
@@ -189,8 +189,8 @@ const EditSpot = () => {
             onChange={updatePreviewImage}
           />
         </div>
-        <div className="buttonContainer">
-          <button className="confirmEditButton" type="submit">
+        <div className="EditPageButton">
+          <button className="EditPageButton" type="submit">
             Confirm Edit
           </button>
         </div>
