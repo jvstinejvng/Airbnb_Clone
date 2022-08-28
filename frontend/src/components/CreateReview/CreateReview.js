@@ -4,6 +4,8 @@ import { Redirect, useParams } from "react-router-dom";
 import * as reviewActions from "../../store/reviews";
 
 import "../CSS/UserReviews.css";
+import "../CSS/CreateReview.css";
+
 
 const CreateReview = ({ModalReview,setModalReview}) => {
   const dispatch = useDispatch();
@@ -52,9 +54,9 @@ const CreateReview = ({ModalReview,setModalReview}) => {
 
   return (
     <div clasNames="Reviews">
-    <form className="SpotsReview" onSubmit={handleSubmit}>
+    <form className="ReviewForm" onSubmit={handleSubmit}>
     <div>
-          <h2>Tell Us About Your experience</h2>
+          <h2>Tell us about your experience</h2>
         </div>
         {errors ?? (
         <ul>
@@ -63,8 +65,8 @@ const CreateReview = ({ModalReview,setModalReview}) => {
           ))}
         </ul>
       )}
-      <div className="text">
-      <label className="userInputField">
+      <div className="ReviewInputContainer">
+      <label className="ReviewInputField">
         Message:
         <input 
           type="text"
@@ -74,7 +76,7 @@ const CreateReview = ({ModalReview,setModalReview}) => {
           required
         />
       </label>
-      <label className="userInputField" >
+      <label className="ReviewInputField" >
         Stars:
         <input
           type="text"

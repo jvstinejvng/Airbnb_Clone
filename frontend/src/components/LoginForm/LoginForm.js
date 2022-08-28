@@ -85,6 +85,8 @@ return (
     </div>
     <div>
     <button className='FormButton' type="submit">Continue</button>
+    </div>
+    <div>
     <button className="FormButton" onClick={DemoUserLogin}>Demo User</button>
     </div>
   </form>

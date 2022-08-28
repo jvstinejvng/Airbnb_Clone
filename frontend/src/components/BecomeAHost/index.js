@@ -55,13 +55,18 @@ const SpotForm = () => {
   return (
     <>
     { sessionUser && (
-    <form className='SpotForm' onSubmit={handleSubmit}>
+      <div className='HostContainer'>
+    <form className='HostForm' onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <label className="userInputField">
+      <div className="HostFormTitle">
+          You’ll be a Host soon! <br/>
+          Just add the last few details to your listing.
+        </div>
+      <label className="HostInputField">
         Name
         <input 
           type="text"
@@ -71,7 +76,7 @@ const SpotForm = () => {
           required
         />
       </label >
-      <label className="userInputField">
+      <label className="HostInputField">
         Address
         <input
           type="text"
@@ -81,7 +86,7 @@ const SpotForm = () => {
           required
         />
       </label>
-      <label className="userInputField">
+      <label className="HostInputField">
         City
         <input
           type="text"
@@ -91,7 +96,7 @@ const SpotForm = () => {
           required
         />
       </label>
-      <label className="userInputField">
+      <label className="HostInputField">
         State
         <input
           type="text"
@@ -101,7 +106,7 @@ const SpotForm = () => {
           required
         />
       </label>
-      <label className="userInputField">
+      <label className="HostInputField">
         Country
         <input
           type="text"
@@ -111,7 +116,7 @@ const SpotForm = () => {
           required
         />
       </label>
-      <label className="userInputField">
+      <label className="HostInputField">
         Latitude
         <input
           type="text"
@@ -121,7 +126,7 @@ const SpotForm = () => {
           required
         />
       </label>
-      <label className="userInputField">
+      <label className="HostInputField">
         Longitude
         <input
           type="text"
@@ -131,7 +136,7 @@ const SpotForm = () => {
           required
         />
       </label>
-      <label className="userInputField">
+      <label className="HostInputField">
         Description
         <input
           type="text"
@@ -141,7 +146,7 @@ const SpotForm = () => {
           required
         />
       </label>
-      <label className="userInputField">
+      <label className="HostInputField">
         Price
         <input
           type="text"
@@ -150,7 +155,7 @@ const SpotForm = () => {
           required
         />
         </label>
-      <label className="userInputField">
+      <label className="HostInputField">
         Image
         <input
           type="text"
@@ -160,8 +165,9 @@ const SpotForm = () => {
           required
         />
       </label>
-      <button className="FormButton" type="submit">Create Spot</button>
+      <button className="HostButton" type="submit">Create Listing</button>
     </form>
+    </div>
     )}
   </>
   );

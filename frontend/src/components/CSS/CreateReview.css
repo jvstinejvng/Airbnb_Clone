@@ -1,0 +1,71 @@
+
+.ReviewForm {
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: 8%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #222222;
+}
+
+.ReviewInputContainer{
+    margin: 20px;
+}
+
+.ReviewInputField {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 5px;
+    padding: 6px 10px;
+    width: 500px;
+    height: 48px;
+    border-radius: 12px;
+    border: 1px solid rgb(145, 144, 144);
+    font-size: 13px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: lighter;
+    color: rgb(145, 144, 144);
+}
+  
+.ReviewInputField input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 0;
+    width: 500px;
+    height: 30px;
+    box-sizing: border-box;
+    margin: 5px 0 px 0;
+    color: rgb(23, 23, 23);
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif !important; 
+}
+
+/* form button */
+.ReviewFormButton {
+    cursor: pointer;
+    position: relative;
+    width: 300px;
+    height: 50px;
+    border-radius: 10px;
+    border: 0;
+    transition: 0.6s;
+    background-size: 200% auto;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    margin: 3px 0 3px 0;
+    background-image: linear-gradient(to right,rgb(255, 56, 92) 0%, rgb(215, 4, 102) 51%, rgb(230, 30, 77) 100%);
+    }
+    
+.ReviewFormButton:hover {
+    background-position: right center;  
+}
+   
