@@ -95,11 +95,7 @@ const ListingDetails = () => {
         )}
 
         <div className="Line2"></div>
-
-        
         <div className="ReviewContainer">
-
-
           <div>
             <SpotReview spotId={spotId}/>
           </div>

@@ -248,7 +248,7 @@
     transition: 0.5s;
     margin: 5px;
     box-shadow: 0 0 20px #eee;
-    background-image: linear-gradient(to right,rgb(215, 4, 102) 0%, rgb(227, 28, 95) 51%, rgb(230, 30, 77) 100%);
+    background-image: linear-gradient(to right,rgb(255, 56, 92) 0%, rgb(215, 4, 102) 51%, rgb(230, 30, 77) 100%);
 }
 
 .CreateReviewButton:hover {
@@ -260,6 +260,23 @@
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     color: white;
+    font-weight: 500;
     text-align: center;
     text-decoration: none;
+}
+
+.ListingButton {
+    display: inline-flex;   
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    border-radius: 12px;
+    width: 10%;
+    height: auto;
+    border: 1px solid rgb(221, 221, 221);
+    margin: 5px;
+    color: #222222;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
 }
