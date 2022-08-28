@@ -1,0 +1,36 @@
+.mySpots {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    width: fit-content;
+    padding-right: 25px;
+    padding-left: 25px;
+    margin-bottom: 15px;
+}
+
+.spotDetails {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-weight: bold;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.UserListingImg {
+    width: 30%;
+    object-fit: cover;
+
+}
+
+.spotsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+

@@ -33,7 +33,7 @@ const UserSpots = () => {
               <div className="spotDetails">
                 <div >{spot.name}</div>
                 <img
-                  className="detaiUserlImg"
+                  className="UserListingImg"
                   src={spot.previewImage}
                   alt={spot.name}
                 ></img>

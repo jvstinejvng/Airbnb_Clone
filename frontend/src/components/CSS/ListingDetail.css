@@ -76,18 +76,15 @@
 
 .ImageGrid img {
     display: flex;
-    max-height: 750px;
-    max-width: 50%;
+    max-height: 755px;
     padding: 10px 10px 10px 0;
-
 }
 
 .ListingPreviewLargeImg {
     width: 750px;
-    height: 750px;
+    height: auto;
     object-fit: cover;
     border-radius: 20px 0px 00px 20px;
-
 }
 
 .ImageGrid .ListingSideImg {
@@ -96,24 +93,26 @@
     flex-wrap: wrap;
     width: 100%;
     border-radius: 20px 0px 0px 20px;
+    object-fit: cover;
 
 }
 
 .ImageGrid .ListingSideImg img {
-    max-height: 50%;
-    max-width: 50%;
+    height: 50%;
+    width: 50%;
     object-fit: cover;
     box-sizing: border-box;
 }
 
 .MiddleImgs {
     border-radius: 0px 0px 0px 0px;
+
 }
 
 .RightSideImg {
     border-radius: 0px 20px 20px 0px;
-}
 
+}
 
 /* full service pet care by sitter container */
 .ListHost {
