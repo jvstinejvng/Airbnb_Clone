@@ -21,13 +21,13 @@ const ListingDetails = () => {
 
   const spot = useSelector((state) => state.spots[spotId]);
   const sessionUser = useSelector((state) => state.session.user);
+  const [IsLoaded, setIsLoaded] = useState(false);
 
+  console.log(spot)
 
   useEffect(() => {
-    if (!spot) {
-      dispatch(findASpot(spotId));
-    }
-  }, [dispatch, spotId, spot]);
+      dispatch(findASpot(spotId)).then( () => setIsLoaded(true))
+  }, [dispatch]);
 
   const handleDelete = (e) => {
     e.preventDefault();
@@ -41,8 +41,8 @@ const ListingDetails = () => {
   };
 
 
-  return (
-    spot && (
+  return IsLoaded && (
+      (
     <>
       <div className="ListingPage">
         <div>

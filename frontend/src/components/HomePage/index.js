@@ -14,7 +14,6 @@ const SpotsPage = () => {
   const spotsString = JSON.stringify(spots);
 
 
-
   useEffect(() => {
     getAllSpots(dispatch);
   }, [dispatch, spotsString]);
