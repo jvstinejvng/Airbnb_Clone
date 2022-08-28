@@ -80,7 +80,7 @@ module.exports = {
         name: 'Extra Plush Pillow Cat Bed in a Royal Firehouse Home',
         description: "Be a Queen(or King!) and give your adorable kitty the royal treatment. Hi, I'm Mia; some of you may recognize my name and my cat, Fat Louie. Yes, I am the Mia, Princess of Genovia. I am back home for a few months to unwind and recharge from my royal duties! My schedule for the upcoming months is to cuddle with as many kitties as possible, as that is my favorite pastime activity. My mother, Fat Louie, and I open our eccentric firehouse home to all our feline pals needing short-term care and lots of cuddles. We only accept one kitty guest at a time, leaving you confident that your cat will be loved as if they were our own.",
         price: 75,
-        previewImage: 'https://static.onecms.io/wp-content/uploads/sites/13/2017/08/07/picture-of-the-princess-diaries-fat-louie-photo.jpg',
+        previewImage: 'https://pbs.twimg.com/media/BzmxiYkIUAElCbg.png',
       },
       {
         ownerId: 2,

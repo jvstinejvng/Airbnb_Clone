@@ -20,26 +20,26 @@ const UserSpots = () => {
   }, [dispatch]);
 
   return (
-    <div className="spotsContainer">
-      <h2>My Spots</h2>
-      <div className="detailSpot">
+    <div className="MyListingContainer">
+      <h2>Review your listings</h2>
+      <div className="AllMyListing">
         {loaded &&
           spotsList.map((spot) => (
             <div
-              className="mySpots"
+              className="MyListings"
               key={spot.id}
               onClick={() => handleClick(spot)}
             >
-              <div className="spotDetails">
-                <div >{spot.name}</div>
+              <div className="MyIndividualListing">
+                <div className="MyListingTitle" >
+                  <span className="MyListingDetials" >{spot.name}</span>
+                  <span  className="MyListingDetials" >{spot.city}, {spot.state}</span>
+                </div>
                 <img
                   className="UserListingImg"
                   src={spot.previewImage}
                   alt={spot.name}
                 ></img>
-                <div>
-                  {spot.city}, {spot.state}
-                </div>
                 {/* <p className="DetailDescription">{spot.description}</p> */}
                 {/* <p className="ListingPrice">${spot.price} night</p> */}
               </div>

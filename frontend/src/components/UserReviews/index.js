@@ -41,8 +41,8 @@ function UserReviews() {
                       <h4>Review for {review.Spot.name}</h4>
                       <div>{review.stars} out of 5 Paws</div>
                       <div>{review.review}</div>
-                        <div className="DeleteButton">
-                          <button  onClick={handleDeleteClick(review.id)}>Delete this Review</button>
+                        <div>
+                          <button  className="DeleteButton" onClick={handleDeleteClick(review.id)}>Delete this review</button>
                         </div>
                     </div>
                   ))}
