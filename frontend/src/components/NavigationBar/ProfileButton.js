@@ -50,7 +50,11 @@ useEffect(() => {
       </>
     )}
     <div className="NavBarRight-MenuHost">
-      { user && <NavLink className='HostButton' to='/spots/create'>Become a Pet Sitter</NavLink> }
+      { user && 
+        <div className='HostButtonText'>
+        <NavLink className='HostButtonText' to='/spots/create'>Become a pet sitter</NavLink> 
+        </div>
+      }
         <button className="DropDownMenuIcon" onClick={openMenu}>
           <i className="fas fa-bars"/> <i className="fas fa-user-circle"/>
           </button>
@@ -60,14 +64,15 @@ useEffect(() => {
         <div className="NavBarShowMenu">
           { !user && (
             <div className="NavBarShowMenu">
-               <div className="MenuHighlight">
-               <NavLink className="MenuOptionNavLinks" 
-                onClick={()=> setModalSignup(true)} to='/'>Sign up</NavLink>
-                </div>
                 <div className="MenuHighlight">
                 <NavLink className="MenuOptionNavLinks" 
                 onClick={()=> setLoginModal(true)} to='/'>Log in</NavLink>
                 </div>
+               <div className="MenuHighlight">
+               <NavLink className="MenuOptionNavLinks" 
+                onClick={()=> setModalSignup(true)} to='/'>Sign up</NavLink>
+                </div>
+          
             </div>
             )}     
           { user && (

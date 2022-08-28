@@ -160,7 +160,6 @@ const SpotForm = () => {
           required
         />
       </label>
-      <div></div>
       <button className="FormButton" type="submit">Create Spot</button>
     </form>
     )}
