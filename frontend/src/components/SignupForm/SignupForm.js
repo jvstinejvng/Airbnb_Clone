@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
-import "../CSS/SignUpInForm.css"
 
+import "../CSS/SignUpInForm.css"
 
 function SignupFormPage({ModalSignup, setModalSignup}) {
   const dispatch = useDispatch();
@@ -26,18 +26,22 @@ function SignupFormPage({ModalSignup, setModalSignup}) {
             });
     }
     return setErrors(['Confirm Password field must be the same as the Password field']);
-};
+  };
 
-    return (
-      <div className='formPage'>
-        <button type="button" className="modalClose" onClick={()=>{setModalSignup(!ModalSignup)}}>
-        <i className="fas fa-xmark" />
-      </button>
-  
-      <form onSubmit={handleSubmit} className='signupForm'>
-        <div>
+  return (
+    <div className="FormPage">
+        <div className="LoginSignupText">
+        <button  className="ModalClose" onClick={()=>{setModalSignup(!ModalSignup)}}>
+            <span className="XIcon">&#10005;</span>
+          </button>
+            Log in or sign up
+        </div>
+
+      <form onSubmit={handleSubmit} >
+        <div className="WelcomeText">
           <h2>Welcome to Petbnb</h2>
         </div>
+        <div className="InputField">
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
@@ -52,7 +56,7 @@ function SignupFormPage({ModalSignup, setModalSignup}) {
               required />
           </label>
         </div>
-        <div className="userInputField">
+        <div className="userInputField2">
           Last Name
           <label>
             <input
@@ -63,7 +67,7 @@ function SignupFormPage({ModalSignup, setModalSignup}) {
               required />
           </label>
         </div>
-        <div className="userInputField">
+        <div className="userInputField2">
           Email
           <label>
             <input
@@ -74,7 +78,7 @@ function SignupFormPage({ModalSignup, setModalSignup}) {
               required />
           </label>
         </div>
-        <div className="userInputField">
+        <div className="userInputField2">
           Password
           <label>
             <input
@@ -85,11 +89,10 @@ function SignupFormPage({ModalSignup, setModalSignup}) {
               required />
           </label>
         </div>
-        <div className="userInputField">
+        <div className="userInputField3">
           Confirm Password
           <label>
             <input
-              className="CPInput focus-visible"
               placeholder="Confirm Password"
               type="password"
               value={confirmPassword}
@@ -97,9 +100,11 @@ function SignupFormPage({ModalSignup, setModalSignup}) {
               required />
           </label>
         </div>
+        </div>
         <button type="submit" className="FormButton">Continue</button>
       </form>
-      </div>
+     
+  </div>
   );
 }
 

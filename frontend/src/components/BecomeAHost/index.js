@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as spotActions from "../../store/spots";
-import "./form.css";
+import "../CSS/BecomeAHost.css";
+
 
 const SpotForm = () => {
   const dispatch = useDispatch();

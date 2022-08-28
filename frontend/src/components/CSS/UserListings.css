@@ -19,14 +19,12 @@
     width: 300px;
 }
 
-
 .spotDetails {
     display: flex;
     align-items: center;
     flex-direction: column;
     margin-top: 100px;
     padding-left: 90px;
-
-    
+  
 }
 

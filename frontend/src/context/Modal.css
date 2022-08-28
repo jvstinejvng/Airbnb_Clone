@@ -1,3 +1,4 @@
+/* aligning the model(pop up) in the center of the screen */
 #modal {
   position: fixed;
   top: 0;
@@ -9,24 +10,41 @@
   align-items: center;
 }
 
+/* tinted background */
 #modal-background {
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.50);
 }
 
+/* modal container */
 #modal-content {
   position: absolute;
-  background-color:white;
+  background-color: transparent;  
+
 }
 
-.modalClose {
-  margin-top: 5px;
-  margin:-left 5px;
-  border: 0px white;
-  background: 0px white;
+/* On screens that are 992px or less */
+@media screen and (max-width: 992px) {
+  #modal-content {
+    position: relative;
+  }
+}
 
+/* On screens that are 480px or less */
+@media screen and (max-width: 480px) {
+  #modal-content {
+    position: relative;
+  }
+}
+
+/* model close button */
+.ModalClose {
+  border: 0px transparent;
+  background-color: transparent;
+  position: absolute;
+  left: 0;
 }

@@ -9,7 +9,7 @@ h1 {
     text-align: left;
 }
 
-.ReviewHeader{
+.ReviewHeader {
     z-index: 1;
     position: fixed;
     margin: 275px 0px 0px 0px;
@@ -45,8 +45,6 @@ h1 {
     padding: 15px;
 }
 
-
-
 .ReviewFormButton {
     padding: 0 16px;
     width: 528px;
@@ -61,8 +59,6 @@ h1 {
     box-shadow: 0 0 20px #eee;
     background-image: linear-gradient(to right,rgb(215, 4, 102) 0%, rgb(227, 28, 95) 51%, rgb(230, 30, 77) 100%);
 }
-
-
 
 .ReviewFormButton:hover {
   background-position: right center;  

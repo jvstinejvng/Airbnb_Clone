@@ -39,56 +39,57 @@ function LoginForm({setLoginModal, LoginModal}) {
     );
   }
 
-  return (
-    <div className='formPage'>
-      <button
-      type="button"
-      className="modalClose"
-      onClick={()=>{setLoginModal(!LoginModal)}}>
-      <i className="fas fa-xmark" />
-      </button>
-  
-    <form onSubmit={handleSubmit} className='loginFormBox'>
-      <div>
-        <h2>Petbnb Log in</h2>
-      </div>
-      <ul>
-        {errors.message}
-      </ul>
-      <div className='userInputField'>
-      <label>
-        Email
-        <input
-          id='input'
-          type="text"
-          value={email}
-          onChange={(e) => setCredential(e.target.value)}
-          required
-          />
-      </label>
-      </div>
-
-      <div className='userInputField'>
-      Password
-      <label>
-        <input
-          id='input'
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      </div>
-      <div>
-      <button className='FormButton' type="submit">Continue</button>
-      </div>
-      <div>
-      <button className="FormButton" onClick={DemoUserLogin}>Demo User</button>
-      </div>
-    </form>
+return (
+    <div className='FormPage'>
+    <div className="LoginSignupText">
+      <button type="button" className="ModalClose" onClick={()=>{setLoginModal(!LoginModal)}}>
+      <span className="XIcon">&#10005;</span>
+    </button>
+    Log in or sign up
     </div>
-  );
+    
+    <form onSubmit={handleSubmit} >
+    <div  className="WelcomeText">
+      <h2>Welcome to Petbnb</h2>
+    </div>
+    <div className="InputField">
+    <ul>
+      {errors.message}
+    </ul>
+    <div className='userInputField'>
+    <label>
+      Email
+      <input
+        id='input'
+        placeholder="Email"
+        type="text"
+        value={email}
+        onChange={(e) => setCredential(e.target.value)}
+        required
+        />
+    </label>
+    </div>
+    <div className='userInputField3'>
+    Password
+    <label>
+      <input
+        id='input'
+        placeholder="Password"
+        type="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+      />
+    </label>
+    </div>
+    </div>
+    <div>
+    <button className='FormButton' type="submit">Continue</button>
+    <button className="FormButton" onClick={DemoUserLogin}>Demo User</button>
+    </div>
+  </form>
+  </div>
+);
 }
 
 export default LoginForm;
