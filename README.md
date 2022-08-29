@@ -40,11 +40,14 @@
 
 ## **Application Features:**
 
-#### Log in & Demo User
-#### Sign up
-#### Homepage & Listings
-#### Create Listing
-#### Reviews
+#### Sign up, Log in & Demo User
+#### Homepage
+#### Listing
+#### Create and edit listing
+#### All Users Reviews
+#### All Users Listings
+#### Write a review
+
 ![petbnb website](demo/petbnb.gif)
 ---------------------------------------------------------------------------
 </div>
