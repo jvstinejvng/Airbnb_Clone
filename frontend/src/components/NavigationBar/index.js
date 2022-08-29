@@ -6,7 +6,6 @@ import ProfileButton from './ProfileButton';
 
 import '../CSS/NavigationBar.css';
 
-
 function NavigationBar(){
   const sessionUser = useSelector(state => state.session.user);
 
