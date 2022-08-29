@@ -57,23 +57,15 @@ router.post('/:spotId/create', requireAuth, async (req, res) => {
   if (stars < 1 || stars > 5) {
     res.status(400);
     res.json({
-      "message": "Validation error",
+      "message": "Stars must be an integer from 1 to 5",
       "statusCode": 400,
-      "errors": {
-        "review": "Review text is required",
-        "stars": "Stars must be an integer from 1 to 5",
-      }
     })
   }
   if (review.length < 5) {
     res.status(400);
     res.json({
-      "message": "Validation error",
+      "message": "Review must be more than 5 characters",
       "statusCode": 400,
-      "errors": {
-        "review": "Review text is required",
-        "stars": "Stars must be an integer from 1 to 5",
-      }
     })
   }
   const currentUser = await Review.findOne({
