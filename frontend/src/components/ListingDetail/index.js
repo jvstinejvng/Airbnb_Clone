@@ -99,7 +99,6 @@ const ListingDetails = () => {
           <div>
             <SpotReview spotId={spotId}/>
           </div>
-
   
         </div>
 

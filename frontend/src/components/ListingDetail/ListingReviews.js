@@ -11,7 +11,8 @@ const SpotReviews = ({spotId}) => {
   const reviews = useSelector((state) => Object.values(state.reviews));
   const sessionUser = useSelector((state) => state.session.user);
   const [ModalReview, setModalReview] = useState(false)
- 
+  const spot = useSelector((state) => state.spots[spotId]);
+
 
   useEffect(() => {
       dispatch(loadReviews(spotId ));
@@ -26,8 +27,9 @@ const SpotReviews = ({spotId}) => {
         </div>
 
         <h3>Reviews</h3>
+
         <div className="UserReview">
-        {reviews.map((reviewState, index) => {
+        { reviews.map((reviewState, index) => {
           return (
             <div className="ListingReviews" key={index}>
               <span className="ReviewUser" >{`${reviewState.userId}`}</span>
@@ -39,7 +41,9 @@ const SpotReviews = ({spotId}) => {
         }
         </div>
 
-        {sessionUser && (
+        {/* && sessionUser.id !== spot.ownerId */}
+        
+        {sessionUser  && (
             <div className = "CreateReviewButton">
               <NavLink className = "CreateReviewText" onClick={()=> setModalReview(true)} to={`/spots/${spotId}`}>Create Review</NavLink>
             </div>

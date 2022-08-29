@@ -195,7 +195,7 @@ router.post("/", requireAuth, async (req, res) => {
     statusCode: 400,
     errors: {},
   };
-
+  
   if (!address) error.errors.address = "Street address is required";
   if (!city) error.errors.city = "City is required";
   if (!state) error.errors.state = "State is required";
