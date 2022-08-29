@@ -48,7 +48,7 @@
 6. All user's listings
 7. Create a review 
 
-![petbnb website](demo/petbnb.gif)
+![petbnb website](Demo/petbnb.gif)
 ---------------------------------------------------------------------------
 </div>
 <div>
