@@ -40,13 +40,13 @@
 
 ## **Application Features:**
 
-#### Sign up, Log in & Demo User
-#### Homepage
-#### Listing
-#### Create and edit listing
-#### All Users Reviews
-#### All Users Listings
-#### Write a review
+1. Sign up, log in & demo user 
+2. Homepage
+3. Listing detail page
+4. Create and edit a listing 
+5. All user's reviews
+6. All user's listings
+7. Create a review 
 
 ![petbnb website](demo/petbnb.gif)
 ---------------------------------------------------------------------------
