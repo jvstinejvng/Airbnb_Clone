@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import * as spotActions from "../../store/spots";
 import "../CSS/BecomeAHost.css";
 
 
 const SpotForm = () => {
+  const sessionUser = useSelector((state) => state.session.user);
 
   const dispatch = useDispatch();
-  const history = useHistory();
-
-
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
@@ -20,45 +18,18 @@ const SpotForm = () => {
   const [lng, setLng] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState(0);
-
+  const [price, setPrice] = useState("");
   const [errors, setErrors] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  const sessionUser = useSelector(state => state.session.user)
-
-  function isImage(url) {
-    return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
-  } 
-
-  useEffect(()=>{
-    const errs= []
-    if (!name) errs.push("Please enter a valid name")
-    if (name.length > 25) errs.push("Name must be less than 25 characters")
-    if (name.length < 2) errs.push("Name must be more than 2 characters")
-    if (!address) errs.push("Please enter a valid address")
-    if (!city) errs.push("Please enter a valid city")
-    if (!state) errs.push("Please enter a valid state")
-    if (!country) errs.push("Please enter a valid country")
-    if (!lat || typeof Number(lat)!== 'number' || Number(lat)>90 || Number(lat)< -90) errs.push("Please enter a valid latitude value")
-    if (!lng || typeof Number(lat)!== 'number' || Number(lng)>180 || Number(lng)<-180) errs.push("Please enter a valid longitude value")
-    if (!description) errs.push("Please enter a valid description")
-    if (!price || typeof Number(price)!=='number') errs.push("Please enter a valid price")
-    if (!isImage(previewImage)) errs.push("Please enter a valid image url")
-    setErrors(errs)
-  }, [address, city, state, name, country,lat, lng, description, price, previewImage])
-
+  if (submitSuccess) {
+    return <Redirect to="/" />;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitSuccess(true);
-    if(errors.length > 0){
-      alert('Cannot submit data')
-      setErrors(false)
-      return
-    }
-      
-    let data =   {
+    setErrors([]);
+    let data = {
       address: address,
       city: city,
       state: state,
@@ -70,12 +41,22 @@ const SpotForm = () => {
       description: description,
       price: price,
     };
-    
-     dispatch(spotActions.createSpot(data));
-     setSubmitSuccess(false);
-      history.push("/")
-
+    return dispatch(spotActions.createSpot(data))
+      .then(async (res) => {
+        setSubmitSuccess(true);
+      })
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data) {
+          if (data.errors) {
+            setErrors(data.errors);
+          } else if (data.message) {
+            setErrors([data.message]);
+          }
+        }
+      });
   };
+
 
   return (
     <>
@@ -86,17 +67,11 @@ const SpotForm = () => {
           You’ll be a Host soon! <br/>
           Just add the last few details to your listing.
         </div>
-      <ul>
-      {errors.length > 0 && (
-        <div className="Errors">
-          <ul className='validation-errors'>
-            {errors.map((error) => (
-              <li key={error}>{error}</li>
-            ))}
-          </ul>
-        </div>
-      )} 
-      </ul>
+        <ul>
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
   
       <label className="HostInputField">
         Name
@@ -151,7 +126,7 @@ const SpotForm = () => {
       <label className="HostInputField">
         Latitude
         <input
-          type="text"
+          type="decimal"
           placeholder="Latitude"
           value={lat}
           onChange={(e) => setLat(e.target.value)}
@@ -161,7 +136,7 @@ const SpotForm = () => {
       <label className="HostInputField">
         Longitude
         <input
-          type="text"
+          type="decimal"
           placeholder="Longitude"
           value={lng}
           onChange={(e) => setLng(e.target.value)}
@@ -181,7 +156,8 @@ const SpotForm = () => {
       <label className="HostInputField">
         Price
         <input
-          type="text"
+          type="decimal"
+          placeholder="price"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
           required

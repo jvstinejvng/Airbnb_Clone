@@ -9,11 +9,9 @@ import "../CSS/CreateReview.css";
 
 const CreateReview = ({ModalReview,setModalReview}) => {
   const dispatch = useDispatch();
-  let {spotId} = useParams();
+  let { spotId } = useParams();
   spotId = Number(spotId);
-
-  
-  const [reviewText, setreviewText] = useState("");
+  const [reviewMessage, setReviewMessage] = useState("");
   const [stars, setStars] = useState("");
   const [errors, setErrors] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -21,28 +19,24 @@ const CreateReview = ({ModalReview,setModalReview}) => {
   if (submitSuccess) {
     return <Redirect to={`/spots/${spotId}`} />;
   }
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
     setErrors([]);
-    
     let data = {
-      review: reviewText,
+      review: reviewMessage,
       stars: stars,
     };
-
-     return dispatch(reviewActions.createReviews(spotId, data))
+    return dispatch(reviewActions.createReviews(spotId, data))
       .then(async (res) => {
         setSubmitSuccess(true);
-        setModalReview(false);
+        setModalReview(false)
       })
       .catch(async (res) => {
         const error = await res.json();
         if (error) setErrors([error.message]);
       });
-  }
-
+  };
 
   return (
     <div className="Reviews">
@@ -63,8 +57,8 @@ const CreateReview = ({ModalReview,setModalReview}) => {
         <input 
           type="text"
           placeholder="Review Message"
-          value={reviewText}
-          onChange={(e) => setreviewText(e.target.value)}
+          value={reviewMessage}
+          onChange={(e) => setReviewMessage(e.target.value)}
           required
         />
       </label>
