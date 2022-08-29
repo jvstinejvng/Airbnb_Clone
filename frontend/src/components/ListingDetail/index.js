@@ -23,8 +23,6 @@ const ListingDetails = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const [IsLoaded, setIsLoaded] = useState(false);
 
-  console.log(spot)
-
   useEffect(() => {
       dispatch(findASpot(spotId)).then( () => setIsLoaded(true))
   }, [dispatch]);
@@ -39,6 +37,7 @@ const ListingDetails = () => {
     e.preventDefault();
     history.push(`/spots/${spotId}/edit`);
   };
+
 
 
   return IsLoaded && (
@@ -95,12 +94,19 @@ const ListingDetails = () => {
         )}
 
         <div className="Line2"></div>
+
         <div className="ReviewContainer">
           <div>
             <SpotReview spotId={spotId}/>
           </div>
   
         </div>
+
+        {/* { sessionUser  && (
+            <div className = "CreateReviewButton">
+              <NavLink className = "CreateReviewText" onClick={()=> setModalReview(true)} to={`/spots/${spotId}`}>Create Review</NavLink>
+            </div>
+        )} */}
 
         <div className="Line2"></div>
 

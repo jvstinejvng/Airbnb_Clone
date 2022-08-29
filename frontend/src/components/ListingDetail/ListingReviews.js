@@ -32,8 +32,8 @@ const SpotReviews = ({spotId}) => {
         { reviews.map((reviewState, index) => {
           return (
             <div className="ListingReviews" key={index}>
-              <span className="ReviewUser" >{`${reviewState.userId}`}</span>
-              <span className="ReviewPaws">{`${reviewState.stars} paws`}</span>
+              <span className="ReviewUser" >review by owner {`${reviewState.userId}`}</span>
+              <span className="ReviewPaws">{`${reviewState.stars}`} paws</span>
               <span className="ReviewText">{`${reviewState.review}`}</span>
             </div>
           )
@@ -47,6 +47,7 @@ const SpotReviews = ({spotId}) => {
             <div className = "CreateReviewButton">
               <NavLink className = "CreateReviewText" onClick={()=> setModalReview(true)} to={`/spots/${spotId}`}>Create Review</NavLink>
             </div>
+  
         )}
 
       </div>

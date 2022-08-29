@@ -24,14 +24,18 @@ const CreateReview = ({ModalReview,setModalReview}) => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
+
     setErrors([]);
+    
     let data = {
       review: reviewText,
       stars: stars,
     };
-    return dispatch(reviewActions.createReviews(spotId, data))
+
+     return dispatch(reviewActions.createReviews(spotId, data))
       .then(async (res) => {
         setSubmitSuccess(true);
+        setModalReview(false);
       })
       .catch(async (res) => {
         const error = await res.json();

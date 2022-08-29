@@ -4,6 +4,8 @@ const { Image, Review, Spot, User } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const router = express.Router();
+const { Op } = require("sequelize");
+
 
 // get all reviews
 router.get("/", async (req, res) => {
@@ -38,57 +40,54 @@ router.get("/current-user-review", requireAuth, async (req, res) => {
 
 // create a Review for a Spot based on the Spot's id
 router.post('/:spotId/create', requireAuth, async (req, res) => {
-  const spotId = req.params.spotId;
-  const id = req.user.id;
-  const { review, stars } = req.body;
+    const { review, stars } = req.body;
+    const spots = await Spot.findByPk(req.params.spotId);
 
-  const currentSpot = await Spot.findOne({
-    where: { id: spotId}
+    if (!spots) {
+      return res.status(404).json({
+        message: "Spot couldn't be found",
+        statusCode: 404,
+      });
+    }
+  
+    const checkIfReviewExists = await Review.findAll({
+      where: {
+        [Op.and]: [
+          { spotId: req.params.spotId },
+          { userId: req.user.id },
+        ],
+      },
+    });
+  
+    if (checkIfReviewExists.length >= 1) {
+      return res.status(403).json({
+        message: "User already has a review for this property",
+        statusCode: 403,
+      });
+    }
+
+    if (stars < 1 || stars > 5) {
+      res.status(400).json({
+        message: "Stars must be an integer from 1 to 5",
+        statusCode: 400,
+      })
+    }
+    if (review.length < 5) {
+      res.status(400).json({
+        message: "Review must be more than 5 characters",
+        statusCode: 400,
+      })
+    }
+  
+    const newReview = await Review.create({
+      // userId: req.user.id,
+      // spotId: req.params.spotId,
+      review,
+      stars,
+    });
+  
+    res.json(newReview);
   });
-
-  if (!currentSpot) {
-    res.status(404);
-    res.json({
-      "message": "Spot couldn't be found",
-      "statusCode": 404
-    })
-  }
-
-  if (stars < 1 || stars > 5) {
-    res.status(400);
-    res.json({
-      "message": "Stars must be an integer from 1 to 5",
-      "statusCode": 400,
-    })
-  }
-  if (review.length < 5) {
-    res.status(400);
-    res.json({
-      "message": "Review must be more than 5 characters",
-      "statusCode": 400,
-    })
-  }
-  const currentUser = await Review.findOne({
-    where: { userId: id, spotId: spotId }
-  })
-
-  if(currentUser) {
-    res.status(403);
-    res.json({
-      "message": "User already has a review for this spot",
-      "statusCode": 403
-    })
-  }
-
-  const newReview = await Review.create({
-    userId: id,
-    spotId: spotId,
-    review,
-    stars,
-  })
-
-  res.json(newReview)
-})
 
 // edit a review
 router.put('/:reviewId', requireAuth, async(req, res) => {
