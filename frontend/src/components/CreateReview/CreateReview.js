@@ -41,7 +41,7 @@ const CreateReview = ({ModalReview,setModalReview}) => {
 
 
   return (
-    <div clasNames="Reviews">
+    <div className="Reviews">
     <form className="ReviewForm" onSubmit={handleSubmit}>
     <div>
           <h2>Tell us about your experience</h2>
