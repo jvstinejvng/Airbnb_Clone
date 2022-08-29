@@ -13,15 +13,21 @@
   cursor:pointer;
 }
 
-
 .HostFormTitle {
   font-weight: 600;
   font-size: 20px;
   color: #222222;
   font-family: 'Montserrat', sans-serif;
   position: relative;
-  padding: 20px 0px 20px 10px;
+  padding: 20px 0px 0px 10px;
 
+}
+
+.Errors {
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  font-size: 14px;
+  display: flex;
 }
 
 .HostInputField {

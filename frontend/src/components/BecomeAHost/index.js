@@ -33,11 +33,9 @@ const SpotForm = () => {
 
   useEffect(()=>{
     const errs= []
-    if (!isImage(previewImage)) errs.push("Please enter a valid image url")
-    console.log(name, "name")
-    console.log(address, "234main")
     if (!name) errs.push("Please enter a valid name")
-    if (name.length>50) errs.push("Name must be less than 50 characters")
+    if (name.length > 25) errs.push("Name must be less than 25 characters")
+    if (name.length < 2) errs.push("Name must be more than 2 characters")
     if (!address) errs.push("Please enter a valid address")
     if (!city) errs.push("Please enter a valid city")
     if (!state) errs.push("Please enter a valid state")
@@ -46,8 +44,7 @@ const SpotForm = () => {
     if (!lng || typeof Number(lat)!== 'number' || Number(lng)>180 || Number(lng)<-180) errs.push("Please enter a valid longitude value")
     if (!description) errs.push("Please enter a valid description")
     if (!price || typeof Number(price)!=='number') errs.push("Please enter a valid price")
-    // setSubmitSuccess(errs)
-    console.log("errors", errs)
+    if (!isImage(previewImage)) errs.push("Please enter a valid image url")
     setErrors(errs)
   }, [address, city, state, name, country,lat, lng, description, price, previewImage])
 
@@ -85,10 +82,13 @@ const SpotForm = () => {
     { sessionUser && (
       <div className='HostContainer'>
     <form className='HostForm' onSubmit={handleSubmit}>
+      <div className="HostFormTitle">
+          You’ll be a Host soon! <br/>
+          Just add the last few details to your listing.
+        </div>
       <ul>
       {errors.length > 0 && (
-        <div>
-          errors were found:
+        <div className="Errors">
           <ul className='validation-errors'>
             {errors.map((error) => (
               <li key={error}>{error}</li>
@@ -96,12 +96,8 @@ const SpotForm = () => {
           </ul>
         </div>
       )} 
-       
       </ul>
-      <div className="HostFormTitle">
-          You’ll be a Host soon! <br/>
-          Just add the last few details to your listing.
-        </div>
+  
       <label className="HostInputField">
         Name
         <input 
