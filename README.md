@@ -45,7 +45,7 @@
 #### Homepage & Listings
 #### Create Listing
 #### Reviews
-
+![petbnb website](demo/petbnb.gif)
 ---------------------------------------------------------------------------
 </div>
 <div>
