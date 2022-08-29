@@ -10,7 +10,7 @@
 ### [Petbnb Wiki](https://github.com/jvstinejvng/Airbnb_Clone/wiki)
 ### [Current Features](https://github.com/jvstinejvng/Airbnb_Clone/wiki/Current-Features)
 ### [Database Schema](https://github.com/jvstinejvng/Airbnb_Clone/wiki/Database-Schema)
-
+### [Redux State Shape](https://github.com/jvstinejvng/Airbnb_Clone/wiki/Redux-State-Shape)
 </div>
 
 <div align="center">
