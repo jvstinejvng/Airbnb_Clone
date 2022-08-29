@@ -31,7 +31,6 @@ const CreateReview = ({ModalReview,setModalReview}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     let data = {
       review: reviewMessage,
       stars: stars,
@@ -42,15 +41,14 @@ const CreateReview = ({ModalReview,setModalReview}) => {
       setErrors(errors);
       return;
     }
+
      dispatch(reviewActions.createReviews(spotId, data)).then(
       async (res) => {
         setSubmitSuccess(true);
-        setModalReview(false)
+        setModalReview(false);
       }
     );
   };
-
-
 
   return (
     <div className="Reviews">
@@ -58,11 +56,15 @@ const CreateReview = ({ModalReview,setModalReview}) => {
     <div>
           <h2>Tell us about your experience</h2>
         </div>
+
+        {errors ?? (
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
+      )}
+
       <div className="ReviewInputContainer">
       <label className="ReviewInputField">
         Message:

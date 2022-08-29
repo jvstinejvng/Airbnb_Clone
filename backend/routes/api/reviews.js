@@ -46,14 +46,14 @@ router.get("/current-user-review", requireAuth, async (req, res) => {
 // create a Review for a Spot based on the Spot's id
 router.post('/:spotId/create', requireAuth, async (req, res) => {
     const { review, stars } = req.body;
-    const spot = await spot.findByPk(req.params.spotId);
+    const spots = await Spot.findByPk(req.params.spotId);
     const err = {
       message: "Validation error",
       statusCode: 400,
       errors: {},
     };
 
-    if (!spot) {
+    if (!spots) {
       return res.status(404).json({
         message: "Spot couldn't be found",
         statusCode: 404,
@@ -92,8 +92,7 @@ router.post('/:spotId/create', requireAuth, async (req, res) => {
     review,
     stars,
   });
-
-  res.json(newReview);
+    res.json(newReview);
   });
 
 // edit a review
