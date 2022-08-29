@@ -6,9 +6,9 @@ import "../CSS/BecomeAHost.css";
 
 
 const SpotForm = () => {
+  const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
 
-  const dispatch = useDispatch();
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
@@ -18,13 +18,30 @@ const SpotForm = () => {
   const [lng, setLng] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState(1);
   const [errors, setErrors] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
   if (submitSuccess) {
     return <Redirect to="/" />;
   }
+
+  const validations = () => {
+    const errors = [];
+    if (!address) errors.push("Please enter an address");
+    if (!city) errors.push("Please enter a city");
+    if (!state) errors.push("Please enter a state");
+    if (!country) errors.push("Please enter a country");
+    if (!previewImage) errors.push("Please include a preview image");
+    if (name.length < 2)
+      errors.push("Please enter a name with a length greater than 2");
+    if (!description) errors.push("Please include a description");
+    if (!previewImage) errors.push("Please include a preview image!");
+    if (name.length > 50)
+      errors.push("Please include a name with a length that is less than 50");
+    if (previewImage.length > 255) (errors.push("Please include a different image URL that is less than 255 characters"))
+    return errors;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,19 +58,20 @@ const SpotForm = () => {
       description: description,
       price: price,
     };
+
+    const validationErrors = validations();
+    if (validationErrors.length > 0) {
+      setErrors(validationErrors)
+      return;
+    }
+
     return dispatch(spotActions.createSpot(data))
       .then(async (res) => {
         setSubmitSuccess(true);
       })
       .catch(async (res) => {
         const data = await res.json();
-        if (data) {
-          if (data.errors) {
-            setErrors(data.errors);
-          } else if (data.message) {
-            setErrors([data.message]);
-          }
-        }
+        if (data && data.errors) setErrors(data.errors);
       });
   };
 
@@ -156,7 +174,8 @@ const SpotForm = () => {
       <label className="HostInputField">
         Price
         <input
-          type="decimal"
+          type="number"
+          min={1}
           placeholder="price"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
