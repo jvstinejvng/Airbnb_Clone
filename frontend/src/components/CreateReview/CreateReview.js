@@ -20,23 +20,35 @@ const CreateReview = ({ModalReview,setModalReview}) => {
     return <Redirect to={`/spots/${spotId}`} />;
   }
 
+  const validations = () => {
+    const errors = [];
+    if (reviewMessage.length < 5)
+      errors.push("Review character count must be 5 or greater");
+    if (stars > 5 || stars < 1)
+      errors.push("Please enter a number from 1 to 5 stars");
+    return errors;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors([]);
     let data = {
       review: reviewMessage,
       stars: stars,
     };
-    return dispatch(reviewActions.createReviews(spotId, data))
-      .then(async (res) => {
+
+    const errors = validations();
+    if (errors.length) {
+      setErrors(errors);
+      return;
+    }
+    return dispatch(reviewActions.createReviews(spotId, data)).then(
+      async (res) => {
         setSubmitSuccess(true);
         setModalReview(false)
-      })
-      .catch(async (res) => {
-        const error = await res.json();
-        if (error) setErrors([error.message]);
-      });
+      }
+    );
   };
+
 
   return (
     <div className="Reviews">
