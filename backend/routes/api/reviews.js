@@ -2,9 +2,14 @@ const express = require("express");
 const { setTokenCookie, requireAuth, restoreUser } = require("../../utils/auth");
 const { Image, Review, Spot, User } = require("../../db/models");
 const { check } = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
-const router = express.Router();
 const { Op } = require("sequelize");
+
+const { handleValidationErrors } = require("../../utils/validation");
+
+
+
+const router = express.Router();
+
 
 
 // get all reviews
@@ -41,9 +46,14 @@ router.get("/current-user-review", requireAuth, async (req, res) => {
 // create a Review for a Spot based on the Spot's id
 router.post('/:spotId/create', requireAuth, async (req, res) => {
     const { review, stars } = req.body;
-    const spots = await Spot.findByPk(req.params.spotId);
+    const spot = await spot.findByPk(req.params.spotId);
+    const err = {
+      message: "Validation error",
+      statusCode: 400,
+      errors: {},
+    };
 
-    if (!spots) {
+    if (!spot) {
       return res.status(404).json({
         message: "Spot couldn't be found",
         statusCode: 404,
@@ -66,27 +76,24 @@ router.post('/:spotId/create', requireAuth, async (req, res) => {
       });
     }
 
-    if (stars < 1 || stars > 5) {
-      res.status(400).json({
-        message: "Stars must be an integer from 1 to 5",
-        statusCode: 400,
-      })
-    }
-    if (review.length < 5) {
-      res.status(400).json({
-        message: "Review must be more than 5 characters",
-        statusCode: 400,
-      })
-    }
-  
-    const newReview = await Review.create({
-      userId: req.user.id,
-      spotId: req.params.spotId,
-      review,
-      stars,
-    });
-  
-    res.json(newReview);
+    if (!review) err.errors.review = "Review text is required";
+
+   
+  if (!review) err.errors.review = "Review text is required";
+  if (stars < 1 || stars > 5)
+    err.errors.stars = "Stars must be an integer from 1 to 5";
+  if (!review || !stars) {
+    return res.status(400).json(err);
+  }
+
+  const newReview = await Review.create({
+    userId: req.user.id,
+    spotId: req.params.spotId,
+    review,
+    stars,
+  });
+
+  res.json(newReview);
   });
 
 // edit a review

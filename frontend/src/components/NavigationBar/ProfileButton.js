@@ -74,10 +74,7 @@ useEffect(() => {
             </div>
             )}     
           { user && (
-            <div className="UserMenuNavBar" >
-              <div className="FirstName" >
-                <span className="text">{user.firstName}</span>
-                </div>
+            <div className="UserMenuNavBar" >              
               <div className="MenuHighlight">
                 <NavLink  className="MenuOptionNavLinks" to='/user/reviews' >Manage reviews</NavLink><p/>
               </div>

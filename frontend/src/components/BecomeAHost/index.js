@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import * as spotActions from "../../store/spots";
 import "../CSS/BecomeAHost.css";
 
 
 const SpotForm = () => {
+
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
+  const history = useHistory();
+
 
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -18,63 +20,59 @@ const SpotForm = () => {
   const [lng, setLng] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState(1);
+  const [price, setPrice] = useState(0);
+
   const [errors, setErrors] = useState([]);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  if (submitSuccess) {
-    return <Redirect to="/" />;
-  }
+  const sessionUser = useSelector(state => state.session.user)
 
-  const validations = () => {
-    const errors = [];
-    if (!address) errors.push("Please enter an address");
-    if (!city) errors.push("Please enter a city");
-    if (!state) errors.push("Please enter a state");
-    if (!country) errors.push("Please enter a country");
-    if (!previewImage) errors.push("Please include a preview image");
-    if (name.length < 2)
-      errors.push("Please enter a name with a length greater than 2");
-    if (!description) errors.push("Please include a description");
-    if (!previewImage) errors.push("Please include a preview image!");
-    if (name.length > 50)
-      errors.push("Please include a name with a length that is less than 50");
-    if (previewImage.length > 255) (errors.push("Please include a different image URL that is less than 255 characters"))
-    return errors;
-  };
+  function isImage(url) {
+    return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
+  } 
+
+  useEffect(()=>{
+    const errs= []
+    if (!name) errs.push("Please enter a valid name")
+    if (name.length > 50) errs.push("Name must be less than 50 characters")
+    if (name.length < 2) errs.push("Name must be more than 2 characters")
+    if (!address) errs.push("Please enter a valid address")
+    if (!city) errs.push("Please enter a valid city")
+    if (!state) errs.push("Please enter a valid state")
+    if (!country) errs.push("Please enter a valid country")
+    if (!lat || typeof Number(lat)!== 'number' || Number(lat)>90 || Number(lat)< -90) errs.push("Please enter a valid latitude value")
+    if (!lng || typeof Number(lat)!== 'number' || Number(lng)>180 || Number(lng)<-180) errs.push("Please enter a valid longitude value")
+    if (!description) errs.push("Please enter a valid description")
+    if (!price) errs.push("Please enter a valid price")
+    if (!isImage(previewImage)) errs.push("Please enter a valid image url")
+    setErrors(errs)
+  }, [address, city, state, name, country,lat, lng, description, price, previewImage])
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors([]);
-    let data = {
-      address: address,
-      city: city,
-      state: state,
-      country: country,
-      previewImage: previewImage,
-      lat: lat,
-      lng: lng,
-      name: name,
-      description: description,
-      price: price,
+    
+    const data =   {
+      address,
+      city,
+      state,
+      country,
+      previewImage,
+      lat,
+      lng,
+      name,
+      description,
+      price,
     };
 
-    const validationErrors = validations();
-    if (validationErrors.length > 0) {
-      setErrors(validationErrors)
-      return;
-    }
+    
+     const newSpot = dispatch(spotActions.createSpot(data));
 
-    return dispatch(spotActions.createSpot(data))
-      .then(async (res) => {
-        setSubmitSuccess(true);
-      })
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      });
+
+      if (newSpot) {
+        history.push("/");
+      }
+
   };
-
 
   return (
     <>
@@ -85,11 +83,12 @@ const SpotForm = () => {
           You’ll be a Host soon! <br/>
           Just add the last few details to your listing.
         </div>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
+
+      <div className="Errors">
+            {errors.map((error) => (
+              <p key={error.id}>{error}</p>
+            ))}
+          </div>
   
       <label className="HostInputField">
         Name
@@ -144,7 +143,7 @@ const SpotForm = () => {
       <label className="HostInputField">
         Latitude
         <input
-          type="decimal"
+          type="number"
           placeholder="Latitude"
           value={lat}
           onChange={(e) => setLat(e.target.value)}
@@ -154,7 +153,7 @@ const SpotForm = () => {
       <label className="HostInputField">
         Longitude
         <input
-          type="decimal"
+          type="number"
           placeholder="Longitude"
           value={lng}
           onChange={(e) => setLng(e.target.value)}
@@ -176,7 +175,6 @@ const SpotForm = () => {
         <input
           type="number"
           min={1}
-          placeholder="price"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
           required
@@ -192,7 +190,7 @@ const SpotForm = () => {
           required
         />
       </label>
-      <button className="HostButton" type="submit">Create Listing</button>
+      <button className="HostButton" type="submit"  disabled={errors.length ? true : false}>Create Listing</button>
     </form>
     </div>
     )}
