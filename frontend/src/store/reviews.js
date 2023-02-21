@@ -1,113 +1,118 @@
-import { csrfFetch } from "./csrf";
+import { csrfFetch } from "./csrf"
 
-const LOAD_ALL_REVIEWS = "/reviews/load";
-const POST_REVIEWS = "/reviews/post";
-const DELETE_REVIEW = "/review/delete";
-const LOAD_USER_REVIEWS = "/reviews/user"
+const GET_ROOM_REVIEWS = 'reviews/GET_ROOM_REVIEWS'
+const ADD_REVIEW = 'reviews/ADD_REVIEW'
+const EDIT_REVIEW = 'reviews/EDIT_REVIEW'
+const DELETE_REVIEW = 'reviews/DELETE_REVIEW'
 
-const deleteReviewAction = (id) => {
-  return {
-    type: DELETE_REVIEW,
-    id,
-  };
-};
+const getRoomReviews = (reviews) => ({
+  type: GET_ROOM_REVIEWS,
+  reviews
+})
 
-const createReviewAction = (review) => {
-  return {
-    type: POST_REVIEWS,
-    review,
-  };
-};
+const addReview = (newReview) => ({
+  type: ADD_REVIEW,
+  newReview
+})
 
-const loadUserReviews = (reviews) => {
-  return {
-    type: LOAD_USER_REVIEWS,
-    reviews
-  }
-}
+const editReview = (review) => ({
+  type: EDIT_REVIEW,
+  review
+})
 
-const loadAllReviews = (reviews) => {
-  return {
-    type: LOAD_ALL_REVIEWS,
-    reviews,
-  };
-};
+const deleteReview = (reviewId) => ({
+  type: DELETE_REVIEW,
+  reviewId
+})
 
 
-export const createReviews = (spotId, review) => async (dispatch) => {
-  const response = await csrfFetch(`/api/reviews/${spotId}/create`, {
-    method: "POST",
-    body: JSON.stringify(review),
-  });
-
-  if (response.ok) {
-    const spotReview = await response.json();
-    dispatch(createReviewAction(spotReview));
-    return spotReview;
-  }
-
-  return response;
-};
-
-// get all reviews of a spot
-export const loadReviews = (spotId) => async (dispatch) => {
-  const response = await fetch(`/api/spots/${spotId}/reviews`);
+export const getAllRoomReviews = (spotId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
 
   if (response.ok) {
     const reviews = await response.json();
-    dispatch(loadAllReviews(reviews));
+    dispatch(getRoomReviews(reviews.Review))
     return reviews;
   }
+}
 
-};
+export const addNewReview = (reviewData) => async (dispatch) => {
+  const { userId, spotId, stars, review } = reviewData;
+  const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      userId, spotId, stars, review
+    })
+  })
 
-//get the current user's reviews
-export const getUserReviews = () => async (dispatch) => {
-  const response = await csrfFetch(`/api/reviews/current-user-review`);
   if (response.ok) {
-    const userReviews = await response.json();
-    dispatch(loadUserReviews(userReviews));
+    const newReview = await response.json()
+    dispatch(addReview(newReview));
+    return newReview;
   }
-  return response;
-};
+}
 
-//delete review
-export const deleteReview = (id) => async (dispatch) => {
-  const response = await csrfFetch(`/api/reviews/${id}`, {
-    method: "DELETE",
-  });
+export const updateReview = (reviewData) => async (dispatch) => {
+  const { reviewId, userId, stars, review } = reviewData;
+  const response = await csrfFetch(`/api/reviews/${reviewId}`, {
+    method: "PUT",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      reviewId, userId, stars, review
+    })
+  })
 
-  const review = await response.json();
-  
-  dispatch(deleteReviewAction(id));
-  return review;
-};
 
-const initialState = {};
-const reviewsReducer = (state = initialState, action) => {
+  if (response.ok) {
+    const review = await response.json()
+    dispatch(editReview(review));
+    return review;
+  }
+}
+
+export const removeReview = (reviewId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/reviews/${reviewId}`, {
+    method: "DELETE"
+  })
+
+  if (response.ok) {
+    const review = await response.json();
+    dispatch(deleteReview(reviewId))
+    return review;
+  }
+}
+
+
+const reviewsReducer = (state = {}, action) => {
+  let newState = {}
   switch (action.type) {
-    case LOAD_ALL_REVIEWS: {
-      const allReviews = action.reviews;
-      return { ...allReviews };
-    };
+    case GET_ROOM_REVIEWS: {
+      for (let review of action.reviews) newState[review.id] = review
+      return newState
+    }
+    case ADD_REVIEW: {
+      newState = { ...state }
+      newState[action.newReview.id] = action.newReview
+      return newState
+    }
+    case EDIT_REVIEW: {
+      newState = { ...state }
+      newState[action.review.id] = action.review
+      return newState
+    }
     case DELETE_REVIEW: {
-      const newState = { ...state };
-      delete newState[action.id];
-      return newState;
-    };
-    case POST_REVIEWS: {
-      const newState = { ...state };
-      newState[action.review.id] = action.review;
-      return newState;
-    };
-    case LOAD_USER_REVIEWS: {
-      const newState = {};
-      action.reviews.forEach(reviews => newState[reviews.id] = reviews);
-      return newState;
+      newState = { ...state }
+      delete newState[action.reviewId]
+      return newState
     }
     default:
       return state;
   }
-};
+}
 
-export default reviewsReducer;
+export default reviewsReducer

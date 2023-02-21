@@ -1,4 +1,4 @@
-// backend/routes/api/reservations.js
+// backend/routes/api/bookings.js
 const { Op } = require('sequelize');
 const express = require('express')
 const { requireAuth } = require('../../utils/auth');

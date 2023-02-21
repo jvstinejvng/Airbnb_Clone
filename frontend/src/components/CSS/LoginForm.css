@@ -1,0 +1,86 @@
+.login-form-button {
+  background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  height: 50px;
+  margin-top: 15px;
+  width: 410px;
+}
+
+.demo-login-form-button {
+  background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  height: 50px;
+  margin: 8px 0 20px;
+  width: 410px;
+}
+
+.login-register-button {
+  background: none;
+  border: 1px solid black;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  height: 50px;
+  margin: 20px 0;
+  width: 410px;
+}
+
+.or-outer {
+  display: flex;
+  align-items: center;
+}
+
+.or-border {
+  border-top: 1px solid rgba(55, 55, 55, 0.269);
+  min-width: 186px;
+}
+
+.login-form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 365px;
+  width: 470px;
+  padding: 10px 0;
+}
+
+.login-input {
+  font-size: 16px;
+  padding-left: 10px;
+  width: 400px;
+  border-radius: 10px;
+}
+
+.email-input {
+  margin-bottom: 0;
+}
+
+.login-header {
+  padding-right: 197px;
+  margin-top: 20px;
+  font-size: 22px;
+  font-weight: normal;
+}
+
+.login-button {
+  background-color: white;
+  border: none;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+/* .login-button:hover {
+  color: rgba(128, 128, 128, 0.297);
+} */
+
+.login-ul {
+  margin: 0.5rem 17rem 0 0;
+}

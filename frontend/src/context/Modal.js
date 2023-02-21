@@ -1,38 +1,39 @@
-import { useContext, createContext, useState, useRef, useEffect } from 'react';
+// frontend/src/context/Modal.js
+import React, { useContext, useRef, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './Modal.css';
 
-export const ModalContext = createContext();
+const ModalContext = React.createContext();
 
-export const ModalProvider = ({ children }) => {
+export function ModalProvider({ children }) {
+  const modalRef = useRef();
+  const [value, setValue] = useState();
 
-    const modalRef = useRef();
-    const [value, setValue] = useState();
+  useEffect(() => {
+    setValue(modalRef.current);
+  }, [])
 
-    useEffect(() => {
-        setValue(modalRef.current)
-    }, []);
-
-    return (
-        <>
-            <ModalContext.Provider value={value}>{children}</ModalContext.Provider>
-            <div ref={modalRef} />
-        </>
-    )
-};
+  return (
+    <>
+      <ModalContext.Provider value={value}>
+        {children}
+      </ModalContext.Provider>
+      <div ref={modalRef} />
+    </>
+  );
+}
 
 export function Modal({ onClose, children }) {
-    const modalNode = useContext(ModalContext);
-    if (!modalNode) return null;
+  const modalNode = useContext(ModalContext);
+  if (!modalNode) return null;
 
-    return (ReactDOM.createPortal(
-
-        <div id="modal">
-            <div id="modal-background" onClick={onClose} />
-            <div id="modal-content"> {children} </div>
-        </div>,
-        
-        modalNode
-    ))
-
+  return ReactDOM.createPortal(
+    <div id="modal">
+      <div id="modal-background" onClick={onClose} />
+      <div id="modal-content">
+        {children}
+      </div>
+    </div>,
+    modalNode
+  );
 }

@@ -1,44 +1,25 @@
-import React from 'react';
+import React from 'react'
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+import SearchBar from './SearchBar';
 
+import '../CSS/NavigationBar.css'
 
-import '../CSS/NavigationBar.css';
+function NavigationBar({ isLoaded, setFilterRooms, setCategory }) {
 
-function NavigationBar(){
-  const sessionUser = useSelector(state => state.session.user);
-
-
-    let sessionLinks;
-    if(sessionUser){
-      sessionLinks = (
-       <ProfileButton user={sessionUser} />
-      )
-    } else {
-      sessionLinks = (
-        <ProfileButton />
-       )
-    }
-    
   return (
     <>
-    <nav>
-      <div className='NavigationBar'>
-        
-        <div className='NavBarLeft-Logo'>
-          <NavLink className='SiteLogo-NavLeft' exact to="/">
-          <img className="Logo" src={require('../../assets/Petbnb.png')} alt='Petbnb Logo' />
-          <div className='PetbnbText'>petbnb</div>
-          </NavLink>
-
+      <nav className="main-nav">
+        <div className="navigation-outer">
+          <div className='navigation-bar'>
+            <NavLink exact to="/" className="nav-link home-link">
+              <span className="iconify" data-icon="fa-brands:airbnb" data-width="40"></span>
+              <span className='airbnb-name' onClick={() => { setFilterRooms([]); setCategory(null) }}></span>
+            </NavLink>
+            <SearchBar />
+            {isLoaded && <ProfileButton />}
+          </div>
         </div>
- 
-                   
-       {sessionLinks}
-
-    
-      </div>
       </nav>
     </>
   );

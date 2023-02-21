@@ -1,0 +1,353 @@
+.trips-outer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trips-nav-main {
+  width: 1130px;
+}
+
+.trips-page {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+}
+
+.trips-main-div {
+  width: 1090px;
+  box-sizing: border-box;
+}
+
+.trips-header {
+  font-size: 1.4rem;
+  padding: 1.2rem 0 1rem;
+  font-weight: 400;
+}
+
+.booking-header {
+  font-size: 1.4rem;
+  padding: 1rem 0;
+}
+
+.outer-main {
+  padding: 0.7rem 0 1rem 0;
+}
+
+.middle-change-res {
+  display: flex;
+  border-radius: 20px;
+}
+
+.main-no-trips {
+  border-radius: 20px;
+  width: 28rem;
+  padding: 2rem;
+  border: 1px rgba(128, 128, 128, 0.143) solid;
+  height: 13rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.start-search-button {
+  background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 350;
+  height: 50px;
+  margin-top: 2rem;
+  width: 161px;
+}
+
+.no-trips-header {
+  font-size: 1.2rem;
+  padding: 1.2rem 0 1rem 0;
+}
+
+.no-trips-caption {
+  font-size: 1rem;
+  font-weight: 200;
+  color: grey;
+}
+
+.main-booking-content {
+  display: grid;
+  grid-template-columns: repeat(2, 500px);
+  height: 200px;
+}
+
+.left-res-content {
+  border-top: 1px rgba(128, 128, 128, 0.143) solid;
+  border-bottom: 1px rgba(128, 128, 128, 0.143) solid;
+  border-left: 1px rgba(128, 128, 128, 0.143) solid;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.top-left-name {
+  font-size: 1.1rem;
+  padding: 0.2rem 0;
+}
+
+.booking-listing-name,
+.res-address {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.booking-listing-name {
+  width: 450px
+}
+
+.res-address {
+  width: 350px
+}
+
+.bookings-hosted-by {
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: rgb(75, 75, 75);
+}
+
+.top-left-res-content {
+  padding: 1rem 0;
+  margin: 0 1.2rem;
+  border-bottom: 1px rgba(128, 128, 128, 0.286) solid;
+}
+
+.top-left-res-content,
+.bottom-left-res-content {
+  display: flex;
+}
+
+.bottom-left-res-content {
+  padding-top: 0.5rem;
+}
+
+.res-button {
+  border: none;
+  border-radius: 10px;
+  padding: 0.3rem 0.4rem;
+  margin: 0.2rem;
+  font-size: 0.7rem;
+}
+
+.res-button:hover {
+  cursor: pointer;
+}
+
+.right-res-content {
+  width: 100%;
+  height: 200px;
+}
+
+.cancel-button {
+  color: #ff385c;
+  font-weight: 600;
+}
+
+.res-img {
+  width: 100%;
+  height: 100%;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  object-fit: cover;
+}
+
+.left-res-content {
+  position: relative;
+}
+
+.bottom-change-res {
+  width: 5rem;
+  padding: 0.5rem 1.6rem 0 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.bottom-location {
+  padding: 0.5rem 0;
+}
+
+.bottom-edit-res {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 10px;
+}
+
+.month-res {
+  font-size: 1rem;
+  padding-bottom: 0.2rem;
+  font-weight: 250;
+}
+
+.day-res {
+  font-size: 0.9rem;
+  font-weight: 250;
+}
+
+.res-month-day {
+  width: 60px;
+  box-sizing: border-box;
+}
+
+.date-res-other {
+  font-size: 1rem;
+  font-weight: 250;
+}
+
+.res-year {
+  font-size: 0.7rem;
+  padding-top: 0.1rem;
+}
+
+.bottom-dates {
+  padding-right: 1rem;
+  border-right: 1px rgba(128, 128, 128, 0.286) solid;
+}
+
+.res-address,
+.res-city-state {
+  font-size: 0.9rem;
+  font-weight: 250;
+  padding-right: 0.5rem;
+}
+
+.res-country {
+  font-size: 0.75rem;
+  font-weight: 250;
+}
+
+.res-select-date {
+  border: none;
+  width: 10rem;
+}
+
+.booking-dates-res {
+  display: flex;
+  margin-left: 1rem;
+}
+
+.check-label-edit {
+  margin-left: 0.2rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.check-res {
+  display: flex;
+  flex-direction: column;
+  border: 1px grey solid;
+  border-radius: 10px;
+  height: 2.2rem;
+  padding: 0.3rem;
+  margin: 0.8rem 0.5rem;
+}
+
+.select-date-res {
+  border: none;
+  margin: 0;
+  padding: 0.2rem;
+  width: 7rem;
+  height: 1.2rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.edit-delete-buttons {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.3rem;
+}
+
+.middle-change-res {
+  height: 4rem;
+}
+
+.update-res-header {
+  padding: 0.7rem 0 0 1.5rem;
+  font-size: 0.85rem;
+}
+
+.reserve-errors-edit {
+  margin: 0.5rem 0 0 1rem;
+  color: #ff385c;
+  font-size: 0.9rem;
+}
+
+.res-button:disabled {
+  color: grey;
+  background: none;
+}
+
+.update-button:disabled,
+.cancel-button:disabled {
+  visibility: hidden;
+}
+
+.res-list-error {
+  font-size: 0.8rem;
+  padding-top: 0.3rem;
+}
+
+.ul-res-error {
+  margin: 0;
+}
+
+.res-header {
+  font-weight: 400;
+  font-size: 1.1rem;
+  padding: 10px 0;
+}
+
+.past-outer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 360px);
+}
+
+.past-outer-main {
+  display: flex;
+  padding: 15px 0 20px;
+}
+
+.past-left-content {
+  width: 90px;
+  padding: 0 15px 0 5px;
+}
+
+.past-res-img {
+  width: 100%;
+  height: 86px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.past-res-city-state {
+  font-size: 0.9rem;
+  font-weight: 450;
+  width: 200px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.past-res-hosted-by {
+  font-weight: 400;
+  padding: 5px 0;
+}
+
+.past-res-hosted-by,
+.past-res-month-day {
+  font-size: 0.85rem;
+  color: rgb(75, 75, 75);
+}
+
+.past-res-month-day {
+  font-weight: 300;
+}

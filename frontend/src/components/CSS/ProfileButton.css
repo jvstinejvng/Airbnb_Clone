@@ -1,0 +1,102 @@
+.show-menu-div {
+  position: relative
+}
+
+.profile-button-div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-button {
+  background-color: white;
+  border: 1px #71717150 solid;
+  border-radius: 20px;
+  margin-top: 8px;
+}
+
+.profile-icons {
+  display: flex;
+  align-items: center;
+  padding: 0.1rem 0 0.1rem 0.2rem;
+  color: #6e6e6e;
+}
+
+.user-profile-icon {
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+}
+
+.profile-button:hover {
+  box-shadow: rgba(129, 129, 129, 0.492) 0px 4px 3px -2.5px;
+  transform: none;
+}
+
+.profile-dropdown {
+  display: flex;
+  flex-direction: column;
+  margin-right: 5px;
+  position: absolute;
+  top: 1rem;
+  left: -8.4rem;
+  width: 220px;
+  box-shadow: rgba(100, 100, 111, 0.158) 0px 2px 22px 0px;
+  border-radius: 20px;
+  background: white;
+  z-index: 2;
+}
+
+.login-dropdown {
+  font-weight: 600;
+}
+
+.logout-div,
+.account-div,
+.link,
+.login-dropdown,
+.signup-dropdown {
+  font-size: 0.9rem;
+  padding: 15px 60px 15px 20px;
+}
+
+.logout-div, .signup-dropdown {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.account-div, .login-dropdown {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.account-div {
+  border-bottom: 1px rgba(128, 128, 128, 0.274) solid;
+}
+
+.logout-div:hover,
+.link:hover,
+.login-dropdown:hover,
+.signup-dropdown:hover {
+  background-color: #7171710e;
+  cursor: pointer;
+}
+
+.link {
+  text-decoration: none;
+  color: black
+}
+
+.trips,
+.host-home {
+  border-bottom: 1px rgba(128, 128, 128, 0.274) solid;
+}
+
+.manage-listings,
+.host-home,
+.logout-div {
+  font-weight: 220;
+}
+
+.trips {
+  font-weight: 600;
+}

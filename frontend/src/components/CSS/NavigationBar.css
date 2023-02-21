@@ -1,226 +1,71 @@
-/* navigation bar container */
-nav {
-    display: flex;
-    flex-wrap: wrap;
-    position: absolute;
-    top: 0px;
-    width: 100%;
-    background-color: white;
+.main-nav {
+  height: 90px;
 }
 
-/* navigation bar */
-.NavigationBar {
-    z-index: 1;
-    position: fixed;
-    top: 0px;
-    width: 100%;
-    height: 80px;
-    margin: 0%;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 0.5px solid #dce0e0;
-    box-shadow: rgba(159, 159, 159, 0.09) 0 0 4px;
-    background-color: white;
+.navigation-outer {
+  display: flex;
+  justify-content: center;
 }
 
-/* screen right menu button */
-.NavBarRight-MenuHost {
-    width: fit-content;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    position: static;
-    z-index: 1;
-
+.navigation-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1rem 1.3rem;
+  width: 100%;
 }
 
-/* dropdown menu icon */
-.DropDownMenuIcon {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    position: absolute;
-    right: 10%;
-    background-color: white;
-    height: 44px;
-    width: 82px;
-    border-radius: 35px;
-    border: 0.5px solid #e0e0e0;
-    cursor: pointer;
-    z-index: 1;
-
+.login {
+  margin-right: 8px;
 }
 
-.FirstName {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 18px;
-    text-align: center;
-    font-weight: 800;
-    color: grey;
-    text-decoration: none;
+.signup {
+  font-size: 18px;
 }
 
-/* dropdown menu profile icon */
-.fa-user-circle {
-    display: flex;
-    color: #777777;
-    font-size: 30px;
-    align-items: center;
+.sign-up-link {
+  cursor: pointer
 }
 
-/* dropdown menu hamburger icon */
-.fa-bars {
-    display: flex;
-    align-items: center;
-    color: #777777;
-    margin-left: 8px;
-    font-size: 15px;
-
+.home-link {
+  color: #ff385c;
+  display: flex;
+  font-weight: bold;
 }
 
-/* become a pet sitter button */
-
-.HostButtonText {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    position: fixed;
-    justify-content: center;
-    right: 20%;
-    padding: 10px;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 16px;
-    text-align: center;
-    font-weight: 600;
-    color: rgb(34, 34, 34) !important;
-    text-decoration: none;
-    cursor: pointer;
+.airbnb-name {
+  align-items: center;
+  font-size: 1.4rem;
+  line-height: 20px;
+  padding-left: 8px;
+  padding-top: 14px;
 }
 
-.HostButtonText :hover {
-    width: auto;
-    height: auto;
-    background-color: #f4f4f49e;
-    border-radius: 30px;
-    text-decoration: none;
+@media screen and (max-width: 700px) {
+  .navigation-bar {
+    width: 34%;
+  }
 }
 
-/* drop down menu container */
-.DropDownMenu {
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    margin-top: 180px;
-    border-radius: 18px;
-    top: -108px;
-    right: 150px;
-    box-shadow: 3px 5px 15px rgba(93, 93, 93, 0.38);
-    border: 0;
-    width: 220px;
-    height: auto;
-    padding-bottom: 15px;
-    padding-top: 15px;
-    background-color: white;
-
+@media screen and (min-width: 1300px) and (max-width: 1699px) {
+  .navigation-bar {
+    /* width: 72rem; */
+  }
 }
 
-/* nonuser drop down menu text */
-.NavBarShowMenu {
-    font-family: 'Nunito Sans', sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    color: rgb(34, 34, 34);
-    width: 100%;
-
+@media screen and (min-width: 1150px) and (max-width: 1300px) {
+  .navigation-bar {
+    /* width: 64rem; */
+  }
 }
 
-/* user drop down menu text */
-.UserMenuNavBar {
-    font-family: 'Nunito Sans', sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    color: rgb(34, 34, 34);
-    width: 100%;
-
+@media screen and (min-width: 850px) and (max-width: 1150px) {
+  .navigation-bar {
+    /* width: 62rem; */
+  }
 }
 
-/* user drop down menu text */
-.MenuHighlight{
-    display: flex;
-    justify-content: flex-start;
-    padding: 10% 0px 8% 15px;
-    width: 100%;
-
+@media screen and (max-width: 850px) {
+  .navigation-bar {
+    /* width: 45rem; */
+  }
 }
-
-/* drop down menu line */
-.MenuBarLine{
-    display: flex;
-    justify-content: center;
-    border-bottom: 1px solid rgb(221, 221, 221);
-    z-index: 0;
-
-}
-
-/* drop down menu hover highlight affect */
-.MenuHighlight:hover {
-    width: 205px;
-    background-color: rgba(236, 232, 232, 0.723);
-}
-
-.MenuOptionNavLinks:active,
-.MenuOptionNavLinks:visited {
-    color: #494949;
-}
-
-/* remove menu option underline */
-.MenuOptionNavLinks {
-    text-decoration: none;
-    z-index: 0;
-
-}
-
-/* site logo container  */
-.SiteLogo-NavLeft {
-    padding-top: 20px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    width: fit-content;
-    position: relative;
-    left: 100%;
-}
-
-/* site logo */
-.Logo {
-    object-fit: fit;
-    max-height: 40px;
-    max-width: 40px;
-    padding-right: 5px;
-}
-
-/* site logo text */
-.PetbnbText {
-    display: flex;
-    color: #FF385C ;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 23px;
-}
-
-/* site logo active links */
-.NavBarLeft-Logo > a, a:hover, a:visited, a:active {
-    text-decoration: none;
-}
-
-
-

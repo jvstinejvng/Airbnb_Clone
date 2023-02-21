@@ -1,0 +1,138 @@
+.search-spots-main {
+  display: grid;
+  grid-template-columns: 610px auto;
+  height: 100vh;
+  border-top: 0.3px solid rgba(128, 128, 128, 0.113);
+}
+
+.search-spots-left {
+  display: grid;
+  grid-template-columns: repeat(2, 280px);
+  height: fit-content;
+  max-height: 100vh;
+  overflow-y: auto;
+  padding: 20px 10px 70px 10px;
+  gap: 20px;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.search-spot-outer {
+  box-sizing: border-box;
+}
+
+.search-spot-img-outer {
+  width: 280px;
+  height: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-spot-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.search-spot-detail {
+  display: grid;
+  grid-template-columns: 75% 25%;
+  padding: 10px 1px 0 1px;
+  font-size: 1rem;
+  letter-spacing: 0.03rem;
+}
+
+.search-spot-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.spot-rating {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.search-spot-city-state {
+  font-size: 0.9rem;
+  font-weight: 500;
+  width: 80%;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.spot-price-night {
+  display: flex;
+  font-size: 0.9rem;
+}
+
+.spot-night {
+  font-weight: 250;
+}
+
+.star-icon {
+  display: flex;
+  font-size: 0.7rem;
+}
+
+.star-design {
+  padding-top: 0.2rem;
+}
+
+.spot-link {
+  text-decoration: none;
+  color: black;
+}
+
+.number-rating {
+  font-weight: 250;
+  font-size: 0.9rem;
+}
+
+.no-search-results {
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 500px;
+}
+
+@media screen and (max-width: 1000px) {
+  .search-spots-main {
+    grid-template-columns: 480px auto;
+  }
+
+  .search-spot-img-outer {
+    width: 220px;
+    height: 150px;
+  }
+
+  .search-spots-left {
+    grid-template-columns: repeat(2, 220px);
+    padding: 10px 10px 70px 10px;
+    gap: 15px;
+  }
+}
+
+@media screen and (min-width: 1001px) and (max-width: 1300px) {
+  .search-spots-main {
+    grid-template-columns: 526px auto;
+  }
+
+  .search-spot-img-outer {
+    width: 240px;
+    height: 200px;
+  }
+
+  .search-spots-left {
+    grid-template-columns: repeat(2, 240px);
+  }
+}

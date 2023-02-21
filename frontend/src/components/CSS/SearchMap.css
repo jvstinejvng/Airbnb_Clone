@@ -1,0 +1,35 @@
+.search-google-map-outer {
+  height: 103vh;
+  margin-bottom: 60px;
+}
+
+.selected-spot-info {
+  width: 200px;
+  height: 210px;
+}
+
+.selected-spot-img {
+  width: 95%;
+  height: 70%;
+  object-fit: cover;
+  margin-top: 5px;
+}
+
+.selected-spot-name {
+  width: 90%;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-top: 5px;
+  font-size: 0.9rem;
+}
+
+.selected-spot-price {
+  font-weight: 600;
+}
+
+.gm-style .gm-style-iw-tc::after {
+  visibility: hidden;
+}

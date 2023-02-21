@@ -1,0 +1,155 @@
+.edit-listing-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-listing-form {
+  overflow-x: auto;
+  height: 1000px;
+}
+
+.return-div,
+.edit-listing-header {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-listing-header {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.edit-listing-title {
+  font-size: 1.2rem;
+}
+
+.edit-listing-label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+}
+
+.edit-categories-main {
+  display: grid;
+  grid-template-columns: repeat(5, 22%);
+  width: 54rem;
+  margin: 0.7rem;
+}
+
+.edit-categories-outer {
+  display: flex;
+  align-items: center;
+}
+
+.edit-category-radio {
+  height: 1rem;
+  margin: 0;
+  width: 0.8rem;
+  margin-right: 0.5rem;
+}
+
+.edit-listing-lat,
+.edit-listing-lng {
+  font-size: 1rem;
+  padding-left: 0.5rem;
+}
+
+.title-input,
+.address-input,
+.price-input {
+  width: 54rem;
+}
+
+.place-input {
+  width: 13rem;
+}
+
+.edit-listing-input {
+  height: 2rem;
+  font-size: 1rem;
+  font-weight: 250;
+  color: rgb(94, 94, 94);
+  margin: 0.7rem 0;
+}
+
+.edit-listing-location {
+  display: flex;
+  flex-direction: row;
+}
+
+.edit-listing-input.city-state-country {
+  width: 17rem;
+  margin: 0 0.4rem 0.7rem 0
+}
+
+.edit-listing-coordinates {
+  display: flex;
+}
+
+.lat,
+.lng {
+  width: 26.2rem;
+  margin: 0.4rem 0.4rem 0.7rem 0
+}
+
+.description {
+  border-radius: 10px;
+  color: rgb(94, 94, 94);
+  font-size: 1rem;
+  font-weight: 250;
+  height: 8rem;
+  margin: 0.7rem 0;
+  padding: 0.7rem;
+  resize: none;
+  width: 53.5rem;
+}
+
+.return-to-listing-button {
+  border-radius: 10px;
+  color: rgb(92, 92, 92);
+  border: none;
+  font-size: 0.8rem;
+  padding: 0.4rem;
+  margin: 1rem 0 0.1rem 0;
+}
+
+.update-listing-button {
+  background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  height: 50px;
+  margin-top: 20px;
+  width: 55rem;
+}
+
+.update-listing-button:disabled {
+  background-image: none;
+  background-color: rgba(128, 128, 128, 0.203);
+  cursor: default;
+}
+
+.edit-pets-buttons button {
+  border-radius: 50%;
+  background: none;
+  border: 1px solid grey;
+  padding: 1px 4px;
+  margin: 0 8px;
+  font-size: 0.6rem;
+}
+
+.edit-pets-label {
+  margin-left: 12px;
+}
+
+.edit-pets-buttons button:disabled {
+  border: 1px solid rgba(128, 128, 128, 0.325);
+}
+
+.update-error {
+  color: red
+}

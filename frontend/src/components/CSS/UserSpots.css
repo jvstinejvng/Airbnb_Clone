@@ -1,0 +1,100 @@
+.manage-listing-outer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.manage-nav-main {
+  width: 1515px;
+}
+
+.manage-listing-page {
+  width: 1480px;
+}
+
+.listing-city-state,
+.listing-price {
+  font-weight: 250;
+}
+
+.listing-column {
+  width: auto;
+  margin: 0;
+}
+
+.listing-column {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.listing-img {
+  width: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.listing-name {
+  margin: 0 10px;
+  font-weight: 600;
+}
+
+.manage-listings-header {
+  font-size: 1.4rem;
+  padding: 1.2rem 0 0.6rem;
+  font-weight: 400;
+}
+
+.manage-listings-scroll {
+  overflow: auto;
+  height: 60vh;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  white-space: nowrap;
+}
+
+th,
+td {
+  padding: 1rem;
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+th {
+  padding-bottom: 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: white;
+}
+
+th {
+  color: #222222d6;
+}
+
+td {
+  border-top: 1px solid rgba(153, 153, 153, 0.494);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+td.listing-city-state {
+  max-width: 170px;
+}
+
+.green-icon {
+  margin-right: 10px;
+}
+
+.green-checked {
+  margin-right: 5px;
+}
+
+.listing-instant-book {
+  display: flex;
+}

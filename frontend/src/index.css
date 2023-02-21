@@ -1,1 +1,52 @@
 /* TODO Add site wide styles */
+html {
+    font-size: 16px;
+  }
+  
+  * {
+    font-family: Circular,
+      -apple-system,
+      "system-ui",
+      Roboto,
+      "Helvetica Neue",
+      sans-serif;
+      /* font-family: CircularRegular; */
+  }
+  
+  button:hover {
+    cursor: pointer;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  button:active {
+    transform: translateY(1.5px);
+  }
+  
+  button:disabled {
+    transform: none;
+  }
+  
+  .no-session-user {
+    padding: 3rem 20rem;
+    font-size: 2.5rem;
+    font-weight: 240;
+  }
+  
+  .no-session-inner {
+    padding: 1rem 0;
+    font-size: 1.5rem;
+    font-weight: 240;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  input, textarea {
+    outline: none;
+  }
+  

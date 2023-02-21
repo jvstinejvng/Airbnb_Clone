@@ -1,59 +1,59 @@
-import { csrfFetch } from './csrf';
+import { csrfFetch } from "./csrf"
 
-const ADD_IMAGES = 'images/createImages';
-const DELETE_IMAGE = 'images/deleteImages';
+const CREATE_IMAGES = 'images/CREATE_IMAGES'
+const GET_IMAGES ='images/GET_IMAGES'
 
-const createImages = (img) => {
-    return {
-        type: ADD_IMAGES,
-        img,
-    };
-};
+export const getAllImages = (state) => Object.values(state.images)
 
-const deleteImage = (id) => {
-    return {
-        type: DELETE_IMAGE,
-        id,
-    };
-};
+const createImages = (image) => ({
+  type: CREATE_IMAGES,
+  image
+})
 
-export const addSpotImage = (spotId, newImage) => async (dispatch) => {
-    const { url } = newImage;
-    const response = await csrfFetch(`/api/image/spots//${spotId}`, {
-        method: "POST",
-        body: JSON.stringify({
-            url
-        }),
-    });
-    const data = await response.json();
-    dispatch(createImages(data));
-    return response;
-};
+const getImages = (images) => ({
+  type: GET_IMAGES,
+  images
+})
 
-export const removeImage = (id) => async (dispatch) => {
-    const response = await csrfFetch(`/api/images/${id}`, {
-        method: 'DELETE',
-    });
-    dispatch(deleteImage(id));
-    return response;
-};
+export const listAllImages = () => async (dispatch) => {
+  const response = await csrfFetch(`/api/images`);
+  if (response.ok) {
+    const imageObj = await response.json();
+    dispatch(getImages(imageObj.images))
+  }
+  return response;
+}
 
-const initialState = {};
+export const addNewImages = (imageData) => async (dispatch) => {
+  const { userId, spotId, type, url } = imageData;
+  const response = await csrfFetch(`/api/spots/${spotId}/images`, {
+    method: "POST",
+    body: JSON.stringify({
+      userId, spotId, type, url
+    })
+  })
+  if (response.ok) {
+    const newImage = await response.json()
+    dispatch(createImages(newImage));
+    return newImage;
+  }
+}
 
+const initialState = {}
 const imageReducer = (state = initialState, action) => {
-    let newState;
-    switch (action.type) {
-        case ADD_IMAGES:
-            newState = Object.assign({}, state);
-            newState[action.payload.id] = action.payload;
-            return newState;
-        case DELETE_IMAGE:
-            newState = Object.assign({}, state);
-            delete newState[action.id];
-            return newState;
-        default:
-            return state;
+  const newState = { ...state }
+  switch (action.type) {
+    case GET_IMAGES: {
+      action.images.map(image => newState[image.id] = image)
+      return newState
     }
-};
+    case CREATE_IMAGES: {
+      newState[action.image.id] = action.image;
+      return newState;
+    }
+    default:
+      return state;
+  }
+}
 
 export default imageReducer;

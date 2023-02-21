@@ -1,4 +1,4 @@
-// backend/routes/api/rooms.js
+// backend/routes/api/spots.js
 const { Op } = require('sequelize');
 const express = require('express')
 const { requireAuth,
@@ -273,7 +273,7 @@ router.put('/:spotId/Bookings/:bookingId', [requireAuth, checkSpotExists, checkN
 })
 
 router.get('/:spotId', checkSpotExists, async (req, res) => {
-    const rooms = await Spot.unscoped().findByPk(req.params.spotId,
+    const spots = await Spot.unscoped().findByPk(req.params.spotId,
         {
             include: [
                 {
@@ -304,14 +304,14 @@ router.get('/:spotId', checkSpotExists, async (req, res) => {
         raw: true
     })
 
-    const roomData = rooms.toJSON()
-    roomData.avgStarRating = reviewAggregate.avgStarRating
-    roomData.numReviews = reviewAggregate.numReviews
-    return res.json(roomData)
+    const spotData = spots.toJSON()
+    spotData.avgStarRating = reviewAggregate.avgStarRating
+    spotData.numReviews = reviewAggregate.numReviews
+    return res.json(spotData)
 })
 
 router.post('/', [requireAuth, validateRoom], async (req, res) => {
-    const { address, city, state, country, lat, lng, name, description, price, category, type, guests } = req.body;
+    const { address, city, state, country, lat, lng, name, description, price, category, type, pets, yard, children, personalpets } = req.body;
 
     const newRoom = await Spot.create({
         ownerId: req.user.id,
@@ -326,41 +326,47 @@ router.post('/', [requireAuth, validateRoom], async (req, res) => {
         price: price,
         category: category,
         type: type,
-        guests: guests,
+        pets: pets,
+        yard: yard, 
+        children: children, 
+        personalpets: personalpets, 
     })
     return res.json(newRoom);
 })
 
 router.put('/:spotId', [requireAuth, checkOwnerSpot, validateRoom], async (req, res) => {
-    const { address, city, state, country, lat, lng, name, description, price, category, type,guests } = req.body;
-    const room = await Spot.findByPk(req.params.spotId);
+    const { address, city, state, country, lat, lng, name, description, price, category, type,pets, yard, children, personalpets } = req.body;
+    const spot = await Spot.findByPk(req.params.spotId);
 
-    room.address = address;
-    room.city = city;
-    room.state = state;
-    room.country = country;
-    room.lat = lat;
-    room.lng = lng;
-    room.name = name;
-    room.description = description;
-    room.price = price;
-    room.category = category;
-    room.type = type;
-    room.guests = guests;
+    spot.address = address;
+    spot.city = city;
+    spot.state = state;
+    spot.country = country;
+    spot.lat = lat;
+    spot.lng = lng;
+    spot.name = name;
+    spot.description = description;
+    spot.price = price;
+    spot.category = category;
+    spot.type = type;
+    spot.pets = pets;
+    spot.yard = yard;
+    spot.children = children;
+    spot.personalpets = personalpets;
 
-    await room.save();
-    return res.json(room);
+    await spot.save();
+    return res.json(spot);
 })
 
 router.delete('/:spotId', [requireAuth, checkOwnerSpot], async (req, res) => {
-    const deleteRoom = await Spot.findOne({
+    const deleteSpot = await Spot.findOne({
         where: {
             id: req.params.spotId,
             ownerId: req.user.id
         }
     })
 
-    await deleteRoom.destroy();
+    await deleteSpot.destroy();
     res.status = 200;
     return res.json({
         message: "Successfully deleted",
@@ -373,7 +379,7 @@ router.get('/', async (req, res, next) => {
 
     const pagination = {}
     const results = {}
-    const roomQuery = {};
+    const spotQuery = {};
 
     const errorResult = { errors: {} }
 
@@ -400,47 +406,47 @@ router.get('/', async (req, res, next) => {
     if (pagination.offset < 0) pagination.offset = 0;
 
     if (minLat) {
-        if ((minLat - Math.floor(minLat)) !== 0) roomQuery.lat = { [Op.gte]: minLat }
+        if ((minLat - Math.floor(minLat)) !== 0) spotQuery.lat = { [Op.gte]: minLat }
         else errorResult.errors.minLat = 'Minimum latitude is invalid'
     }
 
     if (maxLat) {
-        if ((maxLat - Math.floor(maxLat)) !== 0) roomQuery.lat = { [Op.lte]: maxLat }
+        if ((maxLat - Math.floor(maxLat)) !== 0) spotQuery.lat = { [Op.lte]: maxLat }
         else errorResult.errors.maxLat = 'Maximum latitude is invalid'
     }
 
     if (minLng) {
-        if ((minLng - Math.floor(minLng)) !== 0) roomQuery.lng = { [Op.gte]: minLng }
+        if ((minLng - Math.floor(minLng)) !== 0) spotQuery.lng = { [Op.gte]: minLng }
         else errorResult.errors.minLng = 'Minimum longitude is invalid'
     }
 
     if (maxLng) {
-        if ((maxLng - Math.floor(maxLng)) !== 0) roomQuery.lng = { [Op.lte]: maxLng }
+        if ((maxLng - Math.floor(maxLng)) !== 0) spotQuery.lng = { [Op.lte]: maxLng }
         else errorResult.errors.maxLng = 'Maximum longitude is invalid'
     }
 
     if (minPrice) {
-        if (minPrice > 0) roomQuery.price = { [Op.gte]: minPrice }
+        if (minPrice > 0) spotQuery.price = { [Op.gte]: minPrice }
         else errorResult.errors.minPrice = 'Minimum price must be greater than 0'
-        // if (minPrice.includes('.0')) roomQuery.price = { [Op.gte]: minPrice }
-        // else if ((minPrice - Math.floor(minPrice)) !== 0) roomQuery.price = { [Op.gte]: minPrice }
+        // if (minPrice.includes('.0')) spotQuery.price = { [Op.gte]: minPrice }
+        // else if ((minPrice - Math.floor(minPrice)) !== 0) spotQuery.price = { [Op.gte]: minPrice }
         // else errorResult.errors.minPrice = 'Minimum price must be a decimal'
     }
 
     if (maxPrice) {
-        if (maxPrice > 0) roomQuery.price = { [Op.lte]: maxPrice }
+        if (maxPrice > 0) spotQuery.price = { [Op.lte]: maxPrice }
         else errorResult.errors.maxPrice = 'Maximum price must be greater than 0'
-        // if (maxPrice.includes('.0')) roomQuery.price = { [Op.lte]: maxPrice }
-        // else if ((maxPrice - Math.floor(maxPrice)) !== 0) roomQuery.price = { [Op.lte]: maxPrice }
+        // if (maxPrice.includes('.0')) spotQuery.price = { [Op.lte]: maxPrice }
+        // else if ((maxPrice - Math.floor(maxPrice)) !== 0) spotQuery.price = { [Op.lte]: maxPrice }
         // else errorResult.errors.minPrice = 'Maximum price must be a decimal'
     }
 
     if (country && country !== "") {
-        roomQuery.country = { [Op.substring]: country };
+        spotQuery.country = { [Op.substring]: country };
     }
 
     results.Rooms = await Spot.unscoped().findAll({
-        where: roomQuery,
+        where: spotQuery,
         include: [
             {
                 model: Image,
