@@ -40,9 +40,6 @@ const UserSpots = ({ isLoaded }) => {
                 <th>STATUS</th>
                 <th>PRICE</th>
                 <th>INSTANT BOOK</th>
-                <th>BEDROOMS</th>
-                <th>BEDS</th>
-                <th>BATHS</th>
                 <th>LOCATION</th>
                 <th>LAST MODIFIED</th>
               </tr>
@@ -60,9 +57,6 @@ const UserSpots = ({ isLoaded }) => {
                     <td><img src={greenIcon} alt='listed' className="green-icon"></img>Listed</td>
                     <td className="listing-price">{`$${spot?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/night`}</td>
                     <td><div className="listing-instant-book"><img src={greenCheck} alt='booking' className="green-checked"></img><span>On</span></div></td>
-                    <td>{spot?.bedspots}</td>
-                    <td>{spot?.beds}</td>
-                    <td>{spot?.baths}</td>
                     <td className="listing-city-state">{`${spot?.city}, ${spot?.state}`}</td>
                     <td>{formatDate(spot?.updatedAt)}</td>
                   </tr>

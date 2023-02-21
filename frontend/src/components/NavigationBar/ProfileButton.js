@@ -86,8 +86,8 @@ function ProfileButton() {
                   {sessionUser.email}
                 </div>
                 <Link to="/bookings" className="link trips">Trips</Link>
-                <Link to="/manage-listings" className="link manage-listings">View Listings</Link>
-                <Link to="/host-your-home" className="link host-home">Host your Home</Link>
+                <Link to="/yourlistings" className="link manage-listings">Manage Listings</Link>
+                <Link to="/becomeahost" className="link host-home">Host your home</Link>
                 <div className="logout-div" onClick={logout}>Log Out</div>
               </div>
             </div>

@@ -15,8 +15,8 @@ import NavigationBar from "../NavigationBar";
 import { Modal } from "../../context/Modal";
 import { DateRange } from 'react-date-range'
 
-// import 'react-date-range/dist/styles.css'; // main style file
-// import 'react-date-range/dist/theme/default.css'; // theme css file
+import 'react-date-range/dist/styles.css'; 
+import 'react-date-range/dist/theme/default.css'; 
 
 import "../CSS/SpotDetails.css"
 
@@ -205,7 +205,7 @@ const SpotDetails = ({ isLoaded }) => {
               <div className="spot-info-general">
                 <div className="spot-info-left">
                   <div className="spot-info-header">{spot?.type} hosted by {users[spot?.ownerId]?.firstName}</div>
-                  <div className="spot-info-beds">{spot?.pets} pets · {spot?.bedspots} bedspots · {spot?.beds} beds · {spot?.baths} baths </div>
+                  <div className="spot-info-beds">{spot?.pets} guest pets · {spot?.children} · {spot?.yard}  · {spot?.personalpets} </div>
                 </div>
                 <div className="spot-info-right">
                   <img src={users[spot?.ownerId]?.profile_url} className='spot-owner-img'></img>

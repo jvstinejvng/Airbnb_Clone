@@ -52,25 +52,10 @@ const SearchMap = ({ searchRooms }) => {
 
   }, [result, pets])
 
-  // useEffect(() => {
-  //   if (map) {
-  //     const bounds = new window.google.maps.LatLngBounds();
-  //     searchRooms.map(marker => {
-  //       bounds.extend({
-  //         lat: marker.lat,
-  //         lng: marker.lng,
-  //       });
-  //     });
-  //     map.fitBounds(bounds);
-  //   }
-  // }, [map]);
-
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: APIKey,
     id: 'google-maps-script'
   })
-
-  // const onLoad = React.useCallback((map) => setMap(map), []);
 
   const containerStyle = {
     width: '100%',
@@ -81,13 +66,6 @@ const SearchMap = ({ searchRooms }) => {
     lat: Number(midLat),
     lng: Number(midLng)
   };
-
-  // const bounds = {
-  //   north: maxLng,
-  //   south: minLng,
-  //   east: maxLat,
-  //   west: minLat
-  // }
 
   return (
     <div className='search-google-map-outer'>
@@ -104,10 +82,7 @@ const SearchMap = ({ searchRooms }) => {
             fullscreenControl: false,
             scrollwheel: true,
             clickableIcons: false
-            // restriction: {
-            //   latLngBounds: bounds,
-            //   strictBounds: false
-            // }
+      
           }}
         >
           {searchRooms.map((spot) => {
@@ -155,5 +130,4 @@ const SearchMap = ({ searchRooms }) => {
   )
 }
 
-// React.memo prevents rerenders if props are unchanged
 export default React.memo(SearchMap)
