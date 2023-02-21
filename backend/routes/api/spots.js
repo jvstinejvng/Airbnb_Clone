@@ -30,7 +30,7 @@ const validateDate = [
     handleValidationErrors
 ]
 
-const validateRoom = [
+const validateSpot = [
     check('address')
         .exists({ checkFalsy: true })
         .notEmpty()
@@ -147,7 +147,6 @@ router.get('/:spotId/Bookings', [requireAuth, checkSpotExists], async (req, res)
 
     const allBookings= await Booking.findAll({
         where: { spotId: req.params.spotId },
-        // attributes: ['spotId', 'startDate', 'endDate']
     })
 
     const ownerBookings= await Booking.findAll({
@@ -158,12 +157,12 @@ router.get('/:spotId/Bookings', [requireAuth, checkSpotExists], async (req, res)
         }
     })
 
-    const currentRoom = await Spot.findByPk(req.params.spotId, {
+    const currentSpot = await Spot.findByPk(req.params.spotId, {
         where: { ownerId: req.user.id },
         attributes: ['ownerId'],
     })
 
-    if (currentRoom.ownerId === req.user.id) {
+    if (currentSpot.ownerId === req.user.id) {
         return res.json({ 'Bookings': ownerBookings})
     } else {
         return res.json({ 'Bookings': allBookings})
@@ -310,10 +309,10 @@ router.get('/:spotId', checkSpotExists, async (req, res) => {
     return res.json(spotData)
 })
 
-router.post('/', [requireAuth, validateRoom], async (req, res) => {
+router.post('/', [requireAuth, validateSpot], async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price, category, type, pets, yard, children, personalpets } = req.body;
 
-    const newRoom = await Spot.create({
+    const newSpot = await Spot.create({
         ownerId: req.user.id,
         address: address,
         city: city,
@@ -331,10 +330,10 @@ router.post('/', [requireAuth, validateRoom], async (req, res) => {
         children: children, 
         personalpets: personalpets, 
     })
-    return res.json(newRoom);
+    return res.json(newSpot);
 })
 
-router.put('/:spotId', [requireAuth, checkOwnerSpot, validateRoom], async (req, res) => {
+router.put('/:spotId', [requireAuth, checkOwnerSpot, validateSpot], async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price, category, type,pets, yard, children, personalpets } = req.body;
     const spot = await Spot.findByPk(req.params.spotId);
 
@@ -445,7 +444,7 @@ router.get('/', async (req, res, next) => {
         spotQuery.country = { [Op.substring]: country };
     }
 
-    results.Rooms = await Spot.unscoped().findAll({
+    results.Spots = await Spot.unscoped().findAll({
         where: spotQuery,
         include: [
             {

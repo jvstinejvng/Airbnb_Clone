@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getAllRooms, allSpots } from "../../store/spots";
+import { getAllSpots, allSpots } from "../../store/spots";
 import NavigationBar from "../NavigationBar";
 import SearchMap from "./SearchMap";
 
 import "../CSS/SearchResults.css"
 
 function SearchResults({ isLoaded }) {
-  let { destination } = useParams()
+  let { result } = useParams()
   let { pets } = useParams()
 
   const dispatch = useDispatch()
-  const spots = useSelector(getAllRooms)
+  const spots = useSelector(getAllSpots)
 
   useEffect(() => {
     dispatch(allSpots())
   }, [])
 
   const searchRooms = spots.filter(spot => {
-    destination = destination.toLowerCase()
-    return spot.city.toLowerCase().includes(destination) || spot.state.toLowerCase().includes(destination) || spot.country.toLowerCase().includes(destination) && spot.pets >= pets
+    result = result.toLowerCase()
+    return spot.city.toLowerCase().includes(result) || spot.state.toLowerCase().includes(result) || spot.country.toLowerCase().includes(result) && spot.pets >= pets
   })
 
   return (
@@ -68,7 +68,7 @@ function SearchResults({ isLoaded }) {
                   </Link>
                 )
               }
-            })} </> : <div className="no-search-results">0 search results matching "{destination}".</div>
+            })} </> : <div className="no-search-results">0 search results matching "{result}".</div>
           }
         </div>
         <div className="search-spots-right">

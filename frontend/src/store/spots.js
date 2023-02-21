@@ -6,7 +6,7 @@ const EDIT_SPOTS = 'spots/EDIT_SPOTS'
 const CREATE_SPOTS = 'spots/CREATE_SPOTS'
 const DELETE_SPOTS = 'spots/DELETE_SPOTS'
 
-export const getAllRooms = (state) => Object.values(state.spots)
+export const getAllSpots = (state) => Object.values(state.spots)
 
 const getSpot = (spots) => ({
   type: GET_SPOTS,
@@ -33,7 +33,7 @@ const deleteSpot = (spotId) => ({
   spotId
 })
 
-export const allSpots = (country) => async (dispatch) => {
+export const allSpots = () => async (dispatch) => {
   const response = await csrfFetch(`/api/spots`);
   if (response.ok) {
     const spotsObj = await response.json();

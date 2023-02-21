@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllRooms, allSpots } from "../../store/spots";
+import { getAllSpots, allSpots } from "../../store/spots";
 
 import NavigationBar from "../NavigationBar";
 import greenIcon from './green-listed.svg'
@@ -11,7 +11,7 @@ import "../CSS/UserSpots.css"
 const UserSpots = ({ isLoaded }) => {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch()
-  const allRooms = useSelector(getAllRooms)
+  const allRooms = useSelector(getAllSpots)
   const userRooms = allRooms.filter(spot => spot.ownerId === sessionUser.id).sort((a,b) => b.id - a.id)
 
   useEffect(() => {

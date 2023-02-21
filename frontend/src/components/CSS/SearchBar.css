@@ -68,16 +68,16 @@
   background-color: rgba(197, 197, 197, 0.13);
 }
 
-.where-destination-outer {
+.where-result-outer {
   padding-left: 10px
 }
 
-.where-destination-header {
+.where-result-header {
   font-size: 1rem;
   font-weight: 300;
 }
 
-.where-destination-date {
+.where-result-date {
   font-size: 0.75rem;
   font-weight: 250;
   color: rgb(89, 89, 89);

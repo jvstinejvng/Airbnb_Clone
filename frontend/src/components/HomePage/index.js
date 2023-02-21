@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllRooms, allSpots } from "../../store/spots";
 
+import { getAllSpots, allSpots } from "../../store/spots";
+import { listAllUsers } from "../../store/users";
 import NavigationBar from "../NavigationBar";
 import SpotCategory from "./SpotCategory";
-import { listAllUsers } from "../../store/users";
 
 import "../CSS/HomePage.css"
 
-const HomePage = ({ isLoaded }) => {
+const HomePage = ( { isLoaded } ) => {
+
   const dispatch = useDispatch()
-  let allRooms = useSelector(getAllRooms)
+  let listAllSpots = useSelector(getAllSpots)
+
   const [category, setCategory] = useState(null)
   const [filteredRooms, setFilterRooms] = useState([])
 
-  allRooms.sort(() => {
+  listAllSpots.sort(() => {
     return 0.5 - Math.random();
   });
 
@@ -24,7 +26,7 @@ const HomePage = ({ isLoaded }) => {
     dispatch(listAllUsers())
 
     if (category) {
-      const filteredRooms = allRooms.filter(spot => {
+      const filteredRooms = listAllSpots.filter(spot => {
         return spot.category === category
       })
       setFilterRooms(filteredRooms)
@@ -91,7 +93,7 @@ const HomePage = ({ isLoaded }) => {
         }
       </div> :
         <div className="all-spots-div">
-          {allRooms?.map((spot, i) => {
+          {listAllSpots?.map((spot, i) => {
 
             if (spot?.Reviews) {
               let sum = 0;

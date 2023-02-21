@@ -32,16 +32,16 @@ function App() {
           <Route path="/bookings">
             <UserBookings isLoaded={isLoaded} />
           </Route>
-          <Route path="/host-your-home">
+          <Route path="/becomeahost">
             <BecomeAHost isLoaded={isLoaded} />
           </Route>
-          <Route path="/manage-listings">
+          <Route path="/yourlistings">
             <UserSpots isLoaded={isLoaded} />
           </Route>
           <Route path="/spots/:spotId">
             <SpotDetails isLoaded={isLoaded} />
           </Route>
-          <Route path="/search/:destination/:pets">
+          <Route path="/search/:result/:pets">
             <SearchResults isLoaded={isLoaded} />
           </Route>
           <Route path='filter/:category'>

@@ -37,14 +37,14 @@ function SearchBar() {
   const [checkOut, setCheckOut] = useState(nextDay.toISOString().slice(0, 10))
 
   const history = useHistory()
-  const [destination, setDestination] = useState()
+  const [result, setDestination] = useState()
 
   const handleSearch = (e) => {
 
-    if (!destination) return
+    if (!result) return
 
     e.preventDefault()
-    history.push(`/search/${destination}/${pets}`)
+    history.push(`/search/${result}/${pets}`)
   }
 
   return (
@@ -54,9 +54,9 @@ function SearchBar() {
           <label className="searchBar-label">Where</label>
           <input
             type='text'
-            placeholder='Search destinations'
+            placeholder='Search results'
             className='searchBar-input'
-            value={destination}
+            value={result}
             onChange={e => setDestination(e.target.value)}
             maxLength="140"
           />
@@ -65,23 +65,23 @@ function SearchBar() {
               <div className="where-dropdown-header">Popular Searches</div>
               <div className="where-selection" onClick={() => { setDestination("Indonesia"); history.push(`/search/indonesia/${pets}`) }}>
                 <img className='dropdown-clock' src={clock}></img>
-                <div className="where-destination-outer">
-                  <div className="where-destination-header">Indonesia · Stays</div>
-                  <div className="where-destination-date">Any week</div>
+                <div className="where-result-outer">
+                  <div className="where-result-header">Indonesia · Stays</div>
+                  <div className="where-result-date">Any week</div>
                 </div>
               </div>
               <div className="where-selection" onClick={() => { setDestination("Thailand"); history.push(`/search/thailand/${pets}`) }}>
                 <img className='dropdown-clock' src={clock}></img>
-                <div className="where-destination-outer">
-                  <div className="where-destination-header">Thailand · Stays</div>
-                  <div className="where-destination-date">Any week</div>
+                <div className="where-result-outer">
+                  <div className="where-result-header">Thailand · Stays</div>
+                  <div className="where-result-date">Any week</div>
                 </div>
               </div>
               <div className="where-selection" onClick={() => { setDestination("Mexico"); history.push(`/search/mexico/${pets}`) }}>
                 <img className='dropdown-clock' src={clock}></img>
-                <div className="where-destination-outer">
-                  <div className="where-destination-header">Mexico · Stays</div>
-                  <div className="where-destination-date">Any week</div>
+                <div className="where-result-outer">
+                  <div className="where-result-header">Mexico · Stays</div>
+                  <div className="where-result-date">Any week</div>
                 </div>
               </div>
             </div>

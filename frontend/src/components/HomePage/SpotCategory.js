@@ -32,7 +32,7 @@ const SpotCategory = ({ handleFilter, category }) => {
           <div className="spot-category-name">Bird Home</div>
         </div>
         <div className={category === 'Multiple Pet Home' ? "spot-category-selected" : "spot-category-outer"} onClick={() => handleFilter('Multiple Pet Home')}>
-          <img className='spot-category-icon' src='https://icons8.com/icon/ByOdUFbnaHsc/group-of-animals' alt='categories'></img>
+          <img className='spot-category-icon' src='https://img.icons8.com/ios/256/group-of-animals.png' alt='categories'></img>
           <div className="spot-category-name">Multiple Pet Home</div>
         </div>
         <div className={category === 'Reptile Home' ? "spot-category-selected" : "spot-category-outer"} onClick={() => handleFilter('Reptile Home')}>
@@ -44,7 +44,7 @@ const SpotCategory = ({ handleFilter, category }) => {
           <div className="spot-category-name">Hamster/Guinea Pig Home</div>
         </div>
         <div className={category === 'Farm Home' ? "spot-category-selected" : "spot-category-outer"} onClick={() => handleFilter('Farm Home')}>
-          <img className='spot-category-icon' src='https://icons8.com/icon/4Rn1SpjpHhYO/livestock' alt='categories'></img>
+          <img className='spot-category-icon' src='https://img.icons8.com/ios/256/livestock.png' alt='categories'></img>
           <div className="spot-category-name">Farm Home</div>
         </div>
       </div>
