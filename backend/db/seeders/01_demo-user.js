@@ -26,11 +26,11 @@ module.exports = {
         profile_url: "https://media.wired.com/photos/5a597f6701a4232aacd92777/4:3/w_300,h_225,c_limit/i_am_legend_will_smith__1_.jpg"
       },
       {
-        email: 'Nathan@user.io',
-        firstName: 'Nathan',
-        lastName: 'Luu',
+        firstName: 'Emily Elizabeth',
+        lastName: 'Elizabeth',
+        email: 'Elizabeth@Clifford.com',
         hashedPassword: bcrypt.hashSync('password4'),
-        profile_url: "https://res.cloudinary.com/dv3qturtv/image/upload/v1663645357/user8.png"
+        profile_url: "https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png"
       },
       {
         firstName: 'Elle',
@@ -80,6 +80,13 @@ module.exports = {
         email: 'DorothyGale@Toto.com',
         hashedPassword: bcrypt.hashSync('password11'),
         profile_url: "https://cdn.britannica.com/53/188353-050-B83CEAD5/Judy-Garland-Dorothy-Gale-The-Wizard-of.jpg"
+      },
+      {
+        firstName:'John',
+        lastName: 'Dolittle',
+        email: 'DoctorDolittle@Dolittle.com',
+        hashedPassword: bcrypt.hashSync('password12'),
+        profile_url: "https://is4-ssl.mzstatic.com/image/thumb/rNkwOUOAUd3yE1_I0e1l5A/1200x675mf.jpg"
       }
     ], {});
   },

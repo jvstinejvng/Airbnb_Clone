@@ -67,8 +67,20 @@ module.exports = (sequelize, DataTypes) => {
         min: 0.00
       }
     },
-    guests: {
+    pets: {
       type: Sequelize.INTEGER,
+      allowNull: false,
+    },
+    children: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    yard: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    personalpets: {
+      type: Sequelize.STRING,
       allowNull: false,
     },
     numReviews: {
