@@ -2,40 +2,40 @@
 const {
   Model
 } = require('sequelize');
+const user = require('./user');
 module.exports = (sequelize, DataTypes) => {
   class Review extends Model {
-  
     static associate(models) {
-      Review.belongsTo(
-        models.User,
-          { foreignKey: 'userId', onDelete: 'CASCADE' }
-      );
-
-      Review.belongsTo(
-        models.Spot,
-          { foreignKey: 'spotId', onDelete: 'CASCADE' }
-      );
-
-      Review.hasMany(
-        models.Image,
-        { foreignKey: 'reviewId', onDelete: 'CASCADE' }
-      );
+      Review.belongsTo(models.User, { foreignKey: 'userId' })
+      Review.belongsTo(models.Spot, { foreignKey: 'spotId' })
+      Review.hasMany(models.Image, { foreignKey: 'reviewId', as: 'images' })
     }
   }
   Review.init({
-    userId: DataTypes.INTEGER,
-    spotId: DataTypes.INTEGER,
-    review: {
-      type: DataTypes.STRING(1000),
+    userId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: '',
-      
+      references: {
+        model: 'Users',
+        key: 'id'
+      },
+      onDelete: 'CASCADE',
+    },
+    spotId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Spots',
+        key: 'id'
+      },
+      onDelete: 'CASCADE',
     },
     stars: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: '',
-    }
+    },
+    review: {
+      type: DataTypes.TEXT
+    },
   }, {
     sequelize,
     modelName: 'Review',

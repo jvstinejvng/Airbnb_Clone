@@ -4,110 +4,107 @@ const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     toSafeObject() {
-      const { id, firstName, lastName, email } = this; // context will be the User instance
-      return { id, firstName, lastName, email };
+      // method will return an object with only the User instance information that is safe to save to a JWT(id, username, and email)
+      const { id, email } = this; // context will be the User instance
+      return { id, email };
     };
+
     validatePassword(password) {
-      return bcrypt.compareSync(password, this.hashedPassword.toString());
+      // returns true if there is a match with the User instance's hashedPassword
+      return bcrypt.compareSync(password, this.hashedPassword.toString())
     };
+
     static getCurrentUserById(id) {
+      // uses the currentUser scope to return a User with that id
       return User.scope("currentUser").findByPk(id);
     };
+
     static async login({ email, password }) {
       const { Op } = require('sequelize');
       const user = await User.scope('loginUser').findOne({
+        // searches for one User with the specified credential
         where: {
-      
-          email: email
-     
+          [Op.or]: {
+            // username: credential,
+            // email: credential
+            email: email
+          }
         }
       });
+      // if user is found, validate the password using .validatePassword method
       if (user && user.validatePassword(password)) {
-        return await User.scope('currentUser').findByPk(user.id);
+        // if password is valid, method will return user by using currentUser scope
+        return await User.scope('currentUser').findByPk(user.id,
+          { attributes: ['id', 'firstName', 'lastName', 'email'] });
       }
     };
+
+    // creates a user with the username, email, and hashedPassword
     static async signup({ firstName, lastName, email, password }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
         firstName,
         lastName,
         email,
-        hashedPassword
+        hashedPassword,
       });
-      return await User.scope('currentUser').findByPk(user.id);
-    }
+      return await User.scope('currentUser').findByPk(user.id, {
+        attributes: ['id', 'firstName', 'lastName', 'email']
+      });
+    };
+
     static associate(models) {
-      // define association here
-      User.hasMany(models.Spot, {
-        foreignKey: 'ownerId',
-        onDelete: 'CASCADE',
-        hooks: true
-      });
-      User.hasMany(models.Booking, {
-        foreignKey: 'userId',
-        onDelete: 'CASCADE',
-        hooks: true,
-      });
-      User.hasMany(models.Review, {
-        foreignKey: 'userId',
-        onDelete: 'CASCADE',
-        hooks: true,
-      });
+      User.hasMany(models.Spot, { foreignKey: 'ownerId', onDelete: 'CASCADE', hooks: true })
+      User.hasMany(models.Review, { foreignKey: 'userId', onDelete: 'CASCADE', hooks: true })
+      User.hasMany(models.Booking, { foreignKey: 'userId', onDelete: 'CASCADE', hooks: true })
+      User.hasMany(models.Image, { foreignKey: 'userId', onDelete: 'CASCADE', hooks: true })
     }
-  }
-  User.init({
-    firstName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isAlpha: true,
-      }
-    },
-    lastName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isAlpha: true,
-      }
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        len: [3, 256],
-        isEmail: true,
-      }
-    },
-    hashedPassword: {
-      type: DataTypes.STRING.BINARY,
-      allowNull: false,
-      validate: {
-        len: [60, 60]
-      }
-    },
-  }, {
+  };
+
+  User.init(
+    {
+      firstName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      hashedPassword: {
+        type: DataTypes.STRING.BINARY,
+        allowNull: false,
+        validate: {
+          len: [60, 60]
+        }
+      },
+      profile_url: {
+        type: DataTypes.TEXT
+      },
+    }, {
+    sequelize,
+    modelName: "User",
     defaultScope: {
       attributes: {
-        exclude: ['hashedPassword', 'updatedAt', 'createdAt']
+        exclude: ['hashedPassword', 'createdAt', 'updatedAt']
       }
     },
     scopes: {
       currentUser: {
-        attributes: { exclude: ['hashedPassword'] }
+        attributes: {
+          exclude: ['hashedPassword']
+        }
       },
       loginUser: {
         attributes: {}
       }
-    },
-    sequelize,
-    modelName: 'User',
+    }
   });
   return User;
 };

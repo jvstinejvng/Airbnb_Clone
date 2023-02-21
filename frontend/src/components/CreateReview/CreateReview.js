@@ -30,7 +30,7 @@ const CreateReview = ({ModalReview,setModalReview}) => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.rDefault();
     let data = {
       review: reviewMessage,
       stars: stars,

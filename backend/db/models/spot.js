@@ -1,104 +1,90 @@
-"use strict";
-const { Model } = require("sequelize");
+'use strict';
+const {
+  Model, Sequelize
+} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Spot extends Model {
-  
     static associate(models) {
-      Spot.belongsTo(models.User, {
-        as: 'Owner',
-        foreignKey: 'ownerId',
-      });
-      Spot.hasMany(models.Review, {
-        foreignKey: 'spotId',
-        onDelete: 'CASCADE',
-        hooks: true,
-      });
-      Spot.hasMany(models.Image, {
-        foreignKey: 'spotId',
-        onDelete: 'CASCADE',
-        hooks: true,
-      });
-      Spot.hasMany(models.Booking, {
-        foreignKey: 'spotId',
-        onDelete: 'CASCADE',
-        hooks: true,
-      })
+      Spot.belongsTo(models.User, { foreignKey: 'ownerId', as: 'Owner' })
+      Spot.hasMany(models.Review, { foreignKey: 'spotId', onDelete: 'CASCADE', hooks: true })
+      Spot.hasMany(models.Image, { foreignKey: 'spotId', as: 'images', onDelete: 'CASCADE', hooks: true })
+      Spot.hasMany(models.Booking, { foreignKey: 'spotId', onDelete: 'CASCADE', hooks: true })
     }
   }
   Spot.init({
     ownerId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: 'Users',
+        key: 'id'
+      }
     },
     address: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     city: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [2, 50]
-      }
     },
     state: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [2, 20]
-      }
     },
     country: {
-      type: DataTypes.STRING(30),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     lat: {
-      type: DataTypes.DECIMAL(11, 7),
+      type: DataTypes.DECIMAL(8, 6),
       allowNull: false,
-      validate: {
-        min: -90,
-        max: 90,
-      }
     },
     lng: {
-      type: DataTypes.DECIMAL(11, 7),
+      type: DataTypes.DECIMAL(9, 6),
       allowNull: false,
-      validate: {
-        min: -180,
-        max: 180
-      }
+    },
+    category: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    type: {
+      type: Sequelize.STRING,
+      allowNull: false,
     },
     name: {
-      type: DataTypes.STRING(80),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     description: {
-      type: DataTypes.STRING(1000)
-    },
-    price: {
-      type: DataTypes.DECIMAL(10, 2),
+      type: DataTypes.TEXT('long'),
       allowNull: false,
     },
-    previewImage: {
-      type: DataTypes.STRING(500),
+    price: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        min: 0.00
+      }
     },
-  },
-    {
-      sequelize,
-      modelName: "Spot",
-      indexes: [
-        {
-          unique: true,
-          fields: ['lat', 'lng']
-        }
-      ],
-      scopes: {
-        noPreviewImage: {
-          attributes: {
-            exclude: ['previewImage']
-          }
-        }
-      },
-    });
+    guests: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
+    numReviews: {
+      type: DataTypes.INTEGER,
+    },
+    avgStarRating: {
+      type: DataTypes.DECIMAL(3, 2),
+    },
+  }, {
+    sequelize,
+    modelName: 'Spot',
+    defaultScope: {
+      attributes: {
+        exclude: ['numReviews', 'avgStarRating']
+      }
+    }
+  });
   return Spot;
 };

@@ -13,58 +13,74 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'Users',
-          key: 'id',
+          key: 'id'
         },
-        onDelete: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       address: {
         type: Sequelize.STRING,
         allowNull: false,
       },
       city: {
-        type: Sequelize.STRING(50),
+        type: Sequelize.STRING,
         allowNull: false,
       },
       state: {
-        type: Sequelize.STRING(20),
+        type: Sequelize.STRING,
         allowNull: false,
       },
       country: {
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING,
         allowNull: false,
       },
       lat: {
-        type: Sequelize.DECIMAL(11, 7),
+        type: Sequelize.DECIMAL(8, 6),
         allowNull: false,
       },
       lng: {
-        type: Sequelize.DECIMAL(11, 7),
+        type: Sequelize.DECIMAL(9, 6),
+        allowNull: false,
+      },
+      category: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      type: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
       name: {
-        type: Sequelize.STRING(80),
+        type: Sequelize.STRING,
         allowNull: false,
       },
       description: {
-        type: Sequelize.STRING(1000)
+        type: Sequelize.TEXT('long'),
+        allowNull: false,
       },
       price: {
-        type: Sequelize.DECIMAL(10, 2),
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
-      previewImage: {
-        type: Sequelize.STRING(500),
+      guests: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-      }
+      },
+      numReviews: {
+        type: Sequelize.INTEGER
+      },
+      avgStarRating: {
+        type: Sequelize.DECIMAL(3, 2)
+      },
     });
   },
   async down(queryInterface, Sequelize) {

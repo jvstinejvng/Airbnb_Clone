@@ -10,35 +10,33 @@ module.exports = {
       },
       firstName: {
         type: Sequelize.STRING(30),
-        allowNull: false,
+        allowNull: false
       },
       lastName: {
         type: Sequelize.STRING(30),
-        allowNull: false,
-      },
-      username: {
-        type: Sequelize.STRING(30),
-        // allowNull: false,
-        unique: true,
+        allowNull: false
       },
       email: {
         type: Sequelize.STRING(256),
         allowNull: false,
-        unique: true,
+        unique: true
       },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,
         allowNull: false,
       },
+      profile_url: {
+        type: Sequelize.TEXT
+      },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     });
   },

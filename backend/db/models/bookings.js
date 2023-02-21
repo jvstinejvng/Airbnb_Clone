@@ -4,36 +4,35 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Booking extends Model {
-
     static associate(models) {
-      Booking.belongsTo(
-        models.User,
-        { foreignKey: 'userId' }
-      );
-
-      Booking.belongsTo(
-        models.Spot,
-        { foreignKey: 'spotId' }
-      );
+      Booking.belongsTo(models.User, { foreignKey: 'userId' })
+      Booking.belongsTo(models.Spot, { foreignKey: 'spotId' })
     }
   }
   Booking.init({
-    spotId:{
+    spotId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: 'Spots',
+        key: 'id'
+      }
     },
-    userId:{
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      
+      references: {
+        model: 'Users',
+        key: 'id'
+      }
     },
-    startDate:{
+    startDate: {
       type: DataTypes.DATEONLY,
-      allowNull: false
+      allowNull: false,
     },
-    endDate:{
+    endDate: {
       type: DataTypes.DATEONLY,
-      allowNull: false
+      allowNull: false,
     },
   }, {
     sequelize,
