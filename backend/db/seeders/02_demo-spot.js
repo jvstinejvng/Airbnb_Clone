@@ -5,7 +5,7 @@ module.exports = {
     await queryInterface.bulkInsert('Spots', [
       {
         ownerId: 1,
-        address: '3451 Park Pl',
+        address: '3451 Park PI',
         city: 'Pleasanton',
         state: 'California',
         country: 'United States',
@@ -22,7 +22,7 @@ module.exports = {
         personalpets:'1 labrador retriever',
       },
       {
-        ownerId: 1,
+        ownerId: 3,
         address: '11233 Center St',
         city: 'Brookdale',
         state: 'California',
@@ -58,7 +58,7 @@ module.exports = {
         personalpets:'0 pets',
       },
       {
-        ownerId: 1,
+        ownerId: 20,
         address: '2850 S Quincy St',
         city: 'Arlington',
         state: 'Virginia',
@@ -76,7 +76,7 @@ module.exports = {
         personalpets:'0 pets',
       },
       {
-        ownerId: 1,
+        ownerId: 2,
         address: '12700 Hillcrest Rd',
         city: 'Dallas',
         state: 'Texas',
@@ -130,7 +130,7 @@ module.exports = {
         personalpets:'2 Dogs',
       },
       {
-        ownerId: 4,
+        ownerId: 5,
         address: '6318 Biscayne Blvd',
         city: 'Miami',
         state: 'Florida',
