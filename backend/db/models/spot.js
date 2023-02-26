@@ -72,15 +72,15 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     children: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     yard: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     personalpets: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     numReviews: {
