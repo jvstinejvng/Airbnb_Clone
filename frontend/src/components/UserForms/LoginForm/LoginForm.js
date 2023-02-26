@@ -39,7 +39,7 @@ function LoginForm({ setShowLogIn }) {
     <>
       {showSignUp ? <SignupForm setShowSignUp={setShowSignUp} /> :
         <form onSubmit={handleSubmit} className="login-form">
-          <h1 className="login-header">Welcome to WhereBnb</h1>
+          <h1 className="login-header">Welcome to Petbnb</h1>
           <label className="login-label">
             <input
               type="text"

@@ -400,7 +400,7 @@ module.exports = {
         personalpets:'0 Personal Pet',
       },
       {
-        ownerId: '',
+        ownerId: 15,
         address: '604 S Jefferson Ave',
         city: 'West Jefferson',
         state: 'North Carolina',
@@ -455,7 +455,6 @@ module.exports = {
       },
     ], {});
   },
-
   async down(queryInterface, Sequelize) {
     const Op = Sequelize.Op;
     await queryInterface.bulkDelete('Spots', null, {});

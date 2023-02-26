@@ -97,7 +97,8 @@ module.exports = {
         userId: 20,
         spotId: 4,
         type: 'spot',
-        url: "https://i.pinimg.com/564x/0d/31/4f/0d314fb988d69fefbbb16b965939afa8.jpg",
+        url: "https://i.pinimg.com/originals/9e/cb/6b/9ecb6bdf4ebb99dace61d27398b3eccf.jpg",
+
       },
       {
         userId: 20,
@@ -115,7 +116,7 @@ module.exports = {
         userId: 20,
         spotId: 4,
         type: 'spot',
-        url: "https://i.pinimg.com/originals/9e/cb/6b/9ecb6bdf4ebb99dace61d27398b3eccf.jpg",
+        url: "https://i.pinimg.com/564x/0d/31/4f/0d314fb988d69fefbbb16b965939afa8.jpg",
       },
       {
         userId: 20,
