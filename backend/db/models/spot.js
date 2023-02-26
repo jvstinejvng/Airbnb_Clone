@@ -72,7 +72,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     children: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     },
     yard: {
