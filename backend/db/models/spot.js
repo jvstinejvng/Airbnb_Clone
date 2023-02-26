@@ -6,9 +6,9 @@ module.exports = (sequelize, DataTypes) => {
   class Spot extends Model {
     static associate(models) {
       Spot.belongsTo(models.User, { foreignKey: 'ownerId', as: 'Owner' })
-      Spot.hasMany(models.Booking, { foreignKey: 'spotId', onDelete: 'CASCADE', hooks: true })
       Spot.hasMany(models.Review, { foreignKey: 'spotId', onDelete: 'CASCADE', hooks: true })
       Spot.hasMany(models.Image, { foreignKey: 'spotId', as: 'images', onDelete: 'CASCADE', hooks: true })
+      Spot.hasMany(models.Booking, { foreignKey: 'spotId', onDelete: 'CASCADE', hooks: true })
     }
   }
   Spot.init({
@@ -76,11 +76,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     yard: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     },
     personalpets: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     },
     numReviews: {
