@@ -91,7 +91,7 @@ module.exports = {
         userId: 2,
         spotId: 3,
         type: 'spot',
-        url: "https://cdn.shopify.com/s/files/1/1511/7434/products/Haven.PDP-min.jpg?v=1666739276&width=1296",
+        url: "https://cdn.shopify.com/s/files/1/1511/7434/products/Haven.PDP-min.jpg",
       },
       {
         userId: 20,
@@ -370,7 +370,7 @@ module.exports = {
         url:'https://cdn.decorpad.com/photos/2018/09/10/kitchen-built-in-desk-with-wishbone-chair.jpg',
       },
       {
-        userId: '14',
+        userId: 14,
         spotId: 13,
         type: 'spot',
         url:'https://images.pexels.com/photos/5942742/pexels-photo-5942742.jpeg',
@@ -456,31 +456,31 @@ module.exports = {
       {
         userId: 10,
         spotId: 16,
-        type: '',
+        type: 'spot',
         url:'https://hips.hearstapps.com/housebeautiful.cdnds.net/17/17/1493206894-sofacom-cecil-in-pug-by-fenella-smith.jpg',
       },
       {
         userId: 10,
         spotId: 16,
-        type: '',
+        type: 'spot',
         url:'https://i.pinimg.com/564x/c6/7b/65/c67b65739298190c8bdb966e5981da99.jpg',
       },
       {
         userId: 10,
         spotId: 16,
-        type: '',
+        type: 'spot',
         url:'https://i.pinimg.com/564x/45/54/75/455475b37c5607b33ac4c318c614b658.jpg',
       },
       {
         userId: 10,
         spotId: 16,
-        type: '',
+        type: 'spot',
         url:'https://m.media-amazon.com/images/I/81yXgmKqN6L.jpg',
       },
       {
         userId: 10,
         spotId: 16,
-        type: '',
+        type: 'spot',
         url:'https://i.pinimg.com/564x/07/66/8f/07668f3b27243e2509b1d384c4bde0e7.jpg',
       },
       {
@@ -642,7 +642,7 @@ module.exports = {
       {
         userId: 2,
         spotId: 22,
-        type: '',
+        type: 'spot',
         url:'https://oregonhomemagazine.com/images/stories/2019/summer_2019/Catio_JPEG/Catio_Astro_DeeDee.jpg',
       },
       {
@@ -696,7 +696,7 @@ module.exports = {
       {
         userId: 8,
         spotId: 24,
-        type: '',
+        type: 'spot',
         url:'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/country-til-the-cows-come-home-front-porch-0918-1535654637.jpg',
       },
       {
@@ -726,13 +726,13 @@ module.exports = {
       {
         userId: 15,
         spotId: 25,
-        type: '',
+        type: 'spot',
         url:'https://cdn.shopify.com/s/files/1/0486/7532/4069/products/eleanor-rattan-pet-bed-hawaii-pre-order-pet-bed-picnic-imports-901191_1024x1024@2x.jpg',
       },
       {
         userId: 15,
         spotId: 25,
-        type: '',
+        type: 'spot',
         url:'https://i.pinimg.com/564x/fe/48/d1/fe48d1d370c8b8c51df8683e724ca34d.jpg',
       },
       {
