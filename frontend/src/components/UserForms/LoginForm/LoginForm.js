@@ -70,7 +70,7 @@ function LoginForm({ setShowLogIn }) {
           <button
             type="submit"
             className="demo-login-form-button"
-            onClick={() => { setEmail("demo@user.io"); setPassword("SecurePassword0411") }}
+            onClick={() => { setEmail("demo@user.io"); setPassword("password1") }}
           >Demo User</button>
           <div className='or-outer'>
             <span className='or-border'></span>

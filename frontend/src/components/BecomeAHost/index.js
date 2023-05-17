@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 
 import { addSpot, findSpotById } from "../../store/spots";
 import { addNewImages } from "../../store/images";
-
 import NavigationBar from "../NavigationBar";
 import "../CSS/BecomeAHost.css"
 
