@@ -63,24 +63,24 @@ function SearchBar() {
           {showDestinations && (
             <div className="where-dropdown">
               <div className="where-dropdown-header">Popular Searches</div>
-              <div className="where-selection" onClick={() => { setDestination("Indonesia"); history.push(`/search/indonesia/${pets}`) }}>
+              <div className="where-selection" onClick={() => { setDestination("Portland"); history.push(`/search/Portland/${pets}`) }}>
                 <img className='dropdown-clock' src={locationpin}></img>
                 <div className="where-result-outer">
-                  <div className="where-result-header">Indonesia · Stays</div>
+                  <div className="where-result-header">Portland, Oregon</div>
                   <div className="where-result-date">Any week</div>
                 </div>
               </div>
-              <div className="where-selection" onClick={() => { setDestination("Thailand"); history.push(`/search/thailand/${pets}`) }}>
+              <div className="where-selection" onClick={() => { setDestination("Miami"); history.push(`/search/Miami/${pets}`) }}>
                 <img className='dropdown-clock' src={locationpin}></img>
                 <div className="where-result-outer">
-                  <div className="where-result-header">Thailand · Stays</div>
+                  <div className="where-result-header">Miami, Florida</div>
                   <div className="where-result-date">Any week</div>
                 </div>
               </div>
-              <div className="where-selection" onClick={() => { setDestination("Mexico"); history.push(`/search/mexico/${pets}`) }}>
+              <div className="where-selection" onClick={() => { setDestination("Chicago"); history.push(`/search/Chicago/${pets}`) }}>
                 <img className='dropdown-clock' src={locationpin}></img>
                 <div className="where-result-outer">
-                  <div className="where-result-header">Mexico · Stays</div>
+                  <div className="where-result-header">Chicago, Illinios</div>
                   <div className="where-result-date">Any week</div>
                 </div>
               </div>
