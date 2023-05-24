@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import searchIcon from './MagnifyingGlass.svg'
 
-import clock from './clock.svg'
+import locationpin from './LocationPin.svg'
 
 import "../CSS/SearchBar.css"
 
@@ -64,21 +64,21 @@ function SearchBar() {
             <div className="where-dropdown">
               <div className="where-dropdown-header">Popular Searches</div>
               <div className="where-selection" onClick={() => { setDestination("Indonesia"); history.push(`/search/indonesia/${pets}`) }}>
-                <img className='dropdown-clock' src={clock}></img>
+                <img className='dropdown-clock' src={locationpin}></img>
                 <div className="where-result-outer">
                   <div className="where-result-header">Indonesia · Stays</div>
                   <div className="where-result-date">Any week</div>
                 </div>
               </div>
               <div className="where-selection" onClick={() => { setDestination("Thailand"); history.push(`/search/thailand/${pets}`) }}>
-                <img className='dropdown-clock' src={clock}></img>
+                <img className='dropdown-clock' src={locationpin}></img>
                 <div className="where-result-outer">
                   <div className="where-result-header">Thailand · Stays</div>
                   <div className="where-result-date">Any week</div>
                 </div>
               </div>
               <div className="where-selection" onClick={() => { setDestination("Mexico"); history.push(`/search/mexico/${pets}`) }}>
-                <img className='dropdown-clock' src={clock}></img>
+                <img className='dropdown-clock' src={locationpin}></img>
                 <div className="where-result-outer">
                   <div className="where-result-header">Mexico · Stays</div>
                   <div className="where-result-date">Any week</div>

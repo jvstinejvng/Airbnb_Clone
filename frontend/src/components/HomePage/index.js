@@ -7,15 +7,15 @@ import { listAllUsers } from "../../store/users";
 import NavigationBar from "../NavigationBar";
 import SpotCategory from "./SpotCategory";
 
-import "../CSS/HomePage.css"
+import "../CSS/Homepage.css"
 
-const HomePage = ( { isLoaded } ) => {
+const Homepage = ( { isLoaded } ) => {
 
   const dispatch = useDispatch()
   let listAllSpots = useSelector(getAllSpots)
 
   const [category, setCategory] = useState(null)
-  const [filteredRooms, setFilterRooms] = useState([])
+  const [filteredSpots, setFilterSpots] = useState([])
 
   listAllSpots.sort(() => {
     return 0.5 - Math.random();
@@ -26,10 +26,10 @@ const HomePage = ( { isLoaded } ) => {
     dispatch(listAllUsers())
 
     if (category) {
-      const filteredRooms = listAllSpots.filter(spot => {
+      const filteredSpots = listAllSpots.filter(spot => {
         return spot.category === category
       })
-      setFilterRooms(filteredRooms)
+      setFilterSpots(filteredSpots)
     }
   }, [category])
 
@@ -42,13 +42,13 @@ const HomePage = ( { isLoaded } ) => {
     <div className="outer-spots-div">
       <div className="home-upper-nav">
         <div className="home-nav-main">
-          <NavigationBar isLoaded={isLoaded} setFilterRooms={setFilterRooms} setCategory={setCategory} />
+          <NavigationBar isLoaded={isLoaded} setFilterSpots={setFilterSpots} setCategory={setCategory} />
         </div>
         <div className="navigation-border"></div>
         <SpotCategory handleFilter={handleFilter} category={category} />
       </div>
-      {filteredRooms.length > 0 ? <div className="all-spots-div">
-        {filteredRooms?.map((spot, i) => {
+      {filteredSpots.length > 0 ? <div className="all-spots-div">
+        {filteredSpots?.map((spot, i) => {
 
           if (spot?.Reviews) {
             let sum = 0;
@@ -140,4 +140,4 @@ const HomePage = ( { isLoaded } ) => {
     </div>
   )
 }
-export default HomePage
+export default Homepage

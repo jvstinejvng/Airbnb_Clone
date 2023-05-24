@@ -5,7 +5,7 @@ import SearchBar from './SearchBar';
 
 import '../CSS/NavigationBar.css'
 
-function NavigationBar({ isLoaded, setFilterRooms, setCategory }) {
+function NavigationBar({ isLoaded, setFilterSpots, setCategory }) {
 
   return (
     <>
@@ -14,7 +14,7 @@ function NavigationBar({ isLoaded, setFilterRooms, setCategory }) {
           <div className='navigation-bar'>
             <NavLink exact to="/" className="nav-link home-link">
               <span className="iconify" data-icon="fa-brands:airbnb" data-width="40"></span>
-              <span className='airbnb-name' onClick={() => { setFilterRooms([]); setCategory(null) }}>PetBnB</span>
+              <span className='airbnb-name' onClick={() => { setFilterSpots([]); setCategory(null) }}>PetBnB</span>
             </NavLink>
             <SearchBar />
             {isLoaded && <ProfileButton />}
