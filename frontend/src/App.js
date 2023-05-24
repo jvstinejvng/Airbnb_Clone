@@ -6,13 +6,13 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 
 import SignupForm from "./components/UserForms/SignupForm";
-import HomePage from "./components/HomePage";
+import Homepage from "./components/Homepage";
 import SpotDetails from "./components/SpotDetails";
 import UserSpots from "./components/UserSpots";
 import BecomeAHost from "./components/BecomeAHost";
 import UserBookings from "./components/UserBookings";
 import Footer from "./components/NavigationBar/Footer";
-import SearchResults from "./components/HomePage/SearchResults";
+import SearchResults from "./components/Homepage/SearchResults";
 
 function App() {
   const dispatch = useDispatch();
@@ -45,10 +45,10 @@ function App() {
             <SearchResults isLoaded={isLoaded} />
           </Route>
           <Route path='filter/:category'>
-            <HomePage isLoaded={isLoaded} />
+            <Homepage isLoaded={isLoaded} />
           </Route>
           <Route exact path="/">
-            <HomePage isLoaded={isLoaded} />
+            <Homepage isLoaded={isLoaded} />
           </Route>
         </Switch>
       )}

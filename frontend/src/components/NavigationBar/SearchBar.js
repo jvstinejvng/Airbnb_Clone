@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import searchIcon from './MagnifyingGlass.svg'
+import searchIcon from './SearchIcon.svg'
 
 import locationpin from './LocationPin.svg'
 
