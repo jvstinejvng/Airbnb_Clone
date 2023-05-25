@@ -994,7 +994,6 @@ module.exports = {
         type: 'spot',
         url:'https://i.pinimg.com/736x/b3/78/51/b37851e01a921fa692815f237d0f6d1a.jpg',
       },
-  
     ], {});
 
   },
