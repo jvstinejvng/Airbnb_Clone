@@ -15,7 +15,7 @@ const SpotCategory = ({ handleFilter, category }) => {
           <img className='spot-category-icon' src='https://img.icons8.com/ios/256/pet-commands-train.png' alt='categories'></img>
           <div className="spot-category-name">Cat</div>
         </div>
-        <div className={category === 'Dog and Cat Home' ? "spot-category-selected" : "spot-category-outer"} onClick={() => handleFilter('Dog and Cat Home')}>
+        <div className={category === 'Dog/Cat Home' ? "spot-category-selected" : "spot-category-outer"} onClick={() => handleFilter('Dog/Cat Home')}>
           <img className='spot-category-icon' src='https://img.icons8.com/ios/256/pets--v1.png' alt='categories'></img>
           <div className="spot-category-name">Dog and Cat Friendly</div>
         </div>

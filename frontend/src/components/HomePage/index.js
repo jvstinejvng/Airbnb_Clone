@@ -46,11 +46,9 @@ const Homepage = ( { isLoaded } ) => {
           <NavigationBar isLoaded={isLoaded} setFilterSpots={setFilterSpots} setCategory={setCategory} />
         </div>
         <div className="navigation-border"></div>
-        { SpotCategory.length !== 0 ? 
-          (<SpotCategory handleFilter={handleFilter} category={category} />)
-          :
-          <div>no result</div>
-        }
+       
+          <SpotCategory handleFilter={handleFilter} category={category} />
+         
 
 
       
