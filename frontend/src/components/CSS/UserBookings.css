@@ -146,7 +146,7 @@
 }
 
 .cancel-button {
-  color: #ff385c;
+  color: rgb(255, 56, 92);
   font-weight: 600;
 }
 
@@ -276,7 +276,7 @@
 
 .reserve-errors-edit {
   margin: 0.5rem 0 0 1rem;
-  color: #ff385c;
+  color: rgb(255, 56, 92);
   font-size: 0.9rem;
 }
 

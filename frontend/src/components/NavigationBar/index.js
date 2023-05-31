@@ -4,17 +4,18 @@ import ProfileButton from './ProfileButton';
 import SearchBar from './SearchBar';
 
 import '../CSS/NavigationBar.css'
+import PetbnbLogo from '../../assets/Petbnb.png'
 
 function NavigationBar({ isLoaded, setFilterSpots, setCategory }) {
 
   return (
     <>
-      <nav className="main-nav">
-        <div className="navigation-outer">
-          <div className='navigation-bar'>
-            <NavLink exact to="/" className="nav-link home-link">
-              <span className="iconify" data-icon="fa-brands:airbnb" data-width="40"></span>
-              <span className='airbnb-name' onClick={() => { setFilterSpots([]); setCategory(null) }}>PetBnB</span>
+      <nav className='main-navbar'>
+        <div className='navbar-container'>
+          <div className='navbar'>
+            <NavLink exact to='/' className='navbar-home-link'>
+              <span className='petbnb-logo'> <img src={PetbnbLogo} alt='petbnb logo' width='40' height='40'></img></span>
+              <span className='petbnb-name' onClick={() => { setFilterSpots([]); setCategory(null) }}>petbnb</span>
             </NavLink>
             <SearchBar />
             {isLoaded && <ProfileButton />}

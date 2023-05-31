@@ -1,71 +1,31 @@
-.main-nav {
-  height: 90px;
+.main-navbar {
+  height: 5rem;
 }
 
-.navigation-outer {
+.navbar-container {
+  justify-content: space-between;
+  align-items: center;
   display: flex;
-  justify-content: center;
+  position: relative;
+  z-index: 1;
 }
 
-.navigation-bar {
+.navbar {
   display: flex;
   justify-content: space-between;
-  padding: 1rem 1rem 1.3rem;
+  padding: .75rem .75rem 1rem;
   width: 100%;
 }
 
-.login {
-  margin-right: 8px;
-}
-
-.signup {
-  font-size: 18px;
-}
-
-.sign-up-link {
-  cursor: pointer
-}
-
-.home-link {
-  color: #ff385c;
+.navbar-home-link {
   display: flex;
+  color: rgb(255, 56, 92);
   font-weight: bold;
 }
 
-.airbnb-name {
+.petbnb-name {
   align-items: center;
-  font-size: 1.4rem;
-  line-height: 20px;
-  padding-left: 8px;
-  padding-top: 14px;
-}
-
-@media screen and (max-width: 700px) {
-  .navigation-bar {
-    width: 34%;
-  }
-}
-
-@media screen and (min-width: 1300px) and (max-width: 1699px) {
-  .navigation-bar {
-    /* width: 72rem; */
-  }
-}
-
-@media screen and (min-width: 1150px) and (max-width: 1300px) {
-  .navigation-bar {
-    /* width: 64rem; */
-  }
-}
-
-@media screen and (min-width: 850px) and (max-width: 1150px) {
-  .navigation-bar {
-    /* width: 62rem; */
-  }
-}
-
-@media screen and (max-width: 850px) {
-  .navigation-bar {
-    /* width: 45rem; */
-  }
+  font-size: 1.5rem;
+  padding-left: 10px;
+  padding-top: 5px;
 }
