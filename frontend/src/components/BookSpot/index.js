@@ -14,11 +14,11 @@ const BookSpot = ({ spotId, avgStarRating, checkIn, setCheckIn, checkOut, setChe
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const currRoomReservations = useSelector(getAllBookings)
+  const currRoomBookings = useSelector(getAllBookings)
 
-  const [bookingErrors, setReservationErrors] = useState([])
+  const [bookingErrors, setBookingErrors] = useState([])
   const [checkOwner, setCheckOwner] = useState(false)
-  const [showReservations, setShowReservations] = useState(false)
+  const [showBookings, setShowBookings] = useState(false)
   const [showLogIn, setShowLogIn] = useState(false)
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const BookSpot = ({ spotId, avgStarRating, checkIn, setCheckIn, checkOut, setChe
     }
 
     if (errors.length > 0) {
-      setReservationErrors(errors)
+      setBookingErrors(errors)
     }
 
   }, [dispatch, checkIn, checkOut])
@@ -68,11 +68,11 @@ const BookSpot = ({ spotId, avgStarRating, checkIn, setCheckIn, checkOut, setChe
       .then(() => { history.push("/bookings") })
       .catch(async (res) => {
         const data = await res.json();
-        if (data && data.errors) { setReservationErrors(Object.values(data.errors)); }
+        if (data && data.errors) { setBookingErrors(Object.values(data.errors)); }
         else if (data) {
           const errors = []
           errors.push(data.message)
-          setReservationErrors(errors)
+          setBookingErrors(errors)
         }
       })
   }
@@ -117,9 +117,9 @@ const BookSpot = ({ spotId, avgStarRating, checkIn, setCheckIn, checkOut, setChe
                 />
               </div>
             </div>
-            {showReservations ?
+            {showBookings ?
               (<div className="outer-list-booking">
-                {currRoomReservations.length > 0 ? currRoomReservations.map(booking => {
+                {currRoomBookings.length > 0 ? currRoomBookings.map(booking => {
                   return (
                     <div key={`${booking.id}`} className="list-bookings-div">
                       <div className="inner-list-div">

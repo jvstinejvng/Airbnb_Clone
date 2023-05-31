@@ -39,7 +39,7 @@ router.delete('/:bookingId', requireAuth, async (req, res, next) => {
         err.status = 404;
         return next(err)
     } else if (new Date(deleteBooking.startDate) < today) {
-        const err = new Error(`Bookingsthat have been started can't be deleted`);
+        const err = new Error(`Reservations that have been started can't be deleted`);
         err.status = 404;
         return next(err)
     } else {

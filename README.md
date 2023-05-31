@@ -75,7 +75,7 @@
 ## **Future Features:**
 - Search Bar
 - Filter Content List
-- Reservation (booking) Options
+- Booking Options
 - Location Mapping 
 - Favorite Listings 
 

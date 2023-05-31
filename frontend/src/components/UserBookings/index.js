@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+
 import { listAllBookings, getAllBookings, bookingDelete, updateBooking } from "../../store/bookings";
 import NavigationBar from "../NavigationBar";
 import { listAllUsers } from "../../store/users";
@@ -12,14 +13,14 @@ const UserBookings = ({ isLoaded }) => {
   const users = useSelector(state => state.users)
   const dispatch = useDispatch()
 
-  const allReservations = useSelector(getAllBookings)
-  const [bookingId, setReservationId] = useState()
+  const allBookings = useSelector(getAllBookings)
+  const [bookingId, setBookingId] = useState()
   const [spotId, setRoomId] = useState()
   const [checkIn, setCheckIn] = useState(new Date().toISOString().slice(0, 10))
   const [checkOut, setCheckOut] = useState(new Date().toISOString().slice(0, 10))
-  const [editBookings, setEditReservation] = useState(0)
+  const [editBookings, setEditBookings] = useState(0)
   const [showEdit, setShowEdit] = useState(false)
-  const [bookingErrors, setReservationErrors] = useState([])
+  const [bookingErrors, setBookingErrors] = useState([])
   const [checkDates, setCheckDates] = useState(true)
 
 
@@ -29,9 +30,9 @@ const UserBookings = ({ isLoaded }) => {
   tomorrow.setHours(tomorrow.getHours() + 7)
   nextDay.setHours(nextDay.getHours() + 31)
 
-  const bookingsPerRoom = allReservations.filter(booking => booking.spotId === spotId && sessionUser.id !== booking.userId)
+  const bookingsPerRoom = allBookings.filter(booking => booking.spotId === spotId && sessionUser.id !== booking.userId)
 
-  const trips = allReservations.filter(booking => sessionUser.id === booking.userId)
+  const trips = allBookings.filter(booking => sessionUser.id === booking.userId)
   const futureTrips = trips.filter(trip => new Date() <= new Date(trip.endDate)).sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
   const pastTrips = trips.filter(trip => new Date() > new Date(trip.endDate)).sort((a, b) => new Date(b.startDate) - new Date(a.startDate))
 
@@ -74,10 +75,10 @@ const UserBookings = ({ isLoaded }) => {
     }
 
     if (errors.length > 0) {
-      setReservationErrors(errors)
+      setBookingErrors(errors)
       setCheckDates(true)
     } else {
-      setReservationErrors([])
+      setBookingErrors([])
       setCheckDates(false)
     }
 
@@ -104,7 +105,7 @@ const UserBookings = ({ isLoaded }) => {
       endDate: checkOut
     }
 
-    const updatedReservation = await dispatch(updateBooking(bookingData))
+    const updatedBooking = await dispatch(updateBooking(bookingData))
     setShowEdit(false)
     dispatch(listAllBookings())
     dispatch(listAllBookings(spotId))
@@ -177,7 +178,7 @@ const UserBookings = ({ isLoaded }) => {
                                 <div className="res-year">{endYear}</div>
                               </div>
                               <div className="bottom-edit-res">
-                                <button type="button" onClick={() => { setReservationId(booking?.id); setRoomId(booking?.spotId); setCheckIn(booking?.startDate); setCheckOut(booking?.endDate); setEditReservation(booking?.id); setShowEdit(!showEdit); }} className="res-button">{showEdit ? editBookings === booking.id ? "X" : "Edit" : "Edit"}</button>
+                                <button type="button" onClick={() => { setBookingId(booking?.id); setRoomId(booking?.spotId); setCheckIn(booking?.startDate); setCheckOut(booking?.endDate); setEditBookings(booking?.id); setShowEdit(!showEdit); }} className="res-button">{showEdit ? editBookings === booking.id ? "X" : "Edit" : "Edit"}</button>
                               </div>
                             </div>
                             <div className="bottom-location">

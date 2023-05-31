@@ -30,7 +30,7 @@ const SpotDetails = ({ isLoaded }) => {
   const sessionUser = useSelector(state => state.session.user);
   const users = useSelector(state => state.users)
   const [confirmDelete, setConfirmDelete] = useState(false);
-  const currRoomReservations = useSelector(getAllBookings)
+  const currRoomBookings = useSelector(getAllBookings)
   const [selectDate, setSelectDate] = useState(false)
 
   const today = new Date()
@@ -77,8 +77,8 @@ const SpotDetails = ({ isLoaded }) => {
     getBookedDates()
   }, [spotId])
 
-  const allStartDates = currRoomReservations.map(booking => booking.startDate)
-  const allEndDates = currRoomReservations.map(booking => booking.endDate)
+  const allStartDates = currRoomBookings.map(booking => booking.startDate)
+  const allEndDates = currRoomBookings.map(booking => booking.endDate)
 
   const getDays = (start, end) => {
     for (var betweenDates = [], date = new Date(start); date <= new Date(end); date.setDate(date.getDate() + 1)) {
