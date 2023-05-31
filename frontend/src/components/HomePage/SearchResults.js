@@ -18,7 +18,7 @@ function SearchResults({ isLoaded }) {
     dispatch(allSpots())
   }, [])
 
-  const searchRooms = spots.filter(spot => {
+  const searchSpots = spots.filter(spot => {
     result = result.toLowerCase()
     return spot.city.toLowerCase().includes(result) || spot.state.toLowerCase().includes(result) || spot.country.toLowerCase().includes(result) && spot.pets >= pets
   })
@@ -28,8 +28,8 @@ function SearchResults({ isLoaded }) {
       <NavigationBar isLoaded={isLoaded} />
       <div className="search-spots-main">
         <div className="search-spots-left">
-          {searchRooms.length > 0 ? <>
-            {searchRooms?.map((spot, i) => {
+          {searchSpots.length > 0 ? <>
+            {searchSpots?.map((spot, i) => {
 
               if (spot?.Reviews) {
                 let sum = 0;
@@ -72,7 +72,7 @@ function SearchResults({ isLoaded }) {
           }
         </div>
         <div className="search-spots-right">
-          <SearchMap searchRooms={searchRooms} />
+          <SearchMap searchSpots={searchSpots} />
         </div>
       </div>
     </>

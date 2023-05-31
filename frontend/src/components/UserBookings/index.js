@@ -15,7 +15,7 @@ const UserBookings = ({ isLoaded }) => {
 
   const allBookings = useSelector(getAllBookings)
   const [bookingId, setBookingId] = useState()
-  const [spotId, setRoomId] = useState()
+  const [spotId, setSpotId] = useState()
   const [checkIn, setCheckIn] = useState(new Date().toISOString().slice(0, 10))
   const [checkOut, setCheckOut] = useState(new Date().toISOString().slice(0, 10))
   const [editBookings, setEditBookings] = useState(0)
@@ -30,14 +30,14 @@ const UserBookings = ({ isLoaded }) => {
   tomorrow.setHours(tomorrow.getHours() + 7)
   nextDay.setHours(nextDay.getHours() + 31)
 
-  const bookingsPerRoom = allBookings.filter(booking => booking.spotId === spotId && sessionUser.id !== booking.userId)
+  const bookingsPerSpot = allBookings.filter(booking => booking.spotId === spotId && sessionUser.id !== booking.userId)
 
   const trips = allBookings.filter(booking => sessionUser.id === booking.userId)
   const futureTrips = trips.filter(trip => new Date() <= new Date(trip.endDate)).sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
   const pastTrips = trips.filter(trip => new Date() > new Date(trip.endDate)).sort((a, b) => new Date(b.startDate) - new Date(a.startDate))
 
-  const allStartDates = bookingsPerRoom.map(booking => booking.startDate)
-  const allEndDates = bookingsPerRoom.map(booking => booking.endDate)
+  const allStartDates = bookingsPerSpot.map(booking => booking.startDate)
+  const allEndDates = bookingsPerSpot.map(booking => booking.endDate)
 
   let today = new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })
 
@@ -159,8 +159,8 @@ const UserBookings = ({ isLoaded }) => {
                         <div className="left-res-inner">
                           <div className="top-left-res-content">
                             <div className="top-left-name">
-                              <div className="booking-listing-name">{booking?.Room?.name}</div>
-                              <div className="bookings-hosted-by">{booking?.Room?.type} hosted by {users[booking?.Room?.ownerId]?.firstName}</div>
+                              <div className="booking-listing-name">{booking?.Spot?.name}</div>
+                              <div className="bookings-hosted-by">{booking?.Spot?.type} hosted by {users[booking?.Spot?.ownerId]?.firstName}</div>
                             </div>
                           </div>
                           <div className="bottom-left-res-content">
@@ -178,20 +178,20 @@ const UserBookings = ({ isLoaded }) => {
                                 <div className="res-year">{endYear}</div>
                               </div>
                               <div className="bottom-edit-res">
-                                <button type="button" onClick={() => { setBookingId(booking?.id); setRoomId(booking?.spotId); setCheckIn(booking?.startDate); setCheckOut(booking?.endDate); setEditBookings(booking?.id); setShowEdit(!showEdit); }} className="res-button">{showEdit ? editBookings === booking.id ? "X" : "Edit" : "Edit"}</button>
+                                <button type="button" onClick={() => { setBookingId(booking?.id); setSpotId(booking?.spotId); setCheckIn(booking?.startDate); setCheckOut(booking?.endDate); setEditBookings(booking?.id); setShowEdit(!showEdit); }} className="res-button">{showEdit ? editBookings === booking.id ? "X" : "Edit" : "Edit"}</button>
                               </div>
                             </div>
                             <div className="bottom-location">
-                              <div className="res-address">{booking?.Room?.address}</div>
-                              <div className="res-city-state">{`${booking?.Room?.city}, ${booking?.Room?.state}`}</div>
-                              <div className="res-country">{booking?.Room?.country}</div>
+                              <div className="res-address">{booking?.Spot?.address}</div>
+                              <div className="res-city-state">{`${booking?.Spot?.city}, ${booking?.Spot?.state}`}</div>
+                              <div className="res-country">{booking?.Spot?.country}</div>
                             </div>
                           </div>
                         </div>
                       </div>
                       <div className="right-res-content">
                         <Link to={`/spots/${booking.spotId}`}>
-                          <img className="res-img" src={`${booking?.Room?.images[0]?.url}`}></img>
+                          <img className="res-img" src={`${booking?.Spot?.images[0]?.url}`}></img>
                         </Link>
                       </div>
                     </div>
@@ -261,12 +261,12 @@ const UserBookings = ({ isLoaded }) => {
                   <div className="past-outer-main">
                     <div className="past-left-content">
                       <Link to={`/spots/${booking.spotId}`}>
-                        <img className="past-res-img" src={`${booking?.Room?.images[0]?.url}`}></img>
+                        <img className="past-res-img" src={`${booking?.Spot?.images[0]?.url}`}></img>
                       </Link>
                     </div>
                     <div className="past-right-content">
-                      <div className="past-res-city-state">{`${booking?.Room?.city}, ${booking?.Room?.state}`}</div>
-                      <div className="past-res-hosted-by">Hosted by {users[booking?.Room?.ownerId]?.firstName}</div>
+                      <div className="past-res-city-state">{`${booking?.Spot?.city}, ${booking?.Spot?.state}`}</div>
+                      <div className="past-res-hosted-by">Hosted by {users[booking?.Spot?.ownerId]?.firstName}</div>
                       <div className="past-bottom-dates">
                         {startMonth === endMonth ? <div className="past-res-month-day">
                           <span className="past-month-res">{startMonth} {startDay}-{endDay}, {endYear} </span>

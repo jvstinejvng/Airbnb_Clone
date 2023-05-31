@@ -9,7 +9,7 @@ import selectedPriceMarker from './selected-price-marker.png'
 
 import "../CSS/SearchMap.css"
 
-const SearchMap = ({ searchRooms }) => {
+const SearchMap = ({ searchSpots }) => {
   let { result } = useParams()
   let { pets } = useParams()
   const dispatch = useDispatch()
@@ -25,10 +25,10 @@ const SearchMap = ({ searchRooms }) => {
   useEffect(() => {
     dispatch(getAPIKey())
 
-    if (searchRooms.length > 0) {
+    if (searchSpots.length > 0) {
 
-      const allLats = searchRooms?.map((spot) => spot.lat)
-      const allLngs = searchRooms?.map((spot) => spot.lng)
+      const allLats = searchSpots?.map((spot) => spot.lat)
+      const allLngs = searchSpots?.map((spot) => spot.lng)
 
       const maxLat = Math.max(...allLats)
       const minLat = Math.min(...allLats)
@@ -42,7 +42,7 @@ const SearchMap = ({ searchRooms }) => {
       setMidLng(avgLng)
     }
 
-    if (searchRooms?.length > 15) {
+    if (searchSpots?.length > 15) {
       setZoom(2)
     } else {
       setZoom(5)
@@ -85,7 +85,7 @@ const SearchMap = ({ searchRooms }) => {
       
           }}
         >
-          {searchRooms.map((spot) => {
+          {searchSpots.map((spot) => {
             return (
               <>
                 <Marker

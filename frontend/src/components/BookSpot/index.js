@@ -14,7 +14,7 @@ const BookSpot = ({ spotId, avgStarRating, checkIn, setCheckIn, checkOut, setChe
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const currRoomBookings = useSelector(getAllBookings)
+  const currSpotBookings = useSelector(getAllBookings)
 
   const [bookingErrors, setBookingErrors] = useState([])
   const [checkOwner, setCheckOwner] = useState(false)
@@ -119,7 +119,7 @@ const BookSpot = ({ spotId, avgStarRating, checkIn, setCheckIn, checkOut, setChe
             </div>
             {showBookings ?
               (<div className="outer-list-booking">
-                {currRoomBookings.length > 0 ? currRoomBookings.map(booking => {
+                {currSpotBookings.length > 0 ? currSpotBookings.map(booking => {
                   return (
                     <div key={`${booking.id}`} className="list-bookings-div">
                       <div className="inner-list-div">
