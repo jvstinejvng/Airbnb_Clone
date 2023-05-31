@@ -28,9 +28,10 @@ const Homepage = ( { isLoaded } ) => {
     if (category) {
       const filteredSpots = listAllSpots.filter(spot => {
         return spot.category === category
-      })
+      }) 
       setFilterSpots(filteredSpots)
-    }
+    } 
+
   }, [category])
 
 
@@ -45,7 +46,8 @@ const Homepage = ( { isLoaded } ) => {
           <NavigationBar isLoaded={isLoaded} setFilterSpots={setFilterSpots} setCategory={setCategory} />
         </div>
         <div className="navigation-border"></div>
-        <SpotCategory handleFilter={handleFilter} category={category} />
+          <SpotCategory handleFilter={handleFilter} category={category} />
+      
       </div>
       {filteredSpots.length > 0 ? <div className="all-spots-div">
         {filteredSpots?.map((spot, i) => {
