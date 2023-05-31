@@ -69,7 +69,7 @@ module.exports = {
         description: "Here is where furry friendships are made, and unforgettable memories are created. My free-roaming home-environment pet-boarding is safe, secure, and far less stressful and frightening than traditional pet-boarding places. Hi! I am a professional dancer and a huge animal person. Growing up and to this day, my family frequently fostered and adopted cats and dogs. Since moving to Arlington, I have missed caring for fur buddies. What sets me apart from others is my upbeat energy and attentive care. I currently work part-time, so I have plenty of time to play with your kitty or pup! I also live with my brother and his girlfriend, so someone is always at home with your fur baby. We are all animal lovers and can't wait to meet your furry best friend. I am also very observant and attentive and will take great care of your pet. Whatever rules you have at your house, I will keep them in mine!",
         price: 210,
         category: 'Dog and Cat Home',
-        type: 'Dog and Cat Friendly Care',
+        type: 'Friendly Dog and Cat Care',
         pets: 4,
         yard: 'Fenced Yard',
         children: '0 Children',
@@ -597,6 +597,7 @@ module.exports = {
         children: 'No Children',
         personalpets:'2 Rabbits',
       },
+      
     ], {});
   },
   async down(queryInterface, Sequelize) {
