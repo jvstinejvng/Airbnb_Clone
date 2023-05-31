@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import searchIcon from './SearchIcon.svg'
 
+import searchIcon from '../../assets/SearchIcon.svg'
 import locationpin from '../../assets/LocationPin.svg'
-
-import "../CSS/SearchBar.css"
+import '../CSS/SearchBar.css'
 
 function SearchBar() {
+
   const [pets, setPets] = useState(1)
   const [showDestinations, setShowDestinations] = useState(false)
 
@@ -24,17 +24,17 @@ function SearchBar() {
 
     document.addEventListener('click', closeMenu);
 
-    return () => document.removeEventListener("click", closeMenu);
+    return () => document.removeEventListener('click', closeMenu);
   }, [showDestinations]);
 
 
   const tomorrow = new Date()
-  const nextDay = new Date()
+  const reservationDays = new Date()
   tomorrow.setDate(tomorrow.getDate() + 2)
-  nextDay.setDate(nextDay.getDate() + 5)
+  reservationDays.setDate(reservationDays.getDate() + 5)
 
   const [checkIn, setCheckIn] = useState(tomorrow.toISOString().slice(0, 10))
-  const [checkOut, setCheckOut] = useState(nextDay.toISOString().slice(0, 10))
+  const [checkOut, setCheckOut] = useState(reservationDays.toISOString().slice(0, 10))
 
   const history = useHistory()
   const [result, setDestination] = useState()
@@ -48,75 +48,75 @@ function SearchBar() {
   }
 
   return (
-    <div className='searchBar-outer'>
-      <form onSubmit={handleSearch} className="searchBar-form">
-        <div className="searchBar-outer" onClick={openMenu}>
-          <label className="searchBar-label">Where</label>
+    <div className='searchbar-container'>
+      <form onSubmit={handleSearch} className='searchbar-form'>
+        <div className='searchbar-container' onClick={openMenu}>
+          <label className='searchbar-inner-text'>Anywhere</label>
           <input
             type='text'
-            placeholder='Search results'
-            className='searchBar-input'
+            placeholder='Search destinations'
+            className='searchbar-input'
             value={result}
             onChange={e => setDestination(e.target.value)}
-            maxLength="140"
+            maxLength='140'
           />
           {showDestinations && (
-            <div className="where-dropdown">
-              <div className="where-dropdown-header">Popular Searches</div>
-              <div className="where-selection" onClick={() => { setDestination("Portland"); history.push(`/search/Portland/${pets}`) }}>
-                <img className='dropdown-clock' src={locationpin}></img>
-                <div className="where-result-outer">
-                  <div className="where-result-header">Portland, Oregon</div>
-                  <div className="where-result-date">Any week</div>
+            <div className='searchbar-dropdown'>
+              <div className='searchbar-dropdown-header'>Popular searches</div>
+              <div className='searchbar-result-container' onClick={() => { setDestination("Portland"); history.push(`/search/Portland/${pets}`) }}>
+                <img className='searchbar-droppin-icon' src={locationpin}></img>
+                <div className='searchbar-results'>
+                  <div className='searchbar-result-header'>Portland, Oregon</div>
+                  <div className='searchbar-result-date'>Any week</div>
                 </div>
               </div>
-              <div className="where-selection" onClick={() => { setDestination("Miami"); history.push(`/search/Miami/${pets}`) }}>
-                <img className='dropdown-clock' src={locationpin}></img>
-                <div className="where-result-outer">
-                  <div className="where-result-header">Miami, Florida</div>
-                  <div className="where-result-date">Any week</div>
+              <div className='searchbar-result-container' onClick={() => { setDestination("Miami"); history.push(`/search/Miami/${pets}`) }}>
+                <img className='searchbar-droppin-icon' src={locationpin}></img>
+                <div className='searchbar-results'>
+                  <div className='searchbar-result-header'>Miami, Florida</div>
+                  <div className='searchbar-result-date'>Any week</div>
                 </div>
               </div>
-              <div className="where-selection" onClick={() => { setDestination("Chicago"); history.push(`/search/Chicago/${pets}`) }}>
-                <img className='dropdown-clock' src={locationpin}></img>
-                <div className="where-result-outer">
-                  <div className="where-result-header">Chicago, Illinios</div>
-                  <div className="where-result-date">Any week</div>
+              <div className='searchbar-result-container' onClick={() => { setDestination("Chicago"); history.push(`/search/Chicago/${pets}`) }}>
+                <img className='searchbar-droppin-icon' src={locationpin}></img>
+                <div className='searchbar-results'>
+                  <div className='searchbar-result-header'>Chicago, Illinios</div>
+                  <div className='searchbar-result-date'>Any week</div>
                 </div>
               </div>
             </div>
           )}
         </div>
-        <div className="searchBar-outer searchBar-hidden">
-          <label className="searchBar-label">Check In</label>
+        <div className='searchbar-container'>
+          <label className='searchbar-inner-text'>Check in</label>
           <input
             type='date'
-            className='searchBar-input-date'
+            className='searchbar-input-date'
             min={new Date().toISOString().split('T')[0]}
             value={new Date(checkIn).toISOString().slice(0, 10)}
             onChange={(e) => setCheckIn(new Date(e.target.value).toISOString().slice(0, 10))}
           />
         </div>
-        <div className="searchBar-outer searchBar-hidden">
-          <label className="searchBar-label">Check Out</label>
+        <div className='searchbar-container'>
+          <label className='searchbar-inner-text'>Check out</label>
           <input
             type='date'
-            className='searchBar-input-date'
+            className='searchbar-input-date'
             min={new Date().toISOString().split('T')[0]}
             value={new Date(checkOut).toISOString().slice(0, 10)}
             onChange={(e) => setCheckOut(new Date(e.target.value).toISOString().slice(0, 10))}
           />
         </div>
-        <div className="searchBar-outer searchBar-hidden">
-          <label className="searchBar-label">Who</label>
-          <div className="searchBar-pets-outer">
-            <button type='button' onClick={() => { if (pets > 0) setPets(pets - 1) }} disabled={pets === 0} className='searchBar-pets-minus'>-</button>
+        <div className='searchbar-container'>
+          <label className='searchbar-inner-text'>Who</label>
+          <div className='searchbar-pets-outer'>
+            <button type='button' onClick={() => { if (pets > 0) setPets(pets - 1) }} disabled={pets === 0} className='searchbar-pets-minus'>-</button>
             {pets}
-            <button type='button' onClick={() => setPets(pets + 1)} disabled={pets === 16} className='searchBar-pets-plus'>+</button>
+            <button type='button' onClick={() => setPets(pets + 1)} disabled={pets === 16} className='searchbar-pets-plus'>+</button>
           </div>
         </div>
         <div>
-          <button type='submit' className='searchBar-button'><img src={searchIcon} className='searchBar-glass' alt='search'></img></button>
+          <button type='submit' className='searchbar-button'><img src={searchIcon} className='searchbar-magnifying-glass' alt='search'></img></button>
         </div>
       </form>
     </div>

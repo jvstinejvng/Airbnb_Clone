@@ -8,6 +8,7 @@ import '../CSS/NavigationBar.css'
 import PetbnbLogo from '../../assets/Petbnb.png'
 
 function NavigationBar({ isLoaded, setFilterSpots, setCategory }) {
+
   const sessionUser = useSelector(state => state.session.user);
 
   return (
