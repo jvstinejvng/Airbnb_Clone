@@ -1,5 +1,6 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import { NavLink, Link} from 'react-router-dom';
 import ProfileButton from './ProfileButton';
 import SearchBar from './SearchBar';
 
@@ -7,6 +8,7 @@ import '../CSS/NavigationBar.css'
 import PetbnbLogo from '../../assets/Petbnb.png'
 
 function NavigationBar({ isLoaded, setFilterSpots, setCategory }) {
+  const sessionUser = useSelector(state => state.session.user);
 
   return (
     <>
@@ -18,7 +20,13 @@ function NavigationBar({ isLoaded, setFilterSpots, setCategory }) {
               <span className='petbnb-name' onClick={() => { setFilterSpots([]); setCategory(null) }}>petbnb</span>
             </NavLink>
             <SearchBar />
+            {sessionUser && (
+              <Link to='/hosting' className='navbar-host'>Become a host</Link>
+            )}
             {isLoaded && <ProfileButton />}
+
+
+          
           </div>
         </div>
       </nav>

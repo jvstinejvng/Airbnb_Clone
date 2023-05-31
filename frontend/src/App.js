@@ -32,7 +32,7 @@ function App() {
           <Route path="/bookings">
             <UserBookings isLoaded={isLoaded} />
           </Route>
-          <Route path="/becomeahost">
+          <Route path="/hosting">
             <BecomeAHost isLoaded={isLoaded} />
           </Route>
           <Route path="/yourlistings">

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import searchIcon from './SearchIcon.svg'
 
-import locationpin from './LocationPin.svg'
+import locationpin from '../../assets/LocationPin.svg'
 
 import "../CSS/SearchBar.css"
 

@@ -1,10 +1,5 @@
-.show-menu-div {
+.profile-button-container {
   position: relative
-}
-
-.profile-button-div {
-  display: flex;
-  justify-content: space-between;
 }
 
 .profile-button {
@@ -14,7 +9,7 @@
   margin-top: 8px;
 }
 
-.profile-icons {
+.profile-picture {
   display: flex;
   align-items: center;
   padding: 0.1rem 0 0.1rem 0.2rem;
@@ -32,7 +27,7 @@
   transform: none;
 }
 
-.profile-dropdown {
+.dropdown-menu {
   display: flex;
   flex-direction: column;
   margin-right: 5px;
@@ -46,37 +41,37 @@
   z-index: 2;
 }
 
-.login-dropdown {
+.login-option {
   font-weight: 600;
 }
 
-.logout-div,
-.account-div,
+.logout-container,
+.user-account,
 .link,
-.login-dropdown,
-.signup-dropdown {
+.login-option,
+.signup-option {
   font-size: 0.9rem;
   padding: 15px 60px 15px 20px;
 }
 
-.logout-div, .signup-dropdown {
+.logout-container, .signup-option {
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 }
 
-.account-div, .login-dropdown {
+.user-account, .login-option {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
 
-.account-div {
+.user-account {
   border-bottom: 1px rgba(128, 128, 128, 0.274) solid;
 }
 
-.logout-div:hover,
+.logout-container:hover,
 .link:hover,
-.login-dropdown:hover,
-.signup-dropdown:hover {
+.login-option:hover,
+.signup-option:hover {
   background-color: #7171710e;
   cursor: pointer;
 }
@@ -93,7 +88,7 @@
 
 .manage-listings,
 .host-home,
-.logout-div {
+.logout-container {
   font-weight: 220;
 }
 

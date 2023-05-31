@@ -29,3 +29,8 @@
   padding-left: 10px;
   padding-top: 5px;
 }
+
+.navbar-host {
+  display: flex;
+  align-items: center;
+}
