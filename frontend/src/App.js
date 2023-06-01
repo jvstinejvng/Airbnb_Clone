@@ -38,7 +38,7 @@ function App() {
           <Route path="/yourlistings">
             <UserSpots isLoaded={isLoaded} />
           </Route>
-          <Route path="/spots/:spotId">
+          <Route path="/rooms/:spotId">
             <SpotDetails isLoaded={isLoaded} />
           </Route>
           <Route path="/search/:result/:pets">

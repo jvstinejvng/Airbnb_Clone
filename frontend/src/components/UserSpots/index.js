@@ -47,10 +47,10 @@ const UserSpots = ({ isLoaded }) => {
                 return (
                   <tr>
                     <td className="listing-column">
-                      <Link to={`/spots/${spot?.id}`} className="spot-link" key={spot?.id}>
+                      <Link to={`/rooms/${spot?.id}`} className="spot-link" key={spot?.id}>
                         <img className="listing-img" src={`${spot?.images[0]?.url}`} alt="preview of spot"></img>
                       </Link>
-                      <Link to={`/spots/${spot?.id}`} className="spot-link" key={spot?.id}>
+                      <Link to={`/rooms/${spot?.id}`} className="spot-link" key={spot?.id}>
                         <span className="listing-name">{spot?.name}</span>
                       </Link>
                     </td>
