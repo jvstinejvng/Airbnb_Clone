@@ -113,7 +113,7 @@ const SearchMap = ({ searchSpots }) => {
               onCloseClick={() => { setSelected({}); setSelectedId(0) }}
             >
               <div className='selected-spot-info'>
-                <Link to={`/rooms/${selected?.id}`}>
+                <Link to={`/spots/${selected?.id}`}>
                   <img src={selected?.images[0]?.url} className='selected-spot-img'></img>
                 </Link>
                 <div>

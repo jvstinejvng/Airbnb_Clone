@@ -29,7 +29,7 @@ const UserSpots = ({ isLoaded }) => {
       <div className="manage-nav-main">
         <NavigationBar isLoaded={isLoaded} />
       </div>
-      <div className="navigation-border"></div>
+      <div className="nav-border"></div>
       {sessionUser ?
         <div className="manage-listing-page">
           <div className="manage-listings-header">{userRooms?.length} listings</div>
@@ -47,10 +47,10 @@ const UserSpots = ({ isLoaded }) => {
                 return (
                   <tr>
                     <td className="listing-column">
-                      <Link to={`/rooms/${spot?.id}`} className="spot-link" key={spot?.id}>
+                      <Link to={`/spots/${spot?.id}`} className="spot-link" key={spot?.id}>
                         <img className="listing-img" src={`${spot?.images[0]?.url}`} alt="preview of spot"></img>
                       </Link>
-                      <Link to={`/rooms/${spot?.id}`} className="spot-link" key={spot?.id}>
+                      <Link to={`/spots/${spot?.id}`} className="spot-link" key={spot?.id}>
                         <span className="listing-name">{spot?.name}</span>
                       </Link>
                     </td>

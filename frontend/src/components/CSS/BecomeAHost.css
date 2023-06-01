@@ -1,65 +1,66 @@
-.create-page {
+.host-form-main {
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
+  width: 100%
 }
 
-.create-listing-nav-main {
-  width: 1130px;
+.host-form-navbar {
+  width: 100%
 }
 
-.create-content {
+
+.host-form-left {
   display: flex;
   margin: 2rem;
 }
 
-.create-content-right {
+.host-form-right {
   display: flex;
   flex-direction: column;
   padding: 8rem 2rem 0;
 }
 
-.create-pets-outer {
-  width: 26rem;
-  display: grid;
-  grid-template-columns: repeat(2, 13rem);
-}
+
 
 .right-content-input {
   height: 23rem;
   box-sizing: border-box;
 }
 
-.create-header {
-  background: linear-gradient(#e1005a, #d70069, #c90079, #b6008b, #9c009c, #7800ac, #3b07bb);
-  height: 33rem;
-  width: 23rem;
+.host-form-header {
+  background: linear-gradient(#e61e4d 27.5%,#e31c5f 40%,#d70466 57.5%,#bd1e59 75%,#bd1e59 100%);
+  height: 30rem;
+  width: 20rem;
   display: flex;
   padding: 0 4rem 8rem 4rem;
   align-items: center;
   color: white;
-  font-size: 2.5rem;
-  border-radius: 20px;
+  font-size: 40px;
+  border-radius: 40px;
 }
 
-.create-new-label,
-.create-new-label-property {
+.host-form-title,
+.host-form-title-property {
   font-size: 1.3rem;
   margin-bottom: 0.6rem;
 }
 
-.create-pets-label,
+.host-form-title,
 .create-bathspot-label {
   font-size: 1.3rem;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 
 .create-bathspot-label {
   margin-bottom: 10rem;
 }
 
-.create-pets-buttons button {
+.host-form-basics {
+  display: flex;
+}
+
+.host-form-basics button {
   border-radius: 50%;
   background: none;
   border: 1px solid #DDDDDD;
@@ -67,33 +68,33 @@
   margin: 0 10px;
 }
 
-.create-pets-buttons button:disabled {
+.host-form-basics button:disabled {
   border: 1px solid #DDDDDD;
 }
 
-.create-new-label-property {
+.host-form-title-property {
   margin-top: 30px;
 }
 
-.create-categories-main {
+.host-form-categories {
   display: grid;
   grid-template-columns: repeat(2, 13rem);
   padding-bottom: 54px;
 }
 
-.create-categories-outer {
+.host-form-categories-div {
   display: grid;
   grid-template-columns: 15% 75%;
   padding: 10px 0;
 }
 
-.create-category-radio {
+.host-form-radio-buttono {
   height: 1rem;
   margin: 0;
   width: 1rem;
 }
 
-.create-new-button {
+.host-form-create-button {
   font-size: 1rem;
   font-weight: 250;
   padding: 0.7rem 0.9rem 0.9rem;
@@ -107,7 +108,7 @@
   align-items: center;
 }
 
-.no-session-button {
+.host-form-no-session {
   font-size: 1.2rem;
   font-weight: 250;
   padding: 0.85rem 1.2rem 1rem;
@@ -128,7 +129,7 @@
   font-weight: 200;
 }
 
-.create-new-button:hover {
+.host-form-create-button:hover {
   border: 1px solid black;
   background-color: rgba(178, 178, 178, 0.103);
 }
@@ -204,11 +205,11 @@
   padding: 0.4rem 0.5rem;
 }
 
-.right-content-label {
+.host-form-right-title {
   display: flex;
 }
 
-.right-content-demo {
+.host-form-demo-button {
   margin-bottom: 0;
   margin-left: 1rem;
 }

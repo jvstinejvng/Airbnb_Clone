@@ -21,6 +21,7 @@ import 'react-date-range/dist/theme/default.css';
 import "../CSS/SpotDetails.css"
 
 const SpotDetails = ({ isLoaded }) => {
+
   let { spotId } = useParams()
   spotId = Number(spotId)
 
@@ -37,8 +38,6 @@ const SpotDetails = ({ isLoaded }) => {
   const tomorrow = new Date()
   const nextDay = new Date()
 
-  // tomorrow.setDate(tomorrow.getDate() + 1)
-  // nextDay.setDate(nextDay.getDate() + 2)
   tomorrow.setHours(tomorrow.getHours() + 7)
   nextDay.setHours(nextDay.getHours() + 31)
 
@@ -101,11 +100,11 @@ const SpotDetails = ({ isLoaded }) => {
 
   const [page, setPage] = useState(1)
 
-  let avgStarRating = spot?.avgStarRating;
-  avgStarRating = Math.round(avgStarRating * 100) / 100
+  let avgPawRating = spot?.avgStarRating;
+  avgPawRating = Math.round(avgPawRating * 100) / 100
 
   const wholeNumbers = [1, 2, 3, 4, 5]
-  if (wholeNumbers.includes(avgStarRating)) avgStarRating = avgStarRating.toString() + ".0"
+  if (wholeNumbers.includes(avgPawRating)) avgPawRating = avgPawRating.toString() + ".0"
 
   const returnToListing = () => {
     setPage(1)
@@ -144,7 +143,7 @@ const SpotDetails = ({ isLoaded }) => {
       <div className="spot-nav-main">
         <NavigationBar isLoaded={isLoaded} />
       </div>
-      <div className="navigation-border"></div>
+      <div className="nav-border"></div>
       {page === 1 &&
         <div className="spot-content">
           <div className="main-top">
@@ -153,7 +152,7 @@ const SpotDetails = ({ isLoaded }) => {
                 <div className="spot-header">
                   <div className="spot-name">{spot?.name}</div>
                   <div className="spot-information-top">
-                    <span><i className="fa-solid fa-paw"></i>{avgStarRating}</span>
+                    <span><i className="fa-solid fa-paw"></i>{avgPawRating}</span>
                     <span className="span-separator">·</span>
                     <span className="spot-reviews" onClick={() => { document.getElementById('reviews').scrollIntoView() }}>{`${spot?.Reviews ? spot?.Reviews.length : 0} reviews`}</span>
                     <span className="span-separator">·</span>
@@ -205,7 +204,7 @@ const SpotDetails = ({ isLoaded }) => {
               <div className="spot-info-general">
                 <div className="spot-info-left">
                   <div className="spot-info-header">{spot?.type} hosted by {users[spot?.ownerId]?.firstName}</div>
-                  <div className="spot-info-beds">{spot?.pets} guest pets · {spot?.children} · {spot?.yard}  · {spot?.personalpets} </div>
+                  <div className="spot-info-beds">{spot?.pets} guest pets · {spot?.children} · {spot?.yard}  · Has {spot?.personalpets}</div>
                 </div>
                 <div className="spot-info-right">
                   <img src={users[spot?.ownerId]?.profile_url} className='spot-owner-img'></img>
@@ -228,9 +227,9 @@ const SpotDetails = ({ isLoaded }) => {
                 />
               </div>
             </div>
-            <BookSpot spotId={spotId} avgStarRating={avgStarRating} checkIn={checkIn} setCheckIn={setCheckIn} checkOut={checkOut} setCheckOut={setCheckOut} selectDate={selectDate} setSelectDate={setSelectDate} />
+            <BookSpot spotId={spotId} avgStarRating={avgPawRating} checkIn={checkIn} setCheckIn={setCheckIn} checkOut={checkOut} setCheckOut={setCheckOut} selectDate={selectDate} setSelectDate={setSelectDate} />
           </div>
-          <Reviews spot={spot} avgStarRating={avgStarRating} spotId={spotId} />
+          <Reviews spot={spot} avgStarRating={avgPawRating} spotId={spotId} />
           <Maps spot={spot} />
         </div>
       }

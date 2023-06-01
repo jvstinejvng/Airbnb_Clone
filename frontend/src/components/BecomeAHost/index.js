@@ -59,9 +59,11 @@ const BecomeAHost = ( { isLoaded } ) => {
   }
 
   useEffect(() => {
+
     const errors = []
 
     if (page === 4) {
+
       let latNum = parseInt(lat, 10)
       let lngNum = parseInt(lng, 10)
 
@@ -69,6 +71,7 @@ const BecomeAHost = ( { isLoaded } ) => {
       if (city.trim().length < 4) errors.push("Please enter a valid city")
       if (state.trim().length < 4) errors.push("Please enter a valid state")
       if (country.trim().length < 4) errors.push("Please enter a valid country")
+
       if (lat === "" || (!isNaN(latNum) && (lat > 90 || lat < -90))) {
         errors.push("Please enter a valid latitude value")
         setCheckInput(true)
@@ -216,92 +219,106 @@ const BecomeAHost = ( { isLoaded } ) => {
 
     if (newImage1 && newImage2 && newImage3 && newImage4 && newImage5) {
       dispatch(findSpotById(spotId))
-      history.push(`/spots/${spotId}`)
+      history.push(`/rooms/${spotId}`)
     }
   }
 
   return (
-    <div className="create-page">
-    <div className="create-listing-nav-main"><NavigationBar isLoaded={isLoaded} /></div>
-    <div className="navigation-border"></div>
-    { page === 1 && 
-      <div className="create-content">
-      <div className="header-div">
-        <div className="create-header">It’s easy to get started on Petbnb</div>
+    <>
+    <div className='host-form-main'>
+      <div className='host-form-navbar'>
+        <NavigationBar isLoaded={isLoaded} />
       </div>
-      <div className="create-content-right">
-        <div className="create-new-label">Tell us about your place</div>
-          {sessionUser ? <button onClick={() => setPage(2)} className="create-new-button"><i className="fa-solid fa-plus"></i>Get Started &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{`>`}</button> :
-          <button className="no-session-button" disabled="true">Log in to Start Hosting</button>}
-          <span className="white-space"></span>
-      </div>
-      </div>
-    }
+    <div className='nav-border'></div>
+      { page === 1 && 
+        <div className='host-form-left'>
+          <div className='host-form-header'>Ready to Petbnb it?</div>
+            <div className='host-form-right'>
+              <div className='host-form-title'>It’s easy to get started on Petbnb</div>
+                {sessionUser ? 
+                  <button onClick={() => setPage(2)} className='host-form-create-button'>
+                    <i className="fa-solid fa-plus"></i>
+                    Get Started 
+                  </button> 
+                  :
+                  <button className='host-form-no-session' disabled="true">
+                    Log in to Start Hosting
+                  </button>
+                }
+            </div>
+        </div>
+      }
       <form onSubmit={handleSubmit} className={page < 8 ? "block" : "hidden"}>
         { page >= 2 &&
           <section className={page === 2 ? "block" : "hidden"}>
-          <div className="create-content">
-            <div className="create-header">What type of pet boarding are you providing?</div>
-          <div className="create-content-right">
-            <div className="right-content-label">
-              <label className="create-new-label">What the type of home do you live in?</label>
-              <div className="right-content-demo">
-                <button type="button" onClick={() => { setType("Large Dog Friendly Home"); setCheckInput(false) }} className="demo-buttons">demo</button>
+            <div className='host-form-left'>
+              <div className='host-form-header'>Tell us about your place</div>
+                <div className='host-form-right'>
+                  <div className='host-form-right-title'>
+                    <label className='host-form-title'>What the type of home do you live in?</label>
+                      <div className='host-form-demo-button'>
+                        <button type="button" onClick={() => { setType("Large Dog Friendly Home"); setCheckInput(false) }}
+                          className='demo-buttons'>
+                          demo
+                        </button>
+                      </div>
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Cat Only Apartment"
+                    className="create-type-input"
+                    value={type}
+                    onChange={updateType}
+                    required
+                    maxLength={30}
+                  />
+                  <div className="host-form-right-title">
+                    <label className="host-form-title-property">Which of these best describes your place?</label>
+                  </div>
+                  <div className="host-form-categories">
+                    {categories.map((spot_category) => {
+                      return (
+                        <div className="host-form-categories-div">
+                          <input
+                            name={category}
+                            type="radio"
+                            className="host-form-radio-buttono"
+                            checked={category === spot_category}
+                            value={category}
+                            onChange={() => { setCategory(spot_category) }}
+                            required
+                          />
+                          <label className="create-category-label">{spot_category}</label>
+                        </div>
+                      )
+                    })}
+                </div>
+                <div className="right-content-buttons">
+                  <div className="back-next-buttons">{formButtons}</div>
+                </div>
               </div>
             </div>
-              <input
-                type="text"
-                placeholder="Cat Only Apartment"
-                className="create-type-input"
-                value={type}
-                onChange={updateType}
-                required
-                maxLength={30}
-              />
-            <div className="right-content-label">
-              <label className="create-new-label-property">Which of these best describes your place?</label>
-            </div>
-            <div className="create-categories-main">
-              {categories.map((spot_category) => {
-                return (
-                  <div className="create-categories-outer">
-                    <input
-                      name={category}
-                      type="radio"
-                      className="create-category-radio"
-                      checked={category === spot_category}
-                      value={category}
-                      onChange={() => { setCategory(spot_category) }}
-                      required
-                  />
-                  <label className="create-category-label">{spot_category}</label>
-                  </div>
-                )
-              })}
-            </div>
-            <div className="right-content-buttons">
-              <div className="back-next-buttons">{formButtons}</div>
-            </div>
-          </div>
-          </div>
           </section>
         }
         { page >= 3 &&
           <section className={page === 3 ? "block" : "hidden"}>
-          <div className="create-content">
-            <div className="create-header">Share some basics about your place</div>
-          <div className="create-content-right">
-            <div className="create-pets-outer">
-              <label className="create-pets-label">How many pets would you like to welcome?</label>
-                <div className="create-pets-buttons">
-                  <button onClick={() => { if (pets > 1) setPets(pets - 1) }} disabled={pets === 1}>-</button>
-                    {pets}
-                  <button onClick={() => setPets(pets + 1)} disabled={pets === 25}>+</button>
+            <div className='host-form-left'>
+              <div className="host-form-header">Share some basics about your place</div>
+            <div className="host-form-right">
+              <label className="host-form-title">How many pets would you like to welcome?</label>
+                <div className="host-form-basics">
+                  <button onClick={() => { if (pets > 1) setPets(pets - 1) }} disabled={pets === 1}>
+                    -
+                  </button>
+                  {pets}
+                  <button onClick={() => setPets(pets + 1)} disabled={pets === 25}>
+                    +
+                  </button>
                 </div>
-              <label className="create-pets-label">What type of yard do you have?</label>
-              <div className="right-content-demo">
-                <button type="button" onClick={() => { setYard("Fenced Yard"); setCheckInput(false) }} className="demo-buttons">demo</button>
-              </div>
+              <label className="host-form-title">What type of yard do you have?</label>
+              <span className="host-form-demo-button">
+                <button type="button" onClick={() => { setYard("Fenced Yard"); setCheckInput(false) }} className='demo-buttons'>demo</button>
+              </span>
                 <input
                   type="text"
                   placeholder="yard"
@@ -311,9 +328,9 @@ const BecomeAHost = ( { isLoaded } ) => {
                   required
                   maxLength={100}
                 />
-              <label className="create-pets-label">Do children live at the residency?</label>
-              <div className="right-content-demo">
-                <button type="button" onClick={() => { setChildren("No Children"); setCheckInput(false) }} className="demo-buttons">demo</button>
+              <label className="host-form-title">Do children live at the residency?</label>
+              <div className="host-form-demo-button">
+                <button type="button" onClick={() => { setChildren("No Children"); setCheckInput(false) }} className='demo-buttons'>demo</button>
               </div>
                 <input
                   type="text"
@@ -324,9 +341,9 @@ const BecomeAHost = ( { isLoaded } ) => {
                   required
                   maxLength={100}
                 />
-              <label className="create-pets-label">Do your pets live at the residency </label>
-              <div className="right-content-demo">
-                <button type="button" onClick={() => { setPersonalPets("2 dogs"); setCheckInput(false) }} className="demo-buttons">demo</button>
+              <label className="host-form-title">Do your pets live at the residency </label>
+              <div className="host-form-demo-button">
+                <button type="button" onClick={() => { setPersonalPets("2 dogs"); setCheckInput(false) }} className='demo-buttons'>demo</button>
               </div>
                 <input
                   type="text"
@@ -337,8 +354,8 @@ const BecomeAHost = ( { isLoaded } ) => {
                   required
                   maxLength={100}
                 />
-            </div>
-            <div className="create-content-buttons">
+          
+            <div className="host-form-basics">
             <div className="back-next-buttons">
               <button type="button" onClick={() => { setPage(page - 1); setCheckInput(false) }} className="back-button">Back</button>
               <button type="button" onClick={() => { setPage(page + 1); setCheckInput(true) }} className="next-button">Next</button>
@@ -347,16 +364,16 @@ const BecomeAHost = ( { isLoaded } ) => {
           </div>
           </div>
           </section>
-        }
-        { page >= 4 &&
-          <section className={page === 5 ? "block" : "hidden"}>
-          <div className="create-content">
-            <div className="create-header">Where's your place located?</div>
-          <div className="create-content-right">
-          <div className="right-content-label">
-            <label className="create-new-label">Confirm your address</label>
-            <div className="right-content-demo">
-              <button type="button" onClick={setDemoAddress} className="demo-buttons">demo</button>
+          }
+          { page >= 4 &&
+          <section className={page === 4 ? "block" : "hidden"}>
+          <div className="host-form-left">
+            <div className="host-form-header">Where's your place located?</div>
+          <div className="host-form-right">
+          <div className="host-form-right-title">
+            <label className="host-form-title">Confirm your address</label>
+            <div className="host-form-demo-button">
+              <button type="button" onClick={setDemoAddress} className='demo-buttons'>demo</button>
             </div>
           </div>
           <div className="right-content-input">  
@@ -410,7 +427,7 @@ const BecomeAHost = ( { isLoaded } ) => {
               value={lng}
               onChange={e => { setLng(e.target.value); }}
             />                
-                <div className="create-content-buttons">
+                <div className="host-form-basics">
                   <div className="back-next-buttons">{formButtons}</div>
                 </div>
                 <div>
@@ -419,16 +436,16 @@ const BecomeAHost = ( { isLoaded } ) => {
             </div>
           </div>
           </section>
-        }
-        { page >= 5 &&
+          }
+          { page >= 5 &&
           <section className={page === 5 ? "block" : "hidden"}>
-          <div className="create-content">
-            <div className="create-header">Let's give your place a title</div>
-          <div className="create-content-right">
-            <div className="right-content-label">
-              <label className="create-new-label">Short titles work best. Have fun with it—you can always change it later.</label>
-              <div className="right-content-demo">
-                <button type="button" onClick={() => { setName("Comfort Stay"); setCheckInput(false) }} className="demo-buttons">demo</button>
+          <div className="host-form-left">
+            <div className="host-form-header">Let's give your place a title</div>
+          <div className="host-form-right">
+            <div className="host-form-right-title">
+              <label className="host-form-title">Short titles work best. Have fun with it—you can always change it later.</label>
+              <div className="host-form-demo-button">
+                <button type="button" onClick={() => { setName("Comfort Stay"); setCheckInput(false) }} className='demo-buttons'>demo</button>
               </div>
             </div>
           <div className="right-content-input">
@@ -448,16 +465,16 @@ const BecomeAHost = ( { isLoaded } ) => {
           </div>
           </div>
           </section>
-        }
-        { page >= 6 &&
+          }
+          { page >= 6 &&
           ( <section className={page === 6 ? "block" : "hidden"}>
-            <div className="create-content">
-              <div className="create-header">Create your description</div>
-            <div className="create-content-right">
-              <div className="right-content-label">
-                <label className="create-new-label">Share what makes your place special.</label>
-                <div className="right-content-demo">
-                  <button type="button" onClick={() => { setDescription("UDOSCAPE - a unique, heart-throbbing eco-Glamping resort in Texas Hill Country. Site currently has 8 luxuriously furnished pods ranging from Deluxe to Deluxe-plus, all nestled up a hill with amazing hill country views. Amenities include grills, fire-pit, and hammock sites. Each Pod comes with a dedicated hot tub. All Pods are luxuriously furnished with plush beddings, en-suite restspot, kitchenette, dinning area, etc. Get ready to experience camping like never before!"); setCheckInput(false) }} className="demo-buttons">demo</button>
+            <div className="host-form-left">
+              <div className="host-form-header">Create your description</div>
+            <div className="host-form-right">
+              <div className="host-form-right-title">
+                <label className="host-form-title">Share what makes your place special.</label>
+                <div className="host-form-demo-button">
+                  <button type="button" onClick={() => { setDescription("Dog family home"); setCheckInput(false) }} className='demo-buttons'>demo</button>
                  </div>
               </div>
             <div className="right-content-input">
@@ -478,16 +495,16 @@ const BecomeAHost = ( { isLoaded } ) => {
             </div>
           </section>
           )
-        }
-        { page >= 7 &&
+          }
+          { page >= 7 &&
           ( <section className={page === 7 ? "block" : "hidden"}>
-            <div className="create-content">
-              <div className="create-header">Now, set your price</div>
-            <div className="create-content-right">
-              <div className="right-content-label">
-                <label className="create-new-label">You can change it anytime.</label>
-                <div className="right-content-demo">
-                  <button type="button" onClick={() => { setPrice(456); setCheckInput(false) }} className="demo-buttons">demo</button>
+            <div className="host-form-left">
+              <div className="host-form-header">Now, set your price</div>
+            <div className="host-form-right">
+              <div className="host-form-right-title">
+                <label className="host-form-title">You can change it anytime.</label>
+                <div className="host-form-demo-button">
+                  <button type="button" onClick={() => { setPrice(456); setCheckInput(false) }} className='demo-buttons'>demo</button>
                 </div>
               </div>
             <div className="right-content-input">
@@ -520,18 +537,18 @@ const BecomeAHost = ( { isLoaded } ) => {
             </div>
           </section>
           )
-        }
-      </form >
-      <form onSubmit={handleImagesSubmit}>
-        { page >= 8 &&
+          }
+        </form >
+        <form onSubmit={handleImagesSubmit}>
+          { page >= 8 &&
           ( <section className={page === 8 ? "block" : "hidden"}>
-            <div className="create-content">
-              <div className="create-header">Make your place stand out</div>
-            <div className="create-content-right">
-              <div className="right-content-label">
-                <label className="create-new-label">Add 5 Photos</label>
-                <div className="right-content-demo">
-                  <button type="button" onClick={setDemoImages} className="demo-buttons">demo</button>
+            <div className="host-form-left">
+              <div className="host-form-header">Make your place stand out</div>
+            <div className="host-form-right">
+              <div className="host-form-right-title">
+                <label className="host-form-title">Add 5 Photos</label>
+                <div className="host-form-demo-button">
+                  <button type="button" onClick={setDemoImages} className='demo-buttons'>demo</button>
                 </div>
               </div>
               <div className="right-content-input">
@@ -589,6 +606,7 @@ const BecomeAHost = ( { isLoaded } ) => {
         }
       </form>
     </div>
+    </>
   )
 }
 

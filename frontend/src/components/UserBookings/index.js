@@ -117,7 +117,7 @@ const UserBookings = ({ isLoaded }) => {
       <div className="trips-nav-main">
         <NavigationBar isLoaded={isLoaded} />
       </div>
-      <div className="navigation-border"></div>
+      <div className="nav-border"></div>
       {sessionUser ?
         <div className="trips-page">
           <div className="trips-main-div">
@@ -190,7 +190,7 @@ const UserBookings = ({ isLoaded }) => {
                         </div>
                       </div>
                       <div className="right-res-content">
-                        <Link to={`/rooms/${booking.spotId}`}>
+                        <Link to={`/spots/${booking.spotId}`}>
                           <img className="res-img" src={`${booking?.Spot?.images[0]?.url}`}></img>
                         </Link>
                       </div>
@@ -260,7 +260,7 @@ const UserBookings = ({ isLoaded }) => {
                 return (
                   <div className="past-outer-main">
                     <div className="past-left-content">
-                      <Link to={`/rooms/${booking.spotId}`}>
+                      <Link to={`/spots/${booking.spotId}`}>
                         <img className="past-res-img" src={`${booking?.Spot?.images[0]?.url}`}></img>
                       </Link>
                     </div>

@@ -45,12 +45,10 @@ const Homepage = ( { isLoaded } ) => {
         <div className="home-nav-main">
           <NavigationBar isLoaded={isLoaded} setFilterSpots={setFilterSpots} setCategory={setCategory} />
         </div>
-        <div className="navigation-border"></div>
+        <div className="nav-border"></div>
        
           <SpotCategory handleFilter={handleFilter} category={category} />
          
-
-
       
       </div>
       {filteredSpots.length > 0 ? <div className="all-spots-div">
@@ -68,7 +66,7 @@ const Homepage = ( { isLoaded } ) => {
             if (wholeNumbers.includes(avgStars)) avgStars = avgStars.toString() + ".0"
 
             return (
-              <Link to={`/rooms/${spot?.id}`} className="spot-link" key={spot?.id}>
+              <Link to={`/spots/${spot?.id}`} className="spot-link" key={spot?.id}>
                 <div className={`spot-div spot-div${i}`}>
                   <div className="img-div">
                     <img className="spot-img" src={`${spot?.images[0]?.url}`} alt="preview of spot"></img>
@@ -113,7 +111,7 @@ const Homepage = ( { isLoaded } ) => {
               if (wholeNumbers.includes(avgStars)) avgStars = avgStars.toString() + ".0"
 
               return (
-                <Link to={`/rooms/${spot?.id}`} className="spot-link" key={spot?.id}>
+                <Link to={`/spots/${spot?.id}`} className="spot-link" key={spot?.id}>
                   <div className={`spot-div spot-div${i}`}>
                     <div className="img-div">
                       <img className="spot-img" src={`${spot?.images[0]?.url}`} alt="preview of spot"></img>

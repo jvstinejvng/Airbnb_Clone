@@ -42,7 +42,7 @@ function SearchResults({ isLoaded }) {
                 const wholeNumbers = [0, 1, 2, 3, 4, 5]
                 if (wholeNumbers.includes(avgStars)) avgStars = avgStars.toString() + ".0"
                 return (
-                  <Link to={`/rooms/${spot?.id}`} className="spot-link" key={spot?.id}>
+                  <Link to={`/spots/${spot?.id}`} className="spot-link" key={spot?.id}>
                     <div className={`search-spot-outer`}>
                       <div className="search-spot-img-outer">
                         <img className="search-spot-img" src={`${spot?.images[0]?.url}`} alt="preview of spot"></img>
