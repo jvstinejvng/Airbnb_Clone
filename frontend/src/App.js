@@ -6,8 +6,8 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 
 import SignupForm from "./components/UserForms/SignupForm";
-import HomePage from "./components/HomePage";
 import SpotDetails from "./components/SpotDetails";
+import HomePage from "./components/HomePage"
 import UserSpots from "./components/UserSpots";
 import BecomeAHost from "./components/BecomeAHost";
 import UserBookings from "./components/UserBookings";
