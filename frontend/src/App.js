@@ -12,7 +12,7 @@ import UserSpots from "./components/UserSpots";
 import BecomeAHost from "./components/BecomeAHost";
 import UserBookings from "./components/UserBookings";
 import Footer from "./components/NavigationBar/Footer";
-import SearchResults from "./components/Homepage/SearchResults";
+import SearchResults from "./components/HomePage/SearchResults";
 
 function App() {
   const dispatch = useDispatch();

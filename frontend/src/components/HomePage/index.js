@@ -9,7 +9,7 @@ import SpotCategory from "./SpotCategory";
 
 import "../CSS/HomePage.css"
 
-const Homepage = ( { isLoaded } ) => {
+const HomePage = ( { isLoaded } ) => {
 
   const dispatch = useDispatch()
   let listAllSpots = useSelector(getAllSpots)
@@ -144,4 +144,4 @@ const Homepage = ( { isLoaded } ) => {
     </div>
   )
 }
-export default Homepage
+export default HomePage
