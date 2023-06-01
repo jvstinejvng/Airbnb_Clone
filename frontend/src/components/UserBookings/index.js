@@ -191,7 +191,7 @@ const UserBookings = ({ isLoaded }) => {
                         </div>
                       </div>
                       <div className="right-res-content">
-                        <Link to={`/spots/${booking.spotId}`}>
+                        <Link to={`/rooms/${booking.spotId}`}>
                           <img className="res-img" src={`${booking?.Spot?.images[0]?.url}`}></img>
                         </Link>
                       </div>
@@ -261,7 +261,7 @@ const UserBookings = ({ isLoaded }) => {
                 return (
                   <div className="past-outer-main">
                     <div className="past-left-content">
-                      <Link to={`/spots/${booking.spotId}`}>
+                      <Link to={`/rooms/${booking.spotId}`}>
                         <img className="past-res-img" src={`${booking?.Spot?.images[0]?.url}`}></img>
                       </Link>
                     </div>

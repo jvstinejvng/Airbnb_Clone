@@ -66,7 +66,7 @@ const HomePage = ( { isLoaded } ) => {
             if (wholeNumbers.includes(avgStars)) avgStars = avgStars.toString() + ".0"
 
             return (
-              <Link to={`/spots/${spot?.id}`} className="spot-link" key={spot?.id}>
+              <Link to={`/rooms/${spot?.id}`} className="spot-link" key={spot?.id}>
                 <div className={`spot-div spot-div${i}`}>
                   <div className="img-div">
                     <img className="spot-img" src={`${spot?.images[0]?.url}`} alt="preview of spot"></img>
@@ -111,7 +111,7 @@ const HomePage = ( { isLoaded } ) => {
               if (wholeNumbers.includes(avgStars)) avgStars = avgStars.toString() + ".0"
 
               return (
-                <Link to={`/spots/${spot?.id}`} className="spot-link" key={spot?.id}>
+                <Link to={`/rooms/${spot?.id}`} className="spot-link" key={spot?.id}>
                   <div className={`spot-div spot-div${i}`}>
                     <div className="img-div">
                       <img className="spot-img" src={`${spot?.images[0]?.url}`} alt="preview of spot"></img>
