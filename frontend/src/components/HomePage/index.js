@@ -7,7 +7,7 @@ import { listAllUsers } from "../../store/users";
 import NavigationBar from "../NavigationBar";
 import SpotCategory from "./SpotCategory";
 
-import "../CSS/Homepage.css"
+import "../CSS/HomePage.css"
 
 const Homepage = ( { isLoaded } ) => {
 

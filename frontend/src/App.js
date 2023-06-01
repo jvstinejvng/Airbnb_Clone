@@ -6,7 +6,7 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 
 import SignupForm from "./components/UserForms/SignupForm";
-import Homepage from "./components/Homepage";
+import HomePage from "./components/HomePage";
 import SpotDetails from "./components/SpotDetails";
 import UserSpots from "./components/UserSpots";
 import BecomeAHost from "./components/BecomeAHost";
@@ -45,10 +45,10 @@ function App() {
             <SearchResults isLoaded={isLoaded} />
           </Route>
           <Route path='filter/:category'>
-            <Homepage isLoaded={isLoaded} />
+            <HomePage isLoaded={isLoaded} />
           </Route>
           <Route exact path="/">
-            <Homepage isLoaded={isLoaded} />
+            <HomePage isLoaded={isLoaded} />
           </Route>
         </Switch>
       )}
