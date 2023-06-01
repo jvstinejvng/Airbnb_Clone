@@ -51,7 +51,7 @@ const Reviews = ({ spot, spotId, avgStarRating }) => {
     <>
       {<div className="reviews-main" id='reviews'>
         <div className="reviews-header">
-          <i className="fa-solid fa-star reviews"></i><span>{avgStarRating === 0 ? <>New</> : <>{avgStarRating}</>}</span>
+          <i className="fa-solid fa-paw reviews"></i><span>{avgStarRating === 0 ? <>New</> : <>{avgStarRating}</>}</span>
           <span className="span-separator-review">·</span>
           <span>
             {spot?.Reviews && <>

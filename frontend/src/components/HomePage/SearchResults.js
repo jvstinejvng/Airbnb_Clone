@@ -57,7 +57,7 @@ function SearchResults({ isLoaded }) {
                         </div>
                         <div className="spot-rating">
                           <div className="star-icon">
-                            <i className="fa-solid fa-star star-design"></i>
+                            <i className="fa-solid fa-paw star-design"></i>
                             <div className="number-rating">
                               {avgStars != 0 ? avgStars : "New"}
                             </div>

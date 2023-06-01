@@ -153,7 +153,7 @@ const SpotDetails = ({ isLoaded }) => {
                 <div className="spot-header">
                   <div className="spot-name">{spot?.name}</div>
                   <div className="spot-information-top">
-                    <span><i className="fa-solid fa-star"></i>{avgStarRating}</span>
+                    <span><i className="fa-solid fa-paw"></i>{avgStarRating}</span>
                     <span className="span-separator">·</span>
                     <span className="spot-reviews" onClick={() => { document.getElementById('reviews').scrollIntoView() }}>{`${spot?.Reviews ? spot?.Reviews.length : 0} reviews`}</span>
                     <span className="span-separator">·</span>

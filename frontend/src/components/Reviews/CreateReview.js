@@ -128,11 +128,11 @@ const CreateReview = ({ setShowReview, editReview, setEditReview, reviewId }) =>
         <div className="review-header">How was your stay?</div>
         <div className="review-star-rating">
           <div className="rating-review-header">Overall experience*</div>
-          <i className={ratedStar1 ? "fa-solid fa-star rated-true" : "fa-solid fa-star rated-false"} onClick={() => changeReviewStars(1)} alt='star'></i>
-          <i className={ratedStar2 ? "fa-solid fa-star rated-true" : "fa-solid fa-star rated-false"} onClick={() => changeReviewStars(2)} alt='star'></i>
-          <i className={ratedStar3 ? "fa-solid fa-star rated-true" : "fa-solid fa-star rated-false"} onClick={() => changeReviewStars(3)} alt='star'></i>
-          <i className={ratedStar4 ? "fa-solid fa-star rated-true" : "fa-solid fa-star rated-false"} onClick={() => changeReviewStars(4)} alt='star'></i>
-          <i className={ratedStar5 ? "fa-solid fa-star rated-true" : "fa-solid fa-star rated-false"} onClick={() => changeReviewStars(5)} alt='star'></i>
+          <i className={ratedStar1 ? "fa-solid fa-paw rated-true" : "fa-solid fa-paw rated-false"} onClick={() => changeReviewStars(1)} alt='star'></i>
+          <i className={ratedStar2 ? "fa-solid fa-paw rated-true" : "fa-solid fa-paw rated-false"} onClick={() => changeReviewStars(2)} alt='star'></i>
+          <i className={ratedStar3 ? "fa-solid fa-paw rated-true" : "fa-solid fa-paw rated-false"} onClick={() => changeReviewStars(3)} alt='star'></i>
+          <i className={ratedStar4 ? "fa-solid fa-paw rated-true" : "fa-solid fa-paw rated-false"} onClick={() => changeReviewStars(4)} alt='star'></i>
+          <i className={ratedStar5 ? "fa-solid fa-paw rated-true" : "fa-solid fa-paw rated-false"} onClick={() => changeReviewStars(5)} alt='star'></i>
         </div>
         <div>
           <div className="review-content-header">Share your story*</div>

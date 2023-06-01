@@ -4,7 +4,6 @@ import { GoogleMap, useJsApiLoader, Marker, Circle } from '@react-google-maps/ap
 import { getAPIKey } from '../../store/maps'
 import house from './house.png'
 import mapOptions from './MapStyle'
-
 import '../CSS/Maps.css'
 
 

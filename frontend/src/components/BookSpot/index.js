@@ -85,7 +85,7 @@ const BookSpot = ({ spotId, avgStarRating, checkIn, setCheckIn, checkOut, setChe
             <div className="reserve-price">{`$${spot?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div>
             <span>night</span>
             <span className="reserve-rating">
-              <i className="fa-solid fa-star smaller"></i>
+              <i className="fa-solid fa-paw smaller"></i>
               {avgStarRating}</span>
             <span className="span-separator-smaller">·</span>
             <span className="reserve-review" onClick={() => { document.getElementById('reviews').scrollIntoView() }}>{`${spot?.Reviews ? spot.Reviews.length : 0} reviews`}</span>

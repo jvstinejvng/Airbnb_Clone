@@ -71,7 +71,6 @@ const SearchMap = ({ searchSpots }) => {
     <div className='search-google-map-outer'>
       {isLoaded &&
         (<GoogleMap
-          // onLoad={onLoad}
           mapContainerStyle={containerStyle}
           center={center}
           zoom={zoom}
