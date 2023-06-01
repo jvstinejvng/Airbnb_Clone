@@ -41,7 +41,7 @@
 ## **Application Features:**
 
 1. Sign up, log in & demo user 
-2. Homepage
+2. HomePage
 3. Listing detail page
 4. Create and edit a listing 
 5. All user's reviews
