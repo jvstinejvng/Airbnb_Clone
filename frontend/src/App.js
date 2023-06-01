@@ -7,12 +7,12 @@ import * as sessionActions from "./store/session";
 
 import SignupForm from "./components/UserForms/SignupForm";
 import SpotDetails from "./components/SpotDetails";
-import HomePage from "./components/HomePage"
+import HomePage from "./components/Homepage"
 import UserSpots from "./components/UserSpots";
 import BecomeAHost from "./components/BecomeAHost";
 import UserBookings from "./components/UserBookings";
 import Footer from "./components/NavigationBar/Footer";
-import SearchResults from "./components/HomePage/SearchResults";
+import SearchResults from "./components/Homepage/SearchResults";
 
 function App() {
   const dispatch = useDispatch();
