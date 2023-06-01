@@ -63,6 +63,7 @@ const UserBookings = ({ isLoaded }) => {
       let startRes = new Date(allStartDates[i]);
       let endRes = new Date(allEndDates[i]);
 
+      
       if ((startReq >= startRes && startReq < endRes) ||
         (endReq > startRes && endReq <= endRes) ||
         startRes >= startReq && startRes < endReq ||
