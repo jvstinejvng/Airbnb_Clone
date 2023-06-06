@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-
 import { addSpot, findSpotById } from "../../store/spots";
 import { addNewImages } from "../../store/images";
 import NavigationBar from "../NavigationBar";
@@ -243,26 +242,28 @@ const BecomeAHost = ( { isLoaded } ) => {
         <NavigationBar isLoaded={isLoaded} /></div>
       <div className='nav-border'></div>
         { page === 1 && 
-          <div className='host-form-container'>
-            <div className='host-form-header'>Ready to Petbnb it?</div>
-              <div className='host-form-right'>
-                <div className='host-form-page-one'>It’s easy to get started on Petbnb</div>
-                    {sessionUser ? 
-                      <button 
-                        onClick={() => setPage(2)} 
-                        className='host-form-get-started-button'>
-                        <i className="fa-solid fa-plus"></i>
-                        Get Started 
-                      </button> 
-                      :
-                      <button 
-                        className='host-form-not-user' 
-                        disabled="true">
-                        Log in to Start Hosting
-                      </button>
-                    }
-              </div>
-          </div>
+          <section className={page === 1 ? "block" : "hidden"}>
+            <div className='host-form-container'>
+              <div className='host-form-header'>Ready to Petbnb it?</div>
+                <div className='host-form-right'>
+                  <div className='host-form-page-one'>It’s easy to get started on Petbnb</div>
+                      {sessionUser ? 
+                        <button 
+                          onClick={() => setPage(2)} 
+                          className='host-form-get-started-button'>
+                          <i className="fa-solid fa-plus"></i>
+                          Get Started 
+                        </button> 
+                        :
+                        <button 
+                          className='host-form-not-user' 
+                          disabled="true">
+                          Log in to Start Hosting
+                        </button>
+                      }
+                </div>
+            </div>
+          </section>
         }
       <form onSubmit={handleSubmit} className={page < 8 ? "block" : "hidden"}>
         { page >= 2 &&
@@ -270,24 +271,26 @@ const BecomeAHost = ( { isLoaded } ) => {
             <div className='host-form-container'>
               <div className='host-form-header'>Tell us about your place</div>
                 <div className='host-form-right'>
-                        <label className='host-form-page-two'>What the type of home do you live in?</label>
-                          <button 
-                            type="button" 
-                            onClick={() => { setType("Large Dog Friendly Home"); 
-                            setCheckInput(false) }}
-                            className='demo-buttons'> 
-                            demo
-                          </button>
+                  <div className='host-form-demo-button-container'>
+                    <label className='host-form-label'>What type of pet home do you have?</label>
+                      <button 
+                        type="button" 
+                        onClick={() => { setType("Large Dog Friendly Home"); 
+                        setCheckInput(false) }}
+                        className='demo-buttons'> 
+                        demo
+                      </button>
+                  </div>
                   <input
-                    type="text"
-                    placeholder="Cat Only Apartment"
-                    className="host-form-type-input-text"
-                    value={type}
-                    onChange={updateType}
-                    required
-                    maxLength={30}
-                  />
-                  <label className="host-form-property-type-container">Which of these best describes your place?</label>
+                      type="text"
+                      placeholder="Cat Only Apartment"
+                      className="host-form-input-text"
+                      value={type}
+                      onChange={updateType}
+                      required
+                      maxLength={30}
+                    />
+                  <label className="host-form-label">Which of these best describes your place?</label>
                     <div className="host-form-categories-container">
                       {categories.map((spot_category) => {
                         return (
@@ -301,13 +304,13 @@ const BecomeAHost = ( { isLoaded } ) => {
                               onChange={() => { setCategory(spot_category) }}
                               required
                             />
-                          <label className="create-category-label">{spot_category}</label>
+                            <label className="host-form-label-categories">{spot_category}</label>
                           </div>
-                      )
+                        )
                       })}
                     </div>
-                <div className="next-back-form-buttons">{formButtons}</div>
-                </div>
+                  <div className="next-back-form-buttons">{formButtons}</div>
+                </div>     
             </div>
           </section>
         }
@@ -315,102 +318,104 @@ const BecomeAHost = ( { isLoaded } ) => {
           <section className={page === 3 ? "block" : "hidden"}>
             <div className='host-form-container'>
               <div className="host-form-header">Share some basics about your place</div>
-              <div className="host-form-right">
-                <label className="host-form-right-question-text">How many pets would you like to welcome?</label>
-                  <div className="host-form-buttons-container">
-                    <button 
-                      onClick={() => { 
-                      if (pets > 1) 
-                      setPets(pets - 1) }} 
-                      disabled={pets === 1}>
-                      -
-                    </button>
-                    {pets}
-                    <button 
-                      onClick={() => 
-                      setPets(pets + 1)} 
-                      disabled={pets === 25}>
-                      +
-                    </button>
+                <div className="host-form-right">
+                  <div className="host-form-page-three">
+                    <label className="host-form-label">How many pets would you like to welcome?</label>
+                      <div className="host-form-page-three-pets-button">
+                        <button 
+                          onClick={() => { 
+                          if (pets > 1) 
+                          setPets(pets - 1) }} 
+                          disabled={pets === 1}>
+                          -
+                        </button>
+                        {pets}
+                        <button 
+                          onClick={() => 
+                          setPets(pets + 1)} 
+                          disabled={pets === 25}>
+                          +
+                        </button>
+                      </div>
                   </div>
-                <label className="host-form-right-question-text">What type of yard do you have?</label>
-                  <div className="host-form-demo-button-container">
-                    <button type="button" 
-                      onClick={() => { 
-                      setYard("Fenced Yard"); 
-                      setCheckInput(false) }} 
-                      className='demo-buttons'>
-                      demo
-                    </button>
+                  <div className="host-form-demo-button-container-3">
+                    <label className="host-form-label">What type of yard do you have?</label>
+                      <button type="button" 
+                        onClick={() => { 
+                        setYard("Fenced Yard"); 
+                        setCheckInput(false) }} 
+                        className='demo-buttons'>
+                        demo
+                      </button>
                   </div>
-                    <input
-                      type="text"
-                      placeholder="yard"
-                      className="host-form-input-text"
-                      value={yard}
-                      onChange={e => { setYard(e.target.value); }}
-                      required
-                      maxLength={100}
-                    />
-                <label className="host-form-right-question-text">Do children live at the residency?</label>
-                  <div className="host-form-demo-button-container">
-                    <button
-                      type="button" 
-                      onClick={() => { 
-                      setChildren("No Children"); 
-                      setCheckInput(false) }} 
-                      className='demo-buttons'>
-                      demo
-                    </button>
-                  </div>
-                    <input
-                      type="text"
-                      placeholder="children"
-                      className="host-form-input-text"
-                      value={children}
-                      onChange={e => { setChildren(e.target.value); }}
-                      required
-                      maxLength={100}
-                    />
-                <label className="host-form-right-question-text">Do your pets live at the residency </label>
-                  <div className="host-form-demo-button-container">
-                    <button 
-                      type="button" 
-                      onClick={() => { 
-                      setPersonalPets("2 dogs"); 
-                      setCheckInput(false) }} 
-                      className='demo-buttons'>
-                      demo
-                    </button>
-                  </div>
-                    <input
-                      type="text"
-                      placeholder="personal pets"
-                      className="host-form-input-text"
-                      value={personalpets}
-                      onChange={e => { setPersonalPets(e.target.value); }}
-                      required
-                      maxLength={100}
-                    />
-              <div className="next-back-form-buttons">
-                <button 
-                  type="button" 
-                  onClick={() => { 
-                  setPage(page - 1); 
-                  setCheckInput(false) }} 
-                  className="back-button">
-                  Back
-                </button>
-                <button 
-                  type="button" 
-                  onClick={() => { 
-                  setPage(page + 1); 
-                  setCheckInput(true) }} 
-                  className="next-button">
-                  Next
-                </button>
-            </div>
+                      <input
+                        type="text"
+                        placeholder="yard"
+                        className="host-form-input-text"
+                        value={yard}
+                        onChange={e => { setYard(e.target.value); }}
+                        required
+                        maxLength={100}
+                      />
+                  <div className="host-form-demo-button-container-3">
+                  <label className="host-form-label">Do children live at the residency?</label>
+                      <button
+                        type="button" 
+                        onClick={() => { 
+                        setChildren("No Children"); 
+                        setCheckInput(false) }} 
+                        className='demo-buttons'>
+                        demo
+                      </button>
+                    </div>
+                      <input
+                        type="text"
+                        placeholder="children"
+                        className="host-form-input-text"
+                        value={children}
+                        onChange={e => { setChildren(e.target.value); }}
+                        required
+                        maxLength={100}
+                      />
+                  <div className="host-form-demo-button-container-3">
+                  <label className="host-form-label">Do your pets live at the residency </label>
+                      <button 
+                        type="button" 
+                        onClick={() => { 
+                        setPersonalPets("2 dogs"); 
+                        setCheckInput(false) }} 
+                        className='demo-buttons'>
+                        demo
+                      </button>
+                    </div>
+                      <input
+                        type="text"
+                        placeholder="personal pets"
+                        className="host-form-input-text"
+                        value={personalpets}
+                        onChange={e => { setPersonalPets(e.target.value); }}
+                        required
+                        maxLength={100}
+                      />
+                <div className="next-back-form-buttons">
+                  <button 
+                    type="button" 
+                    onClick={() => { 
+                    setPage(page - 1); 
+                    setCheckInput(false) }} 
+                    className="back-button">
+                    Back
+                  </button>
+                  <button 
+                    type="button" 
+                    onClick={() => { 
+                    setPage(page + 1); 
+                    setCheckInput(true) }} 
+                    className="next-button">
+                    Next
+                  </button>
               </div>
+                </div>
             </div>
           </section>
         }
@@ -419,7 +424,9 @@ const BecomeAHost = ( { isLoaded } ) => {
             <div className="host-form-container">
               <div className="host-form-header">Where's your place located?</div>
                 <div className="host-form-right">
-                <label className="host-form-right-question-text">Confirm your address</label>
+                <div className='host-form-demo-button-container'>
+
+                <label className="host-form-label">Confirm your address</label>
                   <div className="host-form-demo-button-container">
                       <button 
                         type="button" 
@@ -483,6 +490,7 @@ const BecomeAHost = ( { isLoaded } ) => {
                 <div>
                 </div>
               </div>
+              </div>
                 </div>
             </div>
           </section>
@@ -492,7 +500,8 @@ const BecomeAHost = ( { isLoaded } ) => {
             <div className="host-form-container">
               <div className="host-form-header">Let's give your place a title</div>
                 <div className="host-form-right">
-                  <label className="host-form-right-question-text">Short titles work best. Have fun with it—you can always change it later.</label>
+                <div className='host-form-demo-button-container'>
+                  <label className="host-form-label">Short titles work best. Have fun with it—you can always change it later.</label>
                     <div className="host-form-demo-button-container">
                       <button 
                         type="button" 
@@ -502,6 +511,7 @@ const BecomeAHost = ( { isLoaded } ) => {
                         className='demo-buttons'>
                         demo
                       </button>
+                  </div>
               </div>
           <div className="host-form-right-input-container">
             <input
@@ -526,7 +536,8 @@ const BecomeAHost = ( { isLoaded } ) => {
             <div className="host-form-container">
               <div className="host-form-header">Create your description</div>
                 <div className="host-form-right">
-                  <label className="host-form-right-question-text">Share what makes your place special.</label>
+                <div className='host-form-demo-button-container'>
+                  <label className="host-form-label">Share what makes your place special.</label>
                     <div className="host-form-demo-button-container">
                       <button 
                         type="button" 
@@ -551,6 +562,7 @@ const BecomeAHost = ( { isLoaded } ) => {
             <div className="right-content-button">
               <div className="next-back-form-buttons">{formButtons}</div>
             </div>
+            </div>
                 </div>
             </div>
           </section>
@@ -560,7 +572,8 @@ const BecomeAHost = ( { isLoaded } ) => {
             <div className="host-form-container">
               <div className="host-form-header">Now, set your price</div>
                   <div className="host-form-right">
-                    <label className="host-form-right-question-text">You can change it anytime.</label>
+                  <div className='host-form-demo-button-container'>
+                    <label className="host-form-label">You can change it anytime.</label>
                       <div className="host-form-demo-button-container">
                         <button 
                           type="button" 
@@ -608,6 +621,7 @@ const BecomeAHost = ( { isLoaded } ) => {
                       Next
                     </button>
                 </div>
+                </div>
               </div>
             </div>
             </div>
@@ -620,7 +634,7 @@ const BecomeAHost = ( { isLoaded } ) => {
             <div className="host-form-container">
               <div className="host-form-header">Make your place stand out</div>
                 <div className="host-form-right">
-                  <label className="host-form-right-question-text">Add 5 Photos</label>
+                  <label >Add 5 Photos</label>
                     <div className="host-form-demo-button-container">
                       <button 
                         type="button" 
