@@ -17,7 +17,6 @@ function LoginForm({ setShowLogIn }) {
 
   if (sessionUser) {
     setShowLogIn(false)
-    // return <Redirect to="/" />
   };
 
   const handleSubmit = (e) => {
