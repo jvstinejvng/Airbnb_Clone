@@ -1,21 +1,21 @@
-.trips-outer {
+.user-bookings-main {
   display: flex;
   width: 100%;
   flex-direction: column;
   align-items: center;
 }
 
-.trips-nav-main {
-  width: 1130px;
+.users-booking-nav-bar {
+  width: 80%;
 }
 
-.trips-page {
+.user-bookings-page {
   display: flex;
   justify-content: center;
   margin-bottom: 100px;
 }
 
-.trips-main-div {
+.user-bookings-container{
   width: 1090px;
   box-sizing: border-box;
 }

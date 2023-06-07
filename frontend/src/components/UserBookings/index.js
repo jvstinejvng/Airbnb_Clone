@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-
 import { listAllBookings, getAllBookings, bookingDelete, updateBooking } from "../../store/bookings";
 import NavigationBar from "../NavigationBar";
 import { listAllUsers } from "../../store/users";
@@ -114,13 +113,13 @@ const UserBookings = ({ isLoaded }) => {
   }
 
   return (
-    <div className="trips-outer">
-      <div className="trips-nav-main">
+    <div className="user-bookings-main">
+      <div className="users-booking-nav-bar">
         <NavigationBar isLoaded={isLoaded} />
       </div>
       <div className="nav-border"></div>
       {sessionUser ?
-        <div className="trips-page">
+        <div className="user-bookings-page">
           <div className="trips-main-div">
             <div className="trips-header">Trips</div>
             {futureTrips.length > 0 ? <></> : <div className="main-no-trips">
