@@ -100,29 +100,45 @@
   font-size: 16px;
   height: 2rem;
   font-weight: 400;
-  margin: 10px 0 24px 0;
+  margin: 10px 0 15px 0;
 }
-
 
 .host-form-categories-container {
   display: grid;
-  grid-template-columns: repeat(2, 15rem);
+  grid-template-columns: repeat(2, 14.5rem);
   margin-top: 10px;
 }
 
-.host-form-categories-input-radio {
-  display: grid;
-  grid-template-columns: 15% 75%;   
-  padding: 5px;
+.host-form-categories-input-radio input[type="radio"] {
+  opacity: 0;
+  width: 0;
+  position: fixed;
 }
 
-.host-form-radio-button {
-  height: 1rem;
-  width: 1rem;
+.host-form-categories-input-radio label {
+  display: inline-block;
+  background-color: #ffff;
+  text-align: center;
+  padding: 14px 0 0 0;
+  font-size: 14px;
+  border: 1px solid #444;
+  border-radius: 10px;
+  width: 12rem;
+  height: 2rem;
+  margin: 4px 0;
 }
 
-.host-form-label-categories {
-  font-size: 18px;
+.host-form-categories-input-radio input[type="radio"]:checked + label{
+  background-color:#EBEBEB;
+  border-color: #444;
+}
+
+.host-form-categories-input-radio input[type="radio"]:focus + label {
+  border: 2px solid #444;
+}
+
+.host-form-categories-input-radio label:hover {
+  background-color: #EBEBEB;
 }
 
 .next-back-form-buttons {
@@ -166,7 +182,6 @@
   margin: 0;
   border-radius: 0;
   border-bottom: none;
-
 }
 
 .host-form-input-text-address-top {
@@ -189,20 +204,12 @@
 
 }
 
-
-
 .fa-plus {
   margin-right: 1rem;
   font-size: 2rem;
   font-weight: 200;
 }
 
-.back-button {
-  padding: 0.8rem 1rem;
-  font-size: 0.9rem;
-  border: none;
-  background: none;
-}
 
 .back-button:hover {
   background-color: rgba(178, 178, 178, 0.103);

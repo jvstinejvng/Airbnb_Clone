@@ -128,6 +128,7 @@ const BecomeAHost = ( { isLoaded } ) => {
     setCheckInput(false)
   }
 
+
   let formButtons;
   if (page > 1) {
     formButtons = (
@@ -313,12 +314,13 @@ const BecomeAHost = ( { isLoaded } ) => {
                               name={category}
                               type="radio"
                               className="host-form-radio-button"
+                              id={spot_category}
                               checked={category === spot_category}
                               value={category}
                               onChange={() => { setCategory(spot_category) }}
                               required
                             />
-                            <label className="host-form-label-categories">{spot_category}</label>
+                            <label for={spot_category}> {spot_category} </label>
                           </div>
                         )
                       })}
