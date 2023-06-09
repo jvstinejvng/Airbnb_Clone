@@ -129,7 +129,6 @@ const BecomeAHost = ( { isLoaded } ) => {
     setCheckInput(false)
   }
 
-
   let formButtons;
   if (page > 1) {
     formButtons = (
@@ -210,7 +209,7 @@ const BecomeAHost = ( { isLoaded } ) => {
 
     const imageData = {
       userId,
-      spotId: spotId,
+      spotId,
       type: "spot"
     }
 
@@ -659,7 +658,9 @@ const BecomeAHost = ( { isLoaded } ) => {
                       required
                     />
                     <div className="next-back-form-buttons">
+                      <div>
                       {formButtons}
+                      </div>
                         <button 
                           type="submit" 
                           className="next-button" 
