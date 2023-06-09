@@ -286,7 +286,6 @@ router.get('/:spotId', checkSpotExists, async (req, res) => {
                 },
                 {
                     model: Review,
-                    // attributes: ['stars']
                 }
             ],
         })
