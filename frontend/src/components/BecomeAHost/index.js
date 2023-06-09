@@ -8,6 +8,7 @@ import "../CSS/BecomeAHost.css"
 
 const BecomeAHost = ( { isLoaded } ) => {
 
+  
   const dispatch = useDispatch()
   const history = useHistory()
   const sessionUser = useSelector(state => state.session.user);
