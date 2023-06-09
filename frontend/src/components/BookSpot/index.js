@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-
 import { getAllBookings, getSpotBookings, getNewBooking } from "../../store/bookings";
 import { Modal } from "../../context/Modal";
 import LoginForm from "../UserForms/LoginForm/LoginForm";
@@ -9,11 +8,11 @@ import LoginForm from "../UserForms/LoginForm/LoginForm";
 import "../CSS/BookSpot.css"
 
 const BookSpot = ({ spotId, avgStarRating, checkIn, setCheckIn, checkOut, setCheckOut, selectDate, setSelectDate }) => {
+  
   const spot = useSelector((state) => state.spots[spotId])
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch()
   const history = useHistory()
-
   const currSpotBookings = useSelector(getAllBookings)
 
   const [bookingErrors, setBookingErrors] = useState([])
@@ -36,7 +35,6 @@ const BookSpot = ({ spotId, avgStarRating, checkIn, setCheckIn, checkOut, setChe
     }
 
   }, [dispatch, checkIn, checkOut])
-
 
   const numDays = Math.ceil((new Date(checkOut).getTime() - new Date(checkIn).getTime()) / (1000 * 3600 * 24))
   const cleaningFee = Math.floor(spot?.price / 5)

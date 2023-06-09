@@ -18,9 +18,9 @@ const findBookings = (bookings) => ({
   bookings
 })
 
-const editBookings = (bookings) => ({
+const editBookings = (booking) => ({
   type: EDIT_BOOKINGS,
-  bookings
+  booking
 })
 
 const createBookings = (newBooking) => ({
@@ -85,9 +85,9 @@ export const bookingDelete = (bookingId) => async (dispatch) => {
   const response = await csrfFetch(`/api/bookings/${bookingId}`, {
     method: "DELETE",
   })
-  const deleteBooking = await response.json();
+  const deletedBooking = await response.json();
   dispatch(deleteBooking(bookingId));
-  return deleteBooking;
+  return deletedBooking;
 }
 
 const initialState = {}
