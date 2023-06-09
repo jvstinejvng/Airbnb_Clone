@@ -1,4 +1,3 @@
-// backend/routes/api/spots.js
 const { Op } = require('sequelize');
 const express = require('express')
 const { requireAuth,

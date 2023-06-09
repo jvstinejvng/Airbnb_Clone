@@ -1,4 +1,3 @@
-// backend/routes/api/images.js
 const express = require('express')
 const { requireAuth } = require('../../utils/auth');
 const { Image, sequelize } = require('../../db/models');
