@@ -171,7 +171,6 @@ router.get('/:spotId/Bookings', [requireAuth, checkSpotExists], async (req, res)
 router.post('/:spotId/Bookings', [requireAuth, checkSpotExists, checkNotOwner, validateDate, checkBookingValidation], async (req, res, next) => {
     const { startDate, endDate } = req.body;
 
-    // if (new Date(startDate).toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }) > new Date(endDate).toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })) {
     if (startDate > endDate) {
         const err = new Error(`Check-in date must be prior to check-out date`);
         err.status = 400;
