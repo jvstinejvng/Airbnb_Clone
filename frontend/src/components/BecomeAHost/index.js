@@ -310,6 +310,7 @@ const BecomeAHost = ( { isLoaded } ) => {
                         demo
                       </button>
                   </div>
+                  
                   <input
                       type="text"
                       placeholder="Cat Only Apartment"
