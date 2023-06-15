@@ -343,6 +343,7 @@ const BecomeAHost = ( { isLoaded } ) => {
                 </div>     
             </div>
           </section>
+          
         }
         { page >= 3 &&
           <section className={page === 3 ? "block" : "hidden"}>
