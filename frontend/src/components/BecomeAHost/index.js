@@ -8,7 +8,6 @@ import "../CSS/BecomeAHost.css"
 
 const BecomeAHost = ( { isLoaded } ) => {
 
-  
   const dispatch = useDispatch()
   const history = useHistory()
   const sessionUser = useSelector(state => state.session.user);
@@ -62,6 +61,21 @@ const BecomeAHost = ( { isLoaded } ) => {
 
     const errors = []
 
+    if (page === 3) {
+
+      if (yard.trim().length < 4) errors.push("invalid") 
+      if (children.trim().length < 6) errors.push("invalid")
+      if (personalpets.trim().length < 4) errors.push("invalid")
+      
+      if (errors.length > 0) {
+        setCheckInput(true)
+        setValidationErrors(errors)
+      } else {
+        setValidationErrors([])
+        setCheckInput(false)
+      }
+    }
+
     if (page === 4) {
 
       let latNum = parseInt(lat, 10)
@@ -108,7 +122,7 @@ const BecomeAHost = ( { isLoaded } ) => {
       }
     }
 
-  }, [page, address, city, state, country, lat, lng, description, price, image1, image2, image3, image4, image5])
+  }, [page, yard, children, personalpets, address, city, state, country, lat, lng, description, price, image1, image2, image3, image4, image5])
 
   const setDemoAddress = () => {
     setAddress("180 Geary St")
@@ -414,22 +428,7 @@ const BecomeAHost = ( { isLoaded } ) => {
                       maxLength={100}
                     />
                 <div className="next-back-form-buttons">
-                  <button 
-                    type="button" 
-                    onClick={() => { 
-                    setPage(page - 1); 
-                    setCheckInput(false) }} 
-                    className="back-button">
-                    Back
-                  </button>
-                  <button 
-                    type="button" 
-                    onClick={() => { 
-                    setPage(page + 1); 
-                    setCheckInput(true) }} 
-                    className="next-button">
-                    Next
-                  </button>
+                  {formButtons}
                 </div>
                 </div>
             </div>
@@ -596,7 +595,12 @@ const BecomeAHost = ( { isLoaded } ) => {
                       onChange={e => { setPrice(e.target.value); setCheckInput(false) }}
                       required
                     />
-                    <div className="next-back-form-buttons">{formButtons}</div>
+                    <div className="next-back-form-buttons">
+                    <button type="button" onClick={() => { setPage(6); setCheckInput(false) }} className="back-button">Back</button>
+                    <button type="submit" className="next-button" disabled={checkInput}>Next</button>
+                    
+                    </div>
+                    
                 </div>
             </div>
           </section>
@@ -658,15 +662,8 @@ const BecomeAHost = ( { isLoaded } ) => {
                       required
                     />
                     <div className="next-back-form-buttons">
-                      <div>
                       {formButtons}
-                      </div>
-                        <button 
-                          type="submit" 
-                          className="next-button" 
-                          disabled={checkInput}>
-                          Submit
-                        </button>
+                      <button type="submit" className="next-button" disabled={checkInput}>Submit</button>
                     </div>
                 </div>
             </div>
