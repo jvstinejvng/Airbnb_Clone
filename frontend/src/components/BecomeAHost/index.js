@@ -343,7 +343,7 @@ const BecomeAHost = ( { isLoaded } ) => {
                 </div>     
             </div>
           </section>
-          
+
         }
         { page >= 3 &&
           <section className={page === 3 ? "block" : "hidden"}>
@@ -435,6 +435,8 @@ const BecomeAHost = ( { isLoaded } ) => {
             </div>
           </section>
         }
+
+        
         { page >= 4 &&
           <section className={page === 4 ? "block" : "hidden"}>
             <div className="host-form-container">
