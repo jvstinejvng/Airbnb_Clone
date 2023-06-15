@@ -309,8 +309,7 @@ const BecomeAHost = ( { isLoaded } ) => {
                         className='demo-buttons'> 
                         demo
                       </button>
-                  </div>
-                  
+                  </div>        
                   <input
                       type="text"
                       placeholder="Cat Only Apartment"
