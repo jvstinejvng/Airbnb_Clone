@@ -15,6 +15,7 @@ const getImages = (images) => ({
   images
 })
 
+
 export const listAllImages = () => async (dispatch) => {
   const response = await csrfFetch(`/api/images`);
   if (response.ok) {
