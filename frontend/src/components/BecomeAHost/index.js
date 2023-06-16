@@ -324,7 +324,7 @@ const BecomeAHost = ( { isLoaded } ) => {
                       onChange={updateType}
                       required
                       maxLength={30}
-                    />
+                  />
                   <label className="host-form-label">Which of these best describes your place?</label>
                     <div className="host-form-categories-container">
                       {categories.map((spot_category) => {
@@ -534,7 +534,7 @@ const BecomeAHost = ( { isLoaded } ) => {
                     <input
                       type="text"
                       placeholder="Pet Care"
-                      className=""
+                      className="host-form-input-text"
                       value={name}
                       onChange={updateName}
                       required
@@ -553,16 +553,14 @@ const BecomeAHost = ( { isLoaded } ) => {
                 <div className="host-form-right">
                   <div className='host-form-demo-button-container'>
                     <label className="host-form-label">Share what makes your place special.</label>
-                      <div className="host-form-demo-button-container">
                         <button 
                           type="button" 
                           onClick={() => { 
-                          setDescription("Dog family home"); 
+                          setDescription("Looking for a safe, fun place to care for your dog while you're away? You've come to the right place! We take pride in positive-reinforcement training, supervised play indoor and outdoor, and a cageless, kennel-free environment. Last minute drop-offs are welcome and we have no weight restrictions. Come one, come all! We’ll supply your dog with filtered water and organic treats and will administer medication or cater to special needs at no additional charge."); 
                           setCheckInput(false) }} 
                           className='demo-buttons'>
                           demo
                         </button>
-                      </div>
                       <textarea
                         type="text"
                         placeholder="Tell us about your pet-care experience"
@@ -593,11 +591,11 @@ const BecomeAHost = ( { isLoaded } ) => {
                         className='demo-buttons'>
                         demo
                       </button>
-                  </div>
+                    </div>
                     <input
                       type="number"
                       placeholder="$"
-                      className=""
+                      className="host-form-input-text"
                       value={price}
                       min={1}
                       max={100000}

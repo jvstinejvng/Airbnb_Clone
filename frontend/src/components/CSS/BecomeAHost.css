@@ -11,8 +11,8 @@
  
 .host-form-container {
   display: flex;
-  margin: 2%;
-  padding: 4%;
+  margin: 0 2% 2% 2%;
+  padding: 4.5%;
 }
 
 .host-form-right {
@@ -113,11 +113,11 @@
 }
 
 .host-form-label {
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .demo-buttons {
-  border-radius: 8px;
+  border-radius: 5px;
   background-color:#EBEBEB;
   color: rgb(104, 104, 104);
   font-weight: 500;
@@ -277,21 +277,3 @@
   font-weight: 250;
   padding: 1rem;
 }
-
-.not-visible {
-  visibility: hidden;
-}
-
-.error-message {
-  padding-top: 18.5rem;
-  font-size: 0.7rem;
-}
-
-.error-message-li {
-  font-size: 0.7rem;
-}
-
-.error-message-ul {
-  margin: 0.3rem 0;
-}
-
