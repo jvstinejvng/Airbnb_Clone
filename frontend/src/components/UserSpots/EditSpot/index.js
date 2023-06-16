@@ -26,36 +26,73 @@ const EditSpot = ({ listingId, returnToListing }) => {
   const [description, setDescription] = useState(spot.description)
   const [price, setPrice] = useState(spot.price)
   
+  // const [submitted, setSubmitted] = useState(false)
 
-  const [errors, setErrors] = useState([]);
-  const [disableButton, setDisableButton] = useState(false)
+  const [validationErrors, setValidationErrors] = useState({
+    type: "",
+    children: "",
+    personalpets: "",
+    name: "",
+    address: "",
+    city: "",
+    state: "",
+    country: "",
+    lat: "",
+    lng: "",
+    description: "",
+    price: "",
+  });
 
   const categories = ['Dog Home', 'Cat Home', 'Dog and Cat Home', 'Exotic Pet Home', 'Rabbit/Bunny Home', 'Bird Home', 'Multiple Pet Home', 'Reptile Home', 'Hamster/Guinea Pig Home', 'Farm Home']
 
   useEffect(() => {
-    const errors = [];
-    if (type.trim().length < 2) errors.push("Type of stay between 3 and 30 characters required")
-    if (name.trim().length < 10) errors.push("Title must be between 10 and 50 characters")
-    if (address.trim().length < 6) errors.push("Valid address required")
-    if (city.trim().length < 4) errors.push("Please enter a state")
-    if (state.trim().length < 4) errors.push("Valid state required")
-    if (country.trim().length < 4) errors.push("Valid country required")
-    if (lat === "" || lat > 90 || lat < -90) errors.push("Latitude must be between - 90 to 90")
-    if (lng === "" || lng > 180 || lng < -180) errors.push("Longitude must be between - 180 to 180")
-    if (description.trim().length < 10) errors.push("Description required between 10 and 1000 characters")
-    if (price > 1000000 || price < 1) errors.push("Price must be between $1 and $1,000,000")
-
-    if (errors.length > 0) {
-      setErrors(errors)
-      setDisableButton(true)
-    } else {
-      setErrors([])
-      setDisableButton(false)
+    const errors = {};
+    if (type.length < 2) {
+      errors["type"] = "Type of stay between 3 and 30 characters required"
     }
+    if (yard.length < 4) {
+        errors["yard"] = "invalid"
+    } 
+    if (children.length < 6) {
+      errors["children"] = "invalid"
+    } 
+    if (personalpets.length < 4) {
+      errors["personalpets"] = "invalid"
+    } 
+    if (name.length < 10) {
+      errors["name"] = "Title must be between 10 and 50 characters"
+    }
+    if (address.length < 6) {
+      errors["address"] = "Valid address required"
+    }
+    if (city.length < 4) {
+      errors["city"] = "Please enter a state"
+    }
+    if (state.length < 4) {
+      errors["state"] = "Valid state required"
+    }
+    if (country.length < 4) {
+      errors["country"] = "Valid country required"
+    }
+    if (lat === "" || lat > 90 || lat < -90) {
+      errors["lat"] = "Latitude must be between - 90 to 90"
+    }
+    if (lng === "" || lng > 180 || lng < -180) {
+      errors["lng"] = "Longitude must be between - 180 to 180"
+    }
+    if (description.length < 10) {
+      errors["description"] = "Description required between 10 and 1000 characters"
+    }
+    if (price > 1000000 || price < 1) {
+      errors["price"] = "Price must be between $1 and $1,000,000"
+    }
+    setValidationErrors(errors);
+  }, [type, yard, children, personalpets, name, address, city, state, country, lat, lng, description, price,  validationErrors.length])
 
-  }, [type, name, address, city, state, country, lat, lng, description, price])
+ 
 
   const handleSubmit = async (e) => {
+
     e.preventDefault()
 
     const spotData = {
@@ -78,19 +115,13 @@ const EditSpot = ({ listingId, returnToListing }) => {
       personalpets
     }
 
-    const response = await dispatch(spotEdit(spotData))
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors)
-          if (data) {
-            const errors = Object.values(data.errors)
-            setErrors(errors)
-          }
-      })
-
-    if (response) {
+    try {
+      const response = await dispatch(spotEdit(spotData))
+       if (response) {
       dispatch(findSpotById(listingId))
       return returnToListing()
+    }
+    } catch (e) {
     }
   }
 
@@ -103,6 +134,8 @@ const EditSpot = ({ listingId, returnToListing }) => {
       <form onSubmit={handleSubmit} className="edit-spot-form">
         <div className="edit-spot-header">Edit Listing</div>
           <label className="edit-spot-label">Edit the type of pet home you have:</label>
+          <div className="ValidationError">{validationErrors?.type}</div>
+
             <input
               type="text"
               className="edit-spot-input"
@@ -118,6 +151,7 @@ const EditSpot = ({ listingId, returnToListing }) => {
               <button type='button' onClick={() => setPets(pets + 1)} disabled={pets === 16}>+</button>
             </div>
           <label className="edit-spot-label"> Edit the type of yard you have:</label>
+          <div className="ValidationError">{validationErrors?.yard}</div>
             <input
               type="text"
               className="edit-spot-input "
@@ -127,6 +161,8 @@ const EditSpot = ({ listingId, returnToListing }) => {
               required
             />
             <label className="edit-spot-label">Update the number of children that live at the residency:</label>
+            <div className="ValidationError">{validationErrors?.children}</div>
+
               <input
                 type="text"
                 className="edit-spot-input"
@@ -136,6 +172,7 @@ const EditSpot = ({ listingId, returnToListing }) => {
                 required
               />
             <label className="edit-spot-label">Update the number of permanent pets live at the residency:</label>
+            <div className="ValidationError">{validationErrors?.personalpets}</div>
               <input
                 type="text"
                 className="edit-spot-input"
@@ -165,6 +202,7 @@ const EditSpot = ({ listingId, returnToListing }) => {
               })}
             </div>
           <label className="edit-spot-label">Edit your title</label>
+          <div className="ValidationError">{validationErrors?.name}</div>
             <input
               type="text"
               className="edit-spot-input"
@@ -174,6 +212,7 @@ const EditSpot = ({ listingId, returnToListing }) => {
               required
             />
           <label className="edit-spot-label">Update your location</label>
+          <div className="ValidationError">{validationErrors?.address}</div>
             <input
               type="text"
               className="edit-spot-input address-input"
@@ -182,6 +221,7 @@ const EditSpot = ({ listingId, returnToListing }) => {
               required
               maxLength={100}
             />
+             <div className="ValidationError">{validationErrors?.city}</div>
             <input
               type="text"
               className="edit-spot-input"
@@ -190,6 +230,7 @@ const EditSpot = ({ listingId, returnToListing }) => {
               required
               maxLength={50}
             />
+             <div className="ValidationError">{validationErrors?.state}</div>
             <input
               type="text"
               className="edit-spot-input"
@@ -198,6 +239,7 @@ const EditSpot = ({ listingId, returnToListing }) => {
               required
               maxLength={50}
             />
+            <div className="ValidationError">{validationErrors?.country}</div>
             <input
               type="text"
               className="edit-spot-input"
@@ -207,6 +249,7 @@ const EditSpot = ({ listingId, returnToListing }) => {
               maxLength={50}
             />
           <label className="edit-spot-label">Update Latitude:</label>
+          <div className="ValidationError">{validationErrors?.lat}</div>
             <input
               type="number"
               className="edit-spot-input"
@@ -214,6 +257,7 @@ const EditSpot = ({ listingId, returnToListing }) => {
               onChange={e => setLat(e.target.value)}
             />
           <label className="edit-spot-label">Update longitude</label>
+          <div className="ValidationError">{validationErrors?.lng}</div>
             <input
               type="number"
               className="edit-spot-input"
@@ -221,6 +265,7 @@ const EditSpot = ({ listingId, returnToListing }) => {
               onChange={e => setLng(e.target.value)}
             />
           <label className="edit-spot-label">Update your description</label>
+          <div className="ValidationError">{validationErrors?.description}</div>
             <textarea
               value={description}
               className="edit-spot-textarea"
@@ -229,6 +274,7 @@ const EditSpot = ({ listingId, returnToListing }) => {
               maxLength={1000}
             ></textarea>
           <label className="edit-spot-label">Price per Night</label>
+          <div className="ValidationError">{validationErrors?.price}</div>
             <input
               type="number"
               value={price}
@@ -238,11 +284,11 @@ const EditSpot = ({ listingId, returnToListing }) => {
               min={1}
               max={100000}
             />
-          {errors.length > 0 && (
-          <ul>
-            {errors.map((error, i) => <li key={i} className='update-error'>{error}</li>)}
-          </ul>)}
-        <button type="submit" disabled={disableButton} className="update-listing-button">Confirm</button>
+        <button type="submit" 
+          disabled={
+            Object.values(validationErrors).every((x) => x === "") ? false : true
+            }
+        className="update-listing-button">Confirm</button>
       </form>
     </div >
   )
