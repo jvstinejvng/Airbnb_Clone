@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/jvstinejvng/Airbnb_Clone#readme",
   "dependencies": {
+    "@ramonak/react-progress-bar": "^5.0.3",
     "@react-google-maps/api": "^2.18.1",
     "react-google-maps": "^9.4.5",
     "react-icons": "^4.8.0",

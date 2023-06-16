@@ -286,7 +286,7 @@ const BecomeAHost = ( { isLoaded } ) => {
                         <button 
                           onClick={() => setPage(2)} 
                           className='host-form-get-started-button  host-form-get-started-button-effects'>
-                          <i className="fa-solid fa-plus"></i>
+                          <i class="fa-solid fa-plus"></i>
                           Get Started 
                         </button> 
                         :
@@ -566,7 +566,7 @@ const BecomeAHost = ( { isLoaded } ) => {
                       <textarea
                         type="text"
                         placeholder="Tell us about your pet-care experience"
-                        className="create-input-textarea"
+                        className="host-form-input-textarea"
                         value={description}
                         onChange={e => { setDescription(e.target.value); setCheckInput(false) }}
                         maxLength={1000}
@@ -605,9 +605,8 @@ const BecomeAHost = ( { isLoaded } ) => {
                       required
                     />
                     <div className="next-back-form-buttons">
-                    <button type="button" onClick={() => { setPage(6); setCheckInput(false) }} className="back-button">Back</button>
-                    <button type="submit" className="next-button" disabled={checkInput}>Next</button>
-                    
+                      <button type="button" onClick={() => { setPage(6); setCheckInput(false) }} className="back-button">Back</button>
+                      <button type="submit" className="next-button" disabled={checkInput}>Next</button>
                     </div>
                     
                 </div>

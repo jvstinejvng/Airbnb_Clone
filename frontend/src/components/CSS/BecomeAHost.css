@@ -73,7 +73,7 @@
   height: 100%;
   top: 0;
   left: 0;
-  background: black;
+  background: #181818;
 }
 
 .host-form-get-started-button-effects:hover,
@@ -87,6 +87,11 @@
   width: 100%;
 }
 
+.fa-plus {
+  margin-right: 1rem;
+  font-size: 2rem;
+  font-weight: 200;
+}
 
 .host-form-not-user {
   display: flex;
@@ -228,31 +233,34 @@
   font-weight: 400;
   margin: 0;
   border-radius: 0 0 30px 30px;
-
 }
 
-.fa-plus {
-  margin-right: 1rem;
-  font-size: 2rem;
-  font-weight: 200;
+.back-button {
+  font-size: 16px;
+  background-color: white;
+  border: none;
+  padding: 0.8rem 1rem;
+  text-decoration: underline;
 }
-
 
 .back-button:hover {
-  background-color: rgba(178, 178, 178, 0.103);
+  border: none;
   border-radius: 10px;
+  background-color: rgba(235, 234, 234, 0.515);
+  padding: 0.8rem 1rem;
+
 }
 
 .next-button:disabled {
   padding: 0.8rem 1rem;
-  font-size: 0.9rem;
+  font-size: 16px;
   border: none;
   border-radius: 10px;
 }
 
 .next-button:enabled {
   padding: 0.8rem 1rem;
-  font-size: 0.9rem;
+  font-size: 16px;
   border: none;
   border-radius: 10px;
   background-color: black;
@@ -265,7 +273,7 @@
   border-radius: 10px;
   resize: none;
   margin: 1rem 0;
-  font-size: 0.9rem;
+  font-size: 16px;
   font-weight: 250;
   padding: 1rem;
 }

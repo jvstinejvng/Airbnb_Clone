@@ -185,7 +185,7 @@
 }
 
 .day-res {
-  font-size: 0.9rem;
+  font-size: 16px;
   font-weight: 250;
 }
 
@@ -211,7 +211,7 @@
 
 .res-address,
 .res-city-state {
-  font-size: 0.9rem;
+  font-size: 16px;
   font-weight: 250;
   padding-right: 0.5rem;
 }
@@ -275,7 +275,7 @@
 .reserve-errors-edit {
   margin: 0.5rem 0 0 1rem;
   color: rgb(255, 56, 92);
-  font-size: 0.9rem;
+  font-size: 16px;
 }
 
 .res-button:disabled {
@@ -326,7 +326,7 @@
 }
 
 .past-res-city-state {
-  font-size: 0.9rem;
+  font-size: 16px;
   font-weight: 450;
   width: 200px;
   white-space: nowrap;
