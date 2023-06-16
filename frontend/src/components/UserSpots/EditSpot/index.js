@@ -264,6 +264,7 @@ const EditSpot = ({ listingId, returnToListing }) => {
               value={lng}
               onChange={e => setLng(e.target.value)}
             />
+            
           <label className="edit-spot-label">Update your description</label>
           <div className="ValidationError">{validationErrors?.description}</div>
             <textarea
