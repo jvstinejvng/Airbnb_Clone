@@ -63,16 +63,16 @@ const EditSpot = ({ listingId, returnToListing }) => {
       errors["name"] = "Title must be between 10 and 50 characters"
     }
     if (address.length < 6) {
-      errors["address"] = "Valid address required"
+      errors["address"] = "invalid address"
     }
     if (city.length < 4) {
-      errors["city"] = "Please enter a state"
+      errors["city"] = "invalid city"
     }
     if (state.length < 4) {
-      errors["state"] = "Valid state required"
+      errors["state"] = "invalid state"
     }
     if (country.length < 4) {
-      errors["country"] = "Valid country required"
+      errors["country"] = "invalid country"
     }
     if (lat === "" || lat > 90 || lat < -90) {
       errors["lat"] = "Latitude must be between - 90 to 90"
@@ -248,7 +248,7 @@ const EditSpot = ({ listingId, returnToListing }) => {
               required
               maxLength={50}
             />
-          <label className="edit-spot-label">Update Latitude:</label>
+          <label className="edit-spot-label">Update latitude:</label>
           <div className="ValidationError">{validationErrors?.lat}</div>
             <input
               type="number"
@@ -264,8 +264,8 @@ const EditSpot = ({ listingId, returnToListing }) => {
               value={lng}
               onChange={e => setLng(e.target.value)}
             />
-            
-          <label className="edit-spot-label">Update your description</label>
+
+          <label className="edit-spot-label">Edit your description</label>
           <div className="ValidationError">{validationErrors?.description}</div>
             <textarea
               value={description}
