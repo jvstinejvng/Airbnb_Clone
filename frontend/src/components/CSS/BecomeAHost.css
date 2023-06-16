@@ -6,13 +6,13 @@
 }
 
 .host-form-navbar {
-  width: 80%;
+  width: 85%;
 }
  
 .host-form-container {
   display: flex;
-  margin: 2.5%;
-  padding: 1%;
+  margin: 2%;
+  padding: 4%;
 }
 
 .host-form-right {
@@ -25,13 +25,13 @@
 
 .host-form-header {
   background: linear-gradient(to bottom right, #e61e4d 27.5%,#e31c5f 40%,#d70466 57.5%,#bd1e59 75%,#bd1e59 100%);
-  height:26rem;
-  width: 20rem;
+  height: 26rem;
+  width: 22rem;
   display: flex;
   padding: 0 4rem 8rem 4rem;
   align-items: center;
   color: white;
-  font-size: 45px;
+  font-size: 50px;
   border-radius: 40px;
 }
 
@@ -42,24 +42,51 @@
   width: 30rem;
 }
 
-.host-form-get-started-button {
-  display: flex;
-  border-radius: 12px;
+.host-form-get-started-button {    
+  overflow: hidden;
   padding: 14px;
   align-items: center;
-  font-size: 18px;
-  width: 24.5rem;
-  font-weight: 250;
+  display: flex;
+  border: #000000 1px solid; 
+  color: black;
   background: none;
-  border: #DDDDDD 1px solid;
-  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  transition: all 0.3s;
+  border-radius: 12px;
+  font-weight: 250;
+  font-size: 18px;
+  width: 24.5rem;  
 }
 
-.host-form-get-started-button:hover {
-  border: 1px solid#DDDDDD;
-  font-weight: 500;
-  background-color: #EBEBEB;
+.host-form-get-started-button-effects:after{
+  content: '';
+  position: absolute;
+  z-index: -1;
+  transition: all 0.3s;
+ box-sizing: border-box;
 }
+
+.host-form-get-started-button-effects:after {
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: black;
+}
+
+.host-form-get-started-button-effects:hover,
+.host-form-get-started-button-effects:active {
+  color: white;
+  font-weight: 700;
+}
+
+.host-form-get-started-button-effects:hover:after,
+.host-form-get-started-button-effects:active:after {
+  width: 100%;
+}
+
 
 .host-form-not-user {
   display: flex;

@@ -61,6 +61,12 @@ const BecomeAHost = ( { isLoaded } ) => {
 
     const errors = []
 
+    if ( page === 2 ) {
+      if (type.trim().length < 4) {
+        setCheckInput(true)
+      }
+    }
+
     if (page === 3) {
 
       if (yard.trim().length < 4) errors.push("invalid") 
@@ -122,7 +128,7 @@ const BecomeAHost = ( { isLoaded } ) => {
       }
     }
 
-  }, [page, yard, children, personalpets, address, city, state, country, lat, lng, description, price, image1, image2, image3, image4, image5])
+  }, [page, type, yard, children, personalpets, address, city, state, country, lat, lng, description, price, image1, image2, image3, image4, image5])
 
   const setDemoAddress = () => {
     setAddress("180 Geary St")
@@ -279,7 +285,7 @@ const BecomeAHost = ( { isLoaded } ) => {
                       {sessionUser ? 
                         <button 
                           onClick={() => setPage(2)} 
-                          className='host-form-get-started-button'>
+                          className='host-form-get-started-button  host-form-get-started-button-effects'>
                           <i className="fa-solid fa-plus"></i>
                           Get Started 
                         </button> 
