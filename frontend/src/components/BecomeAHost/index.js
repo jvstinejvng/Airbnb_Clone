@@ -428,6 +428,8 @@ const BecomeAHost = ( { isLoaded } ) => {
                       required
                       maxLength={100}
                     />
+                  <div>
+                  </div>
                 <div className="next-back-form-buttons">
                   {formButtons}
                 </div>
@@ -435,7 +437,6 @@ const BecomeAHost = ( { isLoaded } ) => {
             </div>
           </section>
         }
-
         { page >= 4 &&
           <section className={page === 4 ? "block" : "hidden"}>
             <div className="host-form-container">
