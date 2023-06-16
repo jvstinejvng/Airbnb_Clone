@@ -10,6 +10,7 @@ const getRoomReviews = (reviews) => ({
   reviews
 })
 
+
 const addReview = (newReview) => ({
   type: ADD_REVIEW,
   newReview
