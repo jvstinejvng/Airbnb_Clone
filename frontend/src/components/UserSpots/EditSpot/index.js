@@ -102,7 +102,7 @@ const EditSpot = ({ listingId, returnToListing }) => {
         </button>
       <form onSubmit={handleSubmit} className="edit-spot-form">
         <div className="edit-spot-header">Edit Listing</div>
-          <label className="edit-spot-label">What type of pet home do you have?</label>
+          <label className="edit-spot-label">Edit the type of pet home you have:</label>
             <input
               type="text"
               className="edit-spot-input"
@@ -111,42 +111,40 @@ const EditSpot = ({ listingId, returnToListing }) => {
               required
               maxLength={30}
             />
-          <label className="edit-spot-label"> Pets:</label>
-              <div className="edit-pets-buttons">
-                <button type='button' onClick={() => { if (pets > 1) setPets(pets - 1) }} disabled={pets === 1}>-</button>
-                {pets}
-                <button type='button' onClick={() => setPets(pets + 1)} disabled={pets === 16}>+</button>
-              </div>
-          <div className="edit-spot-yard-children-pets">
-            <label className="edit-spot-label"> Yard: </label>
+          <label className="edit-spot-label">Update many pets would you like to welcome:</label>
+            <div className="edit-pets-buttons">
+               <button type='button' onClick={() => { if (pets > 1) setPets(pets - 1) }} disabled={pets === 1}>-</button>
+              {pets}
+              <button type='button' onClick={() => setPets(pets + 1)} disabled={pets === 16}>+</button>
+            </div>
+          <label className="edit-spot-label"> Edit the type of yard you have:</label>
+            <input
+              type="text"
+              className="edit-spot-input "
+              value={yard}
+              onChange={e => setYard(e.target.value)}
+              maxLength={100}
+              required
+            />
+            <label className="edit-spot-label">Update the number of children that live at the residency:</label>
               <input
                 type="text"
-                className="edit-spot-input "
-                value={yard}
-                onChange={e => setYard(e.target.value)}
+                className="edit-spot-input"
+                value={children}
+                onChange={e => setChildren(e.target.value)}
                 maxLength={100}
                 required
               />
-              <label className="edit-spot-label"> Children: </label>
-                <input
-                  type="text"
-                  className="edit-spot-input"
-                  value={children}
-                  onChange={e => setChildren(e.target.value)}
-                  maxLength={100}
-                  required
-                />
-              <label className="edit-spot-label"> Personal Pets: </label>
-                <input
-                  type="text"
-                  className="edit-spot-input"
-                  value={personalpets}
-                  onChange={e => setPersonalPets(e.target.value)}
-                  maxLength={100}
-                  required
-                />
-          </div>
-          <label className="edit-spot-label">Which of these best describes your place?</label>
+            <label className="edit-spot-label">Update the number of permanent pets live at the residency:</label>
+              <input
+                type="text"
+                className="edit-spot-input"
+                value={personalpets}
+                onChange={e => setPersonalPets(e.target.value)}
+                maxLength={100}
+                required
+              />
+          <label className="edit-spot-label">Update to which best describes your place:</label>
             <div className="edit-spot-categories-container">
               {categories.map((spot_category) => {
                 return (
@@ -175,8 +173,7 @@ const EditSpot = ({ listingId, returnToListing }) => {
               maxLength={50}
               required
             />
-        <label className="edit-spot-label">Update your location</label>
-          <div className="edit-listing-address">
+          <label className="edit-spot-label">Update your location</label>
             <input
               type="text"
               className="edit-spot-input address-input"
@@ -185,8 +182,6 @@ const EditSpot = ({ listingId, returnToListing }) => {
               required
               maxLength={100}
             />
-          </div>
-          <div className="edit-listing-location">
             <input
               type="text"
               className="edit-spot-input"
@@ -211,31 +206,28 @@ const EditSpot = ({ listingId, returnToListing }) => {
               required
               maxLength={50}
             />
-          </div>
-        <div className="edit-listing-coordinates">
-          <label className="edit-spot-label">Latitude</label>
+          <label className="edit-spot-label">Update Latitude:</label>
             <input
               type="number"
               className="edit-spot-input"
               value={lat}
               onChange={e => setLat(e.target.value)}
             />
-            <label className="edit-spot-label">Longitude</label>
+          <label className="edit-spot-label">Update longitude</label>
             <input
               type="number"
-              className="edit-spot-input lng"
+              className="edit-spot-input"
               value={lng}
               onChange={e => setLng(e.target.value)}
             />
-        </div>
-        <label className="edit-spot-label">Update your Description</label>
-          <textarea
-            value={description}
-            className="edit-spot-input"
-            onChange={e => setDescription(e.target.value)}
-            required
-            maxLength={1000}
-          ></textarea>
+          <label className="edit-spot-label">Update your description</label>
+            <textarea
+              value={description}
+              className="edit-spot-textarea"
+              onChange={e => setDescription(e.target.value)}
+              required
+              maxLength={1000}
+            ></textarea>
           <label className="edit-spot-label">Price per Night</label>
             <input
               type="number"
@@ -246,9 +238,10 @@ const EditSpot = ({ listingId, returnToListing }) => {
               min={1}
               max={100000}
             />
-        {errors.length > 0 && (<ul>
-          {errors.map((error, i) => <li key={i} className='update-error'>{error}</li>)}
-        </ul>)}
+          {errors.length > 0 && (
+          <ul>
+            {errors.map((error, i) => <li key={i} className='update-error'>{error}</li>)}
+          </ul>)}
         <button type="submit" disabled={disableButton} className="update-listing-button">Confirm</button>
       </form>
     </div >
