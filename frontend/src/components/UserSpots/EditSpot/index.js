@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import { spotEdit, findSpotById } from "../../../store/spots";
-
 import "../../CSS/EditSpot.css"
 
 const EditSpot = ({ listingId, returnToListing }) => {
@@ -27,6 +25,7 @@ const EditSpot = ({ listingId, returnToListing }) => {
   const [name, setName] = useState(spot.name)
   const [description, setDescription] = useState(spot.description)
   const [price, setPrice] = useState(spot.price)
+  
 
   const [errors, setErrors] = useState([]);
   const [disableButton, setDisableButton] = useState(false)
@@ -55,7 +54,6 @@ const EditSpot = ({ listingId, returnToListing }) => {
     }
 
   }, [type, name, address, city, state, country, lat, lng, description, price])
-
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -97,187 +95,157 @@ const EditSpot = ({ listingId, returnToListing }) => {
   }
 
   return (
-    <div className="edit-listing-page">
-      <div className="return-div">
-        <button onClick={returnToListing} className="return-to-listing-button">Return to Listing</button>
-      </div>
-      <div className="edit-listing-header">Edit your Listing</div>
-      <form onSubmit={handleSubmit} className="edit-listing-form">
-        <div className='edit-listing-place'>
-          <label className="edit-listing-label">Update your Listing</label>
-          <input
-            type="text"
-            className="edit-listing-input place-input"
-            value={type}
-            onChange={e => setType(e.target.value)}
-            required
-            maxLength={30}
-          />
-          <div>
-            <label className="edit-pets-label"> Pets: </label>
-            <div className="edit-pets-buttons">
-              <button type='button' onClick={() => { if (pets > 1) setPets(pets - 1) }} disabled={pets === 1}>-</button>
-              {pets}
-              <button type='button' onClick={() => setPets(pets + 1)} disabled={pets === 16}>+</button>
-            </div>
-            <label className="edit-pets-label"> Yard: </label>
+    <div className="edit-spot-page">
+        <button onClick={returnToListing} className="return-to-listing-button">
+          <i class="fa-solid fa-arrow-left"></i>
+          Return to listing
+        </button>
+      <form onSubmit={handleSubmit} className="edit-spot-form">
+        <div className="edit-spot-header">Edit Listing</div>
+          <label className="edit-spot-label">What type of pet home do you have?</label>
+            <input
+              type="text"
+              className="edit-spot-input"
+              value={type}
+              onChange={e => setType(e.target.value)}
+              required
+              maxLength={30}
+            />
+          <label className="edit-spot-label"> Pets:</label>
+              <div className="edit-pets-buttons">
+                <button type='button' onClick={() => { if (pets > 1) setPets(pets - 1) }} disabled={pets === 1}>-</button>
+                {pets}
+                <button type='button' onClick={() => setPets(pets + 1)} disabled={pets === 16}>+</button>
+              </div>
+          <div className="edit-spot-yard-children-pets">
+            <label className="edit-spot-label"> Yard: </label>
               <input
                 type="text"
-                className="edit-listing-input title-input"
+                className="edit-spot-input "
                 value={yard}
                 onChange={e => setYard(e.target.value)}
                 maxLength={100}
                 required
               />
-            <label className="edit-pets-label"> Children: </label>
-              <input
-                type="text"
-                className="edit-listing-input title-input"
-                value={children}
-                onChange={e => setChildren(e.target.value)}
-                maxLength={100}
-                required
-              />
-            <label className="edit-pets-label"> Personal Pets: </label>
-              <input
-                type="text"
-                className="edit-listing-input title-input"
-                value={personalpets}
-                onChange={e => setPersonalPets(e.target.value)}
-                maxLength={100}
-                required
-              />
-            
+              <label className="edit-spot-label"> Children: </label>
+                <input
+                  type="text"
+                  className="edit-spot-input"
+                  value={children}
+                  onChange={e => setChildren(e.target.value)}
+                  maxLength={100}
+                  required
+                />
+              <label className="edit-spot-label"> Personal Pets: </label>
+                <input
+                  type="text"
+                  className="edit-spot-input"
+                  value={personalpets}
+                  onChange={e => setPersonalPets(e.target.value)}
+                  maxLength={100}
+                  required
+                />
           </div>
-        </div>
-        <div>
-          <label className="edit-listing-label">Select Property Type</label>
-          <div className="edit-categories-main">
-            {categories.map((spot_category) => {
-              return (
-                <div className="edit-categories-outer">
-                  <input
-                    name={category}
-                    type="radio"
-                    className="edit-category-radio"
-                    checked={category === spot_category}
-                    value={category}
-                    onChange={() => setCategory(spot_category)}
-                    required
-                  />
-                  <label className="edit-category-label">{spot_category}</label>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-        <div>
-          <label className="edit-listing-title">Edit your Title</label>
-        </div>
-        <input
-          type="text"
-          className="edit-listing-input title-input"
-          value={name}
-          onChange={e => setName(e.target.value)}
-          maxLength={50}
-          required
-        />
-        <div className="edit-listing-label">
-          <label>Update your Location</label>
-        </div>
-        <div className="edit-listing-address">
-          <input
-            type="text"
-            className="edit-listing-input address-input"
-            value={address}
-            onChange={e => setAddress(e.target.value)}
-            required
-            maxLength={100}
-          />
-        </div>
-        <div className="edit-listing-location">
-          <div>
+          <label className="edit-spot-label">Which of these best describes your place?</label>
+            <div className="edit-spot-categories-container">
+              {categories.map((spot_category) => {
+                return (
+                  <div className="edit-spot-category-radio-button">
+                    <input
+                      name={category}
+                      type="radio"
+                      className="edit-spot-radio"
+                      id={spot_category}
+                      checked={category === spot_category}
+                      value={category}
+                      onChange={() => setCategory(spot_category)}
+                      required
+                    />
+                    <label for={spot_category}>{spot_category}</label>
+                  </div>
+                )
+              })}
+            </div>
+          <label className="edit-spot-label">Edit your title</label>
             <input
               type="text"
-              className="edit-listing-input city-state-country"
+              className="edit-spot-input"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              maxLength={50}
+              required
+            />
+        <label className="edit-spot-label">Update your location</label>
+          <div className="edit-listing-address">
+            <input
+              type="text"
+              className="edit-spot-input address-input"
+              value={address}
+              onChange={e => setAddress(e.target.value)}
+              required
+              maxLength={100}
+            />
+          </div>
+          <div className="edit-listing-location">
+            <input
+              type="text"
+              className="edit-spot-input"
               value={city}
               onChange={e => setCity(e.target.value)}
               required
               maxLength={50}
             />
-          </div>
-          <div>
             <input
               type="text"
-              className="edit-listing-input city-state-country"
+              className="edit-spot-input"
               value={state}
               onChange={e => setState(e.target.value)}
               required
               maxLength={50}
             />
-          </div>
-          <div>
             <input
               type="text"
-              className="edit-listing-input city-state-country"
+              className="edit-spot-input"
               value={country}
               onChange={e => setCountry(e.target.value)}
               required
               maxLength={50}
             />
           </div>
-        </div>
-
         <div className="edit-listing-coordinates">
-          <div>
-            <div className="edit-listing-lat">
-              <label>Latitude</label>
-            </div>
+          <label className="edit-spot-label">Latitude</label>
             <input
               type="number"
-              className="edit-listing-input lat"
+              className="edit-spot-input"
               value={lat}
               onChange={e => setLat(e.target.value)}
             />
-          </div>
-          <div>
-            <div className="edit-listing-lng">
-              <label>Longitude</label>
-            </div>
+            <label className="edit-spot-label">Longitude</label>
             <input
               type="number"
-              className="edit-listing-input lng"
+              className="edit-spot-input lng"
               value={lng}
               onChange={e => setLng(e.target.value)}
             />
-          </div>
         </div>
-        <div>
-          <div className="edit-listing-label">
-            <label>Update your Description</label>
-          </div>
+        <label className="edit-spot-label">Update your Description</label>
           <textarea
             value={description}
-            className="edit-listing-input description"
+            className="edit-spot-input"
             onChange={e => setDescription(e.target.value)}
             required
             maxLength={1000}
           ></textarea>
-        </div>
-        <div>
-          <div className="edit-listing-label">
-            <label>Price per Night</label>
-          </div>
-          <input
-            type="number"
-            value={price}
-            className="edit-listing-input price-input"
-            onChange={e => setPrice(e.target.value)}
-            required
-            min={1}
-            max={100000}
-          />
-        </div>
+          <label className="edit-spot-label">Price per Night</label>
+            <input
+              type="number"
+              value={price}
+              className="edit-spot-input"
+              onChange={e => setPrice(e.target.value)}
+              required
+              min={1}
+              max={100000}
+            />
         {errors.length > 0 && (<ul>
           {errors.map((error, i) => <li key={i} className='update-error'>{error}</li>)}
         </ul>)}
