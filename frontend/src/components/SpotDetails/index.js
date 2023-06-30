@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-
 import { findSpotById, spotDelete } from "../../store/spots";
 import { getAllBookings, getSpotBookings } from "../../store/bookings";
 import { listAllUsers } from "../../store/users";
 import { getAllRoomReviews } from "../../store/reviews";
-
 import Maps from '../Maps'
 import Reviews from "../Reviews";
 import EditSpot from "../UserSpots/EditSpot";
