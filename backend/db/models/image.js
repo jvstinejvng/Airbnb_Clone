@@ -34,9 +34,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     type: {
       type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+       isIn: [['Review', 'Spot']]
+      },
     },
     url: {
-      type: DataTypes.TEXT
+      type: DataTypes.STRING,
+      allowNull: false,
     },
   }, {
     sequelize,
