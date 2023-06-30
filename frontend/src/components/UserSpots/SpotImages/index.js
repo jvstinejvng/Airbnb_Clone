@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { findSpotById } from '../../../store/spots';
 import { removeImage } from '../../../store/images';
-import '../../CSS/SpotImages';
+import '../../CSS/SpotImages.css';
 
 function SpotImages({ spotId }) {
     const dispatch = useDispatch();
@@ -24,7 +24,7 @@ function SpotImages({ spotId }) {
                             <button
                                 className='delete-spot-addtl-img'
                                 onClick={(e) => {
-                                    dispatch(removeImage(image.id)).then(() => dispatch(findSpotById(findSpotById)))
+                                    dispatch(removeImage(image.id)).then(() => dispatch(findSpotById(spotId)))
                                 }}
                             >
                                 x

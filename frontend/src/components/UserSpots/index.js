@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllSpots, allSpots } from "../../store/spots";
 import ImageFormModal from '../SpotImageForm';
-
+import SpotImages from './SpotImages'
 
 import NavigationBar from "../NavigationBar";
 import greenIcon from './green-listed.svg'
@@ -44,9 +44,11 @@ const UserSpots = ({ isLoaded, spot }) => {
                 <th>INSTANT BOOK</th>
                 <th>LOCATION</th>
                 <th>LAST MODIFIED</th>
+
               </tr>
               {userRooms?.map((spot, i) => {
                 return (
+                  <>
                   <tr>
                     <td className="listing-column">
                       <Link to={`/rooms/${spot?.id}`} className="spot-link" key={spot?.id}>
@@ -62,12 +64,21 @@ const UserSpots = ({ isLoaded, spot }) => {
                     <td className="listing-city-state">{`${spot?.city}, ${spot?.state}`}</td>
                     <td>{formatDate(spot?.updatedAt)}</td>
                   </tr>
+                    <div>
+                      <SpotImages spotId={spot.id} />
+                      <ImageFormModal id={spot?.id} type='spot' />
+                    </div>
+
+                    </>
+                  
                 )
               })
             }
             </table>
+            <div>
+
+               </div>
             <div className='listing-change'>
-                        <ImageFormModal id={spot?.id} type='spot' />
             </div>
           </div>
         </div> : <>

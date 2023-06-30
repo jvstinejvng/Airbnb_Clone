@@ -115,7 +115,7 @@ const validateSpot = [
     handleValidationErrors
 ]
 
-router.post('/:id/images', requireAuth, verifySpotId, verifySpotOwner, verifySpotImageMaxCount, validateImageInput, async (req, res, next) => {
+router.post('/:id/images', requireAuth, verifySpotId, verifySpotOwner, verifySpotImageMaxCount, async (req, res, next) => {
     try {
         const newImage = await Image.create({
             spotId: req.params.id,

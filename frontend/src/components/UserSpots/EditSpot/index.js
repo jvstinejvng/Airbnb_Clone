@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { spotEdit, findSpotById } from "../../../store/spots";
 import "../../CSS/EditSpot.css"
 
+import SpotImages from '../SpotImages'
+
+
 const EditSpot = ({ listingId, returnToListing }) => {
 
   const dispatch = useDispatch()
@@ -285,6 +288,8 @@ const EditSpot = ({ listingId, returnToListing }) => {
               min={1}
               max={100000}
             />
+                                <SpotImages spotId={spot.id} />
+
         <button type="submit" 
           disabled={
             Object.values(validationErrors).every((x) => x === "") ? false : true

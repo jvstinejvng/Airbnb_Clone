@@ -21,17 +21,16 @@ const handleValidationErrors = (req, _res, next) => {
 };
 
 
-const validateImageInput = [
-    check('url')
-        .exists({ checkFalsy: true })
-        .withMessage('Image url is required')
-        .isURL()
-        .withMessage('Invalid url'),
-    handleValidationErrors
-];
+// const validateImageInput = [
+//     check('url')
+//         .exists({ checkFalsy: true })
+//         .withMessage('Image url is required')
+//         .isURL()
+//         .withMessage('Invalid url'),
+//     handleValidationErrors
+// ];
 
 
 module.exports = {
     handleValidationErrors,
-    validateImageInput
 };
