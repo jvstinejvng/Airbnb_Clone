@@ -1,0 +1,43 @@
+.manage-listing-spot-images {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    margin: 2%;
+    gap: 1rem;
+}
+
+.listing-addtl-image-ind {
+    max-width: 50%;
+}
+
+.listing-addtl-image-ind img {
+    object-fit: cover;
+    height: 83px;
+    width: 83px;
+
+}
+
+.manage-listing-spot-images:hover button {
+    visibility: visible;
+}
+
+.manage-listing-spot-images button {
+    position: relative;
+    top: -65px;
+    height: 18px;
+    width: 18px;
+    background-color: rgb(0, 166, 153);
+    border-radius: 50%;
+    color: white;
+    border: none;
+    margin-left: -30px;
+    text-align: center;
+    align-items: center;
+    visibility: hidden;
+    cursor: pointer;
+}
+
+.manage-listing-spot-images button:hover {
+    box-shadow: 2px 2px 5px rgb(89, 89, 89);
+}

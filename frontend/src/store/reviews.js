@@ -37,6 +37,15 @@ export const getAllRoomReviews = (spotId) => async (dispatch) => {
   }
 }
 
+
+export const loadUserReviews = (id) => async dispatch => {
+  const response = await csrfFetch(`/api/users/${id}/reviews`);
+  const data = await response.json();
+  dispatch(getRoomReviews(data.Reviews));
+  return response;
+};
+
+
 export const addNewReview = (reviewData) => async (dispatch) => {
   const { userId, spotId, stars, review } = reviewData;
   const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {

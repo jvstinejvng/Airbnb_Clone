@@ -11,9 +11,50 @@ const { requireAuth,
     checkMaxImagesSpots,
     checkMaxImagesReviews } = require('../../utils/auth');
 const { User, Spot, Review, Booking, Image, sequelize } = require('../../db/models');
-const { handleValidationErrors } = require('../../utils/validation');
+const { handleValidationErrors, validateImageInput } = require('../../utils/validation');
 const { check } = require('express-validator');
 const router = express.Router();
+
+const verifySpotId = async (req, res, next) => {
+    let spot = await Spot.findByPk(req.params.id);
+    if (!spot) {
+        const err = new Error('Spot couldn\'t be found');
+        err.status = 404;
+        err.message = 'Spot couldn\'t be found';
+        err.title = 'Spot couldn\'t be found';
+        next(err);
+    }
+    next();
+};
+
+const verifySpotOwner = async (req, res, next) => {
+    const spot = await Spot.findByPk(req.params.id);
+    if (req.user.id != spot.ownerId) {
+        const err = new Error('Forbidden');
+        err.status = 403;
+        err.title = "Forbidden";
+        err.message = "Forbidden";
+        next(err);
+    }
+    next();
+};
+
+const verifySpotImageMaxCount = async (req, res, next) => {
+    const images = await Image.findAll({
+        where: {
+            imageableType: 'Spot',
+            spotId: req.params.id,
+        }
+    });
+    if (images.length >= 4) {
+        const err = new Error('Maximum number of images for this resource was reached');
+        err.status = 400;
+        err.title = "Maximum number of images for this resource was reached";
+        err.message = "Maximum number of images for this resource was reached";
+        next(err);
+    }
+    next();
+};
 
 const validateDate = [
     check('startDate')
@@ -73,6 +114,26 @@ const validateSpot = [
         .withMessage('Price per day is required'),
     handleValidationErrors
 ]
+
+router.post('/:id/images', requireAuth, verifySpotId, verifySpotOwner, verifySpotImageMaxCount, validateImageInput, async (req, res, next) => {
+    try {
+        const newImage = await Image.create({
+            spotId: req.params.id,
+            imageableType: "Spot",
+            url: req.body.url
+        });
+        return res.json(await Image.findByPk(newImage.id, {
+            attributes: [
+                'id',
+                ['spotId', 'imageableId'],
+                'imageableType',
+                'url'
+            ]
+        }));
+    } catch (err) {
+        next(err);
+    }
+});
 
 router.post('/:spotId/reviews/:reviewId/images', [requireAuth, checkUserReview, checkMaxImagesReviews], async (req, res) => {
     const { url } = req.body

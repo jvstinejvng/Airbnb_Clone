@@ -18,6 +18,7 @@ module.exports = {
       },
       reviewId: {
         type: Sequelize.INTEGER,
+        defaultValue: null, 
         references: {
           model: 'Reviews',
           key: 'id'
@@ -26,6 +27,7 @@ module.exports = {
       },
       spotId: {
         type: Sequelize.INTEGER,
+        defaultValue: null, 
         references: {
           model: 'Spots',
           key: 'id'

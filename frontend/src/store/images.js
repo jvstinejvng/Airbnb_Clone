@@ -2,6 +2,8 @@ import { csrfFetch } from "./csrf"
 
 const CREATE_IMAGES = 'images/CREATE_IMAGES'
 const GET_IMAGES ='images/GET_IMAGES'
+const DELETE_IMAGE = 'images/deleteImages';
+
 
 export const getAllImages = (state) => Object.values(state.images)
 
@@ -15,6 +17,25 @@ const getImages = (images) => ({
   images
 })
 
+const deleteImage = (id) => {
+  return {
+      type: DELETE_IMAGE,
+      id,
+  };
+};
+
+export const addReviewImage = (reviewId, newImage) => async (dispatch) => {
+  const { url } = newImage;
+  const response = await csrfFetch(`/api/reviews/${reviewId}/images`, {
+      method: "POST",
+      body: JSON.stringify({
+          url
+      }),
+  });
+  const data = await response.json();
+  dispatch(createImages(data));
+  return response;
+};
 
 export const listAllImages = () => async (dispatch) => {
   const response = await csrfFetch(`/api/images`);
@@ -25,8 +46,8 @@ export const listAllImages = () => async (dispatch) => {
   return response;
 }
 
-export const addNewImages = (imageData) => async (dispatch) => {
-  const { userId, spotId, type, url } = imageData;
+export const addNewImages = (spotId, imageData) => async (dispatch) => {
+  const { userId, type, url } = imageData;
   const response = await csrfFetch(`/api/spots/${spotId}/images`, {
     method: "POST",
     body: JSON.stringify({
@@ -40,6 +61,15 @@ export const addNewImages = (imageData) => async (dispatch) => {
   }
 }
 
+export const removeImage = (id) => async (dispatch) => {
+  const response = await csrfFetch(`/api/images/${id}`, {
+      method: 'DELETE',
+  });
+  dispatch(deleteImage(id));
+  return response;
+};
+
+
 const initialState = {}
 const imageReducer = (state = initialState, action) => {
   const newState = { ...state }
@@ -52,6 +82,10 @@ const imageReducer = (state = initialState, action) => {
       newState[action.image.id] = action.image;
       return newState;
     }
+    case DELETE_IMAGE:
+      newState = Object.assign({}, state);
+      delete newState[action.id];
+      return newState;
     default:
       return state;
   }

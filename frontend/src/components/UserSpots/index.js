@@ -2,13 +2,15 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllSpots, allSpots } from "../../store/spots";
+import ImageFormModal from '../SpotImageForm';
+
 
 import NavigationBar from "../NavigationBar";
 import greenIcon from './green-listed.svg'
 import greenCheck from './green-check.svg'
 
 import "../CSS/UserSpots.css"
-const UserSpots = ({ isLoaded }) => {
+const UserSpots = ({ isLoaded, spot }) => {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch()
   const allRooms = useSelector(getAllSpots)
@@ -64,6 +66,9 @@ const UserSpots = ({ isLoaded }) => {
               })
             }
             </table>
+            <div className='listing-change'>
+                        <ImageFormModal id={spot?.id} type='spot' />
+            </div>
           </div>
         </div> : <>
           <div className="no-session-user">
