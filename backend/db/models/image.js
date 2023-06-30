@@ -5,9 +5,9 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Image extends Model {
     static associate(models) {
-      Image.belongsTo(models.Spot, { foreignKey: 'spotId' })
-      Image.belongsTo(models.Review, { foreignKey: 'reviewId' })
-      Image.belongsTo(models.User, { foreignKey: 'userId' })
+      Image.belongsTo(models.Spot, { foreignKey: 'spotId' ,  onDelete: 'CASCADE'    })
+      Image.belongsTo(models.Review, { foreignKey: 'reviewId',onDelete: 'CASCADE'   })
+      Image.belongsTo(models.User, { foreignKey: 'userId',   onDelete: 'CASCADE'    })
     }
   }
   Image.init({

@@ -66,7 +66,7 @@ const UserSpots = ({ isLoaded, spot }) => {
                   </tr>
                     <div>
                       <SpotImages spotId={spot.id} />
-                      <ImageFormModal id={spot?.id} type='spot' />
+                        <ImageFormModal id={spot?.id} type='spot' />
                     </div>
 
                     </>

@@ -42,7 +42,7 @@ const verifySpotOwner = async (req, res, next) => {
 const verifySpotImageMaxCount = async (req, res, next) => {
     const images = await Image.findAll({
         where: {
-            imageableType: 'Spot',
+            type: 'spot',
             spotId: req.params.id,
         }
     });
@@ -119,14 +119,14 @@ router.post('/:id/images', requireAuth, verifySpotId, verifySpotOwner, verifySpo
     try {
         const newImage = await Image.create({
             spotId: req.params.id,
-            imageableType: "Spot",
+            type: "Spot",
             url: req.body.url
         });
         return res.json(await Image.findByPk(newImage.id, {
             attributes: [
                 'id',
-                ['spotId', 'imageableId'],
-                'imageableType',
+                ['spotId', 'type'],
+                'type',
                 'url'
             ]
         }));
